@@ -129,3 +129,7 @@ EC2의 `git pull`은 코드와 정의서만 갱신합니다. 데이터·DB·암�
 - 근거 기반 GraphRAG 질의응답과 시간적 규칙 추론 실험.
 
 [연구 검토](docs/research/) · [FIBO 정합성 검토](ontology/alignment/fibo/FIBO_review.md) · [백업·복구](docs/runbooks/backup_restore.md)
+
+## 한국 관계 그래프 데이터 소스 조사
+
+[한국 관계 그래프 소스 — 바로 읽기](docs/research/korean_graph_sources.md) · [원본 HTML](docs/research/korean_graph_sources.html)

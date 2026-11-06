@@ -1,0 +1,615 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>한국 관계 그래프 소스</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column (max 1040px). Order = 결론(우선순위) → 직접 확인한 기간 타임라인 → 논문 관계 → 한국 소스 매핑 → 미확인·주의 → 출처 */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #1a2130;
+  --muted: #5a6477;
+  --line: #dce0e7;
+  --accent: #2c4c9e;
+  --accent-soft: #e5eaf6;
+  --ok: #24785a;
+  --ok-soft: #e1f1ea;
+  --warn: #a8600a;
+  --warn-soft: #f8ecd9;
+  --doc: #5a6477;
+  --doc-soft: #eceef2;
+  --font-display: "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f131a; --surface: #161b24; --ink: #e5e8ee; --muted: #9aa3b4; --line: #2a313f;
+    --accent: #8fa7ef; --accent-soft: #1d2640; --ok: #5ec094; --ok-soft: #15291f;
+    --warn: #e2a64c; --warn-soft: #2d2213; --doc: #9aa3b4; --doc-soft: #1f2530;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f131a; --surface: #161b24; --ink: #e5e8ee; --muted: #9aa3b4; --line: #2a313f;
+  --accent: #8fa7ef; --accent-soft: #1d2640; --ok: #5ec094; --ok-soft: #15291f;
+  --warn: #e2a64c; --warn-soft: #2d2213; --doc: #9aa3b4; --doc-soft: #1f2530;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+  display: grid;
+  gap: 56px;
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4.4vw, 40px); line-height: 1.25; letter-spacing: -0.01em; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: 23px; line-height: 1.35; }
+h3 { font-size: 16px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+section { display: grid; gap: 18px; min-width: 0; }
+.sec-head { display: grid; gap: 6px; }
+
+/* header */
+header { display: grid; gap: 18px; }
+.lede { font-size: 16.5px; color: var(--muted); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); }
+.meta span { display: inline-flex; gap: 6px; align-items: center; }
+.glyph { width: 64px; height: 40px; }
+
+/* tiers */
+.tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.tier { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.tier .rank { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; }
+.tier.aux .rank { color: var(--muted); }
+.tier h3 { font-size: 15.5px; }
+.tier ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: grid; gap: 2px; }
+
+/* badges */
+.badge { display: inline-block; font-size: 11.5px; font-weight: 600; line-height: 1; padding: 5px 8px; border-radius: 999px; white-space: nowrap; }
+.b-ok { background: var(--ok-soft); color: var(--ok); }
+.b-doc { background: var(--doc-soft); color: var(--doc); }
+.b-warn { background: var(--warn-soft); color: var(--warn); }
+.cad { font-family: var(--font-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+/* timeline */
+.chart-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 14px 10px; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart-box svg { display: block; min-width: 760px; width: 100%; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12.5px; color: var(--muted); padding: 4px 6px 0; }
+.legend i { display: inline-block; width: 22px; height: 9px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.lg-ok { background: var(--accent); }
+.lg-part { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
+.lg-today { width: 2px !important; height: 12px !important; background: var(--warn); }
+svg .t-label { fill: var(--ink); font-family: var(--font-body); font-size: 13px; font-weight: 500; }
+svg .t-sub { fill: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+svg .t-axis { fill: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+svg .t-end { fill: var(--ink); font-family: var(--font-mono); font-size: 11px; }
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .bar-ok { fill: var(--accent); }
+svg .bar-part { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 4 3; }
+svg .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+svg .today { stroke: var(--warn); stroke-width: 1.5; }
+svg .today-t { fill: var(--warn); font-family: var(--font-mono); font-size: 11px; }
+
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.finding { border-top: 2px solid var(--accent); padding-top: 10px; display: grid; gap: 4px; min-width: 0; }
+.finding h3 { font-size: 15px; }
+.finding p { font-size: 14px; color: var(--muted); }
+
+/* tables */
+.table-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; background: var(--bg); position: sticky; top: 0; }
+tbody tr:last-child td { border-bottom: 0; }
+td.name { font-weight: 600; white-space: nowrap; }
+td.name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.papers table { min-width: 900px; }
+.map table { min-width: 860px; }
+.rel { color: var(--ink); }
+.tagrow { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.tag { font-size: 11px; padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+tr[hidden] { display: none; }
+.dim { color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.count { font-size: 13px; color: var(--muted); }
+
+.src-list { display: grid; gap: 4px; }
+.src-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.src-row:last-child { border-bottom: 0; }
+
+/* caveats */
+.cav { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.cav-item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.cav-item p { font-size: 14px; color: var(--muted); }
+
+.notes { display: grid; gap: 10px; }
+.notes li { max-width: 72ch; }
+ol.notes, ul.notes { margin: 0; padding-left: 20px; }
+
+.sources { columns: 2 320px; column-gap: 32px; font-size: 13px; margin: 0; padding-left: 18px; }
+.sources li { break-inside: avoid; margin-bottom: 6px; }
+footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 520px) {
+  .wrap { gap: 44px; padding-block: 28px 48px; }
+  th, td { padding: 9px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header>
+  <svg class="glyph" viewBox="0 0 64 40" aria-hidden="true">
+    <line x1="10" y1="20" x2="32" y2="8" stroke="var(--accent)" stroke-width="1.5"/>
+    <line x1="10" y1="20" x2="32" y2="32" stroke="var(--accent)" stroke-width="1.5"/>
+    <line x1="32" y1="8" x2="54" y2="20" stroke="var(--line)" stroke-width="1.5"/>
+    <line x1="32" y1="32" x2="54" y2="20" stroke="var(--line)" stroke-width="1.5"/>
+    <circle cx="10" cy="20" r="6" fill="var(--accent)"/>
+    <circle cx="32" cy="8" r="4.5" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <circle cx="32" cy="32" r="4.5" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <circle cx="54" cy="20" r="4" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
+  </svg>
+  <div class="eyebrow">FinTech KG · Spillover 관계 조사</div>
+  <h1>한국 주식시장에서 spillover 관계를 어디서 가져올 것인가</h1>
+  <p class="lede">Zotero FinTech KG 콜렉션에서 영향이 엣지를 타고 전파되는 효과를 다룬 논문 11편이 어떤 관계를 썼는지 정리했습니다. 이어서 같은 관계를 한국 시장에서 수집할 수 있는 오픈 데이터를 찾고, 각 소스의 기간과 최신성을 직접 조회해 확인했습니다.</p>
+  <div class="meta">
+    <span>조회 기준일 <b class="mono">2026-10-28</b></span>
+    <span>대상 논문 <b class="mono">11</b>편 (콜렉션 29편 중)</span>
+    <span>직접 조회한 소스 <b class="mono">5</b>곳 · 확인 못한 소스 <b class="mono">2</b>곳</span>
+  </div>
+</header>
+
+<section aria-labelledby="h-papers" class="papers">
+  <div class="sec-head">
+    <div class="eyebrow">1 · 논문 리뷰</div>
+    <h2 id="h-papers">논문별로 엣지에 쓴 관계</h2>
+    <p class="muted">관계 유형을 고르면 그 관계를 쓴 논문만 보입니다.</p>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="관계 유형 필터"></div>
+  <div class="count" id="count"></div>
+  <div class="table-box scroll">
+    <table>
+      <thead>
+        <tr><th>논문</th><th>효과 명칭</th><th>엣지로 쓴 관계</th><th>관계 출처</th><th>전파 방식</th></tr>
+      </thead>
+      <tbody id="paper-body"></tbody>
+    </table>
+  </div>
+  <p class="muted" style="font-size:13.5px">주변부 논문으로 Niu et al. (2024)도 있습니다. 전파 모델은 아니지만 뉴스 동시 언급으로 동적 관계 그래프를 만들고, 그 엣지가 수익률·변동성 동조화를 설명하는지로 그래프를 평가합니다.</p>
+  <div class="notes">
+    <h3>논문 전반에서 반복되는 설계 포인트</h3>
+    <ul class="notes">
+      <li><b>관계 타입마다 효과의 크기와 부호가 다릅니다.</b> 같은 위반 공시가 하류 기업에는 악재, 경쟁사에는 호재로 작용합니다(REST). 그래서 관계별 가중치나 부호를 따로 둡니다.</li>
+      <li><b>같은 엣지라도 전파 강도는 시점과 상태에 따라 달라집니다.</b> REST는 두 종목의 맥락으로 동적 가중치를 학습하고, AD-GAT는 속성 게이트를, Zhang은 커뮤니티 안팎 구분(λ<sub>in</sub> &gt; λ<sub>out</sub>)을 씁니다.</li>
+      <li><b>다중 홉 전파는 유효하지만 길이에 한계가 있습니다.</b> REST는 3홉을 넘으면 성능이 떨어지고, TRACE는 최대 3홉, HATS는 2홉 메타패스를 씁니다.</li>
+      <li><b>단일 사전정의 관계로는 부족합니다.</b> Ali &amp; Hirshleifer에서는 공동 애널리스트 커버리지가 산업·공급망·기술 연결 모멘텀의 알파를 대부분 흡수했고, AD-GAT에서는 추론된 관계가 사전정의 관계 5종과 그 합집합보다 성능이 높았습니다.</li>
+    </ul>
+  </div>
+</section>
+
+<section aria-labelledby="h-map" class="map">
+  <div class="sec-head">
+    <div class="eyebrow">2 · 한국 오픈 데이터</div>
+    <h2 id="h-map">관계 유형별 한국 오픈 데이터</h2>
+    <p class="muted">지분·계열·임원·산업분류·특허·산업연관은 공식 오픈 데이터로 갖춰져 있습니다. 기업 단위 공급망과 애널리스트 공동 커버리지는 구조화된 무료 데이터가 없어 원문 추출이나 스크래핑이 필요합니다.</p>
+  </div>
+  <div class="table-box scroll">
+    <table>
+      <thead>
+        <tr><th>관계 (논문)</th><th>한국 소스</th><th>범위 · 갱신</th><th>형태</th><th>확인 상태</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">지분·공통 보유자<small>REST, FinRipple, HATS</small></td>
+          <td>OpenDART 정기보고서(최대주주, 타법인 출자), DART 대량보유보고서, 국민연금 종목별 보유</td>
+          <td><span class="mono">2015~</span> 정형 API · 원문 <span class="mono">1999~</span><br>대량보유 <span class="mono">2000~2026-10</span> 수시<br>국민연금 연말, 최신 <span class="mono">2025-12-31</span></td>
+          <td>정형 API · CSV</td>
+          <td><span class="badge b-ok">직접 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">계열·자회사<small>HATS, Dukkipati</small></td>
+          <td>공정위 기업집단포털(소속회사 간 주식보유), DART 대규모기업집단현황공시</td>
+          <td>포털 <span class="mono">2001~2026</span> 연 1회<br>현황공시 <span class="mono">2009~2026-08</span> 분기</td>
+          <td>정형 (대기업집단 한정)</td>
+          <td><span class="badge b-ok">직접 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">그룹 내부 거래<small>공급망의 부분 대체</small></td>
+          <td>DART 대규모내부거래 공시 (상품·용역 거래, 특수관계인 출자)</td>
+          <td><span class="mono">2000~2026-08</span> 수시</td>
+          <td>공시 건별</td>
+          <td><span class="badge b-ok">직접 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">인적 연결<small>FinRipple, HATS, TRACE</small></td>
+          <td>OpenDART 임원현황(성명·생년월일로 동일인 매칭), 임원·주요주주 소유보고</td>
+          <td>정형 API <span class="mono">2015~</span> 분기<br>소유보고 <span class="mono">2000~</span> 수시</td>
+          <td>정형 API</td>
+          <td><span class="badge b-ok">직접 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">산업·섹터<small>REST, HATS, Dukkipati</small></td>
+          <td>KRX 산업분류 KRICS (4단계, 무료는 1·2단계), 기존 KRX 업종분류</td>
+          <td>KRICS <span class="mono">2025-01-02~</span> 일<br>KRX 업종 일</td>
+          <td>정형</td>
+          <td><span class="badge b-ok">직접 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">산업 간 투입·산출<small>공급망의 산업 단위 대체</small></td>
+          <td>한국은행 ECOS 산업연관표 (접속표, 연장표)</td>
+          <td>접속표 <span class="mono">2010·2015·2020</span><br>연장표 최신 <span class="mono">2024</span>년 기준</td>
+          <td>산업 단위</td>
+          <td><span class="badge b-doc">문서 기준</span></td>
+        </tr>
+        <tr>
+          <td class="name">뉴스 동시 언급<small>Niu, LLM 추출 원천</small></td>
+          <td>빅카인즈 (104개 언론사)</td>
+          <td><span class="mono">1990~2026-10-28</span> 일</td>
+          <td>웹 다운로드, API 제한적</td>
+          <td><span class="badge b-ok">최신 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">기업 단위 공급망·경쟁<small>REST, FinRipple, Zhang, TRACE</small></td>
+          <td>DART 사업보고서 원문 → LLM으로 매출처·원재료 매입처·경쟁 서술 추출</td>
+          <td>원문 <span class="mono">1999~</span> 분기</td>
+          <td>비정형</td>
+          <td><span class="badge b-ok">원문 확인</span></td>
+        </tr>
+        <tr>
+          <td class="name">특허 공동출원<small>FinRipple, Zhang</small></td>
+          <td>KIPRIS Plus (출원인 필드), 특허 권리자 변동 정보</td>
+          <td>무료 월 1,000회 · 출원 후 18개월 공개</td>
+          <td>정형 API</td>
+          <td><span class="badge b-warn">확인 못함</span></td>
+        </tr>
+        <tr>
+          <td class="name">애널리스트 공동 커버리지<small>Ali &amp; Hirshleifer</small></td>
+          <td>네이버 증권 리서치, 한경 컨센서스 리포트 목록 스크래핑 (FnGuide는 유료)</td>
+          <td>일 · 이용약관 확인 필요</td>
+          <td>비정형</td>
+          <td><span class="badge b-warn">확인 못함</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="h-time">
+  <div class="sec-head">
+    <div class="eyebrow">3 · 기간·갱신 직접 확인</div>
+    <h2 id="h-time">소스별 시계열 범위와 최신 시점</h2>
+    <p class="muted">DART 공시검색(삼성전자 기준), 공정위 기업집단포털, KRX 인덱스 사이트, 빅카인즈, 공공데이터포털을 2026-10-28에 직접 조회한 결과입니다. 막대 오른쪽 끝의 날짜가 확인한 가장 최근 자료입니다.</p>
+  </div>
+  <div class="chart-box">
+    <div class="scroll" id="timeline" role="img" aria-label="소스별 데이터 시작 연도와 최신 자료 시점 타임라인"></div>
+    <div class="legend">
+      <span><i class="lg-ok"></i>시작과 최신 시점 모두 직접 확인</span>
+      <span><i class="lg-part"></i>한쪽 끝은 공식 문서·보도 기준</span>
+      <span><i class="lg-today"></i>조회일 2026-10-28</span>
+    </div>
+  </div>
+  <div class="findings">
+    <div class="finding">
+      <h3>계열·출자는 분기 단위로 받을 수 있음</h3>
+      <p>공정위 포털은 연 1회지만, DART의 대규모기업집단현황공시가 2009년부터 분기마다 접수됩니다(최근 2026-08-31).</p>
+    </div>
+    <div class="finding">
+      <h3>그룹 내부 거래는 유일한 정형 공급 관계</h3>
+      <p>대규모내부거래 공시는 계열사 간 상품·용역 거래와 출자를 2000년부터 건별로 공시합니다. 기업 단위 공급망의 부분 대체재입니다.</p>
+    </div>
+    <div class="finding">
+      <h3>국민연금 연말 보유는 9개월 늦음</h3>
+      <p>최신 파일이 2025-12-31 기준이고 2026-09-30에 등록됐습니다. 다음 등록은 2027-09-30 예정입니다. 최근성이 필요하면 대량보유보고서를 씁니다.</p>
+    </div>
+    <div class="finding">
+      <h3>KRICS는 2025-01-02부터만 조회됨</h3>
+      <p>2024년 이전 날짜는 결과가 없었습니다. 무료 공개는 1·2단계까지이고, 세부 조회는 유료 정보상품입니다. 분류 변경이 시점별로 기록됐는지는 확인하지 못했습니다.</p>
+    </div>
+    <div class="finding">
+      <h3>정기보고서 원문은 1999년부터</h3>
+      <p>OpenDART 정형 API(최대주주·임원·출자)는 2015 사업연도부터지만, 그 이전은 원문 파싱으로 메울 수 있습니다.</p>
+    </div>
+    <div class="finding">
+      <h3>산업연관표는 2년 시차</h3>
+      <p>최신은 2024년 기준 연장표(2026-09 발표)입니다. 기업 단위 엣지보다 산업 간 사전 가중치로 쓰는 편이 맞습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-cav">
+  <div class="sec-head">
+    <div class="eyebrow">4 · 남은 확인</div>
+    <h2 id="h-cav">확인하지 못한 것과 주의할 점</h2>
+  </div>
+  <div class="cav">
+    <div class="cav-item">
+      <h3>네이버 증권 리서치</h3>
+      <p>웹 페치와 브라우저 모두 안전 정책으로 차단되어 접근하지 못했습니다. 수록 시작 시점과 페이지 구조는 직접 확인이 필요합니다.</p>
+    </div>
+    <div class="cav-item">
+      <h3>KIPRIS</h3>
+      <p>검색 페이지는 열렸지만 결과가 렌더링되지 않았습니다. 특허는 출원 후 18개월이 지나야 공개되므로, 공동출원 엣지는 구조적으로 1년 반 늦게 관측됩니다.</p>
+    </div>
+    <div class="cav-item">
+      <h3>OpenDART API 반환 범위</h3>
+      <p>인증키가 필요해 API로는 호출하지 못했고, 같은 원천인 DART 웹 공시검색으로 확인했습니다. 지분공시 API는 회사 코드만 받으므로 전체 이력을 돌려줄 것으로 보이지만, 키로 한 번 호출해 확정해야 합니다.</p>
+    </div>
+    <div class="cav-item">
+      <h3>코스닥 커버리지 밀도</h3>
+      <p>코스닥 시총 상위 10개 중 컨센서스(추정치 3개 이상)가 형성된 종목이 3개뿐이라는 보도가 있습니다. 애널리스트 공동 커버리지 엣지는 코스닥에서 희소할 수 있습니다.</p>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>구축 시 지킬 것</h3>
+    <ol class="notes">
+      <li><b>엣지 생성 시점은 접수일(rcept_dt)로 잡습니다.</b> 사업보고서는 결산 후 약 90일, 분·반기보고서는 약 45일 뒤에 제출됩니다. 보고서 기준일을 쓰면 시장보다 먼저 관계를 아는 look-ahead가 생깁니다.</li>
+      <li><b>표본 기간은 가장 짧은 소스가 정합니다.</b> 여러 관계를 합칠 때 현실적인 공통 구간은 OpenDART 정형 API가 시작하는 2015년 이후입니다. KRICS를 포함하면 2025년 이후로 줄어듭니다.</li>
+      <li><b>저빈도 소스는 보조 레이어로 둡니다.</b> 국민연금 연말 스냅샷과 산업연관표는 시차가 커서 동적 엣지가 아니라 사전 가중치나 정적 레이어로 씁니다.</li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="h-tier">
+  <div class="sec-head">
+    <div class="eyebrow">5 · 결론</div>
+    <h2 id="h-tier">최근까지 갱신되는 관계 우선순위</h2>
+    <p class="muted">앞의 조사와 직접 확인 결과를 종합해, 백테스트와 실시간 운용에서 지금도 갱신되고 갱신 간격이 짧은 관계부터 정렬했습니다.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier">
+      <div class="rank">1순위 · 수시</div>
+      <h3>이벤트 단위 DART 공시</h3>
+      <ul>
+        <li>대량보유보고서 (5% 공통 보유자)</li>
+        <li>임원·주요주주 소유보고 (인적·지분)</li>
+        <li>대규모내부거래 (계열 간 거래·출자)</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="rank">2순위 · 분기</div>
+      <h3>분기 단위 DART 공시</h3>
+      <ul>
+        <li>정기보고서: 최대주주, 임원, 타법인 출자</li>
+        <li>대규모기업집단현황공시 (계열 출자)</li>
+        <li>사업보고서 원문 → 매출처·경쟁 LLM 추출</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="rank">3순위 · 일</div>
+      <h3>뉴스 동시 언급</h3>
+      <ul>
+        <li>빅카인즈: 조회일 당일 기사까지 반영</li>
+        <li>LLM 관계 추출의 원천으로도 사용</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="rank">4순위 · 일 (2025~)</div>
+      <h3>KRICS 산업분류</h3>
+      <ul>
+        <li>2025-01-02부터 일별 조회 가능</li>
+        <li>이전 구간은 기존 KRX 업종으로 대체</li>
+      </ul>
+    </div>
+    <div class="tier aux">
+      <div class="rank">보조 레이어 · 연</div>
+      <h3>저빈도 정적 관계</h3>
+      <ul>
+        <li>공정위 소속회사 간 주식보유 (연 1회)</li>
+        <li>국민연금 연말 보유 (9개월 시차)</li>
+        <li>산업연관표 (약 2년 시차, 산업 단위)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-src">
+  <div class="sec-head">
+    <div class="eyebrow">출처</div>
+    <h2 id="h-src">참고한 자료</h2>
+  </div>
+  <ul class="sources">
+    <li><a href="https://dart.fss.or.kr/dsab007/main.do">DART 공시통합검색</a> (직접 조회)</li>
+    <li><a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS004&amp;apiId=2019021">OpenDART 대량보유 상황보고 API 가이드</a></li>
+    <li><a href="https://glama.ai/mcp/servers/@RealYoungk/opendart-mcp/schema">OpenDART API 파라미터 (사업연도 2015년 이후)</a></li>
+    <li><a href="https://www.egroup.go.kr/egps/wi/stat/spo/psitnCmpnyStockHoldList.do">공정위 기업집단포털 소속회사 간 주식보유현황</a> (직접 조회)</li>
+    <li><a href="https://www.data.go.kr/data/15091886/openapi.do">공정위 지정된 대규모기업집단 조회 서비스</a></li>
+    <li><a href="https://www.data.go.kr/catalog/15091909/openapi.json">공정위 지주회사 자회사·손자회사 API</a></li>
+    <li><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=286246">2026년 공시대상기업집단 주식소유현황 (KDI)</a></li>
+    <li><a href="https://index.krx.co.kr/contents/MKD/03/0303/03030302/MKD03030302.jsp">KRX KRICS 산업분류</a> (직접 조회)</li>
+    <li><a href="https://core.asiae.co.kr/article/2026092210104587389">거래소 자체 산업분류체계 KRICS 도입 (아시아경제)</a></li>
+    <li><a href="https://www.data.go.kr/data/3070507/fileData.do">국민연금 국내주식 종목별 투자 현황</a> (직접 조회)</li>
+    <li><a href="https://www.data.go.kr/data/15106890/fileData.do">국민연금 대량보유주식 보고내역</a></li>
+    <li><a href="https://www.bigkinds.or.kr/v2/news/index.do">빅카인즈 뉴스 검색</a> (직접 조회)</li>
+    <li><a href="https://wikidocs.net/331431">빅카인즈 소개 (위키독스)</a></li>
+    <li><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=287190">2024년 산업연관표(연장표) (KDI)</a></li>
+    <li><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=283583">접속산업연관표 작성 결과 (KDI)</a></li>
+    <li><a href="https://data.go.kr/biz/dcat/metadata/15057617.do">KIPRIS Plus 무료 호출 한도 (공공데이터포털)</a></li>
+    <li><a href="https://newstomato.com/ReadNews.aspx?no=1186895">에프앤가이드 리서치 독점 문제 (뉴스토마토)</a></li>
+    <li><a href="https://www.hankyung.com/article/2026040869176">코스닥 컨센서스 부재 (한국경제)</a></li>
+  </ul>
+</section>
+
+<footer>
+  논문 정리는 Zotero FinTech KG 콜렉션 원문 기준입니다. MAC(Ma et al., 2023)은 본문 PDF가 스캔본이라 관계 정의를 확인하지 못했습니다. 조회 결과는 2026-10-28 시점이며, 이후 갱신으로 최신 시점은 달라질 수 있습니다.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  // ---------- timeline ----------
+  var rows = [
+    { label: "빅카인즈 뉴스", cad: "일", s: 1990.0, e: 2026.82, ok: false, end: "2026-10-28" },
+    { label: "DART 정기보고서 원문", cad: "분기", s: 1999.48, e: 2026.62, ok: true, end: "2026-08-14" },
+    { label: "DART 대규모내부거래", cad: "수시", s: 2000.27, e: 2026.62, ok: true, end: "2026-08-14" },
+    { label: "DART 대량보유보고서", cad: "수시", s: 2000.37, e: 2026.81, ok: true, end: "2026-10-23" },
+    { label: "DART 임원·주요주주 소유보고", cad: "수시", s: 2000.27, e: 2026.82, ok: false, end: "수시 접수" },
+    { label: "공정위 소속회사 간 주식보유", cad: "연 1회", s: 2001.0, e: 2026.33, ok: true, end: "2026년분" },
+    { label: "DART 대규모기업집단현황공시", cad: "분기", s: 2009.66, e: 2026.66, ok: true, end: "2026-08-31" },
+    { label: "산업연관표 (ECOS)", cad: "연 · 2년 시차", s: 2010.0, e: 2025.0, ok: false, end: "2024년 기준" },
+    { label: "OpenDART 정형 API", cad: "분기", s: 2015.0, e: 2026.82, ok: false, end: "2015 사업연도~" },
+    { label: "국민연금 연말 보유", cad: "연 1회", s: 2013.0, e: 2026.0, ok: false, end: "2025-12-31 기준" },
+    { label: "KRICS 산업분류", cad: "일", s: 2025.0, e: 2026.82, ok: true, end: "2026-10-27" }
+  ];
+  var W = 1000, L = 250, R = 905, top = 26, rowH = 38;
+  var y0 = 1990, y1 = 2027;
+  var H = top + rows.length * rowH + 30;
+  var x = function (v) { return L + (v - y0) / (y1 - y0) * (R - L); };
+  var ns = "http://www.w3.org/2000/svg";
+  var svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  function el(tag, attrs, text) {
+    var n = document.createElementNS(ns, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    svg.appendChild(n);
+    return n;
+  }
+  for (var yr = 1990; yr <= 2025; yr += 5) {
+    el("line", { x1: x(yr), x2: x(yr), y1: top - 8, y2: H - 26, "class": "grid" });
+    el("text", { x: x(yr), y: H - 10, "text-anchor": "middle", "class": "t-axis" }, String(yr));
+  }
+  var today = 2026.82;
+  el("line", { x1: x(today), x2: x(today), y1: top - 14, y2: H - 26, "class": "today" });
+  el("text", { x: x(today), y: top - 18, "text-anchor": "middle", "class": "today-t" }, "10/28");
+  rows.forEach(function (r, i) {
+    var cy = top + i * rowH + rowH / 2;
+    el("text", { x: 0, y: cy - 2, "class": "t-label" }, r.label);
+    el("text", { x: 0, y: cy + 13, "class": "t-sub" }, r.cad);
+    var bx = x(r.s), bw = Math.max(4, x(r.e) - x(r.s));
+    el("rect", { x: bx, y: cy - 7, width: bw, height: 14, rx: 3, "class": r.ok ? "bar-ok" : "bar-part" });
+    el("circle", { cx: x(r.e), cy: cy, r: 4.5, "class": "dot" });
+    var label = r.end;
+    var tx = x(r.e) + 9, anchor = "start";
+    if (tx + label.length * 6.6 > W) { tx = x(r.s) - 8; anchor = "end"; }
+    el("text", { x: tx, y: cy + 4, "text-anchor": anchor, "class": "t-end" }, label);
+  });
+  document.getElementById("timeline").appendChild(svg);
+
+  // ---------- papers ----------
+  var TAGS = {
+    supply: "공급망", industry: "산업·섹터", signed: "경쟁·협력(부호)", ownership: "지분·소유",
+    people: "인적 연결", tech: "기술·특허", info: "정보·주목도", learned: "학습·생성 관계"
+  };
+  var papers = [
+    { n: "Ali & Hirshleifer", y: "2020", fx: "Momentum spillover",
+      rel: "공동 애널리스트 커버리지. 비교 대상: 산업, 지역, 고객, 고객·공급자 산업, 단일→복수 세그먼트, 기술 연결",
+      src: "애널리스트 커버리지 데이터", how: "연결 기업 수익률 포트폴리오 (CF momentum factor)",
+      t: ["info", "industry", "supply", "tech"] },
+    { n: "AD-GAT", y: "Cheng & Li, 2021", fx: "Momentum spillover",
+      rel: "시장 신호에서 추론한 암묵 관계 (모든 기업 쌍). 비교용: 산업, 공급망, 고객, 경쟁, 전략적 제휴",
+      src: "S&P Capital IQ (비교용)", how: "속성 게이트 GAT. 두 기업의 상태(거래량, P/E 등)에 따라 전파량 조절",
+      t: ["learned", "industry", "supply", "signed"] },
+    { n: "REST", y: "Xu et al., 2021", fx: "Cross-stock influence",
+      rel: "산업, 사업(동일 제품군), 공통 대주주(상위 10대 주주), 상·하류",
+      src: "tushare (CSI 300/500)", how: "관계별 R-GCN + 종목 맥락 기반 동적 가중치. 다중 홉 (최적 2~3홉)",
+      t: ["industry", "ownership", "supply"] },
+    { n: "HATS", y: "Kim et al., 2019", fx: "관계 기반 정보 집계",
+      rel: "Wikidata 기업 간 직접 관계 + 2홉 메타패스, 총 75종 (예: 창업자→이사회 멤버)",
+      src: "Wikidata", how: "관계 내 노드 어텐션 → 관계 간 어텐션의 계층 구조",
+      t: ["ownership", "people"] },
+    { n: "FinRipple", y: "Xu et al., 2025", fx: "Ripple effect",
+      rel: "경영진 연결(CEO·이사회 중복), 뮤추얼펀드 교차보유, 특허 공동개발, 공급망. 부호로 협력(+)·경쟁(−) 구분",
+      src: "공시·특허·거래 데이터로 만든 월별 KG", how: "KG를 LLM 어댑터에 주입, CAPM 잔차를 보상으로 PPO 정렬",
+      t: ["people", "ownership", "tech", "supply", "signed"] },
+    { n: "Zhang", y: "2026", fx: "Cross-entity signal propagation",
+      rel: "공급자, 고객, 경쟁사, 기술, capex 노출, 산업. LLM이 명시적·암묵적 관계 모두 추출",
+      src: "LLM이 문서에서 추출한 동적 KG", how: "커뮤니티 인지 선형 확산 (λ_in > λ_out), CIS/PIS 팩터",
+      t: ["supply", "signed", "tech", "industry", "learned"] },
+    { n: "TRACE", y: "Ding et al., 2026", fx: "관계 기반 다중 홉 추론",
+      rel: "SELLS, INVESTED_IN, PARTNERED, ACQUIRED, DIVESTED, WORKS_FOR, LICENSED, SUED, SETTLED, CAUSED_INCREASE/DECLINE",
+      src: "뉴스 추출 시간 KG (S&P 500, 2022–23)", how: "마이닝한 룰이 허용하는 경로만 탐색, 최대 3홉",
+      t: ["supply", "ownership", "people", "signed", "tech"] },
+    { n: "Dukkipati et al.", y: "2026", fx: "External influence",
+      rel: "1·2차 기업 관계 (1차 6종, 2차 52종), GICS 4단계, 자회사, 생산 제품, CEO + 이벤트·재무·거시 관계",
+      src: "Wikidata, 뉴스, 재무제표", how: "관계를 Hawkes process 이벤트로 모델링 + 이종 그래프 어텐션",
+      t: ["industry", "ownership", "people"] },
+    { n: "TRR", y: "Koa et al., 2025", fx: "포트폴리오 충격 전파",
+      rel: "고정 관계 없음. LLM이 뉴스→중간 엔티티→종목 영향 체인을 생성, 엣지는 영향 방향",
+      src: "LLM 생성", how: "PageRank(기억 감쇠 가중)로 핵심 체인 선택 후 LLM 추론",
+      t: ["learned"] },
+    { n: "Chen et al.", y: "2026", fx: "관계 맥락에 따른 감성 반전",
+      rel: "경쟁 / 협력 이진 관계만 사용 (경량 스키마)",
+      src: "LLM이 기업 뉴스에서 추출", how: "어텐션에 관계 bias 추가, 협력사 호재와 경쟁사 악재 구분",
+      t: ["signed", "learned"] },
+    { n: "MAC", y: "Ma et al., 2023", fx: "관련 기업 뉴스 효과",
+      rel: "관련 기업 간 그래프 (정의는 스캔본이라 확인 불가)",
+      src: "확인 불가", how: "관련 종목 뉴스 감성 임베딩을 GCN으로 집계",
+      t: [] }
+  ];
+  var body = document.getElementById("paper-body");
+  var esc = function (s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+  papers.forEach(function (p) {
+    var tr = document.createElement("tr");
+    tr.dataset.tags = p.t.join(" ");
+    var tags = p.t.map(function (k) { return '<span class="tag">' + TAGS[k] + "</span>"; }).join("");
+    tr.innerHTML =
+      '<td class="name">' + esc(p.n) + "<small>" + esc(p.y) + "</small></td>" +
+      "<td>" + esc(p.fx) + "</td>" +
+      '<td class="rel">' + esc(p.rel) + (tags ? '<div class="tagrow">' + tags + "</div>" : "") + "</td>" +
+      '<td class="dim">' + esc(p.src) + "</td>" +
+      "<td>" + esc(p.how) + "</td>";
+    body.appendChild(tr);
+  });
+
+  var chips = document.getElementById("chips");
+  var count = document.getElementById("count");
+  var keys = ["all"].concat(Object.keys(TAGS));
+  var current = "all";
+  try { var saved = localStorage.getItem("relFilter"); if (saved && keys.indexOf(saved) > -1) current = saved; } catch (e) {}
+  function apply() {
+    var n = 0;
+    Array.prototype.forEach.call(body.rows, function (tr) {
+      var show = current === "all" || (" " + tr.dataset.tags + " ").indexOf(" " + current + " ") > -1;
+      tr.hidden = !show;
+      if (show) n++;
+    });
+    Array.prototype.forEach.call(chips.children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.k === current)); });
+    count.textContent = current === "all" ? "논문 " + n + "편" : TAGS[current] + " 관계를 쓴 논문 " + n + "편";
+  }
+  keys.forEach(function (k) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.id = "chip-" + k;
+    b.dataset.k = k;
+    b.textContent = k === "all" ? "전체" : TAGS[k];
+    b.addEventListener("click", function () {
+      current = k;
+      try { localStorage.setItem("relFilter", k); } catch (e) {}
+      apply();
+    });
+    chips.appendChild(b);
+  });
+  apply();
+})();
+</script>
+
+</body></html>
