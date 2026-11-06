@@ -3,7 +3,7 @@ import argparse,sys,runpy
 
 def main(argv=None):
  args=list(sys.argv[1:] if argv is None else argv)
- commands={'collect':'knowledge_graph.ingestion.collection','ingest':'knowledge_graph.ingestion.cli','extract':'knowledge_graph.graph.ownership','graph':'knowledge_graph.graph.ownership','report':'knowledge_graph.graph.report','prepare':'knowledge_graph.storage.prepare_import','neo4j':'knowledge_graph.storage.manage','verify':'knowledge_graph.storage.verify','install-macos':'knowledge_graph.storage.install_macos'}
+ commands={'collect':'knowledge_graph.ingestion.collection','ingest':'knowledge_graph.ingestion.cli','extract':'knowledge_graph.graph.ownership','graph':'knowledge_graph.graph.ownership','report':'knowledge_graph.graph.report','prepare':'knowledge_graph.storage.prepare_import','neo4j':'knowledge_graph.storage.manage','verify':'knowledge_graph.storage.verify','install-macos':'knowledge_graph.storage.install_macos','prices':'knowledge_graph.market.prices','market-link':'knowledge_graph.market.link'}
  if not args or args[0] in ['--help','-h']:
   parser=argparse.ArgumentParser(description='OpenDART → v0.1 evidence-linked graph → Neo4j')
   parser.add_argument('command',choices=sorted(commands),help='collect=date range; ingest=legacy API commands; extract/graph=bounded pilot; prepare=typed CSV; neo4j=start/stop/import/status; verify=live DB checks')
