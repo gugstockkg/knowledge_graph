@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gug-knowledge-graph"
+version = "0.1.0"
+description = "Evidence-linked OpenDART knowledge graph research pipeline"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+kg = "knowledge_graph.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

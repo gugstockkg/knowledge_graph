@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="gug-pipeline" name="공시 KG Overview">
+    <mxGraphModel dx="1280" dy="770" grid="1" gridSize="10" page="1" pageWidth="1280" pageHeight="770" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge0" edge="1" parent="1" source="collect" target="raw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;strokeColor=#7F95A9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" edge="1" parent="1" source="raw" target="extract" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;strokeColor=#7F95A9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="extract" target="graph" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;strokeColor=#7F95A9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="graph" target="validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;strokeColor=#7F95A9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="validate" target="neo4j" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;strokeColor=#7F95A9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" edge="1" parent="1" source="ontology" target="graph" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;strokeColor=#7F95A9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="&lt;b&gt;공시에서 근거 기반 지식그래프까지&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;text;strokeColor=none;fillColor=none;fontSize=28;" vertex="1" parent="1">
+          <mxGeometry x="24" y="18" width="1220" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="&lt;b&gt;GUG · OpenDART → Ontology v0.1 → Neo4j Community&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;text;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="24" y="64" width="1220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="ontology" value="&lt;b&gt;온톨로지 v0.1 · 적용 기준&lt;/b&gt;&lt;br&gt;v0.2 / FIBO 매핑은 검토 초안" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f4f7;strokeColor=#bdc7d0;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="111" width="280" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="collect" value="&lt;b&gt;01  수집&lt;/b&gt;&lt;br&gt;OpenDART API&lt;br&gt;목록·원문 다운로드&lt;br&gt;캐시 · 누락 기록" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#94b7db;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="24" y="218" width="174" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="raw" value="&lt;b&gt;02  원본 보존&lt;/b&gt;&lt;br&gt;ZIP / XML / JSON&lt;br&gt;접수번호·파일 해시&lt;br&gt;16,295건 목록" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#94b7db;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="232" y="218" width="174" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="extract" value="&lt;b&gt;03  필요한 값 추출&lt;/b&gt;&lt;br&gt;ACODE / AUNIT 표식&lt;br&gt;수량·비율·기준일&lt;br&gt;개인 / 합산 구분" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#94b7db;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="440" y="218" width="174" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="graph" value="&lt;b&gt;04  그래프 변환&lt;/b&gt;&lt;br&gt;v0.1 노드·관계&lt;br&gt;주장 → 근거 → 원문&lt;br&gt;검토 상태 유지" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#94b7db;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="648" y="218" width="174" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="validate" value="&lt;b&gt;05  검증·적재 준비&lt;/b&gt;&lt;br&gt;형식 지정 CSV&lt;br&gt;ID·산술·근거 검사&lt;br&gt;중복 없는 재적재" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#94b7db;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="856" y="218" width="174" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="neo4j" value="&lt;b&gt;06  Neo4j 조회&lt;/b&gt;&lt;br&gt;Community 2026.10.1&lt;br&gt;Cypher · 그래프 탐색&lt;br&gt;로컬 실행 검증" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#94b7db;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="218" width="174" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="pilot" value="&lt;b&gt;현재 검증 범위  ·  기업 5개 / 공시 20건 / 보유현황 40개 / 노드 332개 / 관계 600개&lt;/b&gt;&lt;br&gt;모든 결과는 추출 후보 · 원문 전체 의미 분석·최신 지분 확정·자동 투자 판단은 미구현" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef7f1;strokeColor=#a5c4af;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="24" y="386" width="1214" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="git" value="&lt;b&gt;Git으로 공유&lt;/b&gt;&lt;br&gt;수집·추출·적재 코드 / 온톨로지 / 예제 설정&lt;br&gt;테스트 / 조회문 / 연구·운영 문서 / 이 다이어그램" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef7f1;strokeColor=#a5c4af;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="24" y="500" width="590" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="private" value="&lt;b&gt;Git에서 제외&lt;/b&gt;&lt;br&gt;전체 원문·파생 데이터 / 실제 Neo4j DB&lt;br&gt;API 키·암호 / 실행 파일·로그 / 결과 ZIP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff5e8;strokeColor=#d8bd96;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="648" y="500" width="590" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="aws" value="&lt;b&gt;다음 실행 환경  ·  AWS EC2 (배포 준비 단계)&lt;/b&gt;&lt;br&gt;git pull = 코드 갱신  ·  데이터·인증정보는 별도 구성  ·  DB·원문은 EBS에 보존&lt;br&gt;Mac ARM64 실행 파일을 EC2 x86_64로 복사하지 않음" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f4f7;strokeColor=#bdc7d0;fontColor=#23374D;fontSize=16;align=left;spacingLeft=16;spacingRight=12;" vertex="1" parent="1">
+          <mxGeometry x="24" y="650" width="1214" height="96" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,24 @@
+# EC2/Linux profile. Local macOS can keep using the native runtime.
+services:
+  neo4j:
+    image: neo4j:2026.10.1
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    environment:
+      NEO4J_AUTH: "neo4j/${NEO4J_PASSWORD:?Set NEO4J_PASSWORD in the local environment}"
+      NEO4J_server_memory_heap_initial__size: "512m"
+      NEO4J_server_memory_heap_max__size: "1g"
+      NEO4J_server_memory_pagecache_size: "512m"
+      NEO4J_server_default__listen__address: "0.0.0.0"
+      NEO4J_server_bolt_advertised__address: "localhost:7687"
+      NEO4J_server_directories_import: "/import"
+      NEO4J_dbms_usage__report_enabled: "false"
+      NEO4J_dbms_fleet__manager_enabled: "false"
+      NEO4J_server_fleet__discovery_enabled: "false"
+      NEO4J_db_import_csv_legacy__quote__escaping: "false"
+    volumes:
+      - "${KG_DATA_DIR:-../data}/neo4j:/data"
+      - "${KG_DATA_DIR:-../data}/graph/ownership_pilot_v01/import:/import:ro"
+      - "${KG_RUNTIME_DIR:-../.runtime}/neo4j-logs:/logs"

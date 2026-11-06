@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DOCUMENT>
+  <TABLE><TBODY><TR>
+    <TE ACODE="IFR_NM">합성 테스트 보고자</TE>
+    <TU AUNIT="AFR_RPT_DT" AUNITVALUE="20261014">2026년 10월 14일</TU>
+    <TE ACODE="AFR_UN_CNT">1,000</TE>
+  </TR></TBODY></TABLE>
+</DOCUMENT>

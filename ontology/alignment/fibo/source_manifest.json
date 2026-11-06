@@ -1,0 +1,93 @@
+{
+  "review_date": "2026-11-06",
+  "fibo_branch": "master",
+  "fibo_commit": "33a92cd34285d532c158da97bb42add089f135d3",
+  "source_note": "개발 브랜치 스냅샷이며 특정 정식 배포판 인증이 아님. OMG Commons는 조회 시 파일 내용과 SHA256로 고정.",
+  "files": [
+    {
+      "file": "BE__Corporations__Corporations.rdf",
+      "sha256": "9d0dd0cd6fb33cc59011891b96cb400d370515ff04464f69e1c8777dac5fd257",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/BE/20251001/Corporations/Corporations/"
+    },
+    {
+      "file": "BE__LegalEntities__CorporateBodies.rdf",
+      "sha256": "13bcc4c012154230cd00f775c3ec12f4cf29616e7c484f2b2b9f61f659dd3235",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/BE/20251002/LegalEntities/CorporateBodies/"
+    },
+    {
+      "file": "BE__LegalEntities__FormalBusinessOrganizations.rdf",
+      "sha256": "60686e1934350885e2c1fdd78a99e7d9ad6ca49f3f4ea0b15b52e185028d6f7b",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/BE/20260701/LegalEntities/FormalBusinessOrganizations/"
+    },
+    {
+      "file": "BE__LegalEntities__LegalPersons.rdf",
+      "sha256": "d55897f004e97c7ad355ca8800641805f3836338a1c9cdb58614c7b5ef5eb101",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/BE/20251201/LegalEntities/LegalPersons/"
+    },
+    {
+      "file": "BE__OwnershipAndControl__CorporateOwnership.rdf",
+      "sha256": "caa7cd8e61645849921ba376344ef633c90bcebf3c8775689522b9b0a896cc83",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/BE/20260701/OwnershipAndControl/CorporateOwnership/"
+    },
+    {
+      "file": "BE__OwnershipAndControl__Executives.rdf",
+      "sha256": "54bbad3e6efaab361333ac845c2ec394b7dc48590cad6f42a6a9425d72b6de28",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/BE/20261001/OwnershipAndControl/Executives/"
+    },
+    {
+      "file": "FBC__FinancialInstruments__FinancialInstruments.rdf",
+      "sha256": "5e8ef6606621e66dbb6998befd877b76ebef4b9e5baa22f8ea98bab2f41a106f",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/20260801/FinancialInstruments/FinancialInstruments/"
+    },
+    {
+      "file": "FND__AgentsAndPeople__People.rdf",
+      "sha256": "de5483ee1328a44330c76aaa7c6cb70afe4ce56de39ae322a31da7fd878329bd",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/20260701/AgentsAndPeople/People/"
+    },
+    {
+      "file": "FND__Agreements__Agreements.rdf",
+      "sha256": "8f03910f2638fd6d9d0d67f85d82fb908de9e276c54f8af6eed3526c62a9e851",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/20260601/Agreements/Agreements/"
+    },
+    {
+      "file": "FND__Agreements__Contracts.rdf",
+      "sha256": "d1177c7b092ae26228c5cc07f63172443e99e867b6ed8139389f7fccfb0bf65e",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/20260601/Agreements/Contracts/"
+    },
+    {
+      "file": "FND__OwnershipAndControl__Ownership.rdf",
+      "sha256": "52a60e23377e440160c33d9a7ab2f24a882ceec879ac0a3fed331e738baff43e",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/20260901/OwnershipAndControl/Ownership/"
+    },
+    {
+      "file": "FND__OwnershipAndControl__OwnershipAndControl.rdf",
+      "sha256": "85154189ed11e4ee44303c4b2b28a0ba855086e2e326d7c831689dbd9680abd5",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/20240101/OwnershipAndControl/OwnershipAndControl/"
+    },
+    {
+      "file": "FND__Relations__Relations.rdf",
+      "sha256": "e34a47bbf8c3d64aa2f747c14fd1f8871175eaea4a2720d1a347fb60837eaace",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/20260701/Relations/Relations/"
+    },
+    {
+      "file": "OMG__Organizations.rdf",
+      "sha256": "3a1ab7e936b656fff8aa8beb44d30ddc02aaa6f6eac5353d4157e355ef164eb7",
+      "ontology_version_iri": "https://www.omg.org/spec/Commons/20250801/Organizations/"
+    },
+    {
+      "file": "SEC__Equities__EquityInstruments.rdf",
+      "sha256": "57552a710950a2d0afef166aeb432f619e2473a6784b6901474ddcee2de1684d",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/SEC/20260701/Equities/EquityInstruments/"
+    },
+    {
+      "file": "SEC__Securities__SecuritiesIssuance.rdf",
+      "sha256": "4539061ed96883346d73d0d884beca6d9cfae7904f55fc6009f8d2c1dd57aa91",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/SEC/20260701/Securities/SecuritiesIssuance/"
+    },
+    {
+      "file": "SEC__Securities__SecuritiesListings.rdf",
+      "sha256": "be2c77cb53ffbf2451b72c395587f08ca83f7f000f959b8c60b821421653a700",
+      "ontology_version_iri": "https://spec.edmcouncil.org/fibo/ontology/SEC/20251201/Securities/SecuritiesListings/"
+    }
+  ]
+}

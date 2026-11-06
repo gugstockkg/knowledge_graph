@@ -1,0 +1,31 @@
+# Credentials: only placeholder examples may be tracked
+.env
+.env.*
+!.env.example
+.secrets/
+**/neo4j-auth.json
+**/credentials.json
+*.pem
+*.key
+
+# Real data, databases, generated results, OS-specific runtimes
+/data/
+/artifacts/
+/.runtime/
+*.zip
+*.tar
+*.tar.gz
+*.dump
+*.log
+
+# Local Python tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+.DS_Store

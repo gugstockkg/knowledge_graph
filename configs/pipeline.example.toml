@@ -1,0 +1,9 @@
+# Paths are controlled by environment variables; all defaults are repository-relative.
+[pipeline]
+ontology_version = "v0.1"
+collection_id = "20261001_20261105"
+pilot_limit = 20
+llm_api_enabled = false
+
+# This file documents the current profile; config.py reads environment variables,
+# not this TOML. A generic TOML config loader is not implemented.
