@@ -1,0 +1,1554 @@
+{
+  "created_on": "2026-11-13",
+  "purpose": "48-file offline evaluation candidate set, not human-validated gold",
+  "method": "mutually exclusive title strata; deterministic SHA256 order; six available ZIP+XML/HTML per stratum; availability-conditioned purposive sample",
+  "split_note": "first four each stratum development, last two reserved holdout; representative reading restricted to first development sample; prior project exposure unknown, so not pristine holdout",
+  "sources": [
+    {
+      "path": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "count": 240317,
+      "sha256": "094be6485b7e3717f96a7847befcdea88c59ab4c09121c923a81d69805cc4e78"
+    },
+    {
+      "path": "data/raw/opendart/collections/20261001_20261105/filings.json",
+      "count": 16295,
+      "sha256": "0b1cb99421b5be3f922085efbd4f1ad05c142b3a5b042db5ede83ad17cdcd6b9"
+    },
+    {
+      "path": "data/raw/opendart/collections/20261106_20261108/filings.json",
+      "count": 648,
+      "sha256": "941c08ad5957eaf84497402336a9c1f100ff8cab872691300d95346f7a1c1eac"
+    }
+  ],
+  "stratum_selection": {
+    "holding": {
+      "title_candidates": 11444,
+      "checked_until_quota": 9,
+      "selected": 6
+    },
+    "officer_ownership": {
+      "title_candidates": 19206,
+      "checked_until_quota": 9,
+      "selected": 6
+    },
+    "supply_contract": {
+      "title_candidates": 1847,
+      "checked_until_quota": 11,
+      "selected": 6
+    },
+    "correction": {
+      "title_candidates": 6346,
+      "checked_until_quota": 8,
+      "selected": 6
+    },
+    "withdrawal_or_termination": {
+      "title_candidates": 778,
+      "checked_until_quota": 19,
+      "selected": 6
+    },
+    "governance": {
+      "title_candidates": 16439,
+      "checked_until_quota": 7,
+      "selected": 6
+    },
+    "corporate_action": {
+      "title_candidates": 2438,
+      "checked_until_quota": 10,
+      "selected": 6
+    },
+    "financial_periodic": {
+      "title_candidates": 10356,
+      "checked_until_quota": 9,
+      "selected": 6
+    }
+  },
+  "selected_count": 48,
+  "counts": {
+    "holding": 6,
+    "officer_ownership": 6,
+    "supply_contract": 6,
+    "correction": 6,
+    "withdrawal_or_termination": 6,
+    "governance": 6,
+    "corporate_action": 6,
+    "financial_periodic": 6
+  },
+  "privacy": "Only archive references, hashes and bounded public business table excerpts; no source archives copied. Individual reporter names omitted.",
+  "samples": [
+    {
+      "sample_id": "S01",
+      "stratum": "holding",
+      "receipt_no": "20260529001850",
+      "receipt_date": "20260529",
+      "report_name": "주식등의대량보유상황보고서(일반)",
+      "corp_code": "01042979",
+      "corp_name": "휴마시스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01042979/20260529001850.zip",
+      "zip_exists": true,
+      "zip_sha256": "2863a06a59f9d41b18cbf440c0453637d3b7603f0bc675e3caeb1393e262d578",
+      "document_members": [
+        {
+          "name": "20260529001850.xml",
+          "bytes": 105905,
+          "sha256": "79549bdb30fca78e9797ddef173e24c138e430c3b4ee6d842f3415ab4d2cdc67"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260529001850.xml",
+        "matching_rows_returned": 5,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 48,
+            "cells_excerpt": "한국거래소 귀중 | 보고서작성기준일 : | 2026년 05월 29일"
+          },
+          {
+            "line": 88,
+            "cells_excerpt": "보고구분 | 변동"
+          },
+          {
+            "line": 93,
+            "cells_excerpt": "보유주식등의 수 및 보유비율 |  | 보유주식등의 수 | 보유비율"
+          },
+          {
+            "line": 131,
+            "cells_excerpt": "의결권의 수 및 보유비율 |  | 의결권의 수 | 보유비율"
+          },
+          {
+            "line": 186,
+            "cells_excerpt": "※ 보고자 본인은 보고서작성기준일 현재 본인과 특별관계자의 주식등의 보유상황을 관련 법규 및 기재상의 주의에 따라 정확하게 작성하였고, 중요한 사항의 허위기재 또는 기재누락이 없음을 확인합니다."
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S02",
+      "stratum": "holding",
+      "receipt_no": "20261007000389",
+      "receipt_date": "20261007",
+      "report_name": "주식등의대량보유상황보고서(일반)",
+      "corp_code": "00963976",
+      "corp_name": "SG",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00963976/20261007000389.zip",
+      "zip_exists": true,
+      "zip_sha256": "ba9abe730ded394b01f7d3a527547bffdeabe690db91a382461d3c74d8c7ce32",
+      "document_members": [
+        {
+          "name": "20261007000389.xml",
+          "bytes": 92618,
+          "sha256": "0fa0302039a721a6b3b6bd8996ac564a2b77f871aee2bf317087ca92373ae26a"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S03",
+      "stratum": "holding",
+      "receipt_no": "20260602000186",
+      "receipt_date": "20260602",
+      "report_name": "주식등의대량보유상황보고서(일반)",
+      "corp_code": "00118026",
+      "corp_name": "동원산업",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00118026/20260602000186.zip",
+      "zip_exists": true,
+      "zip_sha256": "5af33db1e25b35d46fee0b7277eaa325d21eb7ccbe76385d94408796b3887f6c",
+      "document_members": [
+        {
+          "name": "20260602000186.xml",
+          "bytes": 109907,
+          "sha256": "02cdd04fce062abf2dc1fdf18554f589e655a279bbc9b098c6c069298aa5acd7"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S04",
+      "stratum": "holding",
+      "receipt_no": "20260403001699",
+      "receipt_date": "20260403",
+      "report_name": "주식등의대량보유상황보고서(일반)",
+      "corp_code": "00447487",
+      "corp_name": "제주반도체",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00447487/20260403001699.zip",
+      "zip_exists": true,
+      "zip_sha256": "4ce3b9534b1f54320215f29cfef2f19c17dc52e4bf6fc6d8a422b55f2f35e3fb",
+      "document_members": [
+        {
+          "name": "20260403001699.xml",
+          "bytes": 97374,
+          "sha256": "d36ca5fee8405100f80c167ebbcf68b2b7b6c10436f3b2f26afd925738b36ddb"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S05",
+      "stratum": "holding",
+      "receipt_no": "20260320000883",
+      "receipt_date": "20260320",
+      "report_name": "[기재정정]주식등의대량보유상황보고서(일반)",
+      "corp_code": "00409788",
+      "corp_name": "비에이치아이",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00409788/20260320000883.zip",
+      "zip_exists": true,
+      "zip_sha256": "76e8b06061efec4d33c9b68ff8651c35500a05cce21152d4cc953938c0245f01",
+      "document_members": [
+        {
+          "name": "20260320000883.xml",
+          "bytes": 186637,
+          "sha256": "ccffd94d741c0bc308e62e08851e5fd3d4983dde398399a0fecca374ef918837"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S06",
+      "stratum": "holding",
+      "receipt_no": "20260527000091",
+      "receipt_date": "20260527",
+      "report_name": "주식등의대량보유상황보고서(일반)",
+      "corp_code": "00541437",
+      "corp_name": "코렌텍",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00541437/20260527000091.zip",
+      "zip_exists": true,
+      "zip_sha256": "8155703290ee49167aaf366531e48c1ca727f77158757e21b8d32aecff0831d8",
+      "document_members": [
+        {
+          "name": "20260527000091.xml",
+          "bytes": 167975,
+          "sha256": "991a6f7fbce4faec8f6e12b20394436ab89061cb6b0829b653712c3a6e7a0109"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S07",
+      "stratum": "officer_ownership",
+      "receipt_no": "20260522000541",
+      "receipt_date": "20260522",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "corp_code": "00525882",
+      "corp_name": "크레버스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00525882/20260522000541.zip",
+      "zip_exists": true,
+      "zip_sha256": "0afecb37539e05587952d45ead4d0dbad25530ac9271726588bcd8c76b554e37",
+      "document_members": [
+        {
+          "name": "20260522000541.xml",
+          "bytes": 26224,
+          "sha256": "9aee8df26eae4cdb56c77141098c09d442fdb3ab5320fc6d14d974c35258b2b6"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260522000541.xml",
+        "matching_rows_returned": 5,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 52,
+            "cells_excerpt": "보고서작성기준일 : | 2026년 05월 22일"
+          },
+          {
+            "line": 69,
+            "cells_excerpt": "※ 보고자 본인은 보고서작성기준일 현재 본인의 특정증권등의 소유상황을 관련 법규 및 기재상의 주의에 따라 정확하게 작성하였고, 중요한 사항의 허위기재 또는 기재누락이 없음을 확인합니다."
+          },
+          {
+            "line": 254,
+            "cells_excerpt": " | 보고서작성 기준일 | 특정증권등 | 주권"
+          },
+          {
+            "line": 261,
+            "cells_excerpt": "특정증권등의수(주) | 비율(%) | 주식수(주) | 비율(%)"
+          },
+          {
+            "line": 330,
+            "cells_excerpt": "특정증권등의 내역"
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S08",
+      "stratum": "officer_ownership",
+      "receipt_no": "20260206001794",
+      "receipt_date": "20260206",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00126380/20260206001794.zip",
+      "zip_exists": true,
+      "zip_sha256": "7c41b3f3f0fa1a6327cefef9dbceabd1cebf1f29096d5f996beb8e778310862e",
+      "document_members": [
+        {
+          "name": "20260206001794.xml",
+          "bytes": 25120,
+          "sha256": "20d8b386f3c60e0039fd714356616a2adf60eae6964e971aef8d6b3d6806afd0"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S09",
+      "stratum": "officer_ownership",
+      "receipt_no": "20260206001777",
+      "receipt_date": "20260206",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "corp_code": "00164779",
+      "corp_name": "SK하이닉스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00164779/20260206001777.zip",
+      "zip_exists": true,
+      "zip_sha256": "359087d0bdcb61330217db60a0110a0537e95876ba9b8244991cd28768cf0f7d",
+      "document_members": [
+        {
+          "name": "20260206001777.xml",
+          "bytes": 25099,
+          "sha256": "cc705a834e449b7a8cac166aee997d9412c0c34cd6ccb533f9223e7267a3267a"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S10",
+      "stratum": "officer_ownership",
+      "receipt_no": "20260319000411",
+      "receipt_date": "20260319",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "corp_code": "01569102",
+      "corp_name": "라이콤",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01569102/20260319000411.zip",
+      "zip_exists": true,
+      "zip_sha256": "75e061dbd5df8ee2e96a9fc5d065a6bef93c9e62da4e44698c3292a2ed10aec3",
+      "document_members": [
+        {
+          "name": "20260319000411.xml",
+          "bytes": 29169,
+          "sha256": "e0384785b4a5d6f687fd7e9a979935834fa2feff3321a612229be86b77b5429e"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S11",
+      "stratum": "officer_ownership",
+      "receipt_no": "20260617000406",
+      "receipt_date": "20260617",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "corp_code": "00651901",
+      "corp_name": "에어부산",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00651901/20260617000406.zip",
+      "zip_exists": true,
+      "zip_sha256": "fa569672aecb1e4b57b8eca8f346056908ec5c289dbbafa3276e2e2d2b422d9a",
+      "document_members": [
+        {
+          "name": "20260617000406.xml",
+          "bytes": 26240,
+          "sha256": "768a9800e82d5b51cb69e37bcba86a52234293c975ce583792cee82e23a0e371"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S12",
+      "stratum": "officer_ownership",
+      "receipt_no": "20261029000562",
+      "receipt_date": "20261029",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "corp_code": "00579999",
+      "corp_name": "고영",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00579999/20261029000562.zip",
+      "zip_exists": true,
+      "zip_sha256": "cd0bcdcdbb41f68a9c09a1a90c1b7fdf6f5e9f8b601db80251f11b1f9a5d5748",
+      "document_members": [
+        {
+          "name": "20261029000562.xml",
+          "bytes": 25343,
+          "sha256": "4cf6785105b465909b07f3ec2f1ac4ad557fac44a80519b5000899ffd7c50a2a"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S13",
+      "stratum": "supply_contract",
+      "receipt_no": "20260226800053",
+      "receipt_date": "20260226",
+      "report_name": "단일판매ㆍ공급계약체결",
+      "corp_code": "00633835",
+      "corp_name": "HJ중공업",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00633835/20260226800053.zip",
+      "zip_exists": true,
+      "zip_sha256": "c3302fc4d2a027221cb1794b585619a3a8c7263c85d4d881cd2e7b6e23ab1d76",
+      "document_members": [
+        {
+          "name": "20260226800053.xml",
+          "bytes": 8843,
+          "sha256": "5d8607efe920f9c10811b1b4d23d63e41804863af444f62914156b6b4b3ad382"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260226800053.xml",
+        "matching_rows_returned": 5,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 90,
+            "cells_excerpt": "2. 계약내역 | 계약금액(원) | 92,241,755,735"
+          },
+          {
+            "line": 107,
+            "cells_excerpt": "3. 계약상대 | Department of Public Works and Highways (필리핀 공공사업도로부)"
+          },
+          {
+            "line": 124,
+            "cells_excerpt": "종료일 | -"
+          },
+          {
+            "line": 141,
+            "cells_excerpt": "8. 공시유보 관련내용 | 유보사유 | -"
+          },
+          {
+            "line": 153,
+            "cells_excerpt": "1. 상기 \"최근매출액\"은 2024년말 재무제표 기준입니다. 2. 상기 계약금액은 부가가치세(12%) 제외 금액이며, 당사 지분 70% 금액입니다. 3. 상기 계약금액 및 계약기간 등은 공사 진행상황에 따라 변동될 수 있습니다. 4. 상기 계약금액은 계약일 기준 매매기준환율(최초 고시)"
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S14",
+      "stratum": "supply_contract",
+      "receipt_no": "20260611800236",
+      "receipt_date": "20260611",
+      "report_name": "단일판매ㆍ공급계약체결",
+      "corp_code": "00108746",
+      "corp_name": "DKME",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00108746/20260611800236.zip",
+      "zip_exists": true,
+      "zip_sha256": "a66ad40a17ba57233297120ded41f860c890b1d11f5366b964bb1168349da428",
+      "document_members": [
+        {
+          "name": "20260611800236.xml",
+          "bytes": 8128,
+          "sha256": "c08d83d36912794680c66a2ec60b198f5f74e7a79f36b6b88e2c260306c50ee0"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S15",
+      "stratum": "supply_contract",
+      "receipt_no": "20260316900409",
+      "receipt_date": "20260316",
+      "report_name": "단일판매ㆍ공급계약체결",
+      "corp_code": "00576798",
+      "corp_name": "디아이티",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00576798/20260316900409.zip",
+      "zip_exists": true,
+      "zip_sha256": "f8eb700b0372d509229ff2a23dfc25debbe6cefb455038597bc7dac0126cb144",
+      "document_members": [
+        {
+          "name": "20260316900409.xml",
+          "bytes": 9823,
+          "sha256": "2a1d903737661ff34b31b0f7f4f053362b080c39db22d99cf8bfd6bef8fe0156"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S16",
+      "stratum": "supply_contract",
+      "receipt_no": "20260415800047",
+      "receipt_date": "20260415",
+      "report_name": "단일판매ㆍ공급계약체결",
+      "corp_code": "00406046",
+      "corp_name": "HD현대마린엔진",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00406046/20260415800047.zip",
+      "zip_exists": true,
+      "zip_sha256": "cdef28d3f7d1146358e59bf3fb7720cd14c01a448c00f8c05f0b95dc3b11587d",
+      "document_members": [
+        {
+          "name": "20260415800047.xml",
+          "bytes": 7819,
+          "sha256": "fa159baf01e8e734025b1b32d5ae7f47445ff6d23d638e64493dd36a63c031a9"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S17",
+      "stratum": "supply_contract",
+      "receipt_no": "20261012900141",
+      "receipt_date": "20261012",
+      "report_name": "단일판매ㆍ공급계약체결(자율공시)",
+      "corp_code": "00965318",
+      "corp_name": "이노시뮬레이션",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00965318/20261012900141.zip",
+      "zip_exists": true,
+      "zip_sha256": "5b58e104158dfbb1429a923cd0a0db0fb7c14bde2015c804b029b0285b09387f",
+      "document_members": [
+        {
+          "name": "20261012900141.xml",
+          "bytes": 8994,
+          "sha256": "2e5922d1b60eecd57cacc2b7183e59b58c93055b9f5d7980178cfc017ceb7542"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S18",
+      "stratum": "supply_contract",
+      "receipt_no": "20260309900407",
+      "receipt_date": "20260309",
+      "report_name": "단일판매ㆍ공급계약체결",
+      "corp_code": "00991191",
+      "corp_name": "앱클론",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00991191/20260309900407.zip",
+      "zip_exists": true,
+      "zip_sha256": "63a2622dfb0b9b462d56baf6830bf6045d76763229d40e0e0334828cf415dcc7",
+      "document_members": [
+        {
+          "name": "20260309900407.xml",
+          "bytes": 9653,
+          "sha256": "b944ecdc935145f3ae52dd4197d6ec30ff7d5fe2cba5dc685c605539cdd9b039"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S19",
+      "stratum": "correction",
+      "receipt_no": "20260504900832",
+      "receipt_date": "20260504",
+      "report_name": "[기재정정]최대주주변경을수반하는주식담보제공계약체결",
+      "corp_code": "00838005",
+      "corp_name": "서진시스템",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00838005/20260504900832.zip",
+      "zip_exists": true,
+      "zip_sha256": "2b644a57b05bc8c9548c9abb886b0cf238abc5373fb527266e4a601c95dd8440",
+      "document_members": [
+        {
+          "name": "20260504900832.xml",
+          "bytes": 53765,
+          "sha256": "098e6fd06502cc69bbb050e92f43143bf88e55dbe05c30ebc35a66ca72e6e331"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260504900832.xml",
+        "matching_rows_returned": 2,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 103,
+            "cells_excerpt": "4. 정정사항"
+          },
+          {
+            "line": 106,
+            "cells_excerpt": "정정항목 | 정정전 | 정정후"
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S20",
+      "stratum": "correction",
+      "receipt_no": "20260429900696",
+      "receipt_date": "20260429",
+      "report_name": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
+      "corp_code": "00807397",
+      "corp_name": "코이즈",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00807397/20260429900696.zip",
+      "zip_exists": true,
+      "zip_sha256": "00ff681b74c81fc54e31bc0806d9c6acf4d7d7cc1206108c20815e35da128030",
+      "document_members": [
+        {
+          "name": "20260429900696.xml",
+          "bytes": 13860,
+          "sha256": "a46824d704e9e2bace9194e64aaaac9732b5382790cfb674b3ea69a22008b65d"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S21",
+      "stratum": "correction",
+      "receipt_no": "20260526900617",
+      "receipt_date": "20260526",
+      "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+      "corp_code": "01336762",
+      "corp_name": "스피어",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01336762/20260526900617.zip",
+      "zip_exists": true,
+      "zip_sha256": "258b8d81d08391f1af845079af9149fd9b1537c6edc8480f430e5583e016277d",
+      "document_members": [
+        {
+          "name": "20260526900617.xml",
+          "bytes": 16037,
+          "sha256": "763a7965766a2697b2d8a6b0d6c7651783d84f7911dce800b1de93ced076de4a"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S22",
+      "stratum": "correction",
+      "receipt_no": "20260526000307",
+      "receipt_date": "20260526",
+      "report_name": "[기재정정]주요사항보고서(유상증자결정)",
+      "corp_code": "00162461",
+      "corp_name": "한화솔루션",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00162461/20260526000307.zip",
+      "zip_exists": true,
+      "zip_sha256": "476fbbafb04d9ed490674d2aa702c06c18bc13fcbaa62a297a1e75461f4fc66b",
+      "document_members": [
+        {
+          "name": "20260526000307.xml",
+          "bytes": 70763,
+          "sha256": "45916a0eef12795f994fb5fcc1fbfcca7faba7bbeeaaef9eda6799497d41bc45"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S23",
+      "stratum": "correction",
+      "receipt_no": "20260420900751",
+      "receipt_date": "20260420",
+      "report_name": "[기재정정]최대주주변경을수반하는주식담보제공계약체결",
+      "corp_code": "00660750",
+      "corp_name": "하나머티리얼즈",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00660750/20260420900751.zip",
+      "zip_exists": true,
+      "zip_sha256": "55266699482d041ee90fd89d7b0d976ac9d2d019fdcf078950b583e2aa077371",
+      "document_members": [
+        {
+          "name": "20260420900751.xml",
+          "bytes": 42398,
+          "sha256": "668d02a3cc459e5adf9ebd4b3ccdfd51f2176b1f84af4381e26d364c3c4ca023"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S24",
+      "stratum": "correction",
+      "receipt_no": "20260106000615",
+      "receipt_date": "20260106",
+      "report_name": "[기재정정]주요사항보고서(전환사채권발행결정)",
+      "corp_code": "00453929",
+      "corp_name": "메디포스트",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00453929/20260106000615.zip",
+      "zip_exists": true,
+      "zip_sha256": "e735151918c34da3168b362387843093b2f8a1b59fe4b12d5adf7f075da95ee8",
+      "document_members": [
+        {
+          "name": "20260106000615.xml",
+          "bytes": 78455,
+          "sha256": "5ba402e5ffb4a4f16192439f315ac7224eda59beda0837d1866a6f2eba3bb76c"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S25",
+      "stratum": "withdrawal_or_termination",
+      "receipt_no": "20261104000291",
+      "receipt_date": "20261104",
+      "report_name": "신탁계약해지결과보고서",
+      "corp_code": "00665676",
+      "corp_name": "아시아경제",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": true,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00665676/20261104000291.zip",
+      "zip_exists": true,
+      "zip_sha256": "6551fda46b124e0a8b1219a2f7e63b54672f59e2f426fb64a64b94e758c97723",
+      "document_members": [
+        {
+          "name": "20261104000291.xml",
+          "bytes": 20355,
+          "sha256": "de71f10ba5755819692a4ef53f6a070645097704498dce10f991f583ea6a68d0"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20261104000291.xml",
+        "matching_rows_returned": 1,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 173,
+            "cells_excerpt": "해지일자 | 신탁계약등 종류 | 계약해지금액"
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S26",
+      "stratum": "withdrawal_or_termination",
+      "receipt_no": "20260205000391",
+      "receipt_date": "20260205",
+      "report_name": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "corp_code": "00209780",
+      "corp_name": "케이씨",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": true,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00209780/20260205000391.zip",
+      "zip_exists": true,
+      "zip_sha256": "68ee5e6f9ac4cec6115c0beb75110040367d94ce1bab37c0937acf8370a0d2bd",
+      "document_members": [
+        {
+          "name": "20260205000391.xml",
+          "bytes": 29062,
+          "sha256": "24cedf66153e3022e602030c131f0311ec1ae11c00764316e65c30fd75776012"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S27",
+      "stratum": "withdrawal_or_termination",
+      "receipt_no": "20260109000530",
+      "receipt_date": "20260109",
+      "report_name": "신탁계약해지결과보고서",
+      "corp_code": "00147772",
+      "corp_name": "정원엔시스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": true,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00147772/20260109000530.zip",
+      "zip_exists": true,
+      "zip_sha256": "df4ccbd084c9ac62877814d5c05fe7b0cdb1b4b15b1669a01192bcad38d3fc3b",
+      "document_members": [
+        {
+          "name": "20260109000530.xml",
+          "bytes": 34096,
+          "sha256": "605bd1a8fc27fee43cb352b57e38470954ad9d5b2da18cd92fc8faab1450f881"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S28",
+      "stratum": "withdrawal_or_termination",
+      "receipt_no": "20261015000026",
+      "receipt_date": "20261015",
+      "report_name": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "corp_code": "01336443",
+      "corp_name": "디와이씨",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": true,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01336443/20261015000026.zip",
+      "zip_exists": true,
+      "zip_sha256": "243093ab3043a36d1e6b0e23218cb5f05947b8497bc603fed0b9206e7f8db9b6",
+      "document_members": [
+        {
+          "name": "20261015000026.xml",
+          "bytes": 28126,
+          "sha256": "612fa23ee23457b0e47377645ad32ae5f38e73e253886ee4993cbe6dd2819d6d"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S29",
+      "stratum": "withdrawal_or_termination",
+      "receipt_no": "20260115000378",
+      "receipt_date": "20260115",
+      "report_name": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": true,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00233653/20260115000378.zip",
+      "zip_exists": true,
+      "zip_sha256": "646184d8edca7e25e1c4b4ab338a59962ec741eb8e777efc0a3c302e801860b6",
+      "document_members": [
+        {
+          "name": "20260115000378.xml",
+          "bytes": 30073,
+          "sha256": "9163fdbbfaa7132acfade9eb95c5b056b1b5740d10f52b2ab6750ae37e150dab"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S30",
+      "stratum": "withdrawal_or_termination",
+      "receipt_no": "20260430901759",
+      "receipt_date": "20260430",
+      "report_name": "단일판매ㆍ공급계약해지",
+      "corp_code": "00407814",
+      "corp_name": "CG인바이츠",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": true,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00407814/20260430901759.zip",
+      "zip_exists": true,
+      "zip_sha256": "1bf0c4d94d487c3b2bd682082873c32e6d4e4d82f7687eb2dd310b226b2ba132",
+      "document_members": [
+        {
+          "name": "20260430901759.xml",
+          "bytes": 9804,
+          "sha256": "f3234db8823a557a3948b0197794630660eb0e7c161a1612d04f22f7c34347a6"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S31",
+      "stratum": "governance",
+      "receipt_no": "20260324901463",
+      "receipt_date": "20260324",
+      "report_name": "[기재정정]정기주주총회결과",
+      "corp_code": "00306719",
+      "corp_name": "에스텍",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00306719/20260324901463.zip",
+      "zip_exists": true,
+      "zip_sha256": "0d27942d569441d74710dfddb0206cb353f80fac764e15b196c189b156f927d2",
+      "document_members": [
+        {
+          "name": "20260324901463.xml",
+          "bytes": 35296,
+          "sha256": "e44f32ff8eb6b618d07b2a8d6f37fc53f3207d6299a29748321e663af9b4611f"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260324901463.xml",
+        "matching_rows_returned": 5,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 91,
+            "cells_excerpt": "1. 정정관련 공시서류 | 정기주주총회 결과"
+          },
+          {
+            "line": 264,
+            "cells_excerpt": "3. 임원 현황 (선임일 현재)"
+          },
+          {
+            "line": 267,
+            "cells_excerpt": "가. 임원선임 현황 | 사내이사 1명 재선임, 사외이사 1명 재선임"
+          },
+          {
+            "line": 271,
+            "cells_excerpt": "나. 선임후 사외이사수(명) | 이사총수 | 7"
+          },
+          {
+            "line": 280,
+            "cells_excerpt": "사외이사선임비율(%) | 28.6"
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S32",
+      "stratum": "governance",
+      "receipt_no": "20260312900384",
+      "receipt_date": "20260312",
+      "report_name": "주주총회소집결의",
+      "corp_code": "00585538",
+      "corp_name": "에스에너지",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00585538/20260312900384.zip",
+      "zip_exists": true,
+      "zip_sha256": "a2e353b6e059301f818dd6002da2c7a3baf649ea32e7c6273d7de750a4e6e5ea",
+      "document_members": [
+        {
+          "name": "20260312900384.xml",
+          "bytes": 14948,
+          "sha256": "cc247ed7b0f8691e45962ecd0f6e06ec91a6608f8720928006c7e5d7b6c8b318"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S33",
+      "stratum": "governance",
+      "receipt_no": "20260526000371",
+      "receipt_date": "20260526",
+      "report_name": "주주총회소집공고",
+      "corp_code": "00357360",
+      "corp_name": "한세엠케이",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00357360/20260526000371.zip",
+      "zip_exists": true,
+      "zip_sha256": "cbedeb391908269aeadf0e29d4e14fa9941f2c339fbb9c4897366544a878f4e4",
+      "document_members": [
+        {
+          "name": "20260526000371.xml",
+          "bytes": 58166,
+          "sha256": "eafcaa0ca383f294da6e2fa1e68c792104488e487cc7375560d69adec85453bd"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S34",
+      "stratum": "governance",
+      "receipt_no": "20260422000444",
+      "receipt_date": "20260422",
+      "report_name": "주주총회소집공고",
+      "corp_code": "00527491",
+      "corp_name": "하이드로리튬",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00527491/20260422000444.zip",
+      "zip_exists": true,
+      "zip_sha256": "6468a7b6792c8cc927b1ae9201b8eb56ff2341c42284dc0bc6dc9508c9dcdebc",
+      "document_members": [
+        {
+          "name": "20260422000444.xml",
+          "bytes": 50785,
+          "sha256": "f7e2f9e1196dea3302c7182caa5f2da4d6c6b9c6d01494bca345faaef9dd5019"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S35",
+      "stratum": "governance",
+      "receipt_no": "20260116000271",
+      "receipt_date": "20260116",
+      "report_name": "독립이사의선임ㆍ해임또는중도퇴임에관한신고",
+      "corp_code": "00670766",
+      "corp_name": "엠엑스온",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00670766/20260116000271.zip",
+      "zip_exists": true,
+      "zip_sha256": "175e9f8c7c2b427f413d5e370788f60458a3437e6734f3f70050ed0e582109bd",
+      "document_members": [
+        {
+          "name": "20260116000271.xml",
+          "bytes": 9900,
+          "sha256": "bec6b165854ff4ad69f2cab22bf68e44faae2435c50fac9b1bf2b534b45fc5ea"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S36",
+      "stratum": "governance",
+      "receipt_no": "20260312000871",
+      "receipt_date": "20260312",
+      "report_name": "주주총회소집공고",
+      "corp_code": "00108038",
+      "corp_name": "엔피씨",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00108038/20260312000871.zip",
+      "zip_exists": true,
+      "zip_sha256": "64a7c5e4b42a3c9acbbe7c04de1bf47a6982c3a755a2f5dbe13bf17259ba7c3d",
+      "document_members": [
+        {
+          "name": "20260312000871.xml",
+          "bytes": 318272,
+          "sha256": "921c534b386c1df5803df1c54330d8066734a357fcc158a219811c08576859b1"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S37",
+      "stratum": "corporate_action",
+      "receipt_no": "20260408600962",
+      "receipt_date": "20260408",
+      "report_name": "주권매매거래정지기간변경              (주식의 병합, 분할 등 전자등록 변경, 말소)",
+      "corp_code": "01118643",
+      "corp_name": "솔루믹스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01118643/20260408600962.zip",
+      "zip_exists": true,
+      "zip_sha256": "cd9a3ae1f000fd5f4d1b69482d18e5f3c1d40174c53d92dbe88bbad431978fcb",
+      "document_members": [
+        {
+          "name": "20260408600962.xml",
+          "bytes": 5730,
+          "sha256": "e546af1cac94d694b0d076350d9894fc559015a8990047204bf22298a9c0b3ef"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260408600962.xml",
+        "matching_rows_returned": 2,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 50,
+            "cells_excerpt": "3.정지기간 | 가.변경전 | 2025년 04월 04일 16:10:00~ 1. 2024사업연도 감사의견 상장폐지 사유 관련 - 개선기간 종료(다음 사업연도에 대한 사업보고서 법정제출기한 다음날부터 10일이 되는 날까지) 후 상장폐지 여부 결정일까지 2. 2025사업연도 감사의견 상장폐지"
+          },
+          {
+            "line": 61,
+            "cells_excerpt": "나.변경후 | 2025년 04월 04일 16:10:00~ 1. 2024사업연도 감사의견 상장폐지 사유 관련 - 개선기간 종료(다음 사업연도에 대한 사업보고서 법정제출기한 다음날부터 10일이 되는 날까지) 후 상장폐지 여부 결정일까지 2. 2025사업연도 감사의견 상장폐지 사유 관련 - "
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S38",
+      "stratum": "corporate_action",
+      "receipt_no": "20261022000194",
+      "receipt_date": "20261022",
+      "report_name": "주요사항보고서(유상증자결정)",
+      "corp_code": "00667425",
+      "corp_name": "에이팩트",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00667425/20261022000194.zip",
+      "zip_exists": true,
+      "zip_sha256": "355766445ca1d66eb2db7a7184657854afa45930103d38642874b8667d6191ff",
+      "document_members": [
+        {
+          "name": "20261022000194.xml",
+          "bytes": 47294,
+          "sha256": "f925fb35a06c7edd13b0535aad62077593d44a65d056f5d9e2b733ee3b2dee36"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S39",
+      "stratum": "corporate_action",
+      "receipt_no": "20260610000340",
+      "receipt_date": "20260610",
+      "report_name": "주요사항보고서(유상증자결정)",
+      "corp_code": "01511558",
+      "corp_name": "네오이뮨텍",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01511558/20260610000340.zip",
+      "zip_exists": true,
+      "zip_sha256": "e7297559c5b7884125be2e9875b1a15a306d595c164c5334df8fb5a6a98634d4",
+      "document_members": [
+        {
+          "name": "20260610000340.xml",
+          "bytes": 44297,
+          "sha256": "d3d25e00f04b27c614449759b00af0f6df9063c0cc4e170d1d2a826288aa7589"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S40",
+      "stratum": "corporate_action",
+      "receipt_no": "20260323000223",
+      "receipt_date": "20260323",
+      "report_name": "[기재정정]증권신고서(합병)",
+      "corp_code": "01596221",
+      "corp_name": "세미티에스",
+      "correction_title_flag": true,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01596221/20260323000223.zip",
+      "zip_exists": true,
+      "zip_sha256": "b26c816dd6f0fdfe58135c245ab0712ea934aa297a233dfb4c9908c1c943af17",
+      "document_members": [
+        {
+          "name": "20260323000223.xml",
+          "bytes": 4489829,
+          "sha256": "f01847218115d75d474eab2a70f7e76b7237db047a1bbf53969f2dd7b9656522"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S41",
+      "stratum": "corporate_action",
+      "receipt_no": "20260409000684",
+      "receipt_date": "20260409",
+      "report_name": "회사합병결정",
+      "corp_code": "01677711",
+      "corp_name": "원씽",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/01677711/20260409000684.zip",
+      "zip_exists": true,
+      "zip_sha256": "bfac6874b98b210667a747e698afbf197ec00f2160e1f1b8d445825a954f7466",
+      "document_members": [
+        {
+          "name": "20260409000684.xml",
+          "bytes": 13173,
+          "sha256": "a2adcd29546b705acc8802497d3810a414fe2f123c393a04736f0c4127bb8d65"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S42",
+      "stratum": "corporate_action",
+      "receipt_no": "20261104000261",
+      "receipt_date": "20261104",
+      "report_name": "주요사항보고서(유상증자결정)",
+      "corp_code": "00896753",
+      "corp_name": "에코글로우",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00896753/20261104000261.zip",
+      "zip_exists": true,
+      "zip_sha256": "8243ddb23845521030ae02c255781a879424bcb68c6fa3168589634338ffe6d4",
+      "document_members": [
+        {
+          "name": "20261104000261.xml",
+          "bytes": 22821,
+          "sha256": "a5ce31a3d4822331f088608ea1872d5c474c89bfbe524f7ba703f00322cfd522"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S43",
+      "stratum": "financial_periodic",
+      "receipt_no": "20260323001678",
+      "receipt_date": "20260323",
+      "report_name": "사업보고서 (2025.12)",
+      "corp_code": "00916826",
+      "corp_name": "드림씨아이에스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00916826/20260323001678.zip",
+      "zip_exists": true,
+      "zip_sha256": "e710693c61878359289df070fedb2da47212914c482f43f2c95c9a27f7e2c06a",
+      "document_members": [
+        {
+          "name": "20260323001678_00760.xml",
+          "bytes": 528240,
+          "sha256": "e0c40cb12bd098632fcd2ebfa3b7670486e7e9ecd165167208a38a9ed050a817"
+        },
+        {
+          "name": "20260323001678.xml",
+          "bytes": 2285908,
+          "sha256": "7b7b491f40a04aebd9951437be8ababd54457146955dba7dbd23b12b8fcdfc06"
+        },
+        {
+          "name": "20260323001678_00761.xml",
+          "bytes": 616546,
+          "sha256": "d444f8959addcd8d0b7fc4c31da0997dff911f6368b35c0199134250a7a4a1fc"
+        }
+      ],
+      "review_scope": "AI inspected only listed bounded table excerpts; locally parsed table structure, not full semantic review",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false,
+      "bounded_observation": {
+        "member": "20260323001678.xml",
+        "matching_rows_returned": 5,
+        "max_rows": 5,
+        "max_chars_per_row": 160,
+        "rows": [
+          {
+            "line": 2981,
+            "cells_excerpt": "매출액 | 비율 | 매출액 | 비율 | 매출액 | 비율"
+          },
+          {
+            "line": 5010,
+            "cells_excerpt": "연구개발비/매출액 비율[연구개발비용계÷당기매출액×100] | 1.64% | 2.18% | 2.21% | -"
+          },
+          {
+            "line": 6390,
+            "cells_excerpt": "매출액 | 66,631,382,584 | 58,653,219,588 | 47,844,017,772"
+          },
+          {
+            "line": 6411,
+            "cells_excerpt": "당기순이익 | 7,508,007,182 | 5,412,966,126 | 3,857,550,745"
+          },
+          {
+            "line": 6725,
+            "cells_excerpt": "매출액 | 49,348,048,751 | 45,284,542,257 | 34,423,504,000"
+          }
+        ],
+        "status": "AI_observation_unreviewed_not_gold"
+      }
+    },
+    {
+      "sample_id": "S44",
+      "stratum": "financial_periodic",
+      "receipt_no": "20260319000705",
+      "receipt_date": "20260319",
+      "report_name": "사업보고서 (2025.12)",
+      "corp_code": "00194947",
+      "corp_name": "한전산업",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00194947/20260319000705.zip",
+      "zip_exists": true,
+      "zip_sha256": "72771ccc5bd11db48ac05752ca550e1deca3d538082c68b18b9532953f96db36",
+      "document_members": [
+        {
+          "name": "20260319000705_00760.xml",
+          "bytes": 587534,
+          "sha256": "6cbe2de48e19d3374d37820889cb447f32684ac35934baf64c4e3afde902e2ce"
+        },
+        {
+          "name": "20260319000705.xml",
+          "bytes": 4402402,
+          "sha256": "9469672a2d4b3c9e2219066a3177683834f52c541c8f3c7adfd16a4ee9ff5d89"
+        },
+        {
+          "name": "20260319000705_00761.xml",
+          "bytes": 595810,
+          "sha256": "435c2137bf92013fd357f51c6cda3c673477ca1e1f02c9ed33b7c7bef0c033ad"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S45",
+      "stratum": "financial_periodic",
+      "receipt_no": "20260316000068",
+      "receipt_date": "20260316",
+      "report_name": "사업보고서 (2025.12)",
+      "corp_code": "00174208",
+      "corp_name": "진성티이씨",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00174208/20260316000068.zip",
+      "zip_exists": true,
+      "zip_sha256": "243fd413f2a8173822c49abc74bc20cfb81cbab01422fca148a6f73b638100e1",
+      "document_members": [
+        {
+          "name": "20260316000068.xml",
+          "bytes": 4278000,
+          "sha256": "f860dac4bc2a216b4ad6461d906c7005f9a14c38a9d12736954b64a476fe2664"
+        },
+        {
+          "name": "20260316000068_00761.xml",
+          "bytes": 562602,
+          "sha256": "5cf8852b30c3255d8e5c60ef1d350f133dc7698fbad13e3cedddfec5f1536715"
+        },
+        {
+          "name": "20260316000068_00760.xml",
+          "bytes": 533205,
+          "sha256": "94dfd9eacd5eb7642d9e3d4dee475b6f4ac4df79b87739b4b191131c3c417dbe"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S46",
+      "stratum": "financial_periodic",
+      "receipt_no": "20260515002392",
+      "receipt_date": "20260515",
+      "report_name": "분기보고서 (2026.03)",
+      "corp_code": "00122825",
+      "corp_name": "프리티",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00122825/20260515002392.zip",
+      "zip_exists": true,
+      "zip_sha256": "175c9ccb18c8268a6950a7fcb1c1a92ce9b3b0a44308837c374bf2a699f1c3bb",
+      "document_members": [
+        {
+          "name": "20260515002392.xml",
+          "bytes": 1418895,
+          "sha256": "8d3ddf0a5144f278598c06c6a0f2ad78562b9e33538cd2ecf6ae914d3139a536"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "development",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S47",
+      "stratum": "financial_periodic",
+      "receipt_no": "20260330000281",
+      "receipt_date": "20260330",
+      "report_name": "사업보고서 (2025.12)",
+      "corp_code": "00904663",
+      "corp_name": "롯데오토리스",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00904663/20260330000281.zip",
+      "zip_exists": true,
+      "zip_sha256": "bfe950ecf0a8abb79b4583a53baa8e49483add47829c4de2e1527863f23f076b",
+      "document_members": [
+        {
+          "name": "20260330000281_00760.xml",
+          "bytes": 499243,
+          "sha256": "77a42bdf6b6f54626dcedfab078c7f5074bbafb38cf1a0036f956dd443abe89b"
+        },
+        {
+          "name": "20260330000281.xml",
+          "bytes": 1474998,
+          "sha256": "19ce448ea90b5a346789701ec4b68b24e4c38835694a7006305c1da4fa0ccd84"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    },
+    {
+      "sample_id": "S48",
+      "stratum": "financial_periodic",
+      "receipt_no": "20260513000028",
+      "receipt_date": "20260513",
+      "report_name": "분기보고서 (2026.03)",
+      "corp_code": "00612489",
+      "corp_name": "아이쓰리시스템",
+      "correction_title_flag": false,
+      "withdrawal_or_termination_title_flag": false,
+      "list_source": "data/raw/opendart/collections/20260101_20261105/filings.json",
+      "zip_path": "data/raw/opendart/collections/20260101_20261105/documents/00612489/20260513000028.zip",
+      "zip_exists": true,
+      "zip_sha256": "a791447f5626554bd8ed6321b27f4cff5923d2ee59f214c1be884d19e313cd71",
+      "document_members": [
+        {
+          "name": "20260513000028.xml",
+          "bytes": 575562,
+          "sha256": "ff4b46ad93d4657fec1f23e3477042746cdb4bd2b63b2d32c28fda6b3f79fe3c"
+        }
+      ],
+      "review_scope": "archive/member existence and hashes; source semantics not reviewed",
+      "human_review_status": "not_reviewed",
+      "split": "holdout_reserved",
+      "correction_predecessor_verified": false
+    }
+  ]
+}

@@ -1,0 +1,721 @@
+{
+  "version": "0.1-evaluation-draft",
+  "date": "2026-11-13",
+  "core_questions": 12,
+  "total_questions": 26,
+  "gold_status": "not_gold_no_independent_human_review",
+  "holdout_note": "held-out question candidates reserved now; not proof of independence from existing design",
+  "questions": [
+    {
+      "id": "CQ01",
+      "kind": "core",
+      "question": "공시 대상회사와 제출인을 구별해 누구인지 반환할 수 있는가?",
+      "required_concepts": [
+        "Filing",
+        "Company",
+        "Person",
+        "Organization"
+      ],
+      "required_relations": [
+        "IS_ABOUT",
+        "SUBMITTED_BY"
+      ],
+      "expected_result_type": "분리된 두 주체와 원문 근거",
+      "acceptance_criterion": "제출인을 대상회사로 자동 통합하지 않음",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V01"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ02",
+      "kind": "core",
+      "question": "동일 기업의 보통주와 우선주 현황을 별도로 반환할 수 있는가?",
+      "required_concepts": [
+        "Security",
+        "Listing",
+        "HoldingSnapshot"
+      ],
+      "required_relations": [
+        "ISSUED_BY",
+        "HOLDING_OF_SECURITY",
+        "LISTING_OF"
+      ],
+      "expected_result_type": "증권별 수량·비율·미상 종류",
+      "acceptance_criterion": "회사 ID와 증권 ID 분리; 종류 미확인 시 유보",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V02"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ03",
+      "kind": "core",
+      "question": "보고자 개인과 특별관계자 합산 보유를 구별할 수 있는가?",
+      "required_concepts": [
+        "HoldingSnapshot",
+        "UnresolvedParty"
+      ],
+      "required_relations": [
+        "HELD_BY"
+      ],
+      "expected_result_type": "범위가 명시된 현황",
+      "acceptance_criterion": "합산을 대표자 개인 수량으로 답하지 않음",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V09"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ04",
+      "kind": "core",
+      "question": "정정 공시 이전 날짜에 알려진 계약금액을 재현할 수 있는가?",
+      "required_concepts": [
+        "Filing",
+        "DocumentVersion",
+        "Assertion",
+        "SupplyContract"
+      ],
+      "required_relations": [
+        "CORRECTS",
+        "SUPERSEDES",
+        "SUPPORTED_BY"
+      ],
+      "expected_result_type": "시점별 금액과 근거 버전",
+      "acceptance_criterion": "당시 공개되지 않은 정정값 배제; 정정연결 근거 필요",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V03",
+        "V04",
+        "V17"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ05",
+      "kind": "core",
+      "question": "임원 후보·선임 결의·재임을 구별할 수 있는가?",
+      "required_concepts": [
+        "AppointmentEvent",
+        "ExecutiveTenure",
+        "Person"
+      ],
+      "required_relations": [
+        "APPOINTS_PERSON",
+        "APPOINTMENT_AT",
+        "TENURE_PERSON"
+      ],
+      "expected_result_type": "단계·상태별 이벤트 또는 재임",
+      "acceptance_criterion": "후보만으로 현재 재임을 생성하지 않음",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V05"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ06",
+      "kind": "core",
+      "question": "인수·합병·분할 결정과 완료를 구분할 수 있는가?",
+      "required_concepts": [
+        "CorporateAction"
+      ],
+      "required_relations": [
+        "ACTION_PARTICIPANT",
+        "ACTION_SECURITY"
+      ],
+      "expected_result_type": "상태·예정일·효력일",
+      "acceptance_criterion": "미래 효력일을 완료로 해석하지 않음",
+      "priority": "P1",
+      "validation_rule_refs": [
+        "V06",
+        "V12"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ07",
+      "kind": "core",
+      "question": "비공개 계약 상대방을 추측 없이 표현할 수 있는가?",
+      "required_concepts": [
+        "SupplyContract",
+        "ContractParticipation",
+        "UnresolvedParty"
+      ],
+      "required_relations": [
+        "PARTICIPATION_IN",
+        "PARTICIPANT"
+      ],
+      "expected_result_type": "계약별 미식별 상대방 및 사유",
+      "acceptance_criterion": "이름 추측 또는 계약간 임의 병합 금지",
+      "priority": "P1",
+      "validation_rule_refs": [
+        "V16"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ08",
+      "kind": "core",
+      "question": "연결·별도와 누적·단일분기 재무값을 구분할 수 있는가?",
+      "required_concepts": [
+        "FinancialObservation",
+        "Company"
+      ],
+      "required_relations": [
+        "OBSERVATION_OF"
+      ],
+      "expected_result_type": "계정·기간·범위·단위별 관측",
+      "acceptance_criterion": "같은 기간·범위만 비교; 누적/단일분기 표시 필요",
+      "priority": "P1",
+      "validation_rule_refs": [
+        "V15",
+        "V08"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ09",
+      "kind": "core",
+      "question": "관계나 수치의 원문 표 위치와 추출 실행을 찾을 수 있는가?",
+      "required_concepts": [
+        "Assertion",
+        "EvidenceSpan",
+        "DocumentVersion",
+        "ExtractionRun"
+      ],
+      "required_relations": [
+        "SUPPORTED_BY",
+        "LOCATED_IN",
+        "GENERATED_BY"
+      ],
+      "expected_result_type": "원문 해시·안정 위치·실행 버전",
+      "acceptance_criterion": "값과 근거가 동일 버전에 속하고 위치로 재확인 가능",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V07"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ10",
+      "kind": "core",
+      "question": "정정과 철회가 원래 주장과 버전을 보존하는가?",
+      "required_concepts": [
+        "Filing",
+        "Assertion",
+        "DocumentVersion"
+      ],
+      "required_relations": [
+        "CORRECTS",
+        "WITHDRAWS",
+        "SUPERSEDES"
+      ],
+      "expected_result_type": "보존된 버전 이력",
+      "acceptance_criterion": "철회 문서와 계약 해지 구별; 원래 주장 삭제 금지",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V04"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ11",
+      "kind": "core",
+      "question": "같은 파일·추출 버전을 재실행해 동일 ID와 결과를 얻는가?",
+      "required_concepts": [
+        "ExtractionRun",
+        "DocumentVersion",
+        "Assertion"
+      ],
+      "required_relations": [
+        "GENERATED_BY"
+      ],
+      "expected_result_type": "동일성 비교 결과",
+      "acceptance_criterion": "중복 생성 없이 내용·ID·근거 동일; 설정변경은 새 실행",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V10"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ12",
+      "kind": "core",
+      "question": "같은 업종만으로 경쟁사라는 답을 생성하지 않는가?",
+      "required_concepts": [
+        "Industry",
+        "Company",
+        "InferenceRule",
+        "ReasoningPath"
+      ],
+      "required_relations": [
+        "CLASSIFIED_AS",
+        "USES_ASSERTION",
+        "APPLIES_RULE"
+      ],
+      "expected_result_type": "출처 사실 또는 별도 가설",
+      "acceptance_criterion": "분류 사실과 경쟁 추론을 명시적으로 구별",
+      "priority": "P2",
+      "validation_rule_refs": [
+        "V14"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ13",
+      "kind": "boundary",
+      "question": "일자만 있는 공시의 장중 공개 시점을 알 수 있는가?",
+      "required_concepts": [
+        "Filing"
+      ],
+      "required_relations": [],
+      "expected_result_type": "시간 정밀도와 응답 유보",
+      "acceptance_criterion": "published_at 자정 생성 금지; 장중 순서 유보",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V03",
+        "V17"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ14",
+      "kind": "negative",
+      "question": "이름이 같은 두 임원을 동일 인물로 병합해도 되는가?",
+      "required_concepts": [
+        "Person"
+      ],
+      "required_relations": [],
+      "expected_result_type": "병합 유보와 임시 ID",
+      "acceptance_criterion": "이름만으로 병합 불가; 추가 근거 없으면 미해결",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V01"
+      ],
+      "holdout": true,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ15",
+      "kind": "negative",
+      "question": "원문 미확보를 거래관계가 없다는 증거로 쓸 수 있는가?",
+      "required_concepts": [
+        "DocumentVersion"
+      ],
+      "required_relations": [],
+      "expected_result_type": "unknown/미확보 상태",
+      "acceptance_criterion": "false와 미확보 구별",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V11"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ16",
+      "kind": "boundary",
+      "question": "보유 비율 0과 누락/null을 구분하는가?",
+      "required_concepts": [
+        "HoldingSnapshot"
+      ],
+      "required_relations": [],
+      "expected_result_type": "0 또는 unknown",
+      "acceptance_criterion": "0 보존; null을 0으로 치환 금지",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V09"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ17",
+      "kind": "boundary",
+      "question": "주식등과 주권 수량을 합쳐 총소유량으로 답해도 되는가?",
+      "required_concepts": [
+        "HoldingSnapshot",
+        "Security"
+      ],
+      "required_relations": [
+        "HOLDING_OF_SECURITY"
+      ],
+      "expected_result_type": "항목별 현황과 합산 유보",
+      "acceptance_criterion": "범주 중복 가능성 때문에 단순 가산 금지",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V02",
+        "V09"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ18",
+      "kind": "boundary",
+      "question": "분모 미확인 비율에서 발행주식총수를 역산해 확정해도 되는가?",
+      "required_concepts": [
+        "HoldingSnapshot"
+      ],
+      "required_relations": [],
+      "expected_result_type": "unknown 분모와 사유",
+      "acceptance_criterion": "역산치를 확인된 분모라고 표시 금지",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V09"
+      ],
+      "holdout": true,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ19",
+      "kind": "negative",
+      "question": "같은 회사·제목의 정정공시를 제목만으로 원공시와 연결하는가?",
+      "required_concepts": [
+        "Filing"
+      ],
+      "required_relations": [
+        "CORRECTS"
+      ],
+      "expected_result_type": "연결 유보 또는 명시 근거",
+      "acceptance_criterion": "관련공시 수신번호 등 근거가 있을 때만 확정",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V04"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ20",
+      "kind": "boundary",
+      "question": "백만원 금액을 원 금액과 비교할 때 배율을 보존하는가?",
+      "required_concepts": [
+        "SupplyContract",
+        "FinancialObservation"
+      ],
+      "required_relations": [],
+      "expected_result_type": "원문값·정규화값·통화·배율",
+      "acceptance_criterion": "단위배율 적용, 통화 혼합 금지",
+      "priority": "P1",
+      "validation_rule_refs": [
+        "V08"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ21",
+      "kind": "negative",
+      "question": "미래 주식분할 예정 공시를 기업분할 완료로 분류하는가?",
+      "required_concepts": [
+        "CorporateAction",
+        "Security"
+      ],
+      "required_relations": [
+        "ACTION_SECURITY"
+      ],
+      "expected_result_type": "서로 다른 사건유형·상태",
+      "acceptance_criterion": "주식분할/기업분할과 예정/완료를 모두 분리",
+      "priority": "P1",
+      "validation_rule_refs": [
+        "V06",
+        "V12"
+      ],
+      "holdout": true,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ22",
+      "kind": "negative",
+      "question": "기준일을 재임 시작일로 바꿔도 되는가?",
+      "required_concepts": [
+        "ExecutiveTenure"
+      ],
+      "required_relations": [],
+      "expected_result_type": "as_of_date, valid_from unknown",
+      "acceptance_criterion": "관측일로 시작일을 발명하지 않음",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V05"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ23",
+      "kind": "negative",
+      "question": "최근 변경공시가 없는 기업은 보유자나 임원이 없다고 답하는가?",
+      "required_concepts": [
+        "HoldingSnapshot",
+        "ExecutiveTenure"
+      ],
+      "required_relations": [],
+      "expected_result_type": "기간범위의 불완전성 표시",
+      "acceptance_criterion": "초기 상태 없는 변경공시만으로 전체현황 주장 금지",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V13"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ24",
+      "kind": "boundary",
+      "question": "근거 없는 validated 주장과 빈 결과만 반환하는 모델을 통과시키는가?",
+      "required_concepts": [
+        "Assertion",
+        "EvidenceSpan"
+      ],
+      "required_relations": [
+        "SUPPORTED_BY"
+      ],
+      "expected_result_type": "제약 위반 및 CQ 실패",
+      "acceptance_criterion": "잘못된 validated 탐지와 실제 양성 질문 응답률 동시 검사",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V07"
+      ],
+      "holdout": false,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ25",
+      "kind": "boundary",
+      "question": "현재 수집한 과거공시 시각을 당시 가용정보 시각으로 쓰는가?",
+      "required_concepts": [
+        "Filing",
+        "Assertion"
+      ],
+      "required_relations": [],
+      "expected_result_type": "공개·효력·시스템시간 별도",
+      "acceptance_criterion": "first_seen_at/recorded_at를 published_at으로 대체 금지",
+      "priority": "P0",
+      "validation_rule_refs": [
+        "V17"
+      ],
+      "holdout": true,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    },
+    {
+      "id": "CQ26",
+      "kind": "negative",
+      "question": "상대방명이 미공개인 두 계약을 동일 거래처로 병합하는가?",
+      "required_concepts": [
+        "UnresolvedParty",
+        "ContractParticipation"
+      ],
+      "required_relations": [
+        "PARTICIPANT"
+      ],
+      "expected_result_type": "계약별 임시 주체",
+      "acceptance_criterion": "추가 동일성 근거 없으면 분리",
+      "priority": "P1",
+      "validation_rule_refs": [
+        "V16"
+      ],
+      "holdout": true,
+      "review_status": "AI_draft_requires_independent_human_review",
+      "expected_answer_status": "specification_only_not_human_validated_gold",
+      "acceptable_alternatives": [
+        "근거 범위 내 답변 및 불확실성 명시",
+        "필수 근거·식별·시점이 없으면 유보"
+      ],
+      "temporal_semantics": "공개 가용시점 / 현실 효력기간 / 시스템 기록기간을 구별; 질문에 필요한 축만 사용",
+      "evidence_requirement": "SAMPLE_MANIFEST 문서버전·표/행/필드와 연결; 사람 정답 검수 필요"
+    }
+  ]
+}

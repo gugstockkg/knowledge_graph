@@ -21,6 +21,8 @@ DEV = PATHS.raw
 KEY = None
 START = dt.date(2026, 10, 1)
 END = dt.date(2026, 11, 5)
+PRIORITY_START = None
+PRIORITY_END = None
 
 def save(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -201,11 +203,20 @@ def main():
                 stream.write(json.dumps(record, ensure_ascii=False) + '\n')
     manifest.update(state='downloading', daily_counts=daily, filing_count=len(unique),
                     company_count=len({r.get('corp_code') for r in all_rows}), updated_at=now())
+    document_rows = list(unique.values())
+    if PRIORITY_START is not None:
+        priority_begin = PRIORITY_START.strftime('%Y%m%d')
+        priority_end = PRIORITY_END.strftime('%Y%m%d')
+        document_rows.sort(key=lambda row: not priority_begin <= row['rcept_dt'] <= priority_end)
+        priority_count = sum(priority_begin <= row['rcept_dt'] <= priority_end for row in document_rows)
+        manifest.update(priority_start=PRIORITY_START.isoformat(),
+                        priority_end=PRIORITY_END.isoformat(), priority_filing_count=priority_count)
+        log('PRIORITY ' + priority_begin + '_' + priority_end + ' filings=' + str(priority_count))
     save(ROOT / 'manifest.json', manifest)
     log('ALL_INDEXES_COMPLETE filings=' + str(len(unique)))
     counts = {'downloaded':0, 'unavailable':0, 'error':0, 'reused_previous_run':0}
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        futures = {pool.submit(document, row): row['rcept_no'] for row in unique.values()}
+        futures = {pool.submit(document, row): row['rcept_no'] for row in document_rows}
         for i, future in enumerate(concurrent.futures.as_completed(futures), 1):
             try:
                 result = future.result()
@@ -235,13 +246,21 @@ def main():
 
 def entry(argv=None):
     import argparse
-    global ROOT, KEY, START, END
+    global ROOT, KEY, START, END, PRIORITY_START, PRIORITY_END
     parser=argparse.ArgumentParser(description='Resume cached date-range OpenDART collection')
     parser.add_argument('--start',required=True,help='YYYY-MM-DD')
     parser.add_argument('--end',required=True,help='YYYY-MM-DD')
+    parser.add_argument('--prioritize-start',help='Download this receipt-date interval first, YYYY-MM-DD')
+    parser.add_argument('--prioritize-end',help='End of the priority interval, YYYY-MM-DD')
     args=parser.parse_args(argv)
     START=dt.date.fromisoformat(args.start);END=dt.date.fromisoformat(args.end)
     if END<START:parser.error('end must not precede start')
+    if bool(args.prioritize_start) != bool(args.prioritize_end):
+        parser.error('both priority dates are required')
+    PRIORITY_START = dt.date.fromisoformat(args.prioritize_start) if args.prioritize_start else None
+    PRIORITY_END = dt.date.fromisoformat(args.prioritize_end) if args.prioritize_end else None
+    if PRIORITY_START is not None and not START <= PRIORITY_START <= PRIORITY_END <= END:
+        parser.error('priority interval must fall within the collection interval')
     KEY=require_api_key()
     ROOT=PATHS.raw/'collections'/(START.strftime('%Y%m%d')+'_'+END.strftime('%Y%m%d'))
     try:

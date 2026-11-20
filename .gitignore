@@ -20,6 +20,7 @@
 
 # Local Python tooling
 .venv/
+.venv-news/
 venv/
 __pycache__/
 *.py[cod]

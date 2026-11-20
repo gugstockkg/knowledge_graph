@@ -9,6 +9,9 @@ description = "Evidence-linked OpenDART knowledge graph research pipeline"
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+news = ["playwright>=1.45,<2", "openpyxl>=3.1,<4"]
+
 [project.scripts]
 kg = "knowledge_graph.cli:main"
 
