@@ -1,8 +1,8 @@
 [Unit]
-Description=OpenDART every day at 06:30 Korea time (catch up after boot)
+Description=OpenDART every day at 10:00 Korea time (catch up after boot)
 
 [Timer]
-OnCalendar=*-*-* 06:30:00 Asia/Seoul
+OnCalendar=*-*-* 10:00:00 Asia/Seoul
 Persistent=true
 RandomizedDelaySec=60
 Unit=opendart-daily.service
