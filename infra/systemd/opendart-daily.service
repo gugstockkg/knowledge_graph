@@ -1,0 +1,31 @@
+[Unit]
+Description=OpenDART daily disclosures to S3
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+User=opendart
+Group=opendart
+WorkingDirectory=/opt/gug-knowledge-graph
+EnvironmentFile=/etc/opendart/api.env
+Environment=PYTHONPATH=/opt/gug-knowledge-graph/src
+Environment=HOME=/var/lib/opendart
+Environment=AWS_DEFAULT_REGION=ap-southeast-2
+Environment=AWS_PAGER=
+Environment=OPENDART_DATA_DIR=/var/lib/opendart
+Environment=OPENDART_S3_PREFIX=s3://fintos-dev-data-gugst5ck/raw/opendart/
+ExecStart=/usr/bin/python3.11 -m knowledge_graph.ingestion.batch daily
+StateDirectory=opendart
+StateDirectoryMode=0700
+UMask=0077
+Restart=on-failure
+RestartSec=30min
+RestartPreventExitStatus=78
+TimeoutStartSec=25min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/opendart
