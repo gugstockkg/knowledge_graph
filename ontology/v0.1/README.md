@@ -15,6 +15,8 @@
 P0: 식별·근거·시간·지분·경영진의 초기 기반. P1: 계약·기업행위·재무·업종. P2: 사업·제품·시장 관측·추론 확장. 우선순위는 제안이며 이번에 모든 계층을 구현한다는 뜻은 아닙니다.
 
 ## 모델 사용 원칙
+공시 원문에서 확인한 사례와 그래프가 답할 질문을 기준으로 개념·관계·속성·검증 규칙을 CSV에 명세합니다. 구현에서는 Neo4j의 레이블 속성 그래프(LPG)를 사용하며, 개념은 노드 라벨로, 관계는 타입이 있는 방향 연결로, 값은 속성으로 표현합니다. [최대주주 변경 파일럿의 설계와 구현](../controller-change-v0.1/README.md)
+
 이 문서는 Neo4j 등으로 옮기기 전의 논리 정의입니다. 세미콜론으로 나열한 출발/도착 개념은 허용 유형의 합집합이며 한 노드에 모든 라벨을 붙이라는 뜻이 아닙니다. Company는 Organization의 하위 유형입니다. 다른 상속 관계와 URI 네임스페이스는 후속 결정 대상입니다.
 
 원문에서 추출한 도메인 관계는 Assertion으로 주체·predicate·객체(또는 literal_value)를 기록하고 EvidenceSpan과 ExtractionRun을 연결합니다. 객체형 관계는 HAS_SUBJECT/HAS_OBJECT, 속성값 주장은 HAS_SUBJECT와 literal_value를 사용합니다. predicate는 관계 ID 또는 속성 ID를 참조합니다. HAS_SUBJECT/HAS_OBJECT 등의 관리용 연결 자체를 다시 Assertion으로 감싸는 무한 재귀 구조는 만들지 않습니다. 검증된 도메인 엣지를 직접 생성하는 경우 해당 assertion_id를 유지합니다.

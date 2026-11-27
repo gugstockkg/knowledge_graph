@@ -26,3 +26,7 @@ R02,rule,부분 정정,Assertion,string,1,정정 항목이 명시된 필드만 �
 R03,rule,완료 판정,Assertion,string,1,예정이나 제안은 완료의 근거가 되지 않고 확인이 안 되면 보류한다,공시 본문 표현과 확인 증거,CQ3,draft
 R04,rule,근거 재현,Assertion,string,1,해시가 일치하는 원문의 표나 문단에서 주장 값을 다시 찾을 수 있어야 한다,원문 대조와 SHACL 구조 검사,CQ4,draft
 R05,rule,혼동 방지,Assertion,string,1,최대주주등 그룹 수치와 최대주주 개인 수치를 분리한다,본문 항목명과 상세내역 또는 각주,CQ2,draft
+M01,method,설계 근거,,,,역량 질문으로 범위를 정한 뒤 공시 원문을 대조해 시점과 관계의 의미를 정의한다,역량 질문 표와 원공시 및 정정본 표본,CQ1 CQ2 CQ3 CQ4,applied
+M02,method,CSV 정의서,,,,CSV에 개념과 관계의 범위 및 연결 수를 정의하고 속성 자료형과 검증 규칙을 명세한다,ontology.csv 및 설계 설명서,CQ1 CQ2 CQ3 CQ4,applied
+M03,method,Neo4j 레이블 속성 그래프,,,,Neo4j LPG에서 개념을 노드 라벨로 표현한다. 연결은 관계 타입으로 표현하고 값을 노드나 관계의 속성에 저장한다. Cypher로 조회를 검증한다,EC2 Neo4j 파일럿과 기준일 조회,CQ1 CQ2 CQ4,applied
+M04,method,RDF와 SHACL 후속 검증,,,,일부 그래프를 RDF로 내보내고 SHACL로 필수 근거 연결과 자료형을 검사하는 방안을 검토한다. OWL 공리 구현은 별도로 정의한다,W3C RDF와 SHACL 표준,CQ4,planned

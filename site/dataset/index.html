@@ -24,6 +24,7 @@
 
     <section aria-labelledby="schema">
       <h2 id="schema">스키마와 규모</h2>
+      <p>FINTOS는 공시 원문과 그래프가 답할 질문을 바탕으로 개념·관계·검증 규칙을 정합니다. <strong>CSV는 온톨로지 정의서 형식이며, 실제 데이터는 Neo4j의 레이블 속성 그래프(LPG)</strong>로 구현합니다. 노드 라벨과 관계 타입에 속성을 붙이고 Cypher로 조회합니다. RDF 내보내기와 SHACL 검증은 후속 실험으로 설계했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">온톨로지 설계 방법과 RDF·OWL의 역할</a></p>
       <figure class="dataset-figure">
         <div class="table-scroll" role="region" aria-label="그래프 스키마 그림" tabindex="0">
           <img src="disclosure-graph.svg" width="952" height="408" alt="Filing에서 Company로 IS_ABOUT, SourceDocument로 HAS_SOURCE_DOCUMENT 관계가 이어집니다.">
@@ -52,6 +53,7 @@
         </table>
       </div>
       <p>한 공시에 ZIP과 XML이 각각 있을 수 있고, 여러 수집분에서 확보한 ZIP도 별도 객체로 남습니다. 원문 객체 수보다 <strong>원문이 연결된 공시 수</strong>가 분석 범위를 판단하는 데 적합합니다. 접수번호와 기업 코드는 앞자리 0을 보존하는 문자열이며, 접수일은 Neo4j의 <code>DATE</code> 속성입니다. 고유 키 세 개에 유일성 제약을 두고 접수일에 인덱스를 만들었습니다.</p>
+      <p>위 집계는 기본 공시 카탈로그의 세 노드 타입과 두 관계 타입을 대상으로 합니다. 공급자·구매자 관계는 별도 실험 라벨을 사용합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_fintos_experiment_plan.md">TRACE 공급계약 파일럿</a></p>
     </section>
 
     <section aria-labelledby="build">
