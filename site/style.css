@@ -51,6 +51,14 @@ h1 { font-weight: 700; }
 .entries h3 { font-size: 1.25rem; }
 .entries p { max-width: 66ch; margin: .35rem 0 0; }
 .status { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .65rem; font-size: .9rem; }
+.chapter.design-log { padding-block: .85rem 1rem; }
+.design-log .table-scroll { margin-block: 0; }
+.design-log table { width: 100%; border-collapse: collapse; text-align: left; font-size: .88rem; line-height: 1.45; }
+.design-log th, .design-log td { padding: .5rem .72rem; vertical-align: top; }
+.design-log thead { background: var(--accent-wash); }
+.design-log tbody tr { border-top: 1px solid var(--line); }
+.design-log time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.design-log .log-zone { font-weight: 400; }
 .footer { border-top: 1px solid var(--line); border-bottom: 0; color: var(--muted); }
 .post { width: min(100% - 3rem, 46rem); margin: 0 auto; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 .post h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
