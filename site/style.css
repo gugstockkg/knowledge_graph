@@ -51,14 +51,13 @@ h1 { font-weight: 700; }
 .entries h3 { font-size: 1.25rem; }
 .entries p { max-width: 66ch; margin: .35rem 0 0; }
 .status { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .65rem; font-size: .9rem; }
-.chapter.design-log { padding-block: .85rem 1rem; }
-.design-log .table-scroll { margin-block: 0; }
-.design-log table { width: 100%; border-collapse: collapse; text-align: left; font-size: .88rem; line-height: 1.45; }
-.design-log th, .design-log td { padding: .5rem .72rem; vertical-align: top; }
-.design-log thead { background: var(--accent-wash); }
-.design-log tbody tr { border-top: 1px solid var(--line); }
-.design-log time { white-space: nowrap; font-variant-numeric: tabular-nums; }
-.design-log .log-zone { font-weight: 400; }
+.design-records { list-style: none; margin: 0; padding: 0; }
+.design-records li + li { border-top: 1px solid var(--line); margin-top: .5rem; padding-top: 1rem; }
+.design-record-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem 1rem; }
+.design-record-heading h3 { font-size: 1.25rem; text-wrap: wrap; }
+.design-record-heading time { color: var(--muted); font-size: .875rem; font-variant-numeric: tabular-nums; }
+.design-records p { max-width: 65ch; margin: .4rem 0 0; color: var(--muted); }
+.design-records a { display: inline-flex; align-items: center; min-height: 44px; font-size: .95rem; font-weight: 650; }
 .footer { border-top: 1px solid var(--line); border-bottom: 0; color: var(--muted); }
 .post { width: min(100% - 3rem, 46rem); margin: 0 auto; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 .post h1 { font-size: clamp(2rem, 5vw, 3.4rem); }

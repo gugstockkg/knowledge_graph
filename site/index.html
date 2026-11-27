@@ -41,18 +41,34 @@
       </ul>
     </section>
 
-    <section id="design-validation" class="chapter design-log" aria-labelledby="design-validation-title">
+    <section id="design-validation" class="chapter" aria-labelledby="design-validation-title">
       <h2 id="design-validation-title">설계와 검증</h2>
-      <div class="table-scroll" role="region" aria-label="설계와 검증 기록" tabindex="0">
-        <table>
-          <thead><tr><th scope="col">기록 일시 <span class="log-zone">(KST)</span></th><th scope="col">항목</th><th scope="col">내용</th></tr></thead>
-          <tbody>
-            <tr><td><time datetime="2026-11-27T20:24:40+09:00">11.27 20:24</time></td><th scope="row"><a href="dataset/#economic-events">경제 사건 그래프</a></th><td>공급계약, 정정, 시설투자, 실적을 EC2 Neo4j에서 조회</td></tr>
-            <tr id="notes"><td><time datetime="2026-11-27T14:41:48+09:00">11.27 14:41</time></td><th scope="row"><a href="journal/2026-11-27-ontology-and-shacl/">온톨로지와 근거</a></th><td>원공시와 정정본을 구분하고 변경된 값과 원문 위치를 기록</td></tr>
-            <tr id="experiments"><td><time datetime="2026-11-27T14:41:48+09:00">11.27 14:41</time></td><th scope="row"><a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG 평가 설계</a></th><td>같은 기준일에서 문서 검색과 그래프 검색의 답과 근거를 비교</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <ul class="design-records">
+        <li>
+          <div class="design-record-heading">
+            <h3>경제 사건 그래프</h3>
+            <time datetime="2026-11-27T20:24:40+09:00">11월 27일 20:24 KST</time>
+          </div>
+          <p>공급계약, 정정, 시설투자, 실적을 EC2 Neo4j에서 조회했습니다.</p>
+          <a href="dataset/#economic-events">경제 사건 조회 결과 보기</a>
+        </li>
+        <li id="notes">
+          <div class="design-record-heading">
+            <h3>온톨로지와 근거</h3>
+            <time datetime="2026-11-27T14:41:48+09:00">11월 27일 14:41 KST</time>
+          </div>
+          <p>원공시와 정정본을 구분하고 변경된 값과 원문 위치를 기록했습니다.</p>
+          <a href="journal/2026-11-27-ontology-and-shacl/">온톨로지 설계와 검증 결과 보기</a>
+        </li>
+        <li id="experiments">
+          <div class="design-record-heading">
+            <h3>GraphRAG 평가 설계</h3>
+            <time datetime="2026-11-27T14:41:48+09:00">11월 27일 14:41 KST</time>
+          </div>
+          <p>같은 기준일에서 문서 검색과 그래프 검색의 답과 근거를 비교하는 실험을 설계했습니다.</p>
+          <a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG 평가 방법 보기</a>
+        </li>
+      </ul>
     </section>
   </main>
   <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
