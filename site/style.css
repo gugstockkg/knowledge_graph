@@ -32,8 +32,9 @@ nav a:hover, .index a:hover strong { color: var(--accent); text-decoration: unde
 h1, h2, h3 { margin: 0; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; }
 h1 { font-weight: 700; }
 .intro { padding-block: clamp(1.75rem, 3.8vw, 3rem); }
-.intro h1 { font-size: clamp(1.95rem, 4.2vw, 3.5rem); }
+.intro h1 { font-size: clamp(2.85rem, 6.2vw, 4.65rem); line-height: 1.02; }
 .intro p { color: var(--muted); max-width: 65ch; margin: .8rem 0 0; }
+.intro .intro-subtitle { color: var(--ink); font-size: clamp(1.08rem, 2.1vw, 1.34rem); font-weight: 650; margin-top: .5rem; }
 .intro-dataset { display: grid; gap: .12rem; width: fit-content; max-width: 100%; margin-top: 1.2rem; padding: .7rem 1rem; border-radius: .75rem; background: var(--accent); color: #fff; text-decoration: none; }
 .intro-dataset:hover { background: var(--accent-strong); }
 .intro-dataset:hover strong { text-decoration: underline; }
