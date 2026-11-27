@@ -1,0 +1,31 @@
+id,kind,label,subject,object_or_type,cardinality,definition,evidence_basis,cq,status
+Company,class,법인,,,,공시 목록에서 기업 코드로 식별하는 법인. 계약·투자에서 맡는 역할은 사건마다 따로 기록한다.,OpenDART corp_code,CQ1 CQ3 CQ4,defined
+Security,class,상장 증권,,,,시장 가격을 관측하는 증권. 기업의 법인 식별자와 구별하고 종목 코드의 유효 시점을 관리한다.,시점별 거래소 종목표,CQ5,defined
+SupplyContract,class,공급계약,,,,공시에서 체결됐다고 보고한 판매·공급계약의 식별 단위. 관련 공시가 여러 건이어도 확인된 원공시를 기준으로 계약을 식별한다.,공급계약 공시 원문,CQ1 CQ2,defined
+ProductCategory,class,제품·용역 분류,,,,공급 대상의 확인 가능한 범주. 세부 공정이나 고객 제품은 원문이 명시한 경우에만 기록한다.,계약 품명과 검수한 분류 규칙,CQ1 CQ3,defined
+FacilityInvestment,class,시설투자 발표,,,,기업이 공시한 시설투자 결정 또는 계획. 금액은 발표 기준 투자 예정액이다.,신규시설투자등 공시,CQ3,defined
+FinancialObservation,class,재무 관측값,,,,기업·회계기간·계정·연결 범위·공개 버전에 귀속된 보고 수치.,잠정 실적 원문 또는 정기보고서 XBRL,CQ2 CQ4,defined
+Filing,class,공시 근거,,,,접수번호가 있는 제출 기록을 거래·투자·재무 관측과 연결한다.,OpenDART 접수번호,CQ1 CQ2 CQ3 CQ4,defined
+ContractTermsObservation,class,계약 조건 관측,,,,특정 공시 버전에서 확인한 계약 조건. 정정으로 변경한 항목만 해당 관측에서 대체한다.,공급계약 본문과 정정표,CQ2 CQ4,defined
+SUPPLIED_IN,edge,공급자로 참여,Company,SupplyContract,0..n,개별 계약에서 공급자 역할을 맡은 법인과 계약을 연결한다.,계약 내용 및 대상 법인 확인,CQ1,defined
+PURCHASED_IN,edge,구매자로 참여,Company,SupplyContract,0..n,원문에서 구매자를 확인하고 하나의 법인 코드로 식별한 경우 계약과 연결한다.,계약상대방 표와 접수일까지의 식별 근거,CQ1 CQ3,defined
+COVERS_PRODUCT,edge,공급 대상 분류,SupplyContract,ProductCategory,0..n,공급 품명으로 근거를 확인한 분류를 잇는다. 모호하거나 범주가 겹치면 분류를 보류한다.,품명 문자열과 분류 규칙,CQ1 CQ3,defined
+ANNOUNCED_INVESTMENT,edge,시설투자 발표 기업,Company,FacilityInvestment,0..n,직접 투자를 발표한 대상 법인과 투자건을 연결한다.,시설투자 공시,CQ3,defined
+HAS_FINANCIAL_OBSERVATION,edge,기업의 보고된 재무,Company,FinancialObservation,0..n,공개된 회계기간별 재무값을 기업과 연결한다.,연결 여부가 표시된 실적공시 또는 XBRL,CQ2 CQ4,defined
+HAS_TERMS_OBSERVATION,edge,계약 조건의 관측,SupplyContract,ContractTermsObservation,1..n,원계약에 여러 버전의 조건 관측을 보존한다.,원공시와 명시적으로 짝지은 정정,CQ2 CQ4,defined
+ISSUED_BY,edge,증권의 발행 기업,Security,Company,1,증권을 확인된 발행 법인과 연결한다.,시점별 상장·증권 정보,CQ5,defined
+REPORTED_IN,edge,원천 공시,SupplyContract|ContractTermsObservation|FacilityInvestment|FinancialObservation,Filing,1,사업 사실이나 관측을 보고한 접수공시를 가리킨다.,해당 공시 번호,CQ1 CQ2 CQ3 CQ4,defined
+known_on,property,공개 정보 기준일,ContractTermsObservation|FacilityInvestment|FinancialObservation,date,1,일 단위 공시 접수일. 이후 거래일 평가의 입력 컷오프에 사용한다.,공시 목록 접수일,CQ4 CQ5,defined
+contract_amount_krw,property,원화 계약금액,ContractTermsObservation,integer,0..1,공시에 보고된 원화 계약금액. 예정·조건부 금액은 확정 금액과 혼용하지 않는다.,계약 내역 표,CQ2,defined
+supplier_reported_sales_pct,property,공급자 공시 매출 대비 비율,ContractTermsObservation,decimal,0..1,공시에 보고된 공급자 매출 대비 비율. 구매자의 투자 비율과 독립적으로 보존한다.,매출액 대비 원문 값,CQ2,defined
+planned_amount_krw,property,공시상 시설투자 예정 금액,FacilityInvestment,integer,0..1,보고된 시설투자 계획의 원화 금액. 실제 집행액은 별도 관측으로 표현한다.,투자내역 표,CQ3,defined
+period_start|period_end,property,재무 회계기간,FinancialObservation,date,2,표가 보고하는 당기 시작일과 종료일을 각각 보존한다.,실적기간 표,CQ4,defined
+value_krw,property,원화 환산 보고값,FinancialObservation,integer,1,보고값에 원문의 화폐 단위 배율을 적용한 정수 원화 금액이다.,재무 계정과 원문 단위,CQ4,defined
+consolidation_scope,property,연결 여부,FinancialObservation,enum,1,연결 또는 별도 범위이며 같은 계정·기간 비교에 적용한다.,공시 제목과 실적표,CQ4,defined
+metric,property,재무 계정,FinancialObservation,enum,1,우선 revenue 또는 operating_profit을 사용한다.,매출액 또는 영업이익 행,CQ4,defined
+V01,rule,모든 상장 시장 포함,,,,공시 목록에서 코스피·코스닥·코넥스로 표시된 법인을 대상으로 유형별 원문 확보 상태를 공개한다.,OpenDART corp_cls,CQ1 CQ3 CQ4,defined
+V02,rule,참여 기업 식별,,,,구매자 비공개·동명이인·모호한 자회사 공시는 기업 연결을 보류한다. 공급자와 구매자의 역할을 뒤바꾸지 않는다.,공급자 공시와 구매자 값 대조,CQ1,defined
+V03,rule,시간과 정정,,,,공개 기준일 이후의 값을 제외한다. 명시적 정정 대상을 찾지 못하면 이전 값을 덮어쓰지 않는다. 당일 순서를 확인하지 못한 상충 값은 단일 최신값으로 닫지 않는다.,공시 목록과 정정 근거,CQ4 CQ5,defined
+V04,rule,두 사건의 연결 근거,,,,같은 회사와 같은 제품군이라는 이유만으로 계약을 특정 시설 프로젝트에 귀속하지 않는다.,프로젝트 식별자 또는 명시적인 원문 설명,CQ3,defined
+V05,rule,금액의 단위와 분모,,,,억원·백만원·조원 배율을 원문에서 확인한다. 분모와 연결 범위가 다른 비율을 합치지 않는다.,원문 단위·재무·계약표,CQ2 CQ4,defined
+V06,rule,주가 평가 데이터의 분리,,,,종목·거래일로 연결하고 미래 수익률과 학습용 특성 경로를 분리한다.,시점별 거래일과 컷오프,CQ5,defined

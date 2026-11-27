@@ -19,7 +19,7 @@ ORIGINAL_TITLE = "단일판매공급계약체결"
 ROLE_LABELS = {"계약상대", "계약상대방"}
 
 
-def read_index(collections, start, end):
+def read_index(collections, start, end, listed_markets=MARKETS):
     """Use filing observations available by the contract date for party identity."""
     filings = {}
     observations = defaultdict(dict)
@@ -36,7 +36,7 @@ def read_index(collections, start, end):
                 receipt = row["rcept_no"]
                 symbol = row.get("stock_code", "")
                 name = canonical_name(row["corp_name"])
-                if (row.get("corp_cls") in MARKETS and re.fullmatch(r"\d{8}", company)
+                if (row.get("corp_cls") in listed_markets and re.fullmatch(r"\d{8}", company)
                         and re.fullmatch(r"\d{6}", symbol) and symbol != "000000"):
                     key = (company, symbol)
                     previous = observations[name].get(key)
@@ -45,7 +45,7 @@ def read_index(collections, start, end):
                                                    "date": observed, "receipt": receipt}
                 if not start <= observed or compact(row["report_nm"]) != ORIGINAL_TITLE:
                     continue
-                if row.get("corp_cls") not in MARKETS or not re.fullmatch(r"\d{8}", company):
+                if row.get("corp_cls") not in listed_markets or not re.fullmatch(r"\d{8}", company):
                     continue
                 archive = collection / "documents" / company / (receipt + ".zip")
                 if receipt not in filings or (archive.is_file() and not filings[receipt][1].is_file()):
@@ -67,8 +67,8 @@ def buyer_cell(document):
     return cells
 
 
-def collect(collections, start, end):
-    filings, observed = read_index(collections, start, end)
+def collect(collections, start, end, listed_markets=MARKETS):
+    filings, observed = read_index(collections, start, end, listed_markets)
     counts = Counter(title_candidates=len(filings))
     events = []
     for receipt, (row, archive) in sorted(filings.items()):
@@ -110,6 +110,7 @@ def collect(collections, start, end):
             "document_member": member, "document_sha256": digest,
             "description": fields["description"], "amount_krw": fields.get("amount_krw"),
             "reported_sales_pct": fields.get("reported_sales_pct"),
+            "conditional": fields.get("conditional"),
             "buyer_evidence": evidence, "buyer": buyer, "buyer_status": state,
         })
     counts["events"] = len(events)
