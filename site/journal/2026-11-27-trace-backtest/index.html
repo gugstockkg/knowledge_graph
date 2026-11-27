@@ -15,7 +15,7 @@
 
     <h1>거래 관계는 한국 주식의 방향 예측에 도움이 되는가?</h1>
     <p class="post-meta"><time datetime="2026-11-27T20:31:01+09:00">2026년 11월 27일 20:31 KST</time> · EC2 재실험</p>
-    <p class="lead">공급계약·정정·시설투자·실적을 연결한 개정 그래프로 삼성전자와 SK하이닉스를 포함해 다시 평가했습니다. 거래 경로를 더한 모형의 정확도는 직접 공시 모형보다 기존 기간에서 <strong>0.68%p</strong>, 11월 후속 구간에서 <strong>0.54%p</strong> 낮았습니다. 11월에는 가격 모형이 정확도와 비용 후 수익률에서 네 모형 중 가장 높았습니다.</p>
+    <p class="lead">2026년 10월 1일~11월 26일을 하나의 테스트셋으로 평가했습니다. 삼성전자와 SK하이닉스를 포함한 <strong>39거래일 · 659개 종목·거래일</strong>에서 거래 경로 모형의 정확도는 직접 공시 모형보다 0.15%p 낮았습니다. 비용 후 누적수익률은 가격 모형이 네 모형 중 가장 높았습니다.</p>
     <nav class="dataset-nav" aria-label="연구 기록 목차">
       <a href="#background">배경</a><a href="#related">관련 연구</a><a href="#method">방법론</a><a href="#results">실험 결과</a><a href="#anchors">삼성전자·SK하이닉스</a><a href="#limitations">한계</a><a href="#next">후속 연구</a>
     </nav>
@@ -38,12 +38,18 @@
         <figcaption>실제 방향이 있는 거래 관계. 넥스틴은 공급자, SK하이닉스는 구매자입니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146">넥스틴 공급계약 원문</a></figcaption>
       </figure>
       <h3>어떤 정보가 예측에 들어갔나</h3>
-      <ol>
-        <li><strong>가격.</strong> 직전 세션까지의 1·5·20거래일 모멘텀과 거래량을 사용합니다.</li>
-        <li><strong>직접 공시.</strong> 거래·정정·시설투자·실적 공시 건수, 공시에 보고된 공급자 매출 대비 계약 비율과 예정 투자액을 더합니다. 매출과 영업이익의 두 관측값이 같은 실적 공시에서 나오면 공시 한 건으로 셉니다.</li>
-        <li><strong>계약 역할.</strong> 당일 구매자 노출, 상대 기업 수, 앞서 공개돼 그날 유효한 계약의 상대 기업 수를 더합니다.</li>
-        <li><strong>거래 경로.</strong> 앞서 공개된 유효 계약을 따라 상대 기업의 당일 공급계약·정정·시설투자·실적 공시 건수를 더합니다. 예를 들어 공급사 공시에서 기존 계약을 거쳐 구매자에게 닿는 경로입니다. 이 경로는 두 사건의 인과관계를 뜻하지 않습니다.</li>
-      </ol>
+      <div class="table-scroll" role="region" aria-label="비교 모형별 입력과 예시" tabindex="0">
+      <table><caption>비교 모형별 입력과 예시</caption>
+        <thead><tr><th scope="col">모형</th><th scope="col">어떤 정보를 쓰나</th><th scope="col">예시</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">가격</th><td>직전 거래일까지의 1·5·20거래일 수익률과 최근 거래량을 봅니다.</td><td>삼성전자 주가의 최근 흐름과 거래량을 확인합니다.</td></tr>
+          <tr><th scope="row">가격 + 직접 공시</th><td>가격 정보에 예측 대상 기업이 낸 공급계약·정정·시설투자·실적 공시 건수와 계약 규모·예정 투자액을 더합니다.</td><td>삼성전자가 직접 공시한 시설투자를 반영합니다.</td></tr>
+          <tr><th scope="row">가격 + 직접 공시 + 계약 역할</th><td>직접 공시까지 사용하고, 해당 기업이 다른 회사의 공시에서 구매자로 언급됐는지와 확인된 거래 상대 수를 더합니다.</td><td>넥스틴의 신규 계약에서 SK하이닉스가 구매자였다는 사실을 반영합니다.</td></tr>
+          <tr><th scope="row">가격 + 직접 공시 + 거래 경로</th><td>계약 역할까지 사용하고, 이미 공개돼 유효한 계약을 따라 거래 상대 기업의 공급계약·정정·시설투자·실적 공시를 더합니다.</td><td>기존 계약으로 연결된 공급사가 새 실적 공시를 내면 구매자 예측에도 그 공시 여부를 반영합니다.</td></tr>
+        </tbody>
+      </table>
+    </div>
+      <p>매출과 영업이익이 같은 실적 공시에 들어 있으면 공시 한 건으로 셉니다.</p>
       <p>새 공시가 공개된 날짜보다 앞선 계약만 거래 경로에 사용했습니다. 계약 시작·종료일은 그 시점에 알려진 값을 적용했고, 같은 공개일에 조건이 충돌하면 해당 계약을 경로에서 제외했습니다. 시설투자를 특정 공급계약에 귀속하려면 원문에 직접 근거가 필요합니다.</p>
       <p>비교 단위는 모든 모형에서 같은 종목·거래일입니다. 공시 기업과 공급계약 당사자가 기본 후보이며, 삼성전자(005930)와 SK하이닉스(000660)는 공시가 없는 거래일도 넣었습니다. 다음 거래일 시가에 진입해 종가까지의 수익률을 예측합니다. 0%는 비상승으로 분류했습니다.</p>
 
@@ -53,85 +59,52 @@
         <tbody>
           <tr><th scope="row">학습</th><td>1월~6월</td><td>120</td><td>1334</td><td>555</td><td>530</td></tr>
           <tr><th scope="row">검증</th><td>7월~8월</td><td>42</td><td>605</td><td>396</td><td>242</td></tr>
-          <tr><th scope="row">기존 기간 재실행</th><td>10월 1일~11월 6일</td><td>25</td><td>444</td><td>302</td><td>203</td></tr>
-          <tr><th scope="row">11월 후속 평가</th><td>11월 9일~26일</td><td>14</td><td>186</td><td>141</td><td>70</td></tr>
+          <tr><th scope="row">테스트</th><td>10월 1일~11월 26일</td><td>39</td><td>659</td><td>423</td><td>284</td></tr>
         </tbody>
       </table>
     </div>
-      <p>규제 강도는 7~8월 검증 구간의 균형 정확도로 골랐습니다. 모형을 1~8월 자료로 다시 학습한 뒤 10~11월의 두 구간에 고정해 적용했습니다. 9월은 분할에서 제외했습니다. 기존 테스트 기간은 이미 결과를 본 구간으로 표시했습니다.</p>
+      <p>규제 강도는 7~8월 검증 구간의 균형 정확도로 골랐습니다. 모형은 1~8월 자료로 학습한 뒤 10월 1일~11월 26일 테스트셋 전체에 고정해 적용했습니다. 9월은 분할에서 제외했습니다. 11월 6일 공시는 다음 거래일인 11월 9일의 예측에 반영했습니다.</p>
     </section>
 
     <section aria-labelledby="results">
       <h2 id="results">실험 결과</h2>
       <p>상승 확률이 0.5 이상인 종목을 시가에 동일가중 매수하고 종가에 청산하는 규칙을 비교했습니다. 아래 수익률은 왕복 비용 20bp를 공제한 누적수익률입니다. 거래가 없는 날은 수익률 0으로 처리했습니다. 샤프는 무위험수익률 0과 연 252거래일을 기준으로 계산했습니다.</p>
-<div class="table-scroll" role="region" aria-label="기존 테스트 기간 재실행 · 25거래일, 444개 종목·거래일" tabindex="0">
-      <table><caption>기존 테스트 기간 재실행 · 25거래일, 444개 종목·거래일</caption>
+<div class="table-scroll" role="region" aria-label="단일 테스트셋 · 10월 1일~11월 26일" tabindex="0">
+      <table><caption>단일 테스트셋 · 10월 1일~11월 26일</caption>
         <thead><tr><th scope="col">모형</th><th scope="col">정확도</th><th scope="col">균형 정확도</th><th scope="col">상승 F1</th><th scope="col">진입 건수</th><th scope="col">순수익률</th><th scope="col">샤프</th><th scope="col">최대낙폭</th></tr></thead>
         <tbody>
-          <tr><th scope="row">가격</th><td>54.28%</td><td>50.27%</td><td>6.45%</td><td>14</td><td>+8.55%</td><td>1.89</td><td>−10.27%</td></tr>
-          <tr><th scope="row">가격 + 직접 공시</th><td>55.86%</td><td>52.35%</td><td>19.01%</td><td>39</td><td>−17.00%</td><td>−1.99</td><td>−22.35%</td></tr>
-          <tr><th scope="row">가격 + 직접 공시 + 계약 역할</th><td>55.63%</td><td>52.02%</td><td>16.88%</td><td>34</td><td>−14.51%</td><td>−1.70</td><td>−22.33%</td></tr>
-          <tr><th scope="row">가격 + 직접 공시 + 거래 경로</th><td>55.18%</td><td>51.53%</td><td>15.32%</td><td>32</td><td>−14.52%</td><td>−1.70</td><td>−22.33%</td></tr>
-        </tbody>
-      </table>
-    </div>
-<div class="table-scroll" role="region" aria-label="11월 후속 평가 · 14거래일, 186개 종목·거래일" tabindex="0">
-      <table><caption>11월 후속 평가 · 14거래일, 186개 종목·거래일</caption>
-        <thead><tr><th scope="col">모형</th><th scope="col">정확도</th><th scope="col">균형 정확도</th><th scope="col">상승 F1</th><th scope="col">진입 건수</th><th scope="col">순수익률</th><th scope="col">샤프</th><th scope="col">최대낙폭</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">가격</th><td>61.83%</td><td>50.14%</td><td>5.33%</td><td>5</td><td>−14.10%</td><td>−4.72</td><td>−18.38%</td></tr>
-          <tr><th scope="row">가격 + 직접 공시</th><td>56.45%</td><td>46.39%</td><td>8.99%</td><td>19</td><td>−18.58%</td><td>−8.68</td><td>−18.58%</td></tr>
-          <tr><th scope="row">가격 + 직접 공시 + 계약 역할</th><td>55.38%</td><td>44.40%</td><td>0.00%</td><td>13</td><td>−21.09%</td><td>−9.61</td><td>−21.09%</td></tr>
-          <tr><th scope="row">가격 + 직접 공시 + 거래 경로</th><td>55.91%</td><td>45.11%</td><td>2.38%</td><td>14</td><td>−19.35%</td><td>−8.60</td><td>−19.35%</td></tr>
+          <tr><th scope="row">가격</th><td>56.90%</td><td>50.43%</td><td>6.58%</td><td>20</td><td>−5.98%</td><td>−0.51</td><td>−18.38%</td></tr>
+          <tr><th scope="row">가격 + 직접 공시</th><td>56.30%</td><td>50.75%</td><td>17.24%</td><td>64</td><td>−31.78%</td><td>−3.31</td><td>−31.78%</td></tr>
+          <tr><th scope="row">가격 + 직접 공시 + 계약 역할</th><td>56.30%</td><td>50.45%</td><td>13.77%</td><td>50</td><td>−31.34%</td><td>−3.33</td><td>−33.46%</td></tr>
+          <tr><th scope="row">가격 + 직접 공시 + 거래 경로</th><td>56.15%</td><td>50.27%</td><td>13.21%</td><td>49</td><td>−29.83%</td><td>−3.12</td><td>−31.99%</td></tr>
         </tbody>
       </table>
     </div>
       <figure class="dataset-figure research-chart">
-        <img src="net-return-revised.png" width="1792" height="640" alt="세 모형의 비용 후 누적수익률. 재실행 구간에서는 가격 모형이 플러스이며 후속 구간에서는 세 모형 모두 마이너스입니다.">
-        <figcaption>왕복 비용 20bp를 반영한 누적수익률. 두 평가 구간의 시작값은 각각 0%입니다.</figcaption>
+        <img src="net-return-revised.png" width="1792" height="640" alt="10월 1일부터 11월 26일까지 네 모형의 비용 후 누적수익률. 가격 모형의 손실 폭이 가장 작습니다.">
+        <figcaption>테스트 전체 기간의 비용 후 누적수익률. 첫 거래 전에 한 번만 0%에서 시작합니다.</figcaption>
       </figure>
-      <p>후속 구간에서는 비상승만 예측해도 정확도가 62.37%였습니다. 가격 모형은 정확도 61.83%, 균형 정확도 50.13%로, 높은 정확도의 상당 부분이 비상승 비중에서 나왔습니다. 거래 경로와 직접 공시 모형의 정확도 차이에 대한 거래일 단위 재표집 95% 구간은 재실행 <strong>−2.38~+1.33%p</strong>, 후속 평가 <strong>−2.25~+1.34%p</strong>였습니다.</p>
-      <h3>초기 실험과 표본을 맞춰 비교</h3>
-<div class="table-scroll" role="region" aria-label="기존과 개정 모형이 공통으로 평가한 196개 종목·거래일" tabindex="0">
-      <table><caption>기존과 개정 모형이 공통으로 평가한 196개 종목·거래일</caption>
-        <thead><tr><th scope="col">모형</th><th scope="col">정확도</th><th scope="col">진입 건수</th><th scope="col">순수익률</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">초기 공급계약 모형</th><td>55.10%</td><td>12</td><td>−6.01%</td></tr>
-          <tr><th scope="row">개정 거래 경로 모형</th><td>54.08%</td><td>4</td><td>−3.21%</td></tr>
-        </tbody>
-      </table>
-    </div>
-      <p>동일 표본에서 개정 모형은 방향을 두 건 덜 맞혔고, 손실 폭은 2.80%p 줄었습니다. 진입 건수도 12건에서 4건으로 줄었으므로 거래 경로나 예측 순위만의 효과로 해석할 수 없습니다. 일별 1위만 매수하는 보조 분석에서도 거래 경로 모형이 직접 공시 모형을 앞서지 못했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_backtest_2026.md">초기 실험 기록</a></p>
+      <p>비상승만 예측한 기준선의 정확도는 56.90%였습니다. 거래 경로 추가에 따른 정확도 차이의 거래일 단위 재표집 95% 구간은 <strong>−1.66~+1.71%p</strong>였습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_backtest_2026.md">별도로 보존한 초기 실험 기록</a></p>
     </section>
 
     <section aria-labelledby="anchors">
       <h2 id="anchors">삼성전자와 SK하이닉스</h2>
       <p>모형별 셀은 <strong>방향을 맞힌 거래일 / 평가 거래일 · 비용 후 누적수익률</strong>입니다. 자체 공시와 관계를 통한 공시가 같은 거래일에 겹칠 수 있습니다.</p>
-<div class="table-scroll" role="region" aria-label="삼성전자·SK하이닉스 · 기존 기간 재실행" tabindex="0">
-      <table><caption>삼성전자·SK하이닉스 · 기존 기간 재실행</caption>
-        <thead><tr><th scope="col">종목</th><th scope="col">거래일</th><th scope="col">자체 공시 일수</th><th scope="col">구매자 노출 일수</th><th scope="col">거래 상대 공시 일수</th><th scope="col">가격</th><th scope="col">직접 공시</th><th scope="col">거래 경로</th></tr></thead>
+<div class="table-scroll" role="region" aria-label="삼성전자·SK하이닉스 · 전체 테스트셋" tabindex="0">
+      <table><caption>삼성전자·SK하이닉스 · 전체 테스트셋</caption>
+        <thead><tr><th scope="col">종목</th><th scope="col">거래일</th><th scope="col">자체 공시 일수</th><th scope="col">구매자 노출 일수</th><th scope="col">거래 상대 공시 일수</th><th scope="col">가격</th><th scope="col">가격 + 직접 공시</th><th scope="col">가격 + 직접 공시 + 계약 역할</th><th scope="col">가격 + 직접 공시 + 거래 경로</th></tr></thead>
         <tbody>
-          <tr><th scope="row">삼성전자</th><td>25</td><td>2</td><td>4</td><td>8</td><td>14/25 · +0.73%</td><td>16/25 · +11.66%</td><td>15/25 · +3.55%</td></tr>
-          <tr><th scope="row">SK하이닉스</th><td>25</td><td>1</td><td>3</td><td>4</td><td>12/25 · −2.14%</td><td>11/25 · −5.30%</td><td>12/25 · −1.94%</td></tr>
+          <tr><th scope="row">삼성전자</th><td>39</td><td>2</td><td>8</td><td>15</td><td>25/39 · +0.73%</td><td>25/39 · +10.43%</td><td>26/39 · +3.55%</td><td>26/39 · +3.55%</td></tr>
+          <tr><th scope="row">SK하이닉스</th><td>39</td><td>1</td><td>6</td><td>7</td><td>20/39 · −2.14%</td><td>17/39 · −8.16%</td><td>18/39 · −4.90%</td><td>18/39 · −4.90%</td></tr>
         </tbody>
       </table>
     </div>
-<div class="table-scroll" role="region" aria-label="삼성전자·SK하이닉스 · 11월 후속 평가" tabindex="0">
-      <table><caption>삼성전자·SK하이닉스 · 11월 후속 평가</caption>
-        <thead><tr><th scope="col">종목</th><th scope="col">거래일</th><th scope="col">자체 공시 일수</th><th scope="col">구매자 노출 일수</th><th scope="col">거래 상대 공시 일수</th><th scope="col">가격</th><th scope="col">직접 공시</th><th scope="col">거래 경로</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">삼성전자</th><td>14</td><td>0</td><td>4</td><td>7</td><td>11/14 · +0.00%</td><td>9/14 · −1.10%</td><td>10/14 · −0.31%</td></tr>
-          <tr><th scope="row">SK하이닉스</th><td>14</td><td>0</td><td>3</td><td>3</td><td>8/14 · +0.00%</td><td>6/14 · −3.02%</td><td>6/14 · −3.02%</td></tr>
-        </tbody>
-      </table>
-    </div>
-      <p>11월 후속 구간에서 두 종목 모두 이 연구의 자체 공시 유형에 해당한 거래일이 0일이었습니다. 반면 유효한 계약을 따라 거래 상대의 공시를 확인한 날은 삼성전자 7일, SK하이닉스 3일이었습니다. 관계를 쓰면 근거를 찾을 수 있는 거래일은 늘었지만, 이 구간에서 두 종목 모두 비용 후 수익률은 가격 모형보다 낮았습니다. 가격 모형은 두 종목에서 매수하지 않았습니다.</p>
     </section>
 
     <section aria-labelledby="limitations">
       <h2 id="limitations">한계</h2>
       <ul>
-        <li>후속 평가는 14거래일입니다. 관계를 통한 예측 효과와 매수 전략의 장기 성과를 판단하기에는 기간이 짧습니다. 단기 연환산 샤프의 절댓값은 크게 움직일 수 있습니다.</li>
+        <li>테스트는 39거래일이며, 일부 날짜는 초기 실험에서도 사용했습니다. 관계를 통한 예측 효과와 매수 전략의 장기 성과를 판단하기에는 기간이 짧습니다. 단기 연환산 샤프의 절댓값은 크게 움직일 수 있습니다.</li>
         <li>공시 유형과 공개된 국내 상장 구매자에 따라 그래프의 범위가 달라집니다. 거래할 수 있는 모든 한국 종목의 무조건적 성과로 일반화하기 어렵습니다.</li>
         <li>가격 소스의 수정주가 처리 및 실제 시가·종가 체결을 독립 검증하지 않았습니다. 공시 목록은 일 단위로 사용했고, 일별 선후관계를 보수적으로 처리했습니다.</li>
       </ul>
@@ -139,7 +112,7 @@
     <section aria-labelledby="next">
       <h2 id="next">후속 연구</h2>
       <p>유효 계약을 통한 공시 전파를 더 긴 새 기간에서 반복하고, 업종과 기업 규모를 맞춰 거래 상대를 바꾼 대조군을 둡니다. 그러면 같은 날 공시가 많은 경우와 실제 거래 상대가 공시한 경우를 구별할 수 있습니다. 시설투자와 공급계약을 직접 연결하는 실험은 공시가 시설이나 프로젝트를 명시한 경로로 한정합니다.</p>
-      <p>EC2 CPU에서 25.13초, 최대 메모리 약 117MiB를 사용했습니다. 그래프 및 입력 묶음의 해시와 결과 파일 해시를 대조했고, 로컬 결과도 수치 허용오차 10⁻¹² 내에서 일치했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_economic_revision_2026.md">상세 수치와 재현 방법</a></p>
+      <p>EC2에서 내보낸 그래프와 보관 일봉으로 단일 테스트셋의 결과를 다시 계산했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_economic_revision_2026.md">상세 수치와 재현 방법</a></p>
     </section>
   </article></main>
   <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>

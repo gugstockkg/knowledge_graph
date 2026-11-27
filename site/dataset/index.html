@@ -64,7 +64,11 @@ RETURN supplier.name AS supplier, buyer.name AS buyer,
 
     <section aria-labelledby="schema">
       <h2 id="schema">스키마와 규모</h2>
-      <p>FINTOS는 공시 원문과 그래프가 답할 질문을 바탕으로 개념·관계·검증 규칙을 정합니다. <strong>CSV는 온톨로지 정의서 형식이며, 실제 데이터는 Neo4j의 레이블 속성 그래프(LPG)</strong>로 구현합니다. 노드 라벨과 관계 타입에 속성을 붙이고 Cypher로 조회합니다. RDF 내보내기와 SHACL 검증은 후속 실험으로 설계했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">온톨로지 설계 방법과 RDF·OWL의 역할</a></p>
+      <p>FINTOS는 공시 원문과 그래프가 답할 질문을 바탕으로 개념·관계·검증 규칙을 정합니다. <strong>CSV는 온톨로지 정의서 형식이며, 실제 데이터는 Neo4j의 레이블 속성 그래프(LPG)</strong>로 구현합니다. 노드와 관계에 속성을 저장하고 Cypher로 조회합니다. RDF 내보내기와 SHACL 검증은 후속 실험으로 설계했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">온톨로지 설계 방법과 RDF·OWL의 역할</a></p>
+      <h3 id="lpg">레이블 속성 그래프(LPG)란?</h3>
+      <p>레이블 속성 그래프(Labeled Property Graph)는 기업이나 계약 같은 대상을 <strong>노드</strong>로, 대상 사이의 연결을 <strong>관계</strong>로 표현하는 데이터 모델입니다. 노드에는 <code>Company</code>, <code>SupplyContract</code> 같은 <strong>레이블</strong>을 붙여 무엇인지 표시합니다. 관계에는 <code>SUPPLIED_IN</code>, <code>PURCHASED_IN</code> 같은 <strong>타입</strong>과 방향을 두어 어떤 역할로 연결됐는지 나타냅니다. 노드와 관계 모두 이름이나 확인 근거를 키와 값의 쌍인 <strong>속성</strong>으로 저장할 수 있습니다.</p>
+      <p>예를 들어 넥스틴과 SK하이닉스는 각각 <code>Company</code> 노드입니다. 두 기업은 같은 <code>SupplyContract</code> 노드에 연결되며, 넥스틴은 공급자, SK하이닉스는 구매자입니다. 계약에 연결된 조건 관측 노드에서 공개일과 금액을 읽을 수 있습니다. Cypher로 이 연결을 따라가면 “SK하이닉스에 무엇을 누가 공급하기로 했나?”라는 질문에 답할 수 있습니다. <a href="https://neo4j.com/docs/getting-started/appendix/graphdb-concepts/">Neo4j 그래프 데이터 모델</a></p>
+
       <figure class="dataset-figure">
         <div class="table-scroll" role="region" aria-label="그래프 스키마 그림" tabindex="0">
           <img src="disclosure-graph.svg" width="952" height="408" alt="Filing에서 Company로 IS_ABOUT, SourceDocument로 HAS_SOURCE_DOCUMENT 관계가 이어집니다.">
@@ -100,15 +104,36 @@ RETURN supplier.name AS supplier, buyer.name AS buyer,
       <h2 id="graph-samples">실제 그래프 샘플</h2>
       <p>EC2의 Neo4j에서 조회한 노드와 관계를 그렸습니다. 그림의 화살표 방향은 저장된 관계의 방향입니다. <a href="graph-samples.drawio" download>두 샘플의 편집용 draw.io 다운로드</a></p>
 
-      <h3 id="graph-sample-filing">금호에이치티의 공시와 원문 객체</h3>
-      <figure class="dataset-figure">
-        <div class="table-scroll" role="region" aria-labelledby="graph-sample-filing" tabindex="0">
-          <img src="sample-disclosure.svg" width="900" height="400" alt="원공시와 정정 공시가 각각 금호에이치티를 가리킵니다. 각 공시에는 XML 한 개와 ZIP 두 개가 연결돼 있습니다.">
-        </div>
-        <figcaption>기업 1개, 공시 2건, 원문 객체 6개입니다. ZIP 1과 ZIP 2는 서로 다른 저장 객체를 구별하는 표시입니다.</figcaption>
-      </figure>
-      <p>원공시와 정정본을 같은 기업의 공시로 따라가 각 원문을 찾을 수 있습니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800611">10월 28일 원공시</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800490">10월 29일 정정 공시</a></p>
-      <details><summary>Neo4j Browser에서 그래프로 조회하는 Cypher</summary><pre><code>MATCH company_path = (c:Company {corp_code:'00105606'})
+      <h3 id="graph-sample-filing">금호에이치티 최대주주 변경과 지분율 정정</h3>
+      <p>원공시는 알에프텍이 에코볼트를 흡수합병하면서 금호에이치티의 최대주주가 에코볼트에서 알에프텍으로 바뀌었다고 설명합니다. 원공시와 정정공시에서 확인한 값은 파일럿 그래프에서 <strong>같은 최대주주 변경 사건</strong>에 연결됩니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800611">10월 28일 원공시</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800490">10월 29일 정정 공시</a></p>
+      <div class="table-scroll" role="region" aria-label="원문에서 추출한 항목과 관계" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">원문에서 읽은 항목</th><th scope="col">10월 28일에 확인 가능한 값</th><th scope="col">10월 29일에 확인 가능한 값</th><th scope="col">그래프의 연결</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">변경 후 최대주주등 지분율</th><td>52.25% · 원공시 표 1, 행 6, 셀 2</td><td>52.39% · 정정공시 표 4, 행 6, 셀 2</td><td>정정된 지분율이 같은 사건의 원래 지분율을 대체합니다(<code>SUPERSEDES</code>).</td></tr>
+            <tr><th scope="row">공시가 보고한 변경일</th><td>2026-10-27 · 원공시 표 1, 행 11, 셀 2</td><td>2026-10-27 · 같은 원공시 셀</td><td>변경일은 같은 사건에 관한 별도 주장입니다(<code>ABOUT_EVENT</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>각 주장은 해당 값을 보고한 공시(<code>ASSERTED_IN</code>)와 값을 읽은 표 셀(<code>SUPPORTED_BY</code>)에 연결됩니다. 표 셀은 다시 자신이 속한 문서 버전(<code>LOCATED_IN</code>)으로 이어집니다. 따라서 10월 29일 기준으로 지분율과 변경일을 함께 물으면, 두 값의 출처가 서로 다른 공시로 돌아옵니다. 최대주주 이름과 합병은 원문에 나온 맥락이며, 위 파일럿에서 조회한 항목은 지분율과 변경일입니다.</p>
+      <details><summary>최대주주 변경 파일럿에서 주장과 원문 근거를 조회하는 Cypher</summary><pre><code>MATCH (a:ControllerDemoAssertion)-[:ABOUT_EVENT]-&gt;
+      (event:ControllerDemoEvent {id:'demo:20261028800611'})
+MATCH proof = (a)-[:SUPPORTED_BY]-&gt;(cell:ControllerDemoEvidence)
+      -[:LOCATED_IN]-&gt;(document:ControllerDemoDocument)
+MATCH (a)-[:ASSERTED_IN]-&gt;(filing:ControllerDemoFiling)
+OPTIONAL MATCH correction = (a)-[:SUPERSEDES]-&gt;(:ControllerDemoAssertion)
+RETURN event, a.field AS field, a.value AS value,
+       filing.receipt AS receipt, cell.locator AS source, proof, correction
+ORDER BY filing.receipt_date, field;</code></pre></details>
+      <details><summary>기본 카탈로그의 ZIP·XML 파일 연결 그림</summary>
+        <figure class="dataset-figure">
+          <div class="table-scroll" role="region" aria-label="공시와 저장 파일 연결 그림" tabindex="0">
+            <img src="sample-disclosure.svg" width="900" height="400" alt="금호에이치티의 원공시와 정정 공시 각각에 XML 한 개와 ZIP 두 개가 연결돼 있습니다.">
+          </div>
+          <figcaption>기본 카탈로그에서 원문을 찾는 경로. 위 파일럿은 원문 속 값의 관계까지 보여줍니다.</figcaption>
+        </figure>
+      </details>
+      <details><summary>기본 카탈로그에서 공시 파일을 확인하는 Cypher</summary><pre><code>MATCH company_path = (c:Company {corp_code:'00105606'})
       &lt;-[:IS_ABOUT]-(f:Filing)
 MATCH source_path = (f)-[:HAS_SOURCE_DOCUMENT]-&gt;(:SourceDocument)
 WHERE f.receipt IN ['20261028800611', '20261029800490']

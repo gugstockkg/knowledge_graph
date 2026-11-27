@@ -14,12 +14,13 @@
     <h1>공시와 사건을 분리한 이유</h1>
     <p class="status"><span class="tag">설계와 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
     <p class="lead">최대주주 변경 공시에서 지분율만 정정하는 경우, 그래프는 지분율의 출처를 새 문서로 바꾸면서 변경일의 원래 근거도 계속 돌려줘야 합니다. 이 동작을 구현하려면 공시 한 건을 사건의 속성으로 통째로 옮기는 방식으로는 부족했습니다.</p>
-    <h2>그래프가 답해야 할 질문부터 적었습니다</h2>
+    <h2>연구 질문과 설계 근거</h2>
+    <p>연구 질문은 부분 정정이 발생했을 때 조회 기준일에 유효한 값과 그 출처를 함께 복원할 수 있는지입니다. 기준일까지의 지분율, 정정된 항목, 실제 변경일, 표 셀의 위치를 각각 질의로 정의했습니다. 공시의 정보가 어디서 파생됐는지를 표현하는 문제는 출처 모델링과 연결됩니다. W3C PROV-O는 이 구분의 참조 틀이며, 파일럿은 프로젝트 고유의 Neo4j 라벨과 관계를 사용합니다. <a href="https://www.w3.org/TR/prov-o/">W3C PROV-O</a></p>
     <p>어느 날짜까지 어떤 내용이 보고됐는지, 정정으로 무엇이 달라졌는지, 실제 변경을 확인할 근거가 있는지, 그 근거가 원문 어디에 있는지를 먼저 정했습니다. 초기 온톨로지에서 보유현황과 법적 소유를 구별한 것도 같은 맥락입니다. FIBO와 개념을 대조하면서 보고서에 적힌 관측값에 주체와 역할, 보고 시점이 필요하다는 점을 확인했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">최대주주 변경 온톨로지</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/alignment/fibo/FIBO_review.md">FIBO 비교 기록</a></p>
-    <h2>문서는 사건을 보고하고, 값은 항목별로 남습니다</h2>
+    <h2>표현 모델과 기준일 질의</h2>
     <p><strong>사건</strong>에는 기업의 변경 건을, <strong>공시</strong>에는 접수번호와 접수일을 둡니다. <strong>주장</strong>은 특정 공시가 어떤 항목에 대해 보고한 값입니다. 지분율에는 최대주주 개인인지 ‘최대주주등’의 합산인지 판단할 수 있도록 집계 범위를 붙입니다. <strong>근거</strong>에는 문서 버전과 표의 셀 위치를 기록합니다. 접수일, 변경일, 변경확인일은 따로 저장합니다. 수집 시각은 원문을 언제 관측했는지 기록하는 데 씁니다.</p>
-    <p>정정은 두 층에서 표현했습니다. 공시 사이의 <code>CORRECTS</code>는 어느 문서를 정정했는지 가리킵니다. 주장 사이의 <code>SUPERSEDES</code>는 어떤 항목의 값이 바뀌었는지 가리킵니다. 조회는 기준일 이후 접수된 주장을 걸러낸 뒤, 그날까지 공개된 정정으로 대체된 주장을 제외합니다. 같은 항목과 집계 범위를 확인하기 어렵거나 관련 공시 후보가 여럿이면 연결을 보류하는 것이 설계 원칙입니다. 현재 코드는 사전에 검토한 공시 쌍으로 이 동작을 시험합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/src/knowledge_graph/graph/controller_change.py">적재·조회 코드</a></p>
-    <h2 id="pilot">EC2에서 확인한 정정 공시 한 쌍</h2>
+    <p>정정은 두 층에서 표현했습니다. 공시 사이의 <code>CORRECTS</code>는 어느 문서를 정정했는지 가리킵니다. 주장 사이의 <code>SUPERSEDES</code>는 어떤 항목의 값이 바뀌었는지 가리킵니다. 조회는 먼저 기준일까지 접수된 주장만 선택하고, 그 집합에서 같은 사건·항목·집계 범위의 정정으로 대체된 주장을 제외합니다. 변경일은 기업 사건이 일어난 시점이고 접수일은 해당 주장을 조회할 수 있게 된 시점입니다. 두 날짜를 분리하면 나중에 발표된 정정으로 과거 답을 바꾸는 오류를 방지할 수 있습니다. 같은 항목과 집계 범위를 확인하기 어렵거나 관련 공시 후보가 여럿이면 연결을 보류하는 것이 설계 원칙입니다. 현재 코드는 사전에 검토한 공시 쌍으로 이 동작을 시험합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/src/knowledge_graph/graph/controller_change.py">적재·조회 코드</a></p>
+    <h2 id="pilot">사례 검증과 관찰 결과</h2>
     <div class="table-scroll" role="region" aria-labelledby="pilot" tabindex="0">
       <table>
         <caption>기준일에 따라 반환된 변경 후 최대주주등 지분율과 원문 근거</caption>
@@ -30,9 +31,14 @@
         </tbody>
       </table>
     </div>
-    <p>표·행·셀 번호는 원문 파서가 1부터 센 순서입니다. 변경일의 근거는 두 조회에서 모두 원공시에 남았습니다. Neo4j에는 노드 12개와 관계 21개를 적재했고 같은 자료로 다시 실행해 동일한 조회 결과를 확인했습니다. 이 사례는 설계한 조회가 작동하는지 점검하는 데 썼습니다.</p>
-    <h2>SHACL, 날짜 조회, 원문 대조의 역할</h2>
-    <p>Neo4j는 현재 파일럿을 실행하는 저장소입니다. 그래프 일부를 RDF로 내보내면 SHACL로 주장에 근거가 있는지, 날짜와 수치의 자료형이 맞는지 검사할 수 있습니다. 기준일 계산과 부분 정정의 적용 순서는 날짜가 다른 사례를 넣어 조회 결과로 시험합니다. 원문과의 일치는 접수번호와 셀을 열고 숫자, 단위, 집계 범위를 함께 대조해야 확인할 수 있습니다. 현재 EC2 결과는 Neo4j 구현과 원문 대조까지입니다. RDF 변환과 SHACL 검사 효과는 후속 실험에 남아 있습니다. <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a> · <a href="https://shinysong.github.io/shacl-graphrag/">SHACL GraphRAG 사례</a></p>
+    <p>표·행·셀 번호는 원문 파서가 1부터 센 순서입니다. 변경일의 근거는 두 조회에서 모두 원공시에 남았습니다. Neo4j에는 노드 12개와 관계 21개를 적재했고 같은 자료로 다시 실행해 동일한 조회 결과를 확인했습니다. 검증 단위는 한 기업의 한 사건과 공시 두 건입니다. 지분율 변경과 변경일 유지라는 두 기대 동작을 확인했으며, 대규모 추출 정확도는 이 사례에서 추정하지 않습니다.</p>
+    <h2>SHACL 검증의 범위와 한계</h2>
+    <ul>
+      <li><strong>구조 적합성.</strong> RDF로 변환한 주장에 근거 관계가 존재하는지, 날짜와 수치가 지정된 자료형인지 검사합니다.</li>
+      <li><strong>시간 적합성.</strong> 기준일별 Cypher 질의로 이후 접수된 주장이 반환되는지와 변경되지 않은 항목의 근거가 유지되는지 시험합니다.</li>
+      <li><strong>원문 일치.</strong> 접수번호와 표 셀을 열어 값, 단위, 집계 범위가 보고 내용과 일치하는지 확인합니다.</li>
+    </ul>
+    <p>Neo4j는 현재 파일럿을 실행하는 저장소입니다. SHACL에서 자료형과 관계 조건을 충족한 값도 원문을 잘못 읽은 결과일 수 있습니다. 따라서 구조 적합성과 원문 일치는 별도로 판정합니다. 현재 EC2 결과는 Neo4j 구현과 원문 대조까지입니다. RDF 변환과 SHACL 검사 효과는 후속 실험에 남아 있습니다. <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a> · <a href="https://shinysong.github.io/shacl-graphrag/">SHACL GraphRAG 사례</a></p>
     <p><a href="../2026-11-27-graphrag-evaluation/">다음 글 · GraphRAG 비교 실험</a></p>
   </article></main>
   <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>

@@ -13,10 +13,15 @@ from statistics import fmean
 from .trace_backtest import backtest, classification, get_series, load_json, portfolio_metrics, price_features, rank_one, train
 
 ANCHORS = {"00126380": "005930", "00164779": "000660"}
-WINDOWS = {
-    "train": ("2026-01-01", "2026-06-30"), "validation": ("2026-07-01", "2026-08-31"),
-    "retest": ("2026-10-01", "2026-11-06"), "later": ("2026-11-09", "2026-11-26"),
-}
+TEST_START = "2026-10-01"
+ARCHIVE_TEST_END = "2026-11-06"
+TEST_END = "2026-11-26"
+EVALUATION_PRICE_WINDOWS = (
+    ("train", "2026-01-01", "2026-06-30", "archive"),
+    ("validation", "2026-07-01", "2026-08-31", "archive"),
+    ("test", TEST_START, ARCHIVE_TEST_END, "archive"),
+    ("test", "2026-11-07", TEST_END, "later"),
+)
 FEATURES = {
     "price": ("return_1", "return_5", "return_20", "volume_ratio_20"),
     "direct": ("contract_count", "amendment_count", "facility_count", "earnings_filing_count",
@@ -86,10 +91,8 @@ def build_rows(graph, archived_prices, later_prices):
     all_rows, calendars, risk_benchmarks = {}, {}, {}
     audit = {}
 
-    for split, (start, end) in WINDOWS.items():
-        root = later_prices if split == "later" else archived_prices
-        if root is None:
-            continue
+    for split, start, end, source in EVALUATION_PRICE_WINDOWS:
+        root = later_prices if source == "later" else archived_prices
         indexes = {name: load_json(root / f"{name}.json")["bars"] for name in ("KOSPI", "KOSDAQ")}
         market = tuple(bar["date"] for bar in indexes["KOSPI"])
         if market != tuple(bar["date"] for bar in indexes["KOSDAQ"]) or market != tuple(sorted(set(market))):
@@ -97,16 +100,18 @@ def build_rows(graph, archived_prices, later_prices):
         calendar = [day for day in market if start <= day <= end]
         if len(calendar) < 2:
             raise ValueError(f"Missing market dates: {split}")
-        calendars[split] = calendar
-        risk_benchmarks[split] = {name: [bar["close"] / bar["open"] - 1 for bar in bars if bar["date"] in calendar]
-                                  for name, bars in indexes.items()}
-        all_rows[split], stats = [], Counter()
+        calendars.setdefault(split, []).extend(calendar)
+        benchmark = risk_benchmarks.setdefault(split, defaultdict(list))
+        for name, bars in indexes.items():
+            benchmark[name].extend(bar["close"] / bar["open"] - 1 for bar in bars if bar["date"] in calendar)
+        all_rows.setdefault(split, [])
+        stats = audit.setdefault(split, Counter())
         for entry in calendar:
             pos = bisect_left(market, entry)
             if pos == 0:
                 continue
             cutoff = market[pos - 1]
-            floor = "2026-11-07" if split == "later" else start
+            floor = TEST_START if split == "test" else start
             candidates = set(ANCHORS)
             own = defaultdict(dict)
             observed_buyers = Counter()
@@ -161,7 +166,6 @@ def build_rows(graph, archived_prices, later_prices):
                                  partner_counts["original"] + partner_counts["amendment"],
                                  partner_counts["facility"], partner_counts["earnings"]],
                 })
-        audit[split] = dict(stats)
     return all_rows, calendars, audit, risk_benchmarks
 
 
@@ -225,31 +229,30 @@ def run(graph, archive, later, legacy_scores=None):
                                     ups=sum(r["return"] > 0 for r in part), days=days[name])
                          for name, part in rows.items()},
               "evaluations": {}}
-    for split in ("retest", "later"):
-        if split not in rows:
+    split = "test"
+    sample = rows[split]
+    scores = {k: [(r, m(r)) for r in sample] for k, m in models.items()}
+    outcomes = {"models": {k: summarize(scored, days[split]) for k, scored in scores.items()},
+                "always_non_up_accuracy": fmean(r["return"] <= 0 for r in sample),
+                "accuracy_graph_minus_direct_ci": paired_day_bootstrap(scores["graph"], scores["direct"], days[split]),
+                "index_intraday": {name: portfolio_metrics(returns) for name, returns in index[split].items()},
+                "anchors": {}}
+    for code, symbol in ANCHORS.items():
+        part = [r for r in sample if r["code"] == code]
+        if not part:
             continue
-        sample = rows[split]
-        scores = {k: [(r, m(r)) for r in sample] for k, m in models.items()}
-        outcomes = {"models": {k: summarize(scored, days[split]) for k, scored in scores.items()},
-                    "always_non_up_accuracy": fmean(r["return"] <= 0 for r in sample),
-                    "accuracy_graph_minus_direct_ci": paired_day_bootstrap(scores["graph"], scores["direct"], days[split]),
-                    "index_intraday": {name: portfolio_metrics(returns) for name, returns in index[split].items()},
-                    "anchors": {}}
-        for code, symbol in ANCHORS.items():
-            part = [r for r in sample if r["code"] == code]
-            if not part:
-                continue
-            risks = {}
-            for name, predict in models.items():
-                scored = [(r, predict(r)) for r in part]
-                risks[name] = {"correct": sum((p >= .5) == (r["return"] > 0) for r, p in scored),
-                               "portfolio": backtest(scored, days[split], 20)}
-            outcomes["anchors"][symbol] = dict(rows=len(part), ups=sum(r["return"] > 0 for r in part),
-                source_days=[sum(r["source_counts"][i] > 0 for r in part) for i in range(3)],
-                models=risks)
-        if split == "retest" and legacy_scores:
-            outcomes["legacy_common_rows"] = compare_legacy(legacy_scores, scores["graph"], days[split])
-        result["evaluations"][split] = outcomes
+        risks = {}
+        for name, predict in models.items():
+            scored = [(r, predict(r)) for r in part]
+            risks[name] = {"correct": sum((p >= .5) == (r["return"] > 0) for r, p in scored),
+                           "portfolio": backtest(scored, days[split], 20)}
+        outcomes["anchors"][symbol] = dict(rows=len(part), ups=sum(r["return"] > 0 for r in part),
+            source_days=[sum(r["source_counts"][i] > 0 for r in part) for i in range(3)],
+            models=risks)
+    if legacy_scores:
+        legacy_days = [day for day in days[split] if day <= ARCHIVE_TEST_END]
+        outcomes["legacy_common_rows"] = compare_legacy(legacy_scores, scores["graph"], legacy_days)
+    result["evaluations"][split] = outcomes
     return result
 
 
@@ -257,7 +260,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--graph", type=Path, required=True)
     parser.add_argument("--archive", type=Path, required=True)
-    parser.add_argument("--later", type=Path)
+    parser.add_argument("--later", type=Path, required=True)
     parser.add_argument("--legacy-scores", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
