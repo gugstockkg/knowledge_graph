@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="최대주주 변경과 정정 공시를 표현하는 온톨로지의 선택과 SHACL 검증 범위">
-  <meta name="fintos:title" content="공시와 사건을 분리한 이유">
-  <meta name="fintos:summary" content="같은 최대주주 변경 사건에서 정정된 지분율과 바뀌지 않은 변경일의 원문 근거를 기준일별로 조회합니다.">
+  <meta name="fintos:title" content="정정 공시의 유효 값과 근거를 어떻게 보존하는가">
+  <meta name="fintos:summary" content="부분 정정의 원문 근거를 보존하고, 30개사 151개 구조화 질의에서 네 그래프 조건과 가드레일을 검증했습니다.">
   <meta name="fintos:category" content="validation">
   <meta name="fintos:published" content="2026-11-27T14:41:48+09:00">
-  <title>공시와 사건을 분리한 이유 | FINTOS</title>
+  <title>정정 공시의 유효 값과 근거를 어떻게 보존하는가 | FINTOS</title>
   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
   </header>
   <main id="content" tabindex="-1" class="post research-post"><article>
     <a class="back" href="../">연구 보관함</a>
-    <h1>공시와 사건을 분리한 이유</h1>
+    <h1>정정 공시의 유효 값과 근거를 어떻게 보존하는가</h1>
     <p class="status"><span class="tag">설계와 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
     <p class="lead">최대주주 변경 공시에서 지분율만 정정하는 경우, 그래프는 지분율의 출처를 새 문서로 바꾸면서 변경일의 원래 근거도 계속 돌려줘야 합니다. 이 동작을 구현하려면 공시 한 건을 사건의 속성으로 통째로 옮기는 방식으로는 부족했습니다.</p>
     <h2>연구 질문과 설계 근거</h2>
@@ -50,7 +50,24 @@
       <li><strong>시간 적합성.</strong> 기준일별 Cypher 질의로 이후 접수된 주장이 반환되는지와 변경되지 않은 항목의 근거가 유지되는지 시험합니다.</li>
       <li><strong>원문 일치.</strong> 접수번호와 표 셀을 열어 값, 단위, 집계 범위가 보고 내용과 일치하는지 확인합니다.</li>
     </ul>
-    <p>Neo4j는 현재 파일럿을 실행하는 저장소입니다. SHACL에서 자료형과 관계 조건을 충족한 값도 원문을 잘못 읽은 결과일 수 있습니다. 따라서 구조 적합성과 원문 일치는 별도로 판정합니다. 현재 EC2 결과는 Neo4j 구현과 원문 대조까지입니다. RDF 변환과 SHACL 검사 효과는 후속 실험에 남아 있습니다. <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a> · <a href="https://shinysong.github.io/shacl-graphrag/">SHACL GraphRAG 사례</a></p>
+    <p>Neo4j는 현재 파일럿을 실행하는 저장소입니다. SHACL에서 자료형과 관계 조건을 충족한 값도 원문을 잘못 읽은 결과일 수 있습니다. 따라서 구조 적합성과 원문 일치는 별도로 판정합니다. 후속 EC2 검증에서는 RDF에서 출처를 제거했을 때 SHACL이 실패하고 복원하면 통과하는지 확인했습니다. <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a> · <a href="https://shinysong.github.io/shacl-graphrag/">SHACL GraphRAG 사례</a></p>
+    <h2 id="benchmark">네 그래프 조건의 EC2 비교</h2>
+    <p>금호에이치티를 포함한 코스피 30개사의 최대주주 변경 공시에서 구조화 질의 151개를 평가했습니다. 원문 셀을 대조할 수 있는 사례를 골랐고, 긍정 질의 91개와 반례 60개를 구성했습니다. ① LPG는 정정 이력과 원문 근거를, ② OWL은 사건 유형 계층과 근거를 조회합니다. ③은 사건 ID로 두 결과를 결합하고, ④는 같은 사실과 규칙을 단일 LPG에 담아 조회합니다.</p>
+    <div class="table-scroll" role="region" aria-label="네 그래프 조건 평가" tabindex="0"><table><caption>최대주주 변경 그래프의 질문별 정답</caption><thead><tr><th scope="col">질문</th><th scope="col">① LPG</th><th scope="col">② OWL</th><th scope="col">③ 결합</th><th scope="col">④ 단일 LPG</th></tr></thead><tbody>
+        <tr><th scope="row">기준일·원문 근거</th><td>30/30</td><td>0/30</td><td>30/30</td><td>30/30</td></tr>
+        <tr><th scope="row">상위 유형·근거</th><td>0/30</td><td>30/30</td><td>30/30</td><td>30/30</td></tr>
+        <tr><th scope="row">복합 답·근거</th><td>0/31</td><td>0/31</td><td>31/31</td><td>31/31</td></tr>
+        <tr><th scope="row">공개 전</th><td>30/30</td><td>30/30</td><td>30/30</td><td>30/30</td></tr>
+        <tr><th scope="row">다른 유형</th><td>0/30</td><td>30/30</td><td>30/30</td><td>30/30</td></tr>
+      </tbody></table></div>
+    <p>결합과 단일 LPG의 전체 응답은 같았습니다. 복합 질의 31개를 각각 다섯 번 실행했을 때 조회 지연 p50·p95는 결합이 10.64·16.02ms, 단일 LPG가 4.08·5.32ms였습니다. 단일 EC2에서 측정했으며 OWL 사전 추론 시간은 포함하지 않았습니다. 표의 0건은 답과 근거를 모두 반환해야 통과하는 채점 기준에 따른 결과입니다.</p>
+    <h3>검증 항목별 결과</h3>
+    <ul>
+      <li><strong>SHACL 구조 검사.</strong> 출처 링크를 뺀 RDF에서 위반을 확인했고 링크를 복원하면 통과했습니다.</li>
+      <li><strong>시점 조회.</strong> 공개 전 값을 차단하고 정정 전후의 유효 값과 출처를 확인했습니다.</li>
+      <li><strong>추론과 식별자.</strong> 공리를 삭제한 뒤 추론을 다시 계산하고 복원 결과를 확인했습니다. RDF 재가져오기에서 URI를 보존했고, 주입한 미정의 유형은 알려진 상위 유형으로 추론되지 않았습니다.</li>
+    </ul>
+    <p>이 결과는 구조화 질의와 검증 규칙에 대한 것입니다. 자연어 GraphRAG의 정답률과 인용 정확도는 평가 계획에 남아 있습니다. <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/controller-change-v0.1">온톨로지 정의서와 발표자료</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/controller_four_graph_results.md">EC2 검증 기록</a></p>
     <p><a href="../2026-11-27-graphrag-evaluation/">다음 글 · GraphRAG 비교 실험</a></p>
   </article></main>
   <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
