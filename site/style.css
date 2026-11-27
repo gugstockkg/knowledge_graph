@@ -30,19 +30,10 @@ nav { display: flex; flex-wrap: wrap; gap: 0 .8rem; }
 nav a { color: var(--muted); padding-inline: .35rem; text-decoration: none; font-size: .9375rem; font-weight: 600; }
 nav a:hover, .index a:hover strong { color: var(--accent); text-decoration: underline; }
 h1, h2, h3 { margin: 0; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; }
-.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 2.5rem; padding-block: clamp(2.5rem, 6vw, 5rem); }
-h1 { font-size: clamp(2.85rem, 6.2vw, 5.5rem); font-weight: 700; }
-.hero p { color: var(--muted); }
-.hero > div p { max-width: 34ch; margin: 1rem 0 1.45rem; font-size: 1.14rem; }
-.primary { display: inline-flex; align-items: center; min-height: 46px; padding: .65rem 1.2rem; border-radius: .75rem; background: var(--accent); color: var(--surface); font-weight: 700; text-decoration: none; }
-.primary:hover { background: var(--accent-strong); }
-figure { margin: 0; padding: clamp(1.2rem, 3vw, 1.75rem); border-radius: 1rem; background: var(--accent-wash); }
-figcaption { font-weight: 700; font-size: 1.14rem; margin-bottom: .75rem; }
-table { width: 100%; border-collapse: collapse; }
-th, td { border-bottom: 1px solid var(--line); text-align: left; padding: .5rem .55rem .5rem 0; }
-thead { color: var(--muted); font-size: .9rem; }
-tbody td { font-size: 1.13rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-figure p { font-size: .9rem; margin: .75rem 0 0; }
+h1 { font-weight: 700; }
+.intro { padding-block: clamp(2rem, 4vw, 3.5rem); }
+.intro h1 { font-size: clamp(1.95rem, 4.2vw, 3.5rem); }
+.intro p { color: var(--muted); max-width: 65ch; margin: .8rem 0 0; }
 .chapter { padding-block: 1.75rem 2.75rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.7fr); gap: 1rem 2.5rem; border-top: 1px solid var(--line); }
 .chapter h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
 .index { list-style: none; margin: 0; padding: 0; border-radius: 1rem; background: var(--surface); }
@@ -68,10 +59,16 @@ figure p { font-size: .9rem; margin: .75rem 0 0; }
 .post ul, .post ol { padding-inline-start: 1.45rem; }
 .post li + li { margin-top: .4rem; }
 .post .back { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 1rem; }
+.table-scroll { overflow-x: auto; margin-block: 1.15rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--surface); }
+.table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.post table { width: 100%; min-width: 32rem; border-collapse: collapse; font-size: .95rem; text-align: left; }
+.post caption { padding: .75rem 1rem; color: var(--muted); text-align: left; }
+.post th, .post td { padding: .65rem 1rem; border-top: 1px solid var(--line); vertical-align: top; }
+.post thead { background: var(--accent-wash); }
+.post th { font-weight: 650; }
 @media (max-width: 43rem) {
   .shell, .post { width: calc(100% - 2rem); }
-  .hero, .chapter { grid-template-columns: minmax(0, 1fr); }
-  .hero { gap: 1.4rem; }
+  .chapter { grid-template-columns: minmax(0, 1fr); }
   .chapter { padding-block: 1.6rem 2.4rem; }
   nav { gap: 0 .45rem; }
 }

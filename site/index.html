@@ -16,28 +16,17 @@
     </nav>
   </header>
   <main class="shell" id="content">
-    <section class="hero" aria-labelledby="title">
-      <div>
-        <h1 id="title">공시에서<br>근거까지</h1>
-        <p>한국 기업 공시를 연결하고, 정정 전후의 답을 원문에서 확인합니다.</p>
-        <a class="primary" href="#journal">연구 글 읽기</a>
-      </div>
-      <figure aria-labelledby="example-label">
-        <figcaption id="example-label">같은 사건, 다른 기준일</figcaption>
-        <table>
-          <thead><tr><th scope="col">기준일</th><th scope="col">당시 공개된 변경 예정일</th></tr></thead>
-          <tbody><tr><th scope="row">5월 20일</th><td>6월 1일</td></tr><tr><th scope="row">5월 25일</th><td>6월 15일</td></tr></tbody>
-        </table>
-        <p>설명용 가상 사례. 5월 24일에 예정일이 정정됐습니다.</p>
-      </figure>
+    <section class="intro" aria-labelledby="title">
+      <h1 id="title">OpenDART 지식그래프 연구</h1>
+      <p>2026년 기업 공시로 최대주주 변경과 정정 이력을 모델링합니다. 온톨로지 설계, 원문 근거 검증, GraphRAG 평가 계획을 공개합니다.</p>
     </section>
 
     <section id="journal" class="chapter" aria-labelledby="journal-title">
       <h2 id="journal-title">연구 글</h2>
       <div class="entries">
-        <article><h3><a href="journal/2026-11-27-research-goals/">1년치 공시로 어떤 연구를 할 수 있을까?</a></h3><p class="status"><span class="tag">연구 목적</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>왜 최대주주 변경과 정정부터 시작하는지, 연말에 무엇을 공개할지 설명합니다.</p></article>
-        <article><h3><a href="journal/2026-11-27-ontology-and-shacl/">공시, 사건, 주장을 왜 따로 기록하는가</a></h3><p class="status"><span class="tag">설계 방법</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>실제 정정 사례가 온톨로지의 구조를 어떻게 바꿨는지, SHACL이 무엇을 검사할 수 있는지 정리합니다.</p></article>
-        <article><h3><a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG가 정정 공시를 더 잘 읽을까?</a></h3><p class="status"><span class="tag">실험 계획</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>같은 질문에 문서 검색과 그래프 검색을 비교하고, 답과 근거를 따로 채점하는 방법입니다.</p></article>
+        <article><h3><a href="journal/2026-11-27-research-goals/">2026년 공시로 무엇을 검증할 수 있을까?</a></h3><p class="status"><span class="tag">연구 기록</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>OpenDART 수집과 표본 검토에서 로컬·EC2 파일럿까지. 한 해의 공시를 어떻게 재사용할지 정리했습니다.</p></article>
+        <article><h3><a href="journal/2026-11-27-ontology-and-shacl/">공시와 사건을 분리한 이유</a></h3><p class="status"><span class="tag">설계와 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>실제 정정 공시 두 건을 Neo4j에 연결하고, 기준일별 답과 원문 위치를 확인했습니다.</p></article>
+        <article><h3><a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG는 정정 공시를 더 잘 찾을까?</a></h3><p class="status"><span class="tag">실험 설계</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>문서 검색과 그래프 검색의 효과를 비교하기 위한 실험군, 문제 구성, 채점 기준입니다.</p></article>
       </div>
     </section>
 
@@ -46,7 +35,7 @@
       <ul class="index">
         <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv"><span class="artifact-text"><strong>온톨로지 정의서</strong><span>최대주주 변경과 정정 이력의 개념·관계·검사 규칙</span></span><span class="format">CSV</span></a></li>
         <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md"><span class="artifact-text"><strong>설계 설명서</strong><span>기준일, 부분 정정, 원문 근거를 구분하는 방법</span></span><span class="format">문서</span></a></li>
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/controller-change.pdf"><span class="artifact-text"><strong>발표자료</strong><span>정정 공시 사례와 EC2 데모 설계</span></span><span class="format">PDF</span></a></li>
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/controller-change.pdf"><span class="artifact-text"><strong>발표자료</strong><span>연구 배경, 실험 설계, 실제 공시 파일럿 결과</span></span><span class="format">PDF</span></a></li>
       </ul>
     </section>
 

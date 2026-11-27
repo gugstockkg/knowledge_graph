@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="최대주주 변경과 정정 공시를 표현하는 온톨로지의 선택과 SHACL 검증 범위">
-  <title>공시, 사건, 주장을 왜 따로 기록하는가 | GUG 공시 그래프</title>
+  <title>공시와 사건을 분리한 이유 | GUG 공시 그래프</title>
   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
@@ -11,21 +11,29 @@
   <header class="shell top"><a class="brand" href="../../">GUG 공시 그래프</a><nav aria-label="주요 메뉴"><a href="../../#journal">연구 글</a><a href="../../#artifacts">산출물</a></nav></header>
   <main id="content" class="post"><article>
     <a class="back" href="../../#journal">연구 글 목록</a>
-    <h1>공시, 사건, 주장을 왜 따로 기록하는가</h1>
-    <p class="status"><span class="tag">설계 방법</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
-    <p class="lead">정정 공시는 앞선 공시의 모든 내용을 바꾸지 않습니다. 우리가 살펴본 사례에서는 지분율이 달라졌고 변경일은 그대로였습니다.</p>
-    <h2>먼저 답해야 할 질문을 정했습니다</h2>
-    <p>“어느 날까지 알려진 지분율은 얼마였나?”, “정정 공시에서 무엇이 바뀌었나?”, “그 답은 원문의 어디에 있나?”를 출발점으로 삼았습니다. 질문을 먼저 정하면 문서에 있는 모든 항목을 옮기는 대신, 답을 재현하는 데 필요한 관계부터 정의할 수 있습니다.</p>
-    <h2>한 사건을 여러 공시가 설명합니다</h2>
-    <p><strong>사건</strong>은 기업에 일어난 변경을, <strong>공시</strong>는 그 사건을 시장에 알린 기록을, <strong>주장</strong>은 공시가 특정 항목에 대해 보고한 값을 뜻합니다. 공시는 접수번호로 식별합니다. 주장의 근거에는 문서 버전과 표의 행·열 또는 문단 위치를 기록합니다.</p>
-    <p>처음 검증한 공시 쌍에는 최대주주 개인의 값과 ‘최대주주등’ 집계값이 구별돼 있었습니다. 집계 범위를 함께 저장하고, 정정 전후에 같은 항목과 범위가 확인될 때만 대체 관계를 연결합니다. 정정 대상이 불명확한 경우는 검토 대상으로 남깁니다.</p>
-    <h2>검증 도구마다 확인할 수 있는 것이 다릅니다</h2>
-    <ul>
-      <li><strong>SHACL</strong>로 필수 근거 링크와 자료형을 검사하는 방식을 설계 중입니다.</li>
-      <li><strong>Neo4j 조회</strong>로 기준일 이후의 공시가 답에 섞이지 않는지, 부분 정정이 반영되는지 확인했습니다. 현재 검증 범위는 단일 사건입니다.</li>
-      <li><strong>원문 대조</strong>로 숫자와 표의 위치가 실제로 맞는지 검토합니다. SHACL을 통과해도 다른 셀을 가리킬 수 있기 때문입니다.</li>
-    </ul>
-    <h2>설계 자료</h2><p><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv">온톨로지 정의서 CSV</a> · <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a></p>
+    <h1>공시와 사건을 분리한 이유</h1>
+    <p class="status"><span class="tag">설계와 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
+    <p class="lead">최대주주 변경 공시에서 지분율만 정정하는 경우, 그래프는 지분율의 출처를 새 문서로 바꾸면서 변경일의 원래 근거도 계속 돌려줘야 합니다. 이 동작을 구현하려면 공시 한 건을 사건의 속성으로 통째로 옮기는 방식으로는 부족했습니다.</p>
+    <h2>그래프가 답해야 할 질문부터 적었습니다</h2>
+    <p>어느 날짜까지 어떤 내용이 보고됐는지, 정정으로 무엇이 달라졌는지, 실제 변경을 확인할 근거가 있는지, 그 근거가 원문 어디에 있는지를 먼저 정했습니다. 초기 온톨로지에서 보유현황과 법적 소유를 구별한 것도 같은 맥락입니다. FIBO와 개념을 대조하면서 보고서에 적힌 관측값에 주체와 역할, 보고 시점이 필요하다는 점을 확인했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">최대주주 변경 온톨로지</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/alignment/fibo/FIBO_review.md">FIBO 비교 기록</a></p>
+    <h2>문서는 사건을 보고하고, 값은 항목별로 남습니다</h2>
+    <p><strong>사건</strong>에는 기업의 변경 건을, <strong>공시</strong>에는 접수번호와 접수일을 둡니다. <strong>주장</strong>은 특정 공시가 어떤 항목에 대해 보고한 값입니다. 지분율에는 최대주주 개인인지 ‘최대주주등’의 합산인지 판단할 수 있도록 집계 범위를 붙입니다. <strong>근거</strong>에는 문서 버전과 표의 셀 위치를 기록합니다. 접수일, 변경일, 변경확인일은 따로 저장합니다. 수집 시각은 원문을 언제 관측했는지 기록하는 데 씁니다.</p>
+    <p>정정은 두 층에서 표현했습니다. 공시 사이의 <code>CORRECTS</code>는 어느 문서를 정정했는지 가리킵니다. 주장 사이의 <code>SUPERSEDES</code>는 어떤 항목의 값이 바뀌었는지 가리킵니다. 조회는 기준일 이후 접수된 주장을 걸러낸 뒤, 그날까지 공개된 정정으로 대체된 주장을 제외합니다. 같은 항목과 집계 범위를 확인하기 어렵거나 관련 공시 후보가 여럿이면 연결을 보류하는 것이 설계 원칙입니다. 현재 코드는 사전에 검토한 공시 쌍으로 이 동작을 시험합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/src/knowledge_graph/graph/controller_change.py">적재·조회 코드</a></p>
+    <h2 id="pilot">EC2에서 확인한 정정 공시 한 쌍</h2>
+    <div class="table-scroll" role="region" aria-labelledby="pilot" tabindex="0">
+      <table>
+        <caption>기준일에 따라 반환된 변경 후 최대주주등 지분율과 원문 근거</caption>
+        <thead><tr><th scope="col">조회 기준일</th><th scope="col">지분율</th><th scope="col">지분율 근거</th><th scope="col">보고된 변경일</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">2026-10-28</th><td>52.25%</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800611">20261028800611</a><br>표 1 · 행 6 · 셀 2</td><td>2026-10-27</td></tr>
+          <tr><th scope="row">2026-10-29</th><td>52.39%</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800490">20261029800490</a><br>표 4 · 행 6 · 셀 2</td><td>2026-10-27</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>표·행·셀 번호는 원문 파서가 1부터 센 순서입니다. 변경일의 근거는 두 조회에서 모두 원공시에 남았습니다. Neo4j에는 노드 12개와 관계 21개를 적재했고 같은 자료로 다시 실행해 동일한 조회 결과를 확인했습니다. 이 사례는 설계한 조회가 작동하는지 점검하는 데 썼습니다.</p>
+    <h2>SHACL, 날짜 조회, 원문 대조의 역할</h2>
+    <p>Neo4j는 현재 파일럿을 실행하는 저장소입니다. 그래프 일부를 RDF로 내보내면 SHACL로 주장에 근거가 있는지, 날짜와 수치의 자료형이 맞는지 검사할 수 있습니다. 기준일 계산과 부분 정정의 적용 순서는 날짜가 다른 사례를 넣어 조회 결과로 시험합니다. 원문과의 일치는 접수번호와 셀을 열고 숫자, 단위, 집계 범위를 함께 대조해야 확인할 수 있습니다. 현재 EC2 결과는 Neo4j 구현과 원문 대조까지입니다. RDF 변환과 SHACL 검사 효과는 후속 실험에 남아 있습니다. <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a> · <a href="https://shinysong.github.io/shacl-graphrag/">SHACL GraphRAG 사례</a></p>
+    <p><a href="../2026-11-27-graphrag-evaluation/">다음 글 · GraphRAG 비교 실험</a></p>
   </article></main>
   <footer class="shell top footer"><span>GUG Knowledge Graph</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="공시 기준일과 원문 근거를 비교하는 GraphRAG 연구 계획">
-  <title>GraphRAG가 정정 공시를 더 잘 읽을까? | GUG 공시 그래프</title>
+  <title>GraphRAG는 정정 공시를 더 잘 찾을까? | GUG 공시 그래프</title>
   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
@@ -11,22 +11,28 @@
   <header class="shell top"><a class="brand" href="../../">GUG 공시 그래프</a><nav aria-label="주요 메뉴"><a href="../../#journal">연구 글</a><a href="../../#artifacts">산출물</a></nav></header>
   <main id="content" class="post"><article>
     <a class="back" href="../../#journal">연구 글 목록</a>
-    <h1>GraphRAG가 정정 공시를 더 잘 읽을까?</h1>
-    <p class="status"><span class="tag">실험 계획</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
-    <p class="lead">질문 하나에 공시 여러 건을 확인해야 할 때, 최초 공시와 정정 공시를 연결한 그래프가 LLM의 답과 인용을 개선하는지 시험합니다.</p>
-    <h2>세 방식을 같은 조건에서 비교합니다</h2>
-    <ol>
-      <li><strong>문서 검색</strong>은 기준일 이전 공시에서 관련 텍스트와 표를 검색합니다.</li>
-      <li><strong>그래프 검색</strong>은 같은 범위에서 사건과 최초·정정 공시의 연결을 따라 근거를 찾습니다.</li>
-      <li><strong>그래프 검색과 근거 검사</strong>는 반환된 답과 근거의 대응을 검사하고, 확인하기 어려운 답을 보류합니다.</li>
-    </ol>
-    <p>모델과 원문 범위, 날짜 필터, 모델에 제공하는 근거 분량을 맞춥니다. 이렇게 하면 기준일 필터나 더 많은 문서를 준 효과와 그래프 연결의 효과를 구분할 수 있습니다.</p>
-    <h2>답과 근거는 따로 채점합니다</h2>
-    <p>단일 조회, 정정 전후 비교, 여러 공시 연결, 답변 불가 문제를 섞습니다. 사람이 정답과 공시의 문장 또는 표 위치를 표시합니다. 한 사건에서 파생된 질문은 개발용과 평가용에 걸쳐 나뉘지 않게 둡니다.</p>
-    <p>답 정확도, 근거 정확도, 기준일 이후 정보 사용률, 답변률을 따로 공개할 계획입니다. 답이 맞아도 인용 위치가 틀리면 근거 오류로 기록하고, 답할 수 있었는데 보류한 경우도 셉니다.</p>
-    <h2>현재 확인한 범위</h2>
-    <p>Neo4j에서 한 사건의 기준일별 결과를 재현했습니다. LLM 비교 실험과 SHACL의 추가 효과 측정은 후속 작업입니다. 결과를 낼 때는 어떤 질문에서 그래프가 도움이 됐는지와 어떤 질문에서 차이가 없었는지를 함께 기록하겠습니다.</p>
-    <h2>관련 글</h2><p><a href="../2026-11-27-ontology-and-shacl/">공시, 사건, 주장을 왜 따로 기록하는가</a></p>
+    <h1>GraphRAG는 정정 공시를 더 잘 찾을까?</h1>
+    <p class="status"><span class="tag">실험 설계</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
+    <p class="lead">Neo4j에서는 원공시와 정정본을 연결해 날짜별 답과 근거를 찾았습니다. 자연어로 같은 질문을 받았을 때도 그 연결이 도움이 될지는 따로 확인해야 합니다. 첫 비교 실험에서는 모델이 맞힌 숫자뿐 아니라, 그 날짜에 읽을 수 있었던 공시를 인용했는지 봅니다. <a href="../2026-11-27-ontology-and-shacl/#pilot">Neo4j 파일럿</a></p>
+    <h2>무엇이 답을 개선했는지 알 수 있게 비교합니다</h2>
+    <div class="table-scroll" role="region" aria-label="실험군별 검색 방식" tabindex="0">
+      <table>
+        <caption>검색과 검사의 효과를 나눠 보는 비교 조건</caption>
+        <thead><tr><th scope="col">실험군</th><th scope="col">모델에 주는 자료</th><th scope="col">비교에서 확인할 것</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">문서 검색</th><td>관련 공시의 문단과 표</td><td>문서와 표만 검색했을 때의 답과 근거</td></tr>
+          <tr><th scope="row">그래프 검색</th><td>사건과 정정 관계를 따라 찾은 원문 근거</td><td>문서 간 연결을 사용한 효과</td></tr>
+          <tr><th scope="row">그래프 검색과 근거 검사</th><td>같은 방식으로 찾은 근거와 별도 검사 결과</td><td>근거 오류가 얼마나 줄고 보류가 얼마나 늘어나는지</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>세 조건에서 같은 LLM과 질문을 쓰고 공시 범위, 접수일 필터, 모델에 주는 근거량의 상한을 맞춥니다. 처음부터 날짜 필터를 공통으로 적용해야 미래 정보 차단의 효과를 그래프에 잘못 돌리지 않습니다. SHACL 자체의 추가 효과를 묻는 실험이라면 같은 규칙을 일반 코드로 검사하는 조건도 필요합니다. <a href="https://arxiv.org/abs/2404.16130">Microsoft GraphRAG 연구</a> · <a href="https://shinysong.github.io/shacl-graphrag/">SHACL GraphRAG 사례</a></p>
+    <h2>정답과 인용 위치를 함께 기록합니다</h2>
+    <p>문제는 한 공시로 답할 수 있는 조회, 정정 전후 비교, 여러 공시 연결, 원문만으로 답을 확정하기 어려운 경우를 포함합니다. 정답표에는 질문의 기준일, 값과 단위, ‘개인’ 또는 ‘최대주주등’의 집계 범위, 허용할 접수번호와 표 셀을 기록합니다. 여러 근거가 각각 답을 뒷받침하면 모두 허용할 수 있습니다. 같은 사건의 원공시·정정본과 파생 질문은 개발용과 평가용에 나뉘어 들어가지 않게 합니다. <a href="https://aclanthology.org/2021.acl-long.520/">시간에 따라 답이 달라지는 질의를 다룬 CronQuestions</a></p>
+    <p>답의 정확도는 근거 정확도와 별도로 셉니다. 숫자를 맞히고 다른 접수번호를 댔다면 답은 맞고 인용은 틀린 경우입니다. 기준일 뒤 공시를 인용한 답, 개인과 집단을 바꿔 읽은 답, 답할 수 있었는데 보류한 응답도 따로 집계합니다. 질문 유형별 분모와 오류 건수를 같이 공개하면 전체 평균이 비슷해도 어느 경우에 차이가 났는지 볼 수 있습니다.</p>
+    <h2>독립 평가에서 확인할 것</h2>
+    <p>이미 본 공시 쌍은 회귀 검증에 쓰고 최종 성능표에는 독립적으로 검수한 사건을 사용합니다. 후보 공시를 찾지 못한 경우, 정정 관계가 틀린 경우, 근거는 맞았지만 모델이 잘못 읽은 경우를 나눠 기록합니다. 추출에서 빠진 값 때문에 검색이 실패했다면 그래프 검색과 문서 검색의 차이를 해석할 때 그 원인도 함께 제시합니다. 현재 공개 수치는 단일 사건의 Neo4j 결과까지이며, LLM 답 정확도와 SHACL의 효과는 이 실험에서 측정할 항목입니다.</p>
+    <p><a href="../2026-11-27-research-goals/">연구 범위와 수집 기록으로 돌아가기</a></p>
   </article></main>
   <footer class="shell top footer"><span>GUG Knowledge Graph</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
 </body>
