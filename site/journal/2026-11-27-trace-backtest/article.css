@@ -73,3 +73,18 @@
 .equation-overline {
   text-decoration: overline;
 }
+
+.equation-numbered {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+  align-items: center;
+  gap: .5rem;
+  margin-block: .8rem;
+  text-align: center;
+}
+.equation-numbered > span:first-child {
+  grid-column: 2;
+}
+.equation-number {
+  justify-self: end;
+}

@@ -1,0 +1,692 @@
+{
+  "selection": [
+    {
+      "symbol": "005930",
+      "name": "삼성전자",
+      "pretest_contract_filings": 33
+    },
+    {
+      "symbol": "000660",
+      "name": "SK하이닉스",
+      "pretest_contract_filings": 16
+    },
+    {
+      "symbol": "010140",
+      "name": "삼성중공업",
+      "pretest_contract_filings": 30
+    },
+    {
+      "symbol": "042660",
+      "name": "한화오션",
+      "pretest_contract_filings": 21
+    },
+    {
+      "symbol": "329180",
+      "name": "HD현대중공업",
+      "pretest_contract_filings": 18
+    },
+    {
+      "symbol": "000720",
+      "name": "현대건설",
+      "pretest_contract_filings": 13
+    },
+    {
+      "symbol": "028260",
+      "name": "삼성물산",
+      "pretest_contract_filings": 6
+    },
+    {
+      "symbol": "009150",
+      "name": "삼성전기",
+      "pretest_contract_filings": 4
+    },
+    {
+      "symbol": "440110",
+      "name": "파두",
+      "pretest_contract_filings": 17
+    },
+    {
+      "symbol": "047040",
+      "name": "대우건설",
+      "pretest_contract_filings": 15
+    }
+  ],
+  "days": 39,
+  "round_trip_bp": 20,
+  "stocks": [
+    {
+      "symbol": "005930",
+      "price_trend": -0.02633951414439195,
+      "clear": {
+        "return_net": -0.06639136465264406,
+        "delta_vs_price": -0.04005185050825211,
+        "different_days": 2,
+        "episodes": [
+          {
+            "start": "2026-11-25",
+            "end": "2026-11-26",
+            "days": 2,
+            "receipts": [
+              "20261124800494"
+            ],
+            "sleeve_effect": -0.04005185050825211
+          }
+        ],
+        "removals": [
+          {
+            "receipts": [
+              "20261124800494"
+            ],
+            "return_without": -0.02633951414439195,
+            "sleeve_effect": -0.04005185050825211,
+            "changed_days": 2,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 2,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.02633951414439195,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": 0.004005185050825211
+    },
+    {
+      "symbol": "000660",
+      "price_trend": -0.12748716012755157,
+      "clear": {
+        "return_net": -0.03882267426245667,
+        "delta_vs_price": 0.0886644858650949,
+        "different_days": 5,
+        "episodes": [
+          {
+            "start": "2026-11-17",
+            "end": "2026-11-23",
+            "days": 5,
+            "receipts": [
+              "20261116801609"
+            ],
+            "sleeve_effect": 0.0886644858650949
+          }
+        ],
+        "removals": [
+          {
+            "receipts": [
+              "20261116801609"
+            ],
+            "return_without": -0.12748716012755157,
+            "sleeve_effect": 0.0886644858650949,
+            "changed_days": 5,
+            "orders_without": 4
+          }
+        ],
+        "orders_vs_price": {
+          "added": 2,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.12748716012755157,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": -0.00886644858650949
+    },
+    {
+      "symbol": "010140",
+      "price_trend": 0.0,
+      "clear": {
+        "return_net": 0.0,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": 0.0,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [
+          {
+            "receipts": [
+              "20261002800245"
+            ],
+            "return_without": 0.0,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 0
+          },
+          {
+            "receipts": [
+              "20261116800077"
+            ],
+            "return_without": 0.0,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 0
+          },
+          {
+            "receipts": [
+              "20261002800245",
+              "20261116800077"
+            ],
+            "return_without": 0.0,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 0
+          }
+        ],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": 0.0
+    },
+    {
+      "symbol": "042660",
+      "price_trend": 0.0,
+      "clear": {
+        "return_net": 0.0,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": 0.0,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [
+          {
+            "receipts": [
+              "20261030800228"
+            ],
+            "return_without": 0.0,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 0
+          },
+          {
+            "receipts": [
+              "20261119800082"
+            ],
+            "return_without": 0.0,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 0
+          },
+          {
+            "receipts": [
+              "20261030800228",
+              "20261119800082"
+            ],
+            "return_without": 0.0,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 0
+          }
+        ],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": 0.0
+    },
+    {
+      "symbol": "329180",
+      "price_trend": -0.02179500779267396,
+      "clear": {
+        "return_net": -0.02179500779267396,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.02179500779267396,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [
+          {
+            "receipts": [
+              "20261015800353"
+            ],
+            "return_without": -0.02179500779267396,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261020800221"
+            ],
+            "return_without": -0.02179500779267396,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261106800310"
+            ],
+            "return_without": -0.02179500779267396,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261109800193"
+            ],
+            "return_without": -0.02179500779267396,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261015800353",
+              "20261020800221",
+              "20261106800310",
+              "20261109800193"
+            ],
+            "return_without": -0.02179500779267396,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": 0.0
+    },
+    {
+      "symbol": "000720",
+      "price_trend": -0.006333371233458007,
+      "clear": {
+        "return_net": -0.006333371233458007,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.006333371233458007,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [
+          {
+            "receipts": [
+              "20261029800011"
+            ],
+            "return_without": -0.006333371233458007,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261125800307"
+            ],
+            "return_without": -0.006333371233458007,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261029800011",
+              "20261125800307"
+            ],
+            "return_without": -0.006333371233458007,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": 0.0
+    },
+    {
+      "symbol": "028260",
+      "price_trend": -0.07082572599813952,
+      "clear": {
+        "return_net": -0.07078586267178466,
+        "delta_vs_price": 3.9863326354860895e-05,
+        "different_days": 4,
+        "episodes": [
+          {
+            "start": "2026-11-23",
+            "end": "2026-11-26",
+            "days": 4,
+            "receipts": [
+              "20261120900180"
+            ],
+            "sleeve_effect": 3.9863326354860895e-05
+          }
+        ],
+        "removals": [
+          {
+            "receipts": [
+              "20261120900180"
+            ],
+            "return_without": -0.07082572599813952,
+            "sleeve_effect": 3.9863326354860895e-05,
+            "changed_days": 4,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 2,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.07082572599813952,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": -3.9863326354860895e-06
+    },
+    {
+      "symbol": "009150",
+      "price_trend": -0.08410786537876835,
+      "clear": {
+        "return_net": -0.08410786537876835,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": 0.11816277368116856,
+        "delta_vs_price": 0.20227063905993692,
+        "different_days": 4,
+        "episodes": [
+          {
+            "start": "2026-10-07",
+            "end": "2026-10-13",
+            "days": 4,
+            "receipts": [
+              "20261006800130"
+            ],
+            "sleeve_effect": 0.20227063905993692
+          }
+        ],
+        "removals": [
+          {
+            "receipts": [
+              "20261006800130"
+            ],
+            "return_without": -0.08410786537876835,
+            "sleeve_effect": 0.20227063905993692,
+            "changed_days": 4,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261019800610"
+            ],
+            "return_without": 0.11816277368116856,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261030800604"
+            ],
+            "return_without": 0.11816277368116856,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261006800130",
+              "20261019800610",
+              "20261030800604"
+            ],
+            "return_without": -0.08410786537876835,
+            "sleeve_effect": 0.20227063905993692,
+            "changed_days": 4,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 1,
+          "removed": 1
+        }
+      },
+      "trace_minus_clear_contribution": 0.020227063905993693
+    },
+    {
+      "symbol": "440110",
+      "price_trend": -0.1250727294683338,
+      "clear": {
+        "return_net": -0.1250727294683338,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.012965056921100837,
+        "delta_vs_price": 0.11210767254723297,
+        "different_days": 2,
+        "episodes": [
+          {
+            "start": "2026-10-12",
+            "end": "2026-10-13",
+            "days": 2,
+            "receipts": [
+              "20261008900573"
+            ],
+            "sleeve_effect": 0.11210767254723297
+          }
+        ],
+        "removals": [
+          {
+            "receipts": [
+              "20261008900573"
+            ],
+            "return_without": -0.1250727294683338,
+            "sleeve_effect": 0.11210767254723297,
+            "changed_days": 2,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261015900127"
+            ],
+            "return_without": -0.012965056921100837,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261103900506"
+            ],
+            "return_without": -0.012965056921100837,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261106900228"
+            ],
+            "return_without": -0.012965056921100837,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261008900573",
+              "20261015900127",
+              "20261103900506",
+              "20261106900228"
+            ],
+            "return_without": -0.1250727294683338,
+            "sleeve_effect": 0.11210767254723297,
+            "changed_days": 2,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 1,
+          "removed": 1
+        }
+      },
+      "trace_minus_clear_contribution": 0.011210767254723298
+    },
+    {
+      "symbol": "047040",
+      "price_trend": -0.07280219780219777,
+      "clear": {
+        "return_net": -0.07280219780219777,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace": {
+        "return_net": -0.07280219780219777,
+        "delta_vs_price": 0.0,
+        "different_days": 0,
+        "episodes": [],
+        "removals": [
+          {
+            "receipts": [
+              "20261013800134"
+            ],
+            "return_without": -0.07280219780219777,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261016800313"
+            ],
+            "return_without": -0.07280219780219777,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261030800255"
+            ],
+            "return_without": -0.07280219780219777,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261030800384"
+            ],
+            "return_without": -0.07280219780219777,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261123800132"
+            ],
+            "return_without": -0.07280219780219777,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          },
+          {
+            "receipts": [
+              "20261013800134",
+              "20261016800313",
+              "20261030800255",
+              "20261030800384",
+              "20261123800132"
+            ],
+            "return_without": -0.07280219780219777,
+            "sleeve_effect": 0.0,
+            "changed_days": 0,
+            "orders_without": 2
+          }
+        ],
+        "orders_vs_price": {
+          "added": 0,
+          "removed": 0
+        }
+      },
+      "trace_minus_clear_contribution": 0.0
+    }
+  ],
+  "portfolio_trace_minus_clear": 0.026572581292397226
+}
