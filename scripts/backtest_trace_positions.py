@@ -141,7 +141,61 @@ def exposure_timing_placebo(dates, per_stock, fee):
     }
 
 
-def run(graph, archive, later, *, price_controls=False):
+# Broad KOSPI large-company candidate list, fixed before ranking by filing coverage.
+LARGE_COMPANY_CANDIDATES = set((
+    "005380", "000270", "005490", "105560", "055550", "086790", "316140",
+    "035420", "035720", "006400", "051910", "373220", "207940", "068270",
+    "012330", "028260", "003670", "000810", "096770", "034730", "017670",
+    "030200", "066570", "009150", "010130", "032830", "018260", "010950",
+    "012450", "329180", "009540", "042660", "010140", "034020", "267260",
+    "064350", "000720", "047050", "361610", "006260", "047810",
+))
+
+
+def select_large_companies(graph, archive, later, market, dates):
+    _, notices, _, symbols = graph_events(graph)
+    counts = defaultdict(set)
+    names = {}
+    for day, records in notices.items():
+        if day >= TEST_START:
+            continue
+        for record in records:
+            for role in ("supplier", "buyer"):
+                party = record[role]
+                if party:
+                    code = party["corp_code"]
+                    counts[code].add(record["receipt"])
+                    names[code] = party.get("name")
+    required = market[market.index(dates[0]) - 21 : market.index(dates[-1]) + 1]
+    candidates = []
+    for code, symbol in symbols.items():
+        if symbol in ANCHORS.values() or not counts[code]:
+            continue
+        bars = {**(get_series(archive, symbol, code) or {}), **(get_series(later, symbol, code) or {})}
+        if all(bars.get(day, {}).get("is_tradable") for day in required):
+            pretest_turnover = mean(
+                bars[day]["close"] * bars[day]["volume"] for day in required[:21]
+            )
+            candidates.append((code, symbol, pretest_turnover))
+    liquid_symbols = {
+        symbol for _, symbol, _ in sorted(candidates, key=lambda row: -row[2])[:30]
+    }
+    candidates.sort(key=lambda row: (
+        row[1] not in LARGE_COMPANY_CANDIDATES,
+        row[1] not in liquid_symbols,
+        -len(counts[row[0]]),
+        row[1],
+    ))
+    if len(candidates) < 8:
+        raise ValueError(f"Only {len(candidates)} eligible large-company candidates")
+    selection = {**ANCHORS, **{code: symbol for code, symbol, _ in candidates[:8]}}
+    return selection, [
+        {"symbol": symbol, "name": names.get(code), "pretest_contract_filings": len(counts[code])}
+        for code, symbol in selection.items()
+    ]
+
+
+def run(graph, archive, later, *, price_controls=False, large_companies=False):
     indexes = {}
     for index in ("KOSPI", "KOSDAQ"):
         indexes[index] = {
@@ -151,10 +205,14 @@ def run(graph, archive, later, *, price_controls=False):
         }
     market = sorted(indexes["KOSPI"])
     dates = [day for day in market if TEST_START <= day <= TEST_END]
+    selected, selection_info = (
+        select_large_companies(graph, archive, later, market, dates)
+        if large_companies else (ANCHORS, [])
+    )
     path_signals = signals(graph, market)
     per_stock = {}
     decision = {}
-    for code, symbol in ANCHORS.items():
+    for code, symbol in selected.items():
         bars = {
             **(get_series(archive, symbol, code) or {}),
             **(get_series(later, symbol, code) or {}),
@@ -288,7 +346,9 @@ def run(graph, archive, later, *, price_controls=False):
             )
             for symbol, (_, positions, _) in per_stock.items()
         },
-        "exposure_timing_placebo": exposure_timing_placebo(dates, per_stock, 0.001),
+        **({"selection": selection_info} if large_companies else {
+            "exposure_timing_placebo": exposure_timing_placebo(dates, per_stock, 0.001)
+        }),
         "positions": summary,
         "orders": orders,
     }
@@ -299,8 +359,9 @@ def main():
     for key in ("graph", "archive", "later", "output"):
         parser.add_argument(key, type=Path)
     parser.add_argument("--price-controls", action="store_true")
+    parser.add_argument("--large-companies", action="store_true")
     a = parser.parse_args()
-    result = run(load(a.graph), a.archive, a.later, price_controls=a.price_controls)
+    result = run(load(a.graph), a.archive, a.later, price_controls=a.price_controls, large_companies=a.large_companies)
     a.output.write_text(json.dumps(result, ensure_ascii=False, indent=2))
     print(json.dumps(result, ensure_ascii=False))
 
