@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="기본 그래프 · 금호에이치티" id="catalog">
+    <mxGraphModel page="1" pageWidth="930" pageHeight="450">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="company" value="&lt;b&gt;금호에이치티&lt;/b&gt;&lt;br&gt;Company · 00105606" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#dfe9ff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="322" y="25" width="256" height="65" />
+        </mxCell>
+        <mxCell id="original" value="&lt;b&gt;최대주주변경&lt;/b&gt;&lt;br&gt;Filing · 20261028800611" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ffffff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="86" y="145" width="276" height="81" />
+        </mxCell>
+        <mxCell id="correction" value="&lt;b&gt;[기재정정] 최대주주변경&lt;/b&gt;&lt;br&gt;Filing · 20261029800490" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ffffff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="538" y="145" width="276" height="81" />
+        </mxCell>
+        <mxCell id="original0" value="&lt;b&gt;XML&lt;/b&gt;&lt;br&gt;SourceDocument" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="22" y="312" width="132" height="62" />
+        </mxCell>
+        <mxCell id="original1" value="&lt;b&gt;ZIP 1&lt;/b&gt;&lt;br&gt;SourceDocument" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="158" y="312" width="132" height="62" />
+        </mxCell>
+        <mxCell id="original2" value="&lt;b&gt;ZIP 2&lt;/b&gt;&lt;br&gt;SourceDocument" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="294" y="312" width="132" height="62" />
+        </mxCell>
+        <mxCell id="correction0" value="&lt;b&gt;XML&lt;/b&gt;&lt;br&gt;SourceDocument" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="474" y="312" width="132" height="62" />
+        </mxCell>
+        <mxCell id="correction1" value="&lt;b&gt;ZIP 1&lt;/b&gt;&lt;br&gt;SourceDocument" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="312" width="132" height="62" />
+        </mxCell>
+        <mxCell id="correction2" value="&lt;b&gt;ZIP 2&lt;/b&gt;&lt;br&gt;SourceDocument" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="746" y="312" width="132" height="62" />
+        </mxCell>
+        <mxCell id="edge0" value="IS_ABOUT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="original" target="company" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" value="IS_ABOUT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="correction" target="company" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" value="HAS_SOURCE_DOCUMENT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="original" target="original0" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" value="HAS_SOURCE_DOCUMENT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="original" target="original1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" value="HAS_SOURCE_DOCUMENT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="original" target="original2" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge5" value="HAS_SOURCE_DOCUMENT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="correction" target="correction0" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge6" value="HAS_SOURCE_DOCUMENT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="correction" target="correction1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge7" value="HAS_SOURCE_DOCUMENT" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="correction" target="correction2" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="caption" value="ZIP 1과 ZIP 2는 서로 다른 저장 객체를 구별하는 표시입니다." style="text;align=left;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="22" y="398" width="870" height="34" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="실험 그래프 · 공급계약" id="trace">
+    <mxGraphModel page="1" pageWidth="930" pageHeight="450">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="supplier" value="&lt;b&gt;동성화인텍&lt;/b&gt;&lt;br&gt;Company" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#dfe9ff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="24" y="45" width="170" height="70" />
+        </mxCell>
+        <mxCell id="event" value="&lt;b&gt;초저온 보냉자재 공급계약&lt;/b&gt;&lt;br&gt;TraceSupplyContract" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ffffff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="309" y="45" width="282" height="70" />
+        </mxCell>
+        <mxCell id="buyer" value="&lt;b&gt;HD현대중공업&lt;/b&gt;&lt;br&gt;Company" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#dfe9ff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="706" y="45" width="170" height="70" />
+        </mxCell>
+        <mxCell id="filing" value="&lt;b&gt;20261105900115&lt;/b&gt;&lt;br&gt;Filing · 2026-11-05" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ffffff;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="129" y="208" width="268" height="70" />
+        </mxCell>
+        <mxCell id="proof" value="&lt;b&gt;계약상대방 · XML 117행&lt;/b&gt;&lt;br&gt;TraceContractEvidence" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9aafd6;fillColor=#ecf6f4;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="503" y="208" width="268" height="70" />
+        </mxCell>
+        <mxCell id="edge0" value="SUPPLIED_IN" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="supplier" target="event" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" value="PURCHASED_IN" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="buyer" target="event" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" value="REPORTED_IN" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="event" target="filing" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" value="SUPPORTED_BY" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=10;" edge="1" source="event" target="proof" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="caption" value="구매자 근거는 접수번호 20261105900115의 XML 117행입니다." style="text;align=left;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="22" y="398" width="870" height="34" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

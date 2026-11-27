@@ -20,7 +20,7 @@
       <div><dt>기업</dt><dd>45,201개</dd></div>
       <div><dt>원문 연결 공시</dt><dd>81.0%</dd></div>
     </dl>
-    <nav class="dataset-nav" aria-label="문서 목차"><a href="#schema">스키마</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
+    <nav class="dataset-nav" aria-label="문서 목차"><a href="#schema">스키마</a><a href="#graph-samples">실제 그래프</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
 
     <section aria-labelledby="schema">
       <h2 id="schema">스키마와 규모</h2>
@@ -54,6 +54,40 @@
       </div>
       <p>한 공시에 ZIP과 XML이 각각 있을 수 있고, 여러 수집분에서 확보한 ZIP도 별도 객체로 남습니다. 원문 객체 수보다 <strong>원문이 연결된 공시 수</strong>가 분석 범위를 판단하는 데 적합합니다. 접수번호와 기업 코드는 앞자리 0을 보존하는 문자열이며, 접수일은 Neo4j의 <code>DATE</code> 속성입니다. 고유 키 세 개에 유일성 제약을 두고 접수일에 인덱스를 만들었습니다.</p>
       <p>위 집계는 기본 공시 카탈로그의 세 노드 타입과 두 관계 타입을 대상으로 합니다. 공급자·구매자 관계는 별도 실험 라벨을 사용합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_fintos_experiment_plan.md">TRACE 공급계약 파일럿</a></p>
+    </section>
+
+    <section aria-labelledby="graph-samples">
+      <h2 id="graph-samples">실제 그래프 샘플</h2>
+      <p>EC2의 Neo4j에서 조회한 노드와 관계를 그렸습니다. 그림의 화살표 방향은 저장된 관계의 방향입니다. <a href="graph-samples.drawio" download>두 샘플의 편집용 draw.io 다운로드</a></p>
+
+      <h3 id="graph-sample-filing">금호에이치티의 공시와 원문 객체</h3>
+      <figure class="dataset-figure">
+        <div class="table-scroll" role="region" aria-labelledby="graph-sample-filing" tabindex="0">
+          <img src="sample-disclosure.svg" width="900" height="400" alt="원공시와 정정 공시가 각각 금호에이치티를 가리킵니다. 각 공시에는 XML 한 개와 ZIP 두 개가 연결돼 있습니다.">
+        </div>
+        <figcaption>기업 1개, 공시 2건, 원문 객체 6개입니다. ZIP 1과 ZIP 2는 서로 다른 저장 객체를 구별하는 표시입니다.</figcaption>
+      </figure>
+      <p>원공시와 정정본을 같은 기업의 공시로 따라가 각 원문을 찾을 수 있습니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800611">10월 28일 원공시</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800490">10월 29일 정정 공시</a></p>
+      <details><summary>Neo4j Browser에서 그래프로 조회하는 Cypher</summary><pre><code>MATCH company_path = (c:Company {corp_code:'00105606'})
+      &lt;-[:IS_ABOUT]-(f:Filing)
+MATCH source_path = (f)-[:HAS_SOURCE_DOCUMENT]-&gt;(:SourceDocument)
+WHERE f.receipt IN ['20261028800611', '20261029800490']
+RETURN company_path, source_path;</code></pre></details>
+
+      <h3 id="graph-sample-contract">동성화인텍과 HD현대중공업의 공급계약</h3>
+      <figure class="dataset-figure">
+        <div class="table-scroll" role="region" aria-labelledby="graph-sample-contract" tabindex="0">
+          <img src="sample-contract.svg" width="900" height="304" alt="동성화인텍은 공급자, HD현대중공업은 구매자로 같은 계약에 연결됩니다. 계약은 공시 20261105900115와 XML 117행의 근거를 가리킵니다.">
+        </div>
+        <figcaption>TRACE 실험 그래프. 계약 노드에서 참여 기업의 역할과 구매자를 확인한 원문 위치를 함께 조회할 수 있습니다.</figcaption>
+      </figure>
+      <p>동성화인텍은 공급자, HD현대중공업은 구매자로 연결됩니다. 구매자 이름은 공시 XML 117행에서 확인했습니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261105900115">공급계약 원문</a> · <a href="../journal/2026-11-27-trace-backtest/#method">TRACE 연구 기록</a></p>
+      <details><summary>Neo4j Browser에서 그래프로 조회하는 Cypher</summary><pre><code>MATCH supplier_path = (:Company)-[:SUPPLIED_IN]-&gt;
+      (k:TraceSupplyContract {receipt:'20261105900115'})
+MATCH buyer_path = (:Company)-[:PURCHASED_IN]-&gt;(k)
+MATCH filing_path = (k)-[:REPORTED_IN]-&gt;(:Filing)
+MATCH evidence_path = (k)-[:SUPPORTED_BY]-&gt;(:TraceContractEvidence)
+RETURN supplier_path, buyer_path, filing_path, evidence_path;</code></pre></details>
     </section>
 
     <section aria-labelledby="build">

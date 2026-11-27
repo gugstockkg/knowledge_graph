@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 304" role="img" aria-labelledby="title desc">
+<title id="title">동성화인텍 공급계약의 참여 기업과 원문</title>
+<desc id="desc">동성화인텍에서 공급계약으로 SUPPLIED_IN, HD현대중공업에서 공급계약으로 PURCHASED_IN이 연결됩니다. 계약은 공시와 XML 117행을 가리킵니다.</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#244acb"/></marker></defs>
+<rect width="900" height="304" rx="17" fill="#eff3fb"/>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, system-ui, sans-serif" fill="#17243b">
+<path d="M194 80H305" fill="none" stroke="#244acb" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M706 80H595" fill="none" stroke="#244acb" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M390 115L265 204" fill="none" stroke="#244acb" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M509 115L635 204" fill="none" stroke="#244acb" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="598.8" y="57" width="98.4" height="17" rx="4" fill="#eff3fb"/>
+<text x="648" y="69" font-size="11.5" font-weight="700" text-anchor="middle" fill="#244acb">PURCHASED_IN</text>
+<rect x="244.4" y="152" width="91.2" height="17" rx="4" fill="#eff3fb"/>
+<text x="290" y="164" font-size="11.5" font-weight="700" text-anchor="middle" fill="#244acb">REPORTED_IN</text>
+<rect x="205.4" y="57" width="91.2" height="17" rx="4" fill="#eff3fb"/>
+<text x="251" y="69" font-size="11.5" font-weight="700" text-anchor="middle" fill="#244acb">SUPPLIED_IN</text>
+<rect x="561.8" y="152" width="98.4" height="17" rx="4" fill="#eff3fb"/>
+<text x="611" y="164" font-size="11.5" font-weight="700" text-anchor="middle" fill="#244acb">SUPPORTED_BY</text>
+<rect x="24" y="45" width="170" height="70" rx="12" fill="#dfe9ff" stroke="#9aafd6"/>
+<text x="109.0" y="76.0" font-weight="700" font-size="16.5" text-anchor="middle">동성화인텍</text>
+<text x="109.0" y="96.0" fill="#495a72" font-size="12.5" text-anchor="middle">Company</text>
+<rect x="309" y="45" width="282" height="70" rx="12" fill="#ffffff" stroke="#9aafd6"/>
+<text x="450.0" y="76.0" font-weight="700" font-size="16.5" text-anchor="middle">초저온 보냉자재 공급계약</text>
+<text x="450.0" y="96.0" fill="#495a72" font-size="12.5" text-anchor="middle">TraceSupplyContract</text>
+<rect x="706" y="45" width="170" height="70" rx="12" fill="#dfe9ff" stroke="#9aafd6"/>
+<text x="791.0" y="76.0" font-weight="700" font-size="16.5" text-anchor="middle">HD현대중공업</text>
+<text x="791.0" y="96.0" fill="#495a72" font-size="12.5" text-anchor="middle">Company</text>
+<rect x="129" y="208" width="268" height="70" rx="12" fill="#ffffff" stroke="#9aafd6"/>
+<text x="263.0" y="239.0" font-weight="700" font-size="16.5" text-anchor="middle">20261105900115</text>
+<text x="263.0" y="259.0" fill="#495a72" font-size="12.5" text-anchor="middle">Filing · 2026-11-05</text>
+<rect x="503" y="208" width="268" height="70" rx="12" fill="#ecf6f4" stroke="#9aafd6"/>
+<text x="637.0" y="239.0" font-weight="700" font-size="16.5" text-anchor="middle">계약상대방 · XML 117행</text>
+<text x="637.0" y="259.0" fill="#495a72" font-size="12.5" text-anchor="middle">TraceContractEvidence</text>
+</g></svg>

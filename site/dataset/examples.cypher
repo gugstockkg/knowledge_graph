@@ -36,3 +36,18 @@ ORDER BY month;
 // 샘플 정정 공시의 원문 객체 형식
 MATCH (f:Filing {receipt:'20261029800490'})-[:HAS_SOURCE_DOCUMENT]->(d:SourceDocument)
 RETURN d.format AS format,count(*) AS files ORDER BY format;
+
+// Graph sample: catalog
+MATCH company_path = (c:Company {corp_code:'00105606'})
+      <-[:IS_ABOUT]-(f:Filing)
+MATCH source_path = (f)-[:HAS_SOURCE_DOCUMENT]->(:SourceDocument)
+WHERE f.receipt IN ['20261028800611', '20261029800490']
+RETURN company_path, source_path;
+
+// Graph sample: TRACE contract
+MATCH supplier_path = (:Company)-[:SUPPLIED_IN]->
+      (k:TraceSupplyContract {receipt:'20261105900115'})
+MATCH buyer_path = (:Company)-[:PURCHASED_IN]->(k)
+MATCH filing_path = (k)-[:REPORTED_IN]->(:Filing)
+MATCH evidence_path = (k)-[:SUPPORTED_BY]->(:TraceContractEvidence)
+RETURN supplier_path, buyer_path, filing_path, evidence_path;
