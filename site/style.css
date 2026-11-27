@@ -31,22 +31,11 @@ nav a { color: var(--muted); padding-inline: .35rem; text-decoration: none; font
 nav a:hover, .index a:hover strong { color: var(--accent); text-decoration: underline; }
 h1, h2, h3 { margin: 0; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; }
 h1 { font-weight: 700; }
-.intro { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: center; gap: 1.5rem 3rem; padding-block: clamp(1.75rem, 3.8vw, 3rem); }
+.intro { padding-block: clamp(1.75rem, 3.8vw, 3rem); }
 .intro h1 { font-size: clamp(2.85rem, 6.2vw, 4.65rem); line-height: 1.02; }
 .intro p { color: var(--muted); max-width: 65ch; margin: .8rem 0 0; }
 .intro-subtitle { display: block; margin-top: .55rem; font-size: clamp(1.25rem, 2.6vw, 1.7rem); font-weight: 650; letter-spacing: -.025em; }
-.intro-dataset { display: grid; gap: .12rem; width: fit-content; max-width: 100%; margin-top: 1.2rem; padding: .7rem 1rem; border-radius: .75rem; background: var(--accent); color: #fff; text-decoration: none; }
-.intro-dataset:hover { background: var(--accent-strong); }
-.intro-dataset:hover strong { text-decoration: underline; }
-.intro-dataset span { color: #eef2ff; font-size: .94rem; }
-.filing-example { margin: 0; padding: 1.1rem clamp(.9rem, 2.4vw, 1.5rem); border-block: 1px solid var(--line); background: var(--surface); }
-.filing-example figcaption { font-weight: 700; }
-.filing-example dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: .75rem 0; }
-.filing-example dl div + div { border-inline-start: 1px solid var(--line); padding-inline-start: .8rem; }
-.filing-example dt, .filing-example p { color: var(--muted); font-size: .9rem; }
-.filing-example dd { margin: .15rem 0 0; font-size: clamp(1.45rem, 3vw, 2.15rem); line-height: 1.15; font-weight: 700; font-variant-numeric: tabular-nums; }
-.filing-example dl div:last-child dd { color: var(--accent-strong); }
-.filing-example a { display: inline-flex; align-items: center; min-height: 44px; font-size: .94rem; font-weight: 650; }
+.intro-dataset { display: inline-flex; align-items: center; min-height: 44px; margin-top: .65rem; font-weight: 650; }
 .chapter { padding-block: 1.15rem 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.7fr); gap: .75rem 2.5rem; border-top: 1px solid var(--line); }
 .chapter h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
 .index { list-style: none; margin: 0; padding: 0; border-radius: 1rem; background: var(--surface); }
@@ -99,7 +88,6 @@ h1 { font-weight: 700; }
 .dataset tfoot { background: var(--accent-wash); font-weight: 650; }
 @media (max-width: 43rem) {
   .shell, .post { width: calc(100% - 2rem); }
-  .intro { grid-template-columns: minmax(0, 1fr); }
   .chapter { grid-template-columns: minmax(0, 1fr); padding-block: .95rem 1.25rem; }
   nav { gap: 0 .45rem; }
   .dataset-stats { gap: .4rem; }
