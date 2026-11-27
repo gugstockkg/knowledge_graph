@@ -82,6 +82,8 @@ h1 { font-weight: 700; }
 .dataset-figure .table-scroll { margin-bottom: .4rem; }
 .dataset-figure img { display: block; width: 100%; min-width: 42rem; height: auto; }
 .dataset-figure figcaption { color: var(--muted); font-size: .94rem; }
+.research-chart img { min-width: 0; border: 1px solid var(--line); border-radius: .75rem; }
+.research-chart figcaption { margin-top: .4rem; }
 .dataset details { margin-block: .65rem; }
 .dataset summary { color: var(--accent-strong); cursor: pointer; font-weight: 650; }
 .dataset pre { overflow-x: auto; border-radius: .65rem; background: #16223a; color: #f4f7ff; padding: 1rem; font-size: .85rem; line-height: 1.6; }

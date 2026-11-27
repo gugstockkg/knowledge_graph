@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 998 512" role="img" aria-labelledby="heading desc">
+<title id="heading">공급자와 구매자의 경로에서 예측 변수를 만드는 방법</title>
+<desc id="desc">동성화인텍과 HD현대중공업의 계약 및 HD현대중공업과 HMM의 별도 계약을 각각 원문에 연결합니다. 접수일 확인과 상대 기업 매핑을 거쳐 예측 변수를 계산합니다.</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#244acb"/></marker></defs>
+<rect width="998" height="512" rx="17" fill="#eff3fb"/>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, system-ui, sans-serif" fill="#17243b">
+<text x="28" y="48" font-size="25" font-weight="700">공급계약 두 건을 연결한 공시 근거</text>
+<text x="28" y="78" font-size="15" fill="#495a72">같은 회사가 두 계약에서 각각 구매자와 공급자로 등장합니다.</text>
+<path d="M28 326H970" stroke="#bfcde4"/>
+<text x="28" y="360" font-size="22" font-weight="700">관계 변수는 체결일 전에 계산합니다</text>
+<path d="M174 157L207 157" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="190.5" y="146" font-size="11.3" fill="#244acb" text-anchor="middle">공급</text>
+<path d="M420 157L389 157" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="404.5" y="146" font-size="11.3" fill="#244acb" text-anchor="middle">구매</text>
+<path d="M580 157L610 157" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="595.0" y="146" font-size="11.3" fill="#244acb" text-anchor="middle">공급</text>
+<path d="M824 157L792 157" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="808.0" y="146" font-size="11.3" fill="#244acb" text-anchor="middle">구매</text>
+<path d="M298 187L298 232" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="337" y="212.5" font-size="11.3" fill="#244acb" text-anchor="middle">원문 근거</text>
+<path d="M701 187L701 232" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="740" y="212.5" font-size="11.3" fill="#244acb" text-anchor="middle">원문 근거</text>
+<path d="M224 421L270 421" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470 421L516 421" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M716 421L762 421" fill="none" stroke="#244acb" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="128" width="146" height="58" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="101.0" y="154" font-weight="700" font-size="16" text-anchor="middle">동성화인텍</text>
+<text x="101.0" y="173" fill="#495a72" font-size="12" text-anchor="middle">Company</text>
+<rect x="211" y="128" width="174" height="58" rx="12" fill="#dfe9ff" stroke="#98afd9"/>
+<text x="298.0" y="154" font-weight="700" font-size="16" text-anchor="middle">보냉자재 공급계약</text>
+<text x="298.0" y="173" fill="#495a72" font-size="12" text-anchor="middle">TraceSupplyContract</text>
+<rect x="420" y="128" width="160" height="58" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="500.0" y="154" font-weight="700" font-size="16" text-anchor="middle">HD현대중공업</text>
+<text x="500.0" y="173" fill="#495a72" font-size="12" text-anchor="middle">Company</text>
+<rect x="614" y="128" width="174" height="58" rx="12" fill="#dfe9ff" stroke="#98afd9"/>
+<text x="701.0" y="154" font-weight="700" font-size="16" text-anchor="middle">컨테이너선 계약</text>
+<text x="701.0" y="173" fill="#495a72" font-size="12" text-anchor="middle">TraceSupplyContract</text>
+<rect x="824" y="128" width="146" height="58" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="897.0" y="154" font-weight="700" font-size="16" text-anchor="middle">HMM</text>
+<text x="897.0" y="173" fill="#495a72" font-size="12" text-anchor="middle">Company</text>
+<rect x="211" y="236" width="174" height="67" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="298.0" y="262" font-weight="700" font-size="16" text-anchor="middle">20261105900115</text>
+<text x="298.0" y="281" fill="#495a72" font-size="12" text-anchor="middle">원문 XML 117행</text>
+<rect x="614" y="236" width="174" height="67" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="701.0" y="262" font-weight="700" font-size="16" text-anchor="middle">20261020800221</text>
+<text x="701.0" y="281" fill="#495a72" font-size="12" text-anchor="middle">원문 XML 109행</text>
+<rect x="28" y="383" width="196" height="76" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="126.0" y="409" font-weight="700" font-size="16" text-anchor="middle">접수일 기준</text>
+<text x="126.0" y="428" fill="#495a72" font-size="12" text-anchor="middle">공시와 구매자 식별 근거 확인</text>
+<rect x="274" y="383" width="196" height="76" rx="12" fill="#dfe9ff" stroke="#98afd9"/>
+<text x="372.0" y="409" font-weight="700" font-size="16" text-anchor="middle">관계 패턴</text>
+<text x="372.0" y="428" fill="#495a72" font-size="12" text-anchor="middle">기업 → 계약 ← 상대 기업</text>
+<rect x="520" y="383" width="196" height="76" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="618.0" y="409" font-weight="700" font-size="16" text-anchor="middle">관계 변수</text>
+<text x="618.0" y="428" fill="#495a72" font-size="12" text-anchor="middle">역할·상대 모멘텀·이전 계약 수</text>
+<rect x="766" y="383" width="204" height="76" rx="12" fill="#ffffff" stroke="#98afd9"/>
+<text x="868.0" y="409" font-weight="700" font-size="16" text-anchor="middle">예측·평가</text>
+<text x="868.0" y="428" fill="#495a72" font-size="12" text-anchor="middle">다음 거래일 시가→종가</text>
+<text x="28" y="488" fill="#495a72" font-size="13.5">두 계약을 가로지르는 경로는 Neo4j에서 확인했습니다. 성과표는 계약 상대방까지의 변수를 평가합니다.</text></g></svg>

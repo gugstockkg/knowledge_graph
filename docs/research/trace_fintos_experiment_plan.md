@@ -74,6 +74,8 @@ PYTHONPATH=src python3 -m knowledge_graph.ingestion.trace_contracts \
   --end 2026-11-08 --output artifacts/trace_contracts/20260101_20261108.json
 ```
 
+[EC2에서 실행한 주가 방향 예측과 백테스트 결과](trace_backtest_2026.md)
+
 ## 실험 실행 계획
 
 | 단계 | 작업 | 다음 단계로 넘어가는 조건 |
