@@ -45,3 +45,31 @@
   .contract-flow, .graph-path { grid-template-columns: 1fr; }
   .graph-path b { transform: rotate(90deg); }
 }
+
+.equation {
+  display: inline-block;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.4;
+  max-inline-size: 100%;
+}
+.equation-block {
+  display: block;
+  margin-block: .45rem;
+}
+.equation-fraction {
+  display: inline-grid;
+  grid-template-columns: auto;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  margin-inline: .12em;
+}
+.equation-fraction > span {
+  padding-inline: .2em;
+}
+.equation-fraction > span:first-child {
+  border-bottom: 1px solid currentColor;
+}
+.equation-overline {
+  text-decoration: overline;
+}

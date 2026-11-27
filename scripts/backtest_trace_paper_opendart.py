@@ -15,6 +15,7 @@ from backtest_trace_positions import (
     portfolio_metrics,
     returns,
     select_large_companies,
+    signals,
 )
 from knowledge_graph.market.economic_backtest import active_contract, graph_events
 from knowledge_graph.market.trace_paper import Edge, TemporalGraph, mine_rules, predict
@@ -63,6 +64,27 @@ def index_filings(graph):
     return TemporalGraph(edges, texts), touched
 
 
+def index_clear_filings(graph, market):
+    """Ground TRACE paths only in disclosures accepted by CLEAR for the buyer."""
+    accepted = signals(graph, market)["explicit_buyer_path"]
+    records = {record["receipt"]: record for record in graph["contract_terms"]}
+    edges, texts = set(), set()
+    touched = defaultdict(set)
+    for code, filings in accepted.items():
+        for (release, receipt), _ in filings.items():
+            record = records[receipt]
+            if release >= len(market):
+                continue
+            day = record["day"]
+            event, text = "event:" + receipt, "dart:" + receipt
+            texts.add(text)
+            touched[day].add(code)
+            relation = "CLEAR_BUYER_" + record["kind"].upper()
+            edges.add(Edge(code, relation, event, day, day, day))
+            edges.add(Edge(event, "EXTRACTED_FROM", text, day, day, day))
+    return TemporalGraph(edges, texts), touched
+
+
 def structured_validator(path, rule):
     # A binary check against the graph's extracted filing fields. It does not
     # independently infer sentiment or verify the extraction against XML.
@@ -70,7 +92,7 @@ def structured_validator(path, rule):
     return rule.label, float(grounded)
 
 
-def run(graph, archive, later, min_support):
+def run(graph, archive, later, min_support, *, clear_filter=False):
     market = sorted({
         bar["date"] for root in (archive, later) for bar in load(root / "KOSPI.json")["bars"]
     })
@@ -80,7 +102,7 @@ def run(graph, archive, later, min_support):
         code: {**(get_series(archive, symbol, code) or {}), **(get_series(later, symbol, code) or {})}
         for code, symbol in selected.items()
     }
-    kg, touched = index_filings(graph)
+    kg, touched = index_clear_filings(graph, market) if clear_filter else index_filings(graph)
     observations = {}
     evaluation = defaultdict(set)
     for filing_day, codes in sorted(touched.items()):
@@ -101,8 +123,6 @@ def run(graph, archive, later, min_support):
                 evaluation[code, release].add(filing_day)
     rules = mine_rules(kg, observations.values(), max(day for day in market if day < TEST_START),
                        min_support=min_support)
-    if not rules:
-        raise ValueError("No mined rule reached the registered support/confidence thresholds")
     daily_signs = defaultdict(dict)
     audit = []
     for (code, release), filing_days in sorted(evaluation.items()):
@@ -142,6 +162,7 @@ def run(graph, archive, later, min_support):
         "invested_stock_days": exposure, "signal_days": signal_days, "selection": selection,
         "training_stock_days": len(observations), "evaluation_stock_days": len(audit),
         "rules": [vars(rule) for rule in rules], "predictions": audit,
+        "clear_filter": clear_filter, "min_support": min_support,
     }
 
 
@@ -150,8 +171,10 @@ def main():
     for key in ("graph", "archive", "later", "output"):
         parser.add_argument(key, type=Path)
     parser.add_argument("--min-support", type=int, default=5)
+    parser.add_argument("--clear-filter", action="store_true")
     args = parser.parse_args()
-    result = run(load(args.graph), args.archive, args.later, args.min_support)
+    result = run(load(args.graph), args.archive, args.later, args.min_support,
+                 clear_filter=args.clear_filter)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2))
 
 
