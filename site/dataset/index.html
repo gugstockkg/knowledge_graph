@@ -25,7 +25,7 @@
     <section aria-labelledby="economic-events">
       <h2 id="economic-events">공시에서 공급 관계를 읽는 법</h2>
       <p>공급계약 공시에는 기업 이름뿐 아니라 누가 공급하는지, 상대는 누구인지, 무엇을 얼마에 공급하는지가 담겨 있습니다. FINTOS는 이 내용을 계약별로 연결합니다. 같은 회사의 시설투자와 실적도 함께 조회할 수 있어, 거래의 규모와 사업 맥락을 살펴볼 수 있습니다.</p>
-      <p>대상은 <strong>코스피·코스닥·코넥스 상장 기업</strong>입니다. 2026년 1월 1일~11월 8일 수집분에서 공급계약 1,200건, 시설투자 발표 35건, 매출·영업이익 관측값 2,018개를 추출했습니다. 공급계약 210건에서는 공시일 기준으로 구매자 후보를 기업 코드와 연결했습니다. 삼성전자와 SK하이닉스는 관계를 설명하는 사례입니다.</p>
+      <p>대상은 <strong>코스피·코스닥·코넥스 상장 기업</strong>입니다. 2026년 1월 1일~11월 26일 범위의 공시에서 <strong>공급계약 1,294건, 계약 조건 정정 83건, 시설투자 발표 37건, 매출·영업이익 관측값 2,160개</strong>를 EC2의 Neo4j에 적재했습니다. 공급계약 226건은 공시일에 확인할 수 있었던 구매자 기업 코드와 연결했습니다. 삼성전자와 SK하이닉스는 관계를 설명하는 사례입니다.</p>
       <figure class="dataset-figure">
         <img src="economic-contract.svg" width="900" height="250" alt="넥스틴은 공급자, SK하이닉스는 구매자입니다. 웨이퍼 검사장비 공급계약 금액은 254억 4천만 원이며 넥스틴의 공시 기준 매출 대비 38.02%입니다.">
         <figcaption>넥스틴이 보고한 웨이퍼 검사장비 공급계약. 금액은 254억 4천만 원으로, 공시에 기재된 공급자 매출 대비 비율은 38.02%입니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146">2026년 10월 6일 공시</a></figcaption>
@@ -41,13 +41,15 @@ RETURN supplier.name AS supplier, buyer.name AS buyer,
        terms.contract_amount_krw AS amount_krw,
        terms.supplier_reported_sales_pct AS sales_pct;</code></pre></details>
 
+      <p><strong>정정 조회 예시.</strong> 이노메트리의 2차전지 검사장비 공급계약은 2월 23일 기준으로 종료일이 3월 1일이었습니다. 2월 24일 공시에서 종료일이 7월 15일로 바뀌었습니다. Neo4j는 두 값을 각각의 공개일과 함께 보존하며 두 번째 관측은 종료일만 기록합니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260119900439">원공시</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260224900460">정정 공시</a></p>
+
       <h3 id="economic-method">질문에서 그래프와 실험까지</h3>
       <div class="table-scroll" role="region" aria-labelledby="economic-method" tabindex="0">
         <table>
           <thead><tr><th scope="col">단계</th><th scope="col">수행 방법</th><th scope="col">완료 기준</th></tr></thead>
           <tbody>
             <tr><th scope="row">1. 질문을 정한다</th><td>누가 누구에게 무엇을 공급하는가? 계약은 공급자 매출 대비 얼마나 큰가? 그날까지 어떤 계약 조건을 알 수 있었는가? 같은 구매자나 제품군을 통해 어떤 기업들이 연결되는가?</td><td>질문별로 필요한 원문 항목과 답변을 보류할 조건을 정한다.</td></tr>
-            <tr><th scope="row">2. 원문을 검수한다</th><td>공급계약 1,200건과 구매자 연결 후보 210건에서 출발한다. 30~40건의 검수 표본에 구매자가 공개된 계약, 구매자 비공개, 자회사 대신 제출한 공시, 계약의 일부 조건만 정정한 공시를 포함한다.</td><td>역할·품목·금액·상태의 판정 근거를 기록한다. 규칙을 만든 문서와 처음 보는 평가 문서를 구분한다.</td></tr>
+            <tr><th scope="row">2. 원문을 검수한다</th><td>초기 추출분인 공급계약 1,200건과 구매자 연결 후보 210건에서 출발한다. 30~40건의 검수 표본에 구매자가 공개된 계약, 구매자 비공개, 자회사 대신 제출한 공시, 계약의 일부 조건만 정정한 공시를 포함한다.</td><td>역할·품목·금액·상태의 판정 근거를 기록한다. 규칙을 만든 문서와 처음 보는 평가 문서를 구분한다.</td></tr>
             <tr><th scope="row">3. 개념과 관계를 정의한다</th><td>계약은 건별로 식별하고 공급자·구매자 역할과 제품군을 연결한다. 계약 체결일, 공개일, 계약 기간은 각각 기록한다. FIBO의 계약·역할·법인·증권 구분을 참고한다.</td><td>같은 두 기업의 여러 계약, 구매자 미공개, 일부 계약 조건만 정정된 경우를 표현할 수 있다.</td></tr>
             <tr><th scope="row">4. 추출하고 적재한다</th><td>공시 표에서 당사자·품목·금액·매출 비율을 추출한다. 원문 품명과 표준 제품군을 함께 보존하고 확인한 관계를 EC2의 Neo4j에 적재한다.</td><td>재적재해도 계약과 관계가 중복되지 않는다. 기준일로 조회할 때 이후 공개된 정정이 포함되지 않는다.</td></tr>
             <tr><th scope="row">5. 거래를 그림과 질의로 설명한다</th><td>공급자와 구매자를 계약 양쪽에 놓고 품목·금액·기간을 보여 준다. Cypher로 찾을 수 있는 경로와 그 결과를 설명한다.</td><td>독자가 그림에서 거래 당사자와 공급 대상을 읽고, 필요할 때 원문에서 확인할 수 있다.</td></tr>
@@ -149,7 +151,7 @@ RETURN supplier_path, buyer_path, filing_path, evidence_path;</code></pre></deta
 
     <section aria-labelledby="examples">
       <h2 id="examples">EC2에서 실행한 Cypher와 결과</h2>
-      <p>아래 표는 위 스냅샷을 직접 조회한 값입니다. 실제 공시는 접수번호를 눌러 DART에서 읽을 수 있습니다. <a href="examples.cypher" download>전체 예제 질의 다운로드</a></p>
+      <p>아래 표는 기본 공시 카탈로그를 직접 조회한 값입니다. 실제 공시는 접수번호를 눌러 DART에서 읽을 수 있습니다. <a href="examples.cypher" download>전체 예제 질의 다운로드</a></p>
       <h3 id="lookup-company">금호에이치티의 원공시와 정정 공시를 함께 찾을 수 있나?</h3>
             <details><summary>실행한 Cypher 보기</summary><pre><code>MATCH (f:Filing)-[:IS_ABOUT]-&gt;(c:Company {corp_code:'00105606'})
 WHERE f.receipt IN ['20261028800611','20261029800490']
