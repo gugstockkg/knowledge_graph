@@ -1,0 +1,56 @@
+/* Hallmark: editorial research index; signature: a two-row dated evidence table. */
+/* Critique: put the research example above the artifact index, then leave the findings room to breathe. */
+:root {
+  color-scheme: light;
+  --paper: #f3f6f5;
+  --ink: #182f33;
+  --muted: #435c5e;
+  --accent: #075744;
+  --line: #b7c8c4;
+  --white: #f5fbf8;
+  --notice: #dcebe5;
+  --font: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.65 var(--font); }
+a { color: var(--accent); text-underline-offset: .22em; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+a:active { text-decoration-thickness: 2px; }
+.skip { position: absolute; inset: .5rem auto auto .5rem; padding: .5rem 1rem; background: var(--white); transform: translateY(-200%); }
+.skip:focus { transform: none; }
+.shell { width: min(100% - 3rem, 68rem); margin-inline: auto; }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 2rem; padding-block: 1.2rem; border-bottom: 1px solid var(--line); }
+.brand { font-size: 1.12rem; font-weight: 760; text-decoration: none; }
+nav { display: flex; gap: 1rem 1.6rem; flex-wrap: wrap; }
+nav a { color: var(--ink); text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: end; gap: 3rem; padding-block: clamp(3rem, 8vw, 7rem); }
+h1, h2, h3 { overflow-wrap: break-word; min-width: 0; line-height: 1.16; margin: 0; }
+h1 { font-size: clamp(3.1rem, 8.5vw, 7.5rem); letter-spacing: -.065em; text-wrap: balance; }
+.hero > div > p { margin-block: 1.15rem 1.65rem; color: var(--muted); }
+.primary { display: inline-block; padding: .65rem 1rem; background: var(--accent); color: var(--white); text-decoration: none; }
+.primary:hover { text-decoration: underline; }
+figure { margin: 0; padding: 1.35rem; background: var(--notice); }
+figcaption { font-weight: 740; font-size: 1.1rem; margin-bottom: .85rem; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--line); text-align: left; padding: .55rem .45rem .55rem 0; }
+thead { color: var(--muted); font-size: .85rem; }
+tbody td { font-size: 1.28rem; font-weight: 730; }
+figure p, .status, .index span { color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
+figure p { margin-bottom: 0; }
+.chapter { border-top: 1px solid var(--line); padding-block: 2.6rem 3.3rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr); gap: 1.25rem 3rem; }
+.chapter h2 { font-size: 1.75rem; letter-spacing: -.035em; }
+.index { list-style: none; margin: 0; padding: 0; }
+.index li { display: grid; gap: .15rem; padding-block: .65rem; border-bottom: 1px solid var(--line); }
+.index li:first-child { padding-top: 0; }
+.index a { font-size: 1.08rem; font-weight: 720; }
+.entries { display: grid; gap: 1.7rem; }
+.entries p { max-width: 60ch; margin: .45rem 0 0; }
+.entries .status { margin: 0 0 .5rem; }
+.footer { border-top: 1px solid var(--line); border-bottom: 0; }
+@media (max-width: 43rem) {
+  .shell { width: calc(100% - 2rem); }
+  .hero, .chapter { grid-template-columns: minmax(0, 1fr); }
+  .hero { gap: 1.8rem; }
+}

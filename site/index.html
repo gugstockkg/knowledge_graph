@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GUG의 OpenDART 지식그래프 연구 기록. 산출물, 설계 결정, 검증 결과를 공개합니다.">
+  <title>GUG 공시 그래프 연구 기록</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 이동</a>
+  <header class="shell top">
+    <a class="brand" href="./">GUG 공시 그래프</a>
+    <nav aria-label="주요 메뉴">
+      <a href="#artifacts">산출물</a><a href="#notes">설계 기록</a><a href="#experiments">실험</a>
+    </nav>
+  </header>
+  <main class="shell" id="content">
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <h1 id="title">공시에서<br>근거까지</h1>
+        <p>한국 기업 공시를 연결하고, 정정 전후의 답을 원문에서 확인합니다.</p>
+        <a class="primary" href="#artifacts">공개 산출물 보기</a>
+      </div>
+      <figure aria-labelledby="example-label">
+        <figcaption id="example-label">같은 사건, 다른 기준일</figcaption>
+        <table>
+          <thead><tr><th scope="col">기준일</th><th scope="col">당시 공개된 변경 예정일</th></tr></thead>
+          <tbody><tr><th scope="row">5월 20일</th><td>6월 1일</td></tr><tr><th scope="row">5월 25일</th><td>6월 15일</td></tr></tbody>
+        </table>
+        <p>설명용 가상 사례. 5월 24일에 예정일이 정정됐습니다.</p>
+      </figure>
+    </section>
+
+    <section id="artifacts" class="chapter" aria-labelledby="artifact-title">
+      <h2 id="artifact-title">공개 산출물</h2>
+      <ul class="index">
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv">온톨로지 정의서</a><span>CSV · 최대주주 변경과 정정 이력의 개념·관계·검사 규칙</span></li>
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">설계 설명서</a><span>기준일, 부분 정정, 원문 근거를 구분하는 방법</span></li>
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/controller-change.pdf">발표자료</a><span>PDF · 정정 공시 사례와 EC2 데모 설계</span></li>
+      </ul>
+    </section>
+
+    <section id="notes" class="chapter" aria-labelledby="notes-title">
+      <h2 id="notes-title">설계 기록</h2>
+      <div class="entries">
+        <article><h3>정정은 바뀐 항목에만 적용합니다</h3><p>지분율을 정정해도 변경일은 같을 수 있습니다. 사건, 공시, 항목별 주장을 따로 기록하면 어느 값에 어느 문서를 적용했는지 확인할 수 있습니다.</p></article>
+        <article><h3>근거는 접수번호에서 한 단계 더 들어갑니다</h3><p>접수번호에 원문 버전과 표의 행·열 위치를 붙입니다. 데이터 형식 검증과 그 자리에 실제로 같은 값이 있는지 확인하는 절차를 구분합니다.</p></article>
+      </div>
+    </section>
+
+    <section id="experiments" class="chapter" aria-labelledby="experiments-title">
+      <h2 id="experiments-title">실험 기록</h2>
+      <div class="entries">
+        <article><p class="status"><time datetime="2026-11-27">2026년 11월 27일</time> / 파일럿 검증</p><h3>원공시와 정정 공시를 기준일별로 조회</h3><p>실제 공시 한 사건의 원공시와 정정본을 Neo4j에 적재했습니다. 기준일을 바꾸면 정정된 지분율만 달라졌고, 변경일과 그 원문 근거는 유지됐습니다.</p></article>
+        <article><p class="status">평가 설계</p><h3>문서 검색과 GraphRAG 비교</h3><p>같은 기준일과 원문 범위에서 두 검색 방식의 답과 근거를 비교할 계획입니다. 답 정확도, 근거 정확도, 기준일 이후 정보 사용률을 나눠 평가합니다.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="shell top footer"><span>GUG Knowledge Graph</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>
