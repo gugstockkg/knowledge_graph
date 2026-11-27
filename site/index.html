@@ -12,7 +12,7 @@
   <header class="shell top">
     <a class="brand" href="./">GUG 공시 그래프</a>
     <nav aria-label="주요 메뉴">
-      <a href="#artifacts">산출물</a><a href="#notes">설계 기록</a><a href="#experiments">실험</a>
+      <a href="#journal">연구 글</a><a href="#artifacts">산출물</a><a href="#experiments">실험</a>
     </nav>
   </header>
   <main class="shell" id="content">
@@ -20,7 +20,7 @@
       <div>
         <h1 id="title">공시에서<br>근거까지</h1>
         <p>한국 기업 공시를 연결하고, 정정 전후의 답을 원문에서 확인합니다.</p>
-        <a class="primary" href="#artifacts">공개 산출물 보기</a>
+        <a class="primary" href="#journal">연구 글 읽기</a>
       </div>
       <figure aria-labelledby="example-label">
         <figcaption id="example-label">같은 사건, 다른 기준일</figcaption>
@@ -32,12 +32,21 @@
       </figure>
     </section>
 
+    <section id="journal" class="chapter" aria-labelledby="journal-title">
+      <h2 id="journal-title">연구 글</h2>
+      <div class="entries">
+        <article><h3><a href="journal/2026-11-27-research-goals/">1년치 공시로 어떤 연구를 할 수 있을까?</a></h3><p class="status"><span class="tag">연구 목적</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>왜 최대주주 변경과 정정부터 시작하는지, 연말에 무엇을 공개할지 설명합니다.</p></article>
+        <article><h3><a href="journal/2026-11-27-ontology-and-shacl/">공시, 사건, 주장을 왜 따로 기록하는가</a></h3><p class="status"><span class="tag">설계 방법</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>실제 정정 사례가 온톨로지의 구조를 어떻게 바꿨는지, SHACL이 무엇을 검사할 수 있는지 정리합니다.</p></article>
+        <article><h3><a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG가 정정 공시를 더 잘 읽을까?</a></h3><p class="status"><span class="tag">실험 계획</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>같은 질문에 문서 검색과 그래프 검색을 비교하고, 답과 근거를 따로 채점하는 방법입니다.</p></article>
+      </div>
+    </section>
+
     <section id="artifacts" class="chapter" aria-labelledby="artifact-title">
       <h2 id="artifact-title">공개 산출물</h2>
       <ul class="index">
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv">온톨로지 정의서</a><span>CSV · 최대주주 변경과 정정 이력의 개념·관계·검사 규칙</span></li>
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">설계 설명서</a><span>기준일, 부분 정정, 원문 근거를 구분하는 방법</span></li>
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/controller-change.pdf">발표자료</a><span>PDF · 정정 공시 사례와 EC2 데모 설계</span></li>
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv"><span class="artifact-text"><strong>온톨로지 정의서</strong><span>최대주주 변경과 정정 이력의 개념·관계·검사 규칙</span></span><span class="format">CSV</span></a></li>
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md"><span class="artifact-text"><strong>설계 설명서</strong><span>기준일, 부분 정정, 원문 근거를 구분하는 방법</span></span><span class="format">문서</span></a></li>
+        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/controller-change.pdf"><span class="artifact-text"><strong>발표자료</strong><span>정정 공시 사례와 EC2 데모 설계</span></span><span class="format">PDF</span></a></li>
       </ul>
     </section>
 
@@ -52,8 +61,8 @@
     <section id="experiments" class="chapter" aria-labelledby="experiments-title">
       <h2 id="experiments-title">실험 기록</h2>
       <div class="entries">
-        <article><p class="status"><time datetime="2026-11-27">2026년 11월 27일</time> / 파일럿 검증</p><h3>원공시와 정정 공시를 기준일별로 조회</h3><p>실제 공시 한 사건의 원공시와 정정본을 Neo4j에 적재했습니다. 기준일을 바꾸면 정정된 지분율만 달라졌고, 변경일과 그 원문 근거는 유지됐습니다.</p></article>
-        <article><p class="status">평가 설계</p><h3>문서 검색과 GraphRAG 비교</h3><p>같은 기준일과 원문 범위에서 두 검색 방식의 답과 근거를 비교할 계획입니다. 답 정확도, 근거 정확도, 기준일 이후 정보 사용률을 나눠 평가합니다.</p></article>
+        <article><h3>원공시와 정정 공시를 기준일별로 조회</h3><p class="status"><span class="tag verified">파일럿 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p><p>실제 공시 한 사건의 원공시와 정정본을 Neo4j에 적재했습니다. 기준일을 바꾸면 정정된 지분율만 달라졌고, 변경일과 그 원문 근거는 유지됐습니다.</p></article>
+        <article><h3>문서 검색과 GraphRAG 비교</h3><p class="status"><span class="tag">평가 설계</span></p><p>같은 기준일과 원문 범위에서 두 검색 방식의 답과 근거를 비교할 계획입니다. 답 정확도, 근거 정확도, 기준일 이후 정보 사용률을 나눠 평가합니다.</p></article>
       </div>
     </section>
   </main>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="최대주주 변경과 정정 공시를 표현하는 온톨로지의 선택과 SHACL 검증 범위">
+  <title>공시, 사건, 주장을 왜 따로 기록하는가 | GUG 공시 그래프</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 이동</a>
+  <header class="shell top"><a class="brand" href="../../">GUG 공시 그래프</a><nav aria-label="주요 메뉴"><a href="../../#journal">연구 글</a><a href="../../#artifacts">산출물</a></nav></header>
+  <main id="content" class="post"><article>
+    <a class="back" href="../../#journal">연구 글 목록</a>
+    <h1>공시, 사건, 주장을 왜 따로 기록하는가</h1>
+    <p class="status"><span class="tag">설계 방법</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
+    <p class="lead">정정 공시는 앞선 공시의 모든 내용을 바꾸지 않습니다. 우리가 살펴본 사례에서는 지분율이 달라졌고 변경일은 그대로였습니다.</p>
+    <h2>먼저 답해야 할 질문을 정했습니다</h2>
+    <p>“어느 날까지 알려진 지분율은 얼마였나?”, “정정 공시에서 무엇이 바뀌었나?”, “그 답은 원문의 어디에 있나?”를 출발점으로 삼았습니다. 질문을 먼저 정하면 문서에 있는 모든 항목을 옮기는 대신, 답을 재현하는 데 필요한 관계부터 정의할 수 있습니다.</p>
+    <h2>한 사건을 여러 공시가 설명합니다</h2>
+    <p><strong>사건</strong>은 기업에 일어난 변경을, <strong>공시</strong>는 그 사건을 시장에 알린 기록을, <strong>주장</strong>은 공시가 특정 항목에 대해 보고한 값을 뜻합니다. 공시는 접수번호로 식별합니다. 주장의 근거에는 문서 버전과 표의 행·열 또는 문단 위치를 기록합니다.</p>
+    <p>처음 검증한 공시 쌍에는 최대주주 개인의 값과 ‘최대주주등’ 집계값이 구별돼 있었습니다. 집계 범위를 함께 저장하고, 정정 전후에 같은 항목과 범위가 확인될 때만 대체 관계를 연결합니다. 정정 대상이 불명확한 경우는 검토 대상으로 남깁니다.</p>
+    <h2>검증 도구마다 확인할 수 있는 것이 다릅니다</h2>
+    <ul>
+      <li><strong>SHACL</strong>로 필수 근거 링크와 자료형을 검사하는 방식을 설계 중입니다.</li>
+      <li><strong>Neo4j 조회</strong>로 기준일 이후의 공시가 답에 섞이지 않는지, 부분 정정이 반영되는지 확인했습니다. 현재 검증 범위는 단일 사건입니다.</li>
+      <li><strong>원문 대조</strong>로 숫자와 표의 위치가 실제로 맞는지 검토합니다. SHACL을 통과해도 다른 셀을 가리킬 수 있기 때문입니다.</li>
+    </ul>
+    <h2>설계 자료</h2><p><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv">온톨로지 정의서 CSV</a> · <a href="https://www.w3.org/TR/shacl/">W3C SHACL 표준</a></p>
+  </article></main>
+  <footer class="shell top footer"><span>GUG Knowledge Graph</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>
