@@ -3,7 +3,7 @@ name: Publish research site
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml']
+    paths: ['site/**', 'scripts/build_research_site.py', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -27,8 +27,9 @@ jobs:
         with:
           persist-credentials: false
       - uses: actions/configure-pages@v5
+      - run: python3 scripts/build_research_site.py "${{ runner.temp }}/research-site"
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: ${{ runner.temp }}/research-site
       - uses: actions/deploy-pages@v4
         id: deployment

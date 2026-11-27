@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="최대주주 변경과 정정 공시를 표현하는 온톨로지의 선택과 SHACL 검증 범위">
+  <meta name="fintos:title" content="공시와 사건을 분리한 이유">
+  <meta name="fintos:summary" content="같은 최대주주 변경 사건에서 정정된 지분율과 바뀌지 않은 변경일의 원문 근거를 기준일별로 조회합니다.">
+  <meta name="fintos:category" content="validation">
+  <meta name="fintos:published" content="2026-11-27T14:41:48+09:00">
   <title>공시와 사건을 분리한 이유 | FINTOS</title>
   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
   <a class="skip" href="#content">본문으로 이동</a>
-  <header class="shell top"><a class="brand" href="../../">FINTOS</a><nav aria-label="주요 메뉴"><a href="../../#journal">연구 글</a><a href="../../#artifacts">산출물</a></nav></header>
+  <header class="shell top"><a class="brand" href="../../">FINTOS</a><nav aria-label="주요 메뉴"><a href="../">연구 보관함</a><a href="../../#artifacts">산출물</a></nav></header>
   <main id="content" class="post"><article>
-    <a class="back" href="../../#journal">연구 글 목록</a>
+    <a class="back" href="../">연구 보관함</a>
     <h1>공시와 사건을 분리한 이유</h1>
     <p class="status"><span class="tag">설계와 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
     <p class="lead">최대주주 변경 공시에서 지분율만 정정하는 경우, 그래프는 지분율의 출처를 새 문서로 바꾸면서 변경일의 원래 근거도 계속 돌려줘야 합니다. 이 동작을 구현하려면 공시 한 건을 사건의 속성으로 통째로 옮기는 방식으로는 부족했습니다.</p>

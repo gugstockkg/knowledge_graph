@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FINTOS OpenDART 지식그래프의 연구 글, 실험, 설계 기록을 날짜와 유형으로 찾아보세요.">
+  <title>연구 보관함 | FINTOS</title>
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="archive.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 이동</a>
+  <header class="shell top">
+    <a class="brand" href="../">FINTOS</a>
+    <nav aria-label="주요 메뉴">
+      <a href="../dataset/">데이터 설명서</a><a href="./" aria-current="page">연구 보관함</a><a href="../#artifacts">산출물</a><a href="../#design-validation">설계와 검증</a>
+    </nav>
+  </header>
+  <main id="content" class="shell archive">
+    <h1>연구 보관함</h1>
+    <form class="archive-filters" id="archive-filters" role="search" hidden>
+      <div class="archive-field"><label for="archive-query">제목·요약 검색</label>
+        <input type="search" id="archive-query" name="q" placeholder="예: 정정 공시, GraphRAG">
+      </div>
+      <div class="archive-field"><label for="archive-category">유형</label>
+        <select id="archive-category" name="category">
+          <option value="">전체 유형</option>
+          <!-- category-options:start -->
+          <!-- category-options:end -->
+        </select>
+      </div>
+      <div class="archive-field"><label for="archive-year">발행 연도</label>
+        <select id="archive-year" name="year">
+          <option value="">전체 연도</option>
+          <!-- year-options:start -->
+          <!-- year-options:end -->
+        </select>
+      </div>
+      <button type="reset">초기화</button>
+    </form>
+    <p id="archive-status" class="archive-status" role="status" hidden></p>
+    <div id="archive-results">
+      <!-- archive-posts:start -->
+      <!-- archive-posts:end -->
+    </div>
+    <nav id="archive-pages" class="archive-pages" aria-label="연구 보관함 페이지" hidden>
+      <button type="button" data-direction="-1">이전</button>
+      <span id="archive-page-number"></span>
+      <button type="button" data-direction="1">다음</button>
+    </nav>
+  </main>
+  <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>
