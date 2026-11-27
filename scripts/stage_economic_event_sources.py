@@ -49,11 +49,12 @@ def sdk_downloader(bucket, region, workers):
     return download
 
 
-def stage(catalog, output, bucket, region, end, workers, use_sdk=False):
+def stage(catalog, output, bucket, region, end, workers, use_sdk=False, *, ownership=False):
+    from knowledge_graph.ingestion.control_ownership import filing_type
     filings = {}
     for path in metadata_files(catalog):
         for row in read_rows(path):
-            if row.get("corp_cls") in LISTED and row["rcept_dt"] <= end:
+            if (ownership or row.get("corp_cls") in LISTED) and row["rcept_dt"] <= end:
                 filings[row["rcept_no"]] = row
     if not filings:
         raise ValueError("No listed-company filing metadata found")
@@ -63,7 +64,8 @@ def stage(catalog, output, bucket, region, end, workers, use_sdk=False):
     index.replace(output / "filings.json")
     candidates = {
         receipt for receipt, row in filings.items()
-        if compact(re.sub(r"^(?:\[[^]]+\]\s*)+", "", row["report_nm"].strip())) in FORMS
+        if (filing_type(row["report_nm"]) if ownership else
+            compact(re.sub(r"^(?:\[[^]]+\]\s*)+", "", row["report_nm"].strip())) in FORMS)
     }
     sources = defaultdict(set)
     for inventory in sorted(catalog.glob("*.tsv")):
@@ -118,7 +120,8 @@ if __name__ == "__main__":
     parser.add_argument("--region", required=True)
     parser.add_argument("--end", required=True, type=date.fromisoformat)
     parser.add_argument("--workers", type=int, default=6)
+    parser.add_argument("--ownership", action="store_true", help="Stage controller and large-holding reports across all markets")
     parser.add_argument("--sdk", action="store_true", help="Reuse a botocore client for S3 downloads")
     args = parser.parse_args()
     print(json.dumps(stage(args.catalog, args.output, args.bucket, args.region,
-                           args.end.strftime("%Y%m%d"), args.workers, args.sdk)))
+                           args.end.strftime("%Y%m%d"), args.workers, args.sdk, ownership=args.ownership)))

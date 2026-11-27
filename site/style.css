@@ -31,10 +31,6 @@ nav a { color: var(--muted); padding-inline: .35rem; text-decoration: none; font
 nav a:hover, .index a:hover strong { color: var(--accent); text-decoration: underline; }
 h1, h2, h3 { margin: 0; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; }
 h1 { font-weight: 700; }
-.intro { padding-block: clamp(1.75rem, 3.8vw, 3rem); }
-.intro h1 { font-size: clamp(2.85rem, 6.2vw, 4.65rem); line-height: 1.02; }
-.intro p { color: var(--muted); max-width: 65ch; margin: .8rem 0 0; }
-.intro-subtitle { display: block; margin-top: .55rem; font-size: clamp(1.25rem, 2.6vw, 1.7rem); font-weight: 650; letter-spacing: -.025em; }
 .chapter { padding-block: 1.15rem 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.7fr); gap: .75rem 2.5rem; border-top: 1px solid var(--line); }
 .chapter h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
 .index { list-style: none; margin: 0; padding: 0; border-radius: 1rem; background: var(--surface); }
@@ -97,17 +93,53 @@ h1 { font-weight: 700; }
 }
 
 /* The homepage presents the latest work. The archive owns the full index. */
-.intro {
+.research-home { background: var(--surface); }
+.featured {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(1.25rem, 4vw, 3.5rem);
+  gap: clamp(1rem, 5vw, 4.5rem);
+  padding-block: clamp(2rem, 6vw, 5rem);
 }
-.intro-guide { background: #1b3052; color: #f4f7ff; padding: clamp(1rem, 3vw, 1.65rem); border-radius: .85rem; }
-.intro-guide h2 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
-.intro-guide a { color: inherit; }
-.intro-guide p { color: #dce6f8; font-size: .98rem; }
-.intro-guide a:focus-visible { outline-color: #dce6f8; }
+.featured-context { margin: 0 0 .6rem; color: var(--accent-strong); font-size: .94rem; font-weight: 700; }
+.featured h1 { font-size: clamp(1.95rem, 4.3vw, 3.4rem); }
+.featured h1 a { color: var(--ink); text-decoration: none; }
+.featured h1 a:hover { color: var(--accent); text-decoration: underline; }
+.featured-summary { margin: 1rem 0; color: var(--muted); }
+.featured-links { display: inline; }
+.featured-read, .featured-guide {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .45rem .85rem;
+  border-radius: .55rem;
+  font-size: .94rem;
+  font-weight: 700;
+}
+.featured-read { background: var(--accent-strong); color: var(--surface); text-decoration: none; }
+.featured-read:hover { text-decoration: underline; }
+.featured-guide:hover { background: var(--accent-wash); }
+.featured-result {
+  margin: 0;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+}
+.featured-result figcaption { font-size: .94rem; font-weight: 650; }
+.featured-metric {
+  margin: .25rem 0 .45rem;
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -.06em;
+  font-variant-numeric: tabular-nums;
+}
+.featured-metric span { margin-left: .15em; font-size: .46em; letter-spacing: 0; }
+.featured-sample { margin: 0; color: var(--muted); font-size: .94rem; }
+.research-home .chapter { padding-block: clamp(1.4rem, 4vw, 2.6rem); }
+
 .journal-all { display: inline-flex; align-items: center; min-height: 44px; margin-top: .35rem; font-size: .95rem; font-weight: 650; }
 .journal-entry { min-width: 0; padding: .9rem 0 1rem; }
 .journal-entry + .journal-entry { border-top: 1px solid var(--line); }
@@ -148,7 +180,7 @@ h1 { font-weight: 700; }
 .journal-year .journal-entry { grid-column: 2; }
 .archive-pages { justify-content: center; align-items: center; gap: .75rem; margin-top: 1rem; font-variant-numeric: tabular-nums; }
 @media (max-width: 43rem) {
-  .intro { grid-template-columns: minmax(0, 1fr); }
+  .featured { grid-template-columns: minmax(0, 1fr); }
   .journal-home .journal-entry:first-child { padding-top: .2rem; }
   .archive-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archive-field:first-child { grid-column: 1 / -1; }

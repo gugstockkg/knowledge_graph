@@ -30,3 +30,14 @@ M01,method,설계 근거,,,,역량 질문으로 범위를 정한 뒤 공시 원�
 M02,method,CSV 정의서,,,,CSV에 개념과 관계의 범위 및 연결 수를 정의하고 속성 자료형과 검증 규칙을 명세한다,ontology.csv 및 설계 설명서,CQ1 CQ2 CQ3 CQ4,applied
 M03,method,Neo4j 레이블 속성 그래프,,,,Neo4j LPG에서 개념을 노드 라벨로 표현한다. 연결은 관계 타입으로 표현하고 값을 노드나 관계의 속성에 저장한다. Cypher로 조회를 검증한다,EC2 Neo4j 파일럿과 기준일 조회,CQ1 CQ2 CQ4,applied
 M04,method,RDF와 SHACL 후속 검증,,,,일부 그래프를 RDF로 내보내고 SHACL로 필수 근거 연결과 자료형을 검사하는 방안을 검토한다. OWL 공리 구현은 별도로 정의한다,W3C RDF와 SHACL 표준,CQ4,planned
+ShareTransfer,class,주식 이전 거래,,,0..n,증권이 당사자 사이에서 이동한 거래 또는 공시가 보고한 이전 단계,거래 세부행·계약 비고,CQ5,draft
+HoldingObservation,class,보유 관측,,,0..n,특정 주체나 보고집단이 기준일에 보고한 보유 상태,대량보유 총괄표,CQ5,draft
+FilingReference,class,공시 참조,,,0..n,원문이 다른 공시를 가리키는 관측이며 참조 목적을 보존한다,관련공시 행·본문·링크,CQ5,draft
+LinkAssessment,class,연결 판정,,,0..n,공시 쌍에 대한 같은 거래·수치 보강·별도 사건·보류 판정과 근거,판정에 사용된 원문 위치,CQ5,draft
+transaction_date,property,거래일,ShareTransfer,date,0..1,해당 거래 세부행의 취득 또는 처분일,세부변동내역 변동일,CQ5,draft
+closing_date,property,종결일,ShareTransfer,date,0..1,계약 이행이 종결됐다고 보고된 날짜,원문 계약 관련 비고,CQ5,draft
+report_trigger_date,property,보고의무발생일,Filing,date,0..1,보고의무가 발생했다고 공시에 기재한 날짜,대량보유 보고서 표지,CQ5,draft
+transfer_quantity,property,이전 수량,ShareTransfer,integer,0..1,개별 거래에서 이전된 증권 수량,세부변동내역·계약 비고,CQ5,draft
+TRANSFEROR,edge,양도인,ShareTransfer,Party,0..n,거래에서 증권을 넘긴 당사자,세부변동내역·계약 비고,CQ5,draft
+TRANSFEREE,edge,양수인,ShareTransfer,Party,0..n,거래에서 증권을 받은 당사자,세부변동내역·계약 비고,CQ5,draft
+Party,class,거래 또는 보유 주체,,,0..n,원문에서 특정 역할로 보고된 개인 또는 단체,당사자 표·비고,CQ5,draft
