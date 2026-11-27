@@ -51,3 +51,22 @@ MATCH buyer_path = (:Company)-[:PURCHASED_IN]->(k)
 MATCH filing_path = (k)-[:REPORTED_IN]->(:Filing)
 MATCH evidence_path = (k)-[:SUPPORTED_BY]->(:TraceContractEvidence)
 RETURN supplier_path, buyer_path, filing_path, evidence_path;
+
+// 넥스틴의 공급계약을 품목과 구매자까지 조회
+MATCH path = (supplier:Company)-[:SUPPLIED_IN]->(contract:SupplyContract {receipt:'20261006900146'})
+             <-[:PURCHASED_IN]-(buyer:Company)
+MATCH product_path = (contract)-[:COVERS_PRODUCT]->(:ProductCategory)
+MATCH (contract)-[:HAS_TERMS_OBSERVATION]->(terms:ContractTermsObservation {observation_type:'original'})
+RETURN path, product_path, terms.contract_amount_krw AS amount_krw,
+       terms.supplier_reported_sales_pct AS sales_pct, terms.start_date AS starts_on,
+       terms.end_date AS ends_on;
+
+// 개별 계약의 원래 조건과 공시별 변경값을 당시 공개 정보로 조회
+// 기준일을 변경해 예정 종료일 등 변경 전후를 확인
+MATCH (:SupplyContract {receipt:'20260119900439'})-[:HAS_TERMS_OBSERVATION]->
+      (terms:ContractTermsObservation)-[:REPORTED_IN]->(filing:Filing)
+WHERE terms.known_on <= date('2026-02-24')
+RETURN terms.known_on AS known_on, terms.observation_type AS type,
+       terms.changed_fields AS changed_fields, terms.end_date AS disclosed_end_date,
+       filing.receipt AS receipt
+ORDER BY known_on, receipt;

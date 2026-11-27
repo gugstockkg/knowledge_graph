@@ -34,3 +34,12 @@
 ## 적용 범위
 
 기존 공시 카탈로그의 기업·공시 노드를 재사용한다. 시설투자와 실적의 도메인 항목은 원문을 읽고 값을 확인한 뒤 보강한다. 운영 중인 카탈로그의 전체 규모와 이 서브그래프의 적재 결과는 각 범위에 맞춰 집계한다. SHACL 검사는 RDF 내보내기가 필요한 후속 검증으로 둔다.
+
+## EC2에서 스냅샷 재현
+
+1. 카탈로그를 만들 때 사용한 공시 목록 JSON·JSONL과 S3 객체 인벤토리 TSV를 준비한다. `scripts/stage_economic_event_sources.py`는 경제 사건에 해당하는 공시 ZIP만 대상 경로에 내려받는다. `PYTHONPATH=src`를 지정한다.
+2. `KG_DATA_DIR` 아래 `raw/opendart/collections/<수집분>`을 입력으로 두고, `python3 -m knowledge_graph.ingestion.economic_events --end YYYY-MM-DD --output economic-events.json`으로 관측을 생성한다.
+3. 기존 카탈로그와 공개일이 맞는지 대조하도록 `python3 -m knowledge_graph.graph.economic_events economic-events.json`을 실행한다. `NEO4J_HTTP_URL`은 적재할 Neo4j를 가리킨다.
+4. `python3 scripts/verify_economic_event_graph.py economic-events.json`으로 항목별 개수, 공시 연결, 기준일 경계를 확인한다. 적재와 검증을 반복해 동일한 결과인지 비교한다.
+
+계약 정정은 별도 관측으로 기록한다. 같은 기업의 선행 공시를 접수번호로 찾거나, 선행 접수일·원문 계약명·체결일이 모두 일치하는 한 건으로 연결한다. 정정표에 표시된 변경 항목만 넣으므로 종료일을 바꾼 정정 관측에서 기존 금액을 덮어쓰지 않는다.
