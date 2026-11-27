@@ -111,6 +111,8 @@ def collect(collections, start, end, listed_markets=MARKETS):
             "description": fields["description"], "amount_krw": fields.get("amount_krw"),
             "reported_sales_pct": fields.get("reported_sales_pct"),
             "conditional": fields.get("conditional"),
+            "signed_date": field(fields, "signed_date"), "start_date": field(fields, "start_date"),
+            "end_date": field(fields, "end_date"),
             "buyer_evidence": evidence, "buyer": buyer, "buyer_status": state,
         })
     counts["events"] = len(events)

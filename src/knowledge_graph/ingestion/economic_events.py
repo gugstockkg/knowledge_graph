@@ -5,13 +5,13 @@ import json
 import math
 import re
 import zipfile
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from ..config import get_paths
-from .contract_pilot import TableRows, compact, date_iso, json_save, read_archive
+from .contract_pilot import TableRows, compact, date_iso, field, is_subsidiary_report, json_save, parse_contract, read_archive
 from .trace_contracts import collect as collect_contracts
 
 LISTED = {"Y", "K", "N"}
@@ -97,7 +97,82 @@ def contract_category(description):
     return dict(zip(("category_id", "category_name"), matches[0])) if len(matches) == 1 else {}
 
 
-def announcements(collections, start, end, stats):
+AMENDABLE_TERMS = {
+    "계약내역계약금액원": "contract_amount_krw",
+    "계약내역계약금액총액원": "contract_amount_krw",
+    "계약내역매출액대비": "supplier_reported_sales_pct",
+    "계약기간시작일": "start_date",
+    "계약기간종료일": "end_date",
+}
+
+
+def amendment_fields(rows):
+    """Read only explicit, individually labelled changes in the correction table."""
+    fields = {}
+    missing = {"", "-", "－", "—"}
+    in_changes = False
+    for row in rows:
+        values = [cell[0] for cell in row]
+        if values[:3] == ["정정항목", "정정전", "정정후"]:
+            in_changes = True
+            continue
+        if not in_changes:
+            continue
+        if len(values) < 3:
+            break
+        label, before, after = values[:3]
+        key = AMENDABLE_TERMS.get(compact_label(label))
+        if not key or after in missing or before == after:
+            continue
+        if key in fields:
+            raise ValueError("repeated field in amendment table")
+        if key == "contract_amount_krw":
+            value = money(after, "원")
+            if value < 0:
+                raise ValueError("negative contract amount")
+        elif key == "supplier_reported_sales_pct":
+            value = float(after.replace(",", "").replace("%", ""))
+            if not math.isfinite(value):
+                raise ValueError("non-finite sales ratio")
+        else:
+            value = date.fromisoformat(after).isoformat()
+        fields[key] = dict(value=value, before=before, after=after, line=row[2][1])
+    return fields
+
+
+def contract_amendment(row, receipt, document, cells, lineage, by_signature):
+    """Resolve an earlier version using receipt or issuer, filed date and contract signature."""
+    contract_fields = parse_contract(document)
+    if is_subsidiary_report(row["report_nm"], contract_fields):
+        raise ValueError("contract amendment is a subsidiary disclosure")
+    refs = field(contract_fields, "related_receipts") or []
+    submitted = unique(cells_after(cells, "정정관련공시서류제출일"))[0]
+    date_parts = re.findall(r"\d+", submitted)
+    if len(date_parts) != 3:
+        raise ValueError("missing or ambiguous prior filing date")
+    reference_day = date(*map(int, date_parts)).isoformat()
+    known_on = date_iso(row["rcept_dt"])
+    if reference_day >= known_on:
+        raise ValueError("prior publication order is unavailable")
+    corp = row["corp_code"]
+    description = field(contract_fields, "description")
+    signed_date = field(contract_fields, "signed_date")
+    signature = (compact(description).casefold(), signed_date) if description and signed_date else None
+    candidates = [ref for ref in refs if ref in lineage and lineage[ref][:2] == (corp, reference_day)]
+    if not candidates and signature:
+        candidates = by_signature.get((corp, reference_day, signature), [])
+    prior = unique(candidates)
+    original = lineage[prior][2]
+    fields = amendment_fields(cells)
+    if not fields:
+        raise ValueError("no supported changed terms")
+    result = dict(receipt=receipt, contract_receipt=original, preceding_receipt=prior,
+                  corp_code=corp, known_on=known_on, changes={key: field["value"] for key, field in fields.items()},
+                  changed_fields=sorted(fields), change_evidence=json.dumps(fields, ensure_ascii=False))
+    return result, signature
+
+
+def announcements(collections, start, end, stats, lineage, by_signature):
     filed = {}
     for collection in collections:
         index = collection / "filings.json"
@@ -114,7 +189,7 @@ def announcements(collections, start, end, stats):
                     kind = "facility"
                 elif title in ("연결재무제표기준영업잠정실적공정공시", "개별재무제표기준영업잠정실적공정공시"):
                     kind = "financial"
-                elif correction and title == "단일판매공급계약체결":
+                elif raw_title.startswith("[기재정정]") and title == "단일판매공급계약체결":
                     kind = "contract_amendment"
                 else:
                     continue
@@ -128,18 +203,28 @@ def announcements(collections, start, end, stats):
         if not archive.is_file():
             stats[kind + "_missing_zip"] += 1
             continue
-        if kind == "contract_amendment" or (kind == "facility" and correction):
+        if kind == "facility" and correction:
             stats[kind + "_pending_version_link"] += 1
             continue
         try:
             raw, _, digest = read_archive(archive, receipt)
             cells = row_cells(raw)
-            fields = [facility_fields(cells)] if kind == "facility" else financial_fields(cells)
+            if kind == "contract_amendment":
+                item, signature = contract_amendment(row, receipt, raw, cells, lineage, by_signature)
+                fields = [item]
+            elif kind == "facility":
+                fields = [facility_fields(cells)]
+            else:
+                fields = financial_fields(cells)
         except (ValueError, OSError, zipfile.BadZipFile):
             stats[kind + "_unsupported_form"] += 1
             continue
         stats[kind + "_parsed_filings"] += 1
         for item in fields:
+            if kind == "contract_amendment":
+                lineage[receipt] = (row["corp_code"], item["known_on"], item["contract_receipt"])
+                if signature:
+                    by_signature[(row["corp_code"], item["known_on"], signature)].append(receipt)
             if kind == "financial":
                 item.update(consolidation_scope="consolidated" if title.startswith("연결") else "separate",
                             publication_stage="correction_notice" if correction else "preliminary_notice")
@@ -150,7 +235,7 @@ def announcements(collections, start, end, stats):
 def collect(collections, start, end):
     raw_contracts, contract_counts = collect_contracts(collections, start, end, LISTED)
     stats = Counter({"contract_" + key: value for key, value in contract_counts.items()})
-    result = {"contracts": [], "facility": [], "financial": []}
+    result = {"contracts": [], "facility": [], "financial": [], "contract_amendment": []}
     for row in raw_contracts:
         description = row["description"]["value"]
         amount = row["amount_krw"] or {}
@@ -166,8 +251,16 @@ def collect(collections, start, end):
             sha256=row["document_sha256"], amount_krw=amount.get("value"), amount_raw=amount.get("text"),
             reported_sales_pct=ratio_value, reported_sales_pct_raw=ratio.get("text"),
             conditional_raw=(row["conditional"] or {}).get("text"),
+            signed_date=row["signed_date"], start_date=row["start_date"], end_date=row["end_date"],
             buyer_status=row["buyer_status"], **contract_category(description)))
-    for kind, row in announcements(collections, start, end, stats):
+    lineage = {row["receipt"]: (row["supplier"], row["known_on"], row["receipt"])
+               for row in result["contracts"]}
+    by_signature = defaultdict(list)
+    for row in result["contracts"]:
+        if row["signed_date"]:
+            signature = (compact(row["product"]).casefold(), row["signed_date"])
+            by_signature[(row["supplier"], row["known_on"], signature)].append(row["receipt"])
+    for kind, row in announcements(collections, start, end, stats, lineage, by_signature):
         result[kind].append(row)
     return dict(start=start, end=end, counts=dict(stats),
                 rows={kind: len(rows) for kind, rows in result.items()}, **result)

@@ -32,9 +32,11 @@ MERGE (k)-[:REPORTED_IN]->(f)
 MERGE (t:ContractTermsObservation {id:row.receipt})
 SET t.known_on=date(row.known_on), t.contract_amount_krw=row.amount_krw,
     t.amount_raw=row.amount_raw, t.conditional_raw=row.conditional_raw,
+    t.signed_date=date(row.signed_date), t.start_date=date(row.start_date),
+    t.end_date=date(row.end_date),
     t.supplier_reported_sales_pct=row.reported_sales_pct,
     t.reported_sales_pct_raw=row.reported_sales_pct_raw, t.source_sha256=row.sha256,
-    t.product_line=row.product_line
+    t.product_line=row.product_line, t.observation_type="original"
 MERGE (k)-[:HAS_TERMS_OBSERVATION]->(t)
 MERGE (t)-[:REPORTED_IN]->(f)
 FOREACH (_ IN CASE WHEN b IS NULL THEN [] ELSE [1] END |
@@ -48,6 +50,24 @@ ANNOUNCEMENT_MATCH = """
 UNWIND $rows AS row
 MATCH (f:Filing {receipt:row.receipt})-[:IS_ABOUT]->(c:Company {corp_code:row.corp_code})
 WHERE f.receipt_date=date(row.known_on)
+"""
+AMENDMENT_VALIDATE = ANNOUNCEMENT_MATCH + """
+MATCH (origin:Filing {receipt:row.contract_receipt})-[:IS_ABOUT]->(c)
+MATCH (prior:Filing {receipt:row.preceding_receipt})-[:IS_ABOUT]->(c)
+WHERE prior.receipt_date < f.receipt_date AND origin.receipt_date <= prior.receipt_date
+"""
+AMENDMENT = AMENDMENT_VALIDATE + """
+MATCH (k:SupplyContract {receipt:row.contract_receipt})<-[:SUPPLIED_IN]-(c)
+MERGE (t:ContractTermsObservation {id:row.receipt})
+SET t.known_on=date(row.known_on), t.observation_type="amendment",
+    t.preceding_receipt=row.preceding_receipt, t.changed_fields=row.changed_fields,
+    t.change_evidence=row.change_evidence, t.source_sha256=row.sha256,
+    t.contract_amount_krw=row.changes.contract_amount_krw,
+    t.supplier_reported_sales_pct=row.changes.supplier_reported_sales_pct,
+    t.start_date=date(row.changes.start_date), t.end_date=date(row.changes.end_date)
+MERGE (k)-[:HAS_TERMS_OBSERVATION]->(t)
+MERGE (t)-[:REPORTED_IN]->(f)
+RETURN count(t) AS loaded
 """
 FACILITY = ANNOUNCEMENT_MATCH + """
 MERGE (k:FacilityInvestment {receipt:row.receipt})
@@ -79,11 +99,14 @@ def import_snapshot(data):
         "contracts": (CONTRACT_MATCH + "RETURN count(f) AS loaded,count(b) AS buyers", CONTRACT),
         "facility": (ANNOUNCEMENT_MATCH + "RETURN count(f) AS loaded", FACILITY),
         "financial": (ANNOUNCEMENT_MATCH + "RETURN count(f) AS loaded", FINANCIAL),
+        "contract_amendment": (AMENDMENT_VALIDATE + "RETURN count(f) AS loaded", AMENDMENT),
     }
 
     def batch(statement, key):
-        counts = {}
-        rows = data[key]
+        counts = {"loaded": 0}
+        if key == "contracts":
+            counts["buyers"] = 0
+        rows = data.get(key, [])
         for start in range(0, len(rows), 200):
             response = table(statement, {"rows": rows[start:start + 200], "snapshot": snapshot})
             for name, value in response[0].items():
@@ -92,7 +115,7 @@ def import_snapshot(data):
 
     preflight = {}
     for key, (match, _) in specs.items():
-        expected = {"loaded": len(data[key])}
+        expected = {"loaded": len(data.get(key, []))}
         if key == "contracts":
             expected["buyers"] = sum(row.get("buyer") is not None for row in data[key])
         preflight[key] = batch(match, key)
