@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram id="schema" name="Neo4j 실측 스키마">
+    <mxGraphModel grid="1" page="1" pageWidth="964" pageHeight="440" arrows="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="FINTOS OpenDART 기본 지식그래프" parent="1" vertex="1" style="text;html=1;align=left;fontSize=26;fontStyle=1;">
+          <mxGeometry as="geometry" x="26" y="22" width="910" height="44" />
+        </mxCell>
+        <mxCell id="subtitle" value="Neo4j Community 2026.10.2 · 접수일 2026-01-02~2026-11-26" parent="1" vertex="1" style="text;align=left;fontSize=15;fontColor=#495a72;">
+          <mxGeometry as="geometry" x="26" y="67" width="910" height="30" />
+        </mxCell>
+        <mxCell id="company" value="&lt;b style=&quot;font-size:20px&quot;&gt;Company&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color:#244acb&quot;&gt;기업 · 45,201개&lt;/b&gt;&lt;br&gt;&lt;br&gt;corp_code · 기업 고유 코드&lt;br&gt;name · 기업명&lt;br&gt;stock_code · 종목 코드&lt;br&gt;corp_class · 기업 구분" parent="1" vertex="1" style="rounded=1;html=1;align=left;spacingLeft=15;verticalAlign=middle;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="26" y="136" width="248" height="197" />
+        </mxCell>
+        <mxCell id="filing" value="&lt;b style=&quot;font-size:20px&quot;&gt;Filing&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color:#244acb&quot;&gt;공시 · 253,432건&lt;/b&gt;&lt;br&gt;&lt;br&gt;receipt · 접수번호&lt;br&gt;receipt_date · 접수일&lt;br&gt;title · 공시 제목&lt;br&gt;source_state · 원문 연결 상태" parent="1" vertex="1" style="rounded=1;html=1;align=left;spacingLeft=15;verticalAlign=middle;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="352" y="136" width="248" height="197" />
+        </mxCell>
+        <mxCell id="document" value="&lt;b style=&quot;font-size:20px&quot;&gt;SourceDocument&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color:#244acb&quot;&gt;원문 객체 · 418,288개&lt;/b&gt;&lt;br&gt;&lt;br&gt;s3_key · 저장 키&lt;br&gt;format · 파일 형식&lt;br&gt;bytes · 바이트 수&lt;br&gt;한 공시에 여러 객체 연결" parent="1" vertex="1" style="rounded=1;html=1;align=left;spacingLeft=15;verticalAlign=middle;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="678" y="136" width="248" height="197" />
+        </mxCell>
+        <mxCell id="topic" value="IS_ABOUT" parent="1" edge="1" source="filing" target="company" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=11;labelBackgroundColor=#ffffff;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="source" value="HAS_SOURCE_DOCUMENT" parent="1" edge="1" source="filing" target="document" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=11;labelBackgroundColor=#ffffff;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="result" value="노드 716,921개 · 관계 671,720개&lt;br&gt;원문 연결 공시 205,243건 · 동일 공시의 ZIP과 XML은 별도 객체" parent="1" vertex="1" style="text;html=1;align=left;fontSize=15;fontColor=#495a72;">
+          <mxGeometry as="geometry" x="26" y="365" width="910" height="47" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="pipeline" name="S3 수집부터 Neo4j 조회까지">
+    <mxGraphModel grid="1" page="1" pageWidth="964" pageHeight="440" arrows="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="S3 수집부터 Neo4j 조회까지" parent="1" vertex="1" style="text;align=left;fontSize=26;fontStyle=1;">
+          <mxGeometry as="geometry" x="26" y="22" width="910" height="44" />
+        </mxCell>
+        <mxCell id="sources" value="&lt;b&gt;OpenDART 수집&lt;/b&gt;&lt;br&gt;&lt;br&gt;과거 수집분과 일일 수집분&lt;br&gt;공시 목록·원문 객체" parent="1" vertex="1" style="rounded=1;html=1;spacing=14;align=left;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="26" y="126" width="197" height="153" />
+        </mxCell>
+        <mxCell id="catalog" value="&lt;b&gt;공시 목록 정리&lt;/b&gt;&lt;br&gt;&lt;br&gt;접수번호로 중복 제거&lt;br&gt;원문 연결 상태 기록" parent="1" vertex="1" style="rounded=1;html=1;spacing=14;align=left;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="261" y="126" width="197" height="153" />
+        </mxCell>
+        <mxCell id="flow1" value="" parent="1" edge="1" source="sources" target="catalog" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=11;labelBackgroundColor=#ffffff;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="bulk" value="&lt;b&gt;EC2 적재&lt;/b&gt;&lt;br&gt;&lt;br&gt;노드·관계 CSV&lt;br&gt;Neo4j 일괄 적재" parent="1" vertex="1" style="rounded=1;html=1;spacing=14;align=left;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="496" y="126" width="197" height="153" />
+        </mxCell>
+        <mxCell id="flow2" value="" parent="1" edge="1" source="catalog" target="bulk" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=11;labelBackgroundColor=#ffffff;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="query" value="&lt;b&gt;Cypher 조회&lt;/b&gt;&lt;br&gt;&lt;br&gt;기업별 공시·접수일 범위&lt;br&gt;원문 객체와 연결률" parent="1" vertex="1" style="rounded=1;html=1;spacing=14;align=left;fontSize=14;fillColor=#ffffff;strokeColor=#98afd9;">
+          <mxGeometry as="geometry" x="731" y="126" width="197" height="153" />
+        </mxCell>
+        <mxCell id="flow3" value="" parent="1" edge="1" source="bulk" target="query" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#244acb;strokeWidth=2;fontSize=11;labelBackgroundColor=#ffffff;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="note" value="현재 산출물은 공시 목록과 원문의 연결을 담은 2026-11-27 검증 스냅샷입니다." parent="1" vertex="1" style="text;align=left;fontSize=15;fontColor=#495a72;">
+          <mxGeometry as="geometry" x="26" y="320" width="910" height="45" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

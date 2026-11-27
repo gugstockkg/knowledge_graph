@@ -53,7 +53,7 @@ def catalog(root):
                 stats["duplicate_metadata_rows"] += 1
                 if previous[:2] != (receipt_date, corp):
                     raise ValueError(f"Conflicting receipt date or company for {receipt}")
-            filings[receipt] = (receipt_date, corp, row["report_nm"], row.get("flr_nm", ""),
+            filings[receipt] = (receipt_date, corp, row["report_nm"].strip(), row.get("flr_nm", ""),
                                 row.get("rm", ""), row.get("document_state", ""), partition)
             if corp:
                 if not re.fullmatch(r"\d{8}", corp):

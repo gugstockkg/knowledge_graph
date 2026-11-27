@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FINTOS OpenDART 공시 지식그래프의 데이터 범위, Neo4j 스키마, 원문 연결률과 실제 Cypher 조회 결과">
+  <title>OpenDART 공시 지식그래프 데이터 설명서 | FINTOS</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 이동</a>
+  <header class="shell top"><a class="brand" href="../">FINTOS</a><nav aria-label="주요 메뉴"><a href="../#journal">연구 글</a><a href="../#artifacts">산출물</a></nav></header>
+  <main class="post dataset" id="content">
+    <a class="back" href="../">연구 홈</a>
+    <h1>OpenDART 공시 지식그래프</h1>
+    <p class="post-meta">2026년 11월 27일에 검증한 스냅샷 · 접수일 2026년 1월 2일~11월 26일</p>
+    <p class="lead">기업별 공시를 접수일 순으로 따라가고, 각 공시의 원문을 찾아갈 수 있는 그래프입니다. 공시 목록과 S3에 확보한 ZIP·XML을 접수번호로 연결했습니다.</p>
+    <dl class="dataset-stats">
+      <div><dt>공시</dt><dd>253,432건</dd></div>
+      <div><dt>기업</dt><dd>45,201개</dd></div>
+      <div><dt>원문 연결 공시</dt><dd>81.0%</dd></div>
+    </dl>
+    <nav class="dataset-nav" aria-label="문서 목차"><a href="#schema">스키마</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
+
+    <section aria-labelledby="schema">
+      <h2 id="schema">스키마와 규모</h2>
+      <figure class="dataset-figure">
+        <div class="table-scroll" role="region" aria-label="그래프 스키마 그림" tabindex="0">
+          <img src="disclosure-graph.svg" width="952" height="408" alt="Filing에서 Company로 IS_ABOUT, SourceDocument로 HAS_SOURCE_DOCUMENT 관계가 이어집니다.">
+        </div>
+        <figcaption><a href="disclosure-graph.drawio" download>편집용 draw.io 다운로드</a> · <a href="disclosure-graph.svg">SVG 보기</a></figcaption>
+      </figure>
+      <div class="table-scroll" role="region" aria-label="엔티티 목록" tabindex="0">
+        <table>
+          <caption>노드 716,921개</caption>
+          <thead><tr><th scope="col">노드 라벨</th><th scope="col">개수</th><th scope="col">고유 키와 주요 속성</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code>Company</code></th><td>45,201</td><td><code>corp_code</code> · 기업명, 기업 구분, 종목 코드. 종목 코드가 비어 있는 기업도 있습니다.</td></tr>
+            <tr><th scope="row"><code>Filing</code></th><td>253,432</td><td><code>receipt</code> · 접수일, 제목, 제출인명, 비고, 원문 연결 상태, 목록 파티션.</td></tr>
+            <tr><th scope="row"><code>SourceDocument</code></th><td>418,288</td><td><code>s3_key</code> · 파일 형식과 바이트 수. ZIP 219,278개와 XML 199,010개가 연결됐습니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-scroll" role="region" aria-label="관계 목록" tabindex="0">
+        <table>
+          <caption>관계 671,720개</caption>
+          <thead><tr><th scope="col">관계</th><th scope="col">방향</th><th scope="col">개수</th><th scope="col">뜻</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code>IS_ABOUT</code></th><td>공시 → 기업</td><td>253,432</td><td>OpenDART 목록의 기업 코드와 연결됩니다.</td></tr>
+            <tr><th scope="row"><code>HAS_SOURCE_DOCUMENT</code></th><td>공시 → 원문 객체</td><td>418,288</td><td>접수번호에 해당하는 S3 파일을 가리킵니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>한 공시에 ZIP과 XML이 각각 있을 수 있고, 여러 수집분에서 확보한 ZIP도 별도 객체로 남습니다. 원문 객체 수보다 <strong>원문이 연결된 공시 수</strong>가 분석 범위를 판단하는 데 적합합니다. 접수번호와 기업 코드는 앞자리 0을 보존하는 문자열이며, 접수일은 Neo4j의 <code>DATE</code> 속성입니다. 고유 키 세 개에 유일성 제약을 두고 접수일에 인덱스를 만들었습니다.</p>
+    </section>
+
+    <section aria-labelledby="build">
+      <h2 id="build">데이터 수집과 구축 리소스</h2>
+      <p>OpenDART의 과거 수집분과 EC2 일일 수집분을 S3에서 읽었습니다. 접수번호로 공시 목록을 합치고, S3 객체 목록에서 접수번호가 맞는 원문을 연결했습니다. 노드·관계 CSV를 만든 뒤 EC2의 별도 Neo4j Community 데이터베이스에 일괄 적재했습니다. <a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&amp;apiId=2019001">OpenDART 공시검색</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/build_disclosure_catalog.py">카탈로그 변환 코드</a></p>
+      <div class="table-scroll" role="region" aria-label="구축 환경과 실측값" tabindex="0">
+        <table>
+          <caption>2026년 11월 27일 EC2 실측</caption>
+          <thead><tr><th scope="col">항목</th><th scope="col">구성·측정값</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">실행 환경</th><td>EC2 m6i.xlarge · 4 vCPU / 16GiB · EBS 100GiB · Neo4j Community 2026.10.2</td></tr>
+            <tr><th scope="row">일괄 적재</th><td>CSV 준비 후 약 7.6초. 목록 수집, CSV 변환, 인덱스 생성은 별도 작업입니다.</td></tr>
+            <tr><th scope="row">파일 크기</th><td>Neo4j 데이터 디렉터리 약 882MiB, 적재 CSV 약 150MiB.</td></tr>
+            <tr><th scope="row">조회 중 메모리</th><td>Neo4j 컨테이너 약 1.16GiB. 컨테이너 상한 4GiB. GPU·LLM 호출 없이 구축했습니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>검수에서는 고유 키 세 종류를 전수 대조하고, 모든 공시의 기업 연결과 모든 원문 객체의 공시 연결을 확인했습니다. 공시 제목의 앞뒤 공백을 정리한 뒤 같은 조회를 다시 실행했습니다.</p>
+      <p>일일 수집은 S3 원천을 갱신합니다. 이 Neo4j 그래프는 고정 스냅샷으로, 새 공시가 자동으로 반영되는 그래프 배치는 아직 연결하지 않았습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/runbooks/opendart_ec2_batch.md">수집 운영 문서</a></p>
+    </section>
+
+    <section aria-labelledby="examples">
+      <h2 id="examples">EC2에서 실행한 Cypher와 결과</h2>
+      <p>아래 표는 위 스냅샷을 직접 조회한 값입니다. 실제 공시는 접수번호를 눌러 DART에서 읽을 수 있습니다. <a href="examples.cypher" download>전체 예제 질의 다운로드</a></p>
+      <h3 id="lookup-company">금호에이치티의 원공시와 정정 공시를 함께 찾을 수 있나?</h3>
+            <details><summary>실행한 Cypher 보기</summary><pre><code>MATCH (f:Filing)-[:IS_ABOUT]-&gt;(c:Company {corp_code:'00105606'})
+WHERE f.receipt IN ['20261028800611','20261029800490']
+OPTIONAL MATCH (f)-[:HAS_SOURCE_DOCUMENT]-&gt;(d:SourceDocument)
+RETURN c.name AS company,f.receipt_date AS receipt_date,f.receipt AS receipt,f.title AS title,count(d) AS source_objects
+ORDER BY receipt_date,receipt;</code></pre></details>
+      <div class="table-scroll" role="region" aria-labelledby="lookup-company" tabindex="0">
+        <table><thead><tr><th scope="col">접수일</th><th scope="col">제목</th><th scope="col">접수번호</th><th scope="col">원문 객체</th></tr></thead>
+        <tbody>
+          <tr><td>2026-10-28</td><td>최대주주변경</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800611">20261028800611</a></td><td>3</td></tr>
+          <tr><td>2026-10-29</td><td>[기재정정]최대주주변경</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800490">20261029800490</a></td><td>3</td></tr>
+        </tbody></table>
+      </div>
+      <p>정정 공시에 연결된 파일 세 개는 XML 한 개와 ZIP 두 개였습니다. 이 질의는 같은 기업의 지정 공시 두 건을 찾습니다. 항목별 정정 전후 수치를 비교한 과정은 별도의 파일럿에서 확인할 수 있습니다. <a href="../journal/2026-11-27-ontology-and-shacl/#pilot">정정 공시 파일럿</a></p>
+
+      <h3 id="lookup-candidates">최근 최대주주 변경 관련 공시 후보는 무엇인가?</h3>
+            <details><summary>실행한 Cypher 보기</summary><pre><code>MATCH (f:Filing)-[:IS_ABOUT]-&gt;(c:Company)
+WHERE f.receipt_date &gt;= date('2026-11-24')
+  AND f.receipt_date &lt;= date('2026-11-26')
+  AND replace(f.title,' ','') CONTAINS '최대주주변경'
+RETURN f.receipt_date AS receipt_date,c.name AS company,f.title AS title,f.receipt AS receipt,f.source_state AS source_state
+ORDER BY receipt_date DESC,receipt LIMIT 5;</code></pre></details>
+      <div class="table-scroll" role="region" aria-labelledby="lookup-candidates" tabindex="0">
+        <table><thead><tr><th scope="col">접수일</th><th scope="col">기업</th><th scope="col">공시 제목</th><th scope="col">접수번호</th></tr></thead>
+        <tbody>
+          <tr><td>2026-11-26</td><td>셀레믹스</td><td>[기재정정]최대주주변경을수반하는주식담보제공계약체결</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126900479">20261126900479</a></td></tr>
+          <tr><td>2026-11-26</td><td>셀레믹스</td><td>[기재정정]최대주주변경을수반하는주식담보제공계약체결</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126900533">20261126900533</a></td></tr>
+          <tr><td>2026-11-26</td><td>셀레믹스</td><td>[기재정정]최대주주변경을수반하는주식담보제공계약체결</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126900606">20261126900606</a></td></tr>
+          <tr><td>2026-11-26</td><td>드림인사이트</td><td>[기재정정]최대주주변경을수반하는주식양수도계약체결</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126900725">20261126900725</a></td></tr>
+          <tr><td>2026-11-25</td><td>다보링크</td><td>[기재정정]최대주주변경을수반하는주식양수도계약체결</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261125900452">20261125900452</a></td></tr>
+        </tbody></table>
+      </div>
+      <p>반환된 5건 모두 S3 원문 객체가 연결돼 있습니다. 제목이 같은 셀레믹스 공시 3건은 접수번호가 각각 다릅니다. 후보를 실제 변경 사건으로 연결하려면 원문에서 대상 계약, 완료 여부, 정정 대상 등을 확인해야 합니다.</p>
+
+      <h3 id="lookup-coverage">어느 달의 원문이 연결돼 있나?</h3>
+            <details><summary>실행한 Cypher 보기</summary><pre><code>MATCH (f:Filing)
+WITH substring(toString(f.receipt_date),0,7) AS month, f
+RETURN month,count(*) AS filings,count(CASE WHEN f.source_state='available' THEN 1 END) AS linked
+ORDER BY month;</code></pre></details>
+      <div class="table-scroll" role="region" aria-labelledby="lookup-coverage" tabindex="0">
+        <table><caption>공시 기준 원문 연결률 · 11월은 26일까지</caption><thead><tr><th scope="col">접수월</th><th scope="col">공시</th><th scope="col">원문 연결 공시</th><th scope="col">연결률</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">2026-01</th><td>14,561</td><td>11,500</td><td>79.0%</td></tr>
+          <tr><th scope="row">2026-02</th><td>25,365</td><td>22,747</td><td>89.7%</td></tr>
+          <tr><th scope="row">2026-03</th><td>42,117</td><td>34,269</td><td>81.4%</td></tr>
+          <tr><th scope="row">2026-04</th><td>51,071</td><td>48,263</td><td>94.5%</td></tr>
+          <tr><th scope="row">2026-05</th><td>19,365</td><td>17,282</td><td>89.2%</td></tr>
+          <tr><th scope="row">2026-06</th><td>18,076</td><td>15,955</td><td>88.3%</td></tr>
+          <tr><th scope="row">2026-07</th><td>17,444</td><td>14,951</td><td>85.7%</td></tr>
+          <tr><th scope="row">2026-08</th><td>23,061</td><td>13,979</td><td>60.6%</td></tr>
+          <tr><th scope="row">2026-09</th><td>12,962</td><td>0</td><td>0.0%</td></tr>
+          <tr><th scope="row">2026-10</th><td>13,951</td><td>11,923</td><td>85.5%</td></tr>
+          <tr><th scope="row">2026-11</th><td>15,459</td><td>14,374</td><td>93.0%</td></tr>
+        </tbody><tfoot><tr><th scope="row">합계</th><td>253,432</td><td>205,243</td><td>81.0%</td></tr></tfoot></table>
+      </div>
+      <p>연결률은 이 스냅샷에서 S3 원문 객체가 하나 이상 연결된 공시를 전체 공시로 나눈 값입니다. 추출 실험에 쓸 문서를 고를 때는 분석 기간과 함께 이 비율을 확인합니다.</p>
+      <details><summary>전체 원문 상태 집계</summary>
+        <div class="table-scroll" role="region" aria-label="원문 상태 집계" tabindex="0">
+          <table><thead><tr><th scope="col">원문 상태</th><th scope="col">공시 수</th><th scope="col">의미</th></tr></thead>
+          <tbody><tr><th scope="row"><code>available</code></th><td>205,243</td><td>S3 객체가 하나 이상 연결된 공시</td></tr>
+          <tr><th scope="row"><code>not_in_object_inventory</code></th><td>47,385</td><td>이 스냅샷의 S3 객체 목록에서 원문이 연결되지 않은 공시</td></tr>
+          <tr><th scope="row"><code>unavailable</code></th><td>804</td><td>수집 기록에서 원문 미제공으로 분류한 공시</td></tr></tbody></table>
+        </div>
+      </details>
+    </section>
+
+    <section aria-labelledby="limits">
+      <h2 id="limits">활용 범위와 업데이트</h2>
+      <ul>
+        <li><strong>공시 탐색</strong> · 기업 코드와 기간으로 공시를 찾고, 접수번호에서 공개 원문으로 이동할 수 있습니다.</li>
+        <li><strong>원문 추출 실험 준비</strong> · 제목으로 정정·계약·지분 공시 후보를 고르고, 원문 연결 상태를 기준으로 검수 표본을 만들 수 있습니다.</li>
+        <li><strong>수집 품질 확인</strong> · 원문을 찾지 못한 월과 공시를 골라 로컬·S3·API 상태를 대조할 수 있습니다.</li>
+      </ul>
+      <p>현재 그래프에서 확인할 수 있는 것은 기업·공시·원문 사이의 연결입니다. 지분율, 계약 당사자, 정정 전후 값은 원문을 파싱하고 검수한 뒤 별도 관계로 적재해야 합니다. 접수일은 사건이 실제 일어난 날짜와 구분해야 하며, 일중 공개 순서는 이 스냅샷에서 확인할 수 없습니다.</p>
+      <p>공개 페이지에서는 스키마, 질의문, 일부 공개 접수번호와 집계값을 제공합니다. 전체 원문, S3 접근 경로, 내부 Neo4j 접속 정보는 EC2 운영 환경에서 관리합니다.</p>
+    </section>
+
+    <section aria-labelledby="references">
+      <h2 id="references">설명서 작성에 참고한 자료</h2>
+      <p>목적·수집 과정·활용·갱신 방식은 <cite>Datasheets for Datasets</cite>의 항목을, 데이터 크기·관계별 통계·대표 사례는 W3C VoID의 설명 방식을 참고했습니다. 코드와 실제 반환값을 나란히 두는 구성에는 Wikidata의 데이터 접근 안내를 참고했습니다. <a href="https://arxiv.org/abs/1803.09010">Datasheets for Datasets</a> · <a href="https://www.w3.org/TR/void/">W3C VoID</a> · <a href="https://www.wikidata.org/wiki/Wikidata:Data_access">Wikidata 데이터 접근 안내</a></p>
+    </section>
+  </main>
+  <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>
