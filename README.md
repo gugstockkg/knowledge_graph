@@ -1,3 +1,5 @@
+**[연구 블로그 · GitHub Pages](https://gugstockkg.github.io/knowledge_graph/)**
+
 ![OpenDART 수집부터 온톨로지 기반 지식그래프 구축·Neo4j 조회·EC2 배포 준비까지](docs/diagrams/overview.svg)
 
 [draw.io 원본 편집](docs/diagrams/overview.drawio) · [로컬 실행](docs/runbooks/local.md) · [EC2 실행](docs/runbooks/ec2.md) · [온톨로지 v0.1](ontology/v0.1/)
