@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" role="img" aria-labelledby="title desc">
+  <title id="title">넥스틴과 SK하이닉스의 웨이퍼 검사장비 공급계약</title>
+  <desc id="desc">넥스틴은 공급자로, SK하이닉스는 구매자로 개별 공급계약을 가리킨다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#4169a0"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="898" height="248" rx="20" fill="#f4f7fb" stroke="#d8e1ed"/>
+  <g fill="#fff" stroke="#cbd8ea" stroke-width="1.5">
+    <rect x="27" y="89" width="172" height="70" rx="12"/>
+    <rect x="318" y="57" width="264" height="134" rx="13" fill="#e9f0ff"/>
+    <rect x="701" y="89" width="172" height="70" rx="12"/>
+  </g>
+  <g stroke="#4169a0" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+    <path d="M199 124 H310"/>
+    <path d="M701 124 H590"/>
+  </g>
+  <g text-anchor="middle" font-family="Apple SD Gothic Neo, Malgun Gothic, sans-serif" fill="#172c4c">
+    <g font-weight="700" font-size="23">
+      <text x="113" y="132">넥스틴</text>
+      <text x="787" y="132">SK하이닉스</text>
+      <text x="450" y="96">공급계약</text>
+    </g>
+    <g font-size="16" fill="#315487">
+      <text x="251" y="106">공급자</text>
+      <text x="649" y="106">구매자</text>
+    </g>
+    <g font-size="17">
+      <text x="450" y="128">웨이퍼 검사장비</text>
+      <text x="450" y="156">254억 4천만 원</text>
+    </g>
+    <text x="450" y="223" font-size="16" fill="#315487">2026.10.06 공개 · 공급자 매출 대비 38.02%</text>
+  </g>
+</svg>
