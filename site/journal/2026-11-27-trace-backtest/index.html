@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="OpenDART 공급계약의 공급자·구매자 관계를 추가해 한국 주식의 방향 예측과 비용 후 수익률을 비교한 FINTOS 연구 기록">
-  <meta name="fintos:title" content="거래 관계는 한국 주식의 방향 예측에 도움이 되는가?">
-  <meta name="fintos:summary" content="삼성전자·SK하이닉스를 포함한 39거래일을 평가했습니다. 가격과 직접 공시를 쓰는 모형에 거래 경로를 추가했을 때의 정확도와 비용 후 수익률을 비교했습니다.">
+  <meta name="fintos:title" content="시점 검증 계약 경로 전략 — OpenDART 지식그래프로 본 주가 방향 예측과 하락장 매매">
+  <meta name="fintos:summary" content="공급계약 그래프의 당일 방향 예측과 삼성전자·SK하이닉스 하락장 매매를 각각 평가했습니다. 매수 후 보유 및 20거래일 가격 추세와 비교합니다.">
   <meta name="fintos:category" content="backtest">
   <meta name="fintos:published" content="2026-11-27T20:31:01+09:00">
-  <title>거래 관계는 한국 주식의 방향 예측에 도움이 되는가? | FINTOS</title>
+  <title>시점 검증 계약 경로 전략 — OpenDART 지식그래프로 본 주가 방향 예측과 하락장 매매 | FINTOS</title>
   <link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="article.css">
 </head>
 <body>
   <a class="skip" href="#content">본문으로 이동</a>
@@ -25,34 +26,49 @@
   <main id="content" tabindex="-1" class="post dataset research-post"><article>
     <a class="back" href="../">연구 보관함</a>
 
-    <h1>거래 관계는 한국 주식의 방향 예측에 도움이 되는가?</h1>
+    <h1>시점 검증 계약 경로 전략 — OpenDART 지식그래프로 본 주가 방향 예측과 하락장 매매</h1>
     <p class="post-meta"><time datetime="2026-11-27T20:31:01+09:00">2026년 11월 27일 20:31 KST</time> · EC2 재실험</p>
-    <p class="lead">2026년 10월 1일~11월 26일을 하나의 테스트셋으로 평가했습니다. 삼성전자와 SK하이닉스를 포함한 <strong>39거래일 · 659개 종목·거래일</strong>에서 거래 경로 모형의 정확도는 직접 공시 모형보다 0.15%p 낮았습니다. 비용 후 누적수익률은 가격 모형이 네 모형 중 가장 높았습니다.</p>
+    <p class="lead"><strong>초록.</strong> 별도의 하락장 매매 실험에서 삼성전자와 SK하이닉스에 적용한 시점 검증 계약 경로 전략의 비용 후 수익률은 −5.26%였습니다. 가격 추세는 −7.69%, 매수 후 보유는 −38.01%였습니다. 최종 규칙은 같은 구간의 사례를 검토한 뒤 확정했습니다. 두 실험의 평가 기간은 2026년 10월 1일~11월 26일입니다. 방향 예측 실험의 <strong>39거래일 · 659개 종목·거래일</strong>에서 거래 경로 모형의 정확도는 직접 공시 모형보다 0.15%p 낮았습니다. 비용 후 누적수익률은 가격 모형이 네 모형 중 가장 높았습니다.</p>
     <div class="research-shortcuts">
       <a class="featured-read" href="#results">실험 결과 보기</a>
       <a class="featured-guide" href="#method">데이터·방법 보기</a>
     </div>
     <nav class="dataset-nav" aria-label="연구 기록 목차">
-      <a href="#background">배경</a><a href="#related">관련 연구</a><a href="#method">방법론</a><a href="#results">실험 결과</a><a href="#anchors">삼성전자·SK하이닉스</a><a href="#limitations">한계</a><a href="#next">후속 연구</a>
+      <a href="#background">서론</a><a href="#related">관련 연구</a><a href="#method">데이터와 시점</a><a href="#strategy">방법론</a><a href="#results">실험 결과</a><a href="#anchors">삼성전자·SK하이닉스</a><a href="#positions">하락장 매매</a><a href="#samples">공시 표본</a><a href="#limitations">한계</a><a href="#next">결론과 부록</a>
     </nav>
 
     <section aria-labelledby="background">
-      <h2 id="background">연구 질문</h2>
+      <h2 id="background">1. 서론</h2>
       <p>기업의 주가를 예측할 때 그 기업이 낸 공시만 읽으면 거래 상대가 공개한 정보를 놓칠 수 있습니다. 공급계약으로 관계가 확인된 상대 기업의 공시를 추가했을 때, 같은 종목과 날짜에서 예측 정확도와 비용 후 성과가 좋아지는지 조사했습니다. 삼성전자와 SK하이닉스도 같은 모형과 기준으로 평가했습니다.</p>
+      <p>방향 예측은 한 거래일의 상승 여부를 채점합니다. 손익은 보유 기간, 시가 체결, 비용에 따라 달라집니다. 하락장에서는 같은 두 종목의 매수 후 보유로 손실 방어를, 가격 추세만 쓰는 전략으로 그래프가 추가로 바꾼 매매를 평가합니다.</p>
     </section>
     <section aria-labelledby="related">
-      <h2 id="related">관련 연구</h2>
-      <p>TRACE는 과거 그래프에서 추출한 규칙으로 다중 홉 탐색을 제한하고, 뉴스에 닿는 경로를 LLM으로 평가합니다. 이번에는 공개 시점과 원문 근거를 유지하는 원칙을 적용했습니다. 비교를 쉽게 해석할 수 있도록 기간이 확인되는 거래 관계와 로지스틱 회귀를 사용했습니다. 시장, 예측 수익률 구간, 모형이 달라 논문의 성능 수치와 직접 비교하기는 어렵습니다. <a href="https://arxiv.org/html/2603.12500v1">Ding 외, TRACE (2026)</a></p>
+      <h2 id="related">2. 관련 연구</h2>
+      <p>이 글에서 참고한 주가 예측 연구는 과거 그래프에서 얻은 규칙으로 탐색하고 뉴스에 닿는 경로를 평가합니다. 이번 계약 경로는 정해진 1홉 규칙을 실행하며 탐색 지침 학습이나 LLM 재순위화는 포함하지 않습니다. 이번에는 공개 시점과 원문 근거를 유지하는 원칙을 적용했습니다. 비교를 쉽게 해석할 수 있도록 기간이 확인되는 거래 관계와 로지스틱 회귀를 사용했습니다. 시장, 예측 수익률 구간, 모형이 달라 논문의 성능 수치와 직접 비교하기는 어렵습니다. <a href="https://arxiv.org/html/2603.12500v1">Ding 외, TRACE (2026)</a></p>
       <p>기업 관계를 시계열 주가 모형의 입력으로 쓴 연구와, 공시 사건 주변의 수익률을 비교하는 사건 연구를 참고했습니다. 이번 실험의 목적은 관계를 추가했을 때의 예측 성능 측정입니다. <a href="https://arxiv.org/abs/1809.09441">Feng 외, Temporal Relational Ranking</a> · <a href="https://www.jstor.org/stable/2729691">MacKinlay, Event Studies in Economics and Finance</a></p>
+      <p>주가 예측 TRACE에서 비교할 절차는 과거 경로의 규칙 채굴, 빔 탐색, 평가 시작일의 종목 선정입니다. 이 연구의 계약 경로는 고정 1홉을 검사하고 매 거래일 기존 포지션을 유지하거나 전환합니다. 고객–공급사 연결을 통한 정보 전달과 과거 수익률의 부호를 쓰는 시계열 추세를 각각 참고했습니다. <a href="https://pages.stern.nyu.edu/~afrazzin/pdf/Economic%20Links%20and%20Predictable%20Returns%20-%20Cohen%20and%20Frazzini.pdf">Cohen·Frazzini, Economic Links and Predictable Returns</a> · <a href="https://research-api.cbs.dk/ws/portalfiles/portal/58851003/time_series_momentum_lasse_heje.pdf">Moskowitz 외, Time Series Momentum</a></p>
     </section>
 
     <section aria-labelledby="method">
-      <h2 id="method">데이터와 방법론</h2>
+      <h2 id="method">3. 데이터와 시점</h2>
       <p>EC2의 Neo4j에서 공급계약 1,294건, 계약 조건 정정 83건, 시설투자 발표 37건, 매출·영업이익 관측값 2,160개를 조회했습니다. 구매자가 확인된 계약은 226건입니다. 적재 범위는 2026년 1월 1일~11월 26일의 코스피·코스닥·코넥스 대상 공시입니다. 시세는 네이버 일봉을 사용했고, 거래 이력과 기업 식별이 맞는 종목·거래일만 평가했습니다. <a href="../../dataset/#economic-events">경제 사건 그래프와 원문 검증</a></p>
+      <p>기업은 OpenDART 법인코드로 연결하고 시세·주문은 상장 종목코드로 대응시킵니다. 접수번호는 계약 원공시와 정정 원문을 식별합니다. 거래일 시점의 계약 조건은 그때까지 공개된 버전만 사용합니다. 일자만 있는 공개 기록은 다음 거래일 시가부터 이용하고 그날 시가와 종가는 평가·체결에 사용합니다.</p>
+      <p><strong>실험 A 표본과 목표.</strong> 423종목의 659개 종목·거래일에서 당일 시가 대비 종가가 상승했는지를 평가합니다. <strong>실험 B 표본과 목표.</strong> 삼성전자·SK하이닉스 각 39거래일에서 주식 또는 현금으로 보유 상태를 결정하고 포트폴리오 비용 후 누적수익률을 비교합니다.</p>
       <figure class="dataset-figure">
         <img src="../../dataset/economic-contract.svg" width="900" height="250" alt="넥스틴이 SK하이닉스에 공급하기로 한 254억 4천만 원 규모의 웨이퍼 검사장비 계약">
         <figcaption>실제 방향이 있는 거래 관계. 넥스틴은 공급자, SK하이닉스는 구매자입니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146">넥스틴 공급계약 원문</a></figcaption>
       </figure>
+    </section>
+    <section aria-labelledby="strategy">
+      <h2 id="strategy">4. 방법론</h2>
+      <h3>시점 검증 계약 경로 전략</h3>
+      <ol>
+        <li>공급사 → 계약 → 구매자 경로를 회사 간 경제적 1홉으로 정의합니다.</li>
+        <li>새 공시보다 먼저 공개된 유효 계약 중에서 방향, 같은 제품군, 양수인 기존 금액, 서로 다른 접수번호, 같은 구매자를 모두 확인합니다. 당시 조건이 충돌하면 제외합니다.</li>
+        <li>거래일 <var>t</var>까지 이용 가능한 5거래일의 적격 공시 <var>e</var>에 대해 <code>S(i,t) = Σ sign(e)</code>를 계산합니다. 신규 계약과 증액은 +1, 감액은 −1, 변동 없음과 비교 불가는 0입니다.</li>
+        <li><code>M(i,t) = 1[C(i,t−1) &gt; C(i,t−21)]</code>을 추세 기준으로 둡니다. 목표 보유 상태는 <var>S</var>가 양수면 1, 음수면 0, 0이면 <var>M</var>입니다.</li>
+        <li>목표가 바뀌면 시가 <var>O</var>에 주문합니다. 편도 비용 <var>f</var>=0.001에서 매수 수량은 <code>현금 / (O × (1+f))</code>, 매도 수취액은 <code>수량 × O × (1−f)</code>입니다. 최종일 잔여 주식은 종가로 청산합니다. 두 종목 계정의 합산 자산을 <var>W</var>로 두고 <code>순수익률 = W(마지막) / W(초기) − 1</code>을 구합니다.</li>
+      </ol>
       <h3>어떤 정보가 예측에 들어갔나</h3>
       <div class="table-scroll" role="region" aria-label="비교 모형별 입력과 예시" tabindex="0">
       <table><caption>비교 모형별 입력과 예시</caption>
@@ -66,7 +82,8 @@
       </table>
     </div>
       <p>매출과 영업이익이 같은 실적 공시에 들어 있으면 공시 한 건으로 셉니다.</p>
-      <h3 id="prediction-formula">가격으로 다음 거래일의 상승 확률을 계산하는 방법</h3>
+      <h3 id="prediction-formula">실험 A. 당일 시가 대비 종가의 상승 확률</h3>
+      <p><strong>예측 질문.</strong> 개별 종목의 종가가 같은 날 시가보다 높을까? 평가 단위는 종목 하나와 거래일 하루입니다. 시가 100에서 종가 101이면 상승, 종가 100 이하이면 비상승입니다. 직전 거래일까지의 가격·거래량과 예측 시점에 공개된 공시로 확률을 계산하고 50% 이상을 상승으로 분류합니다. 예측일의 시가와 종가는 정답 산출에 사용합니다. 확률을 이용한 당일 매매는 시가 진입과 당일 종가 청산으로 별도 평가합니다.</p>
       <p>예측할 거래일이 <var>t</var>라면, 입력값은 직전 거래일 <var>t−1</var>의 장 마감까지 계산합니다. <var>C</var>는 종가, <var>V</var>는 거래량이며 아래 날짜의 차이는 거래일 수입니다.</p>
       <dl class="research-formulas">
         <dt>1·5·20거래일 수익률</dt>
@@ -103,7 +120,8 @@
     </section>
 
     <section aria-labelledby="results">
-      <h2 id="results">실험 결과</h2>
+      <h2 id="results">5. 실험 결과</h2>
+      <h3>실험 A. 방향 예측</h3>
       <p class="results-summary">가격과 직접 공시를 쓰는 모형에 거래 경로를 추가했을 때 정확도는 <strong>56.30%에서 56.15%</strong>로 내려갔습니다. 차이는 <strong>−0.15%p</strong>였고, 거래일 단위 재표집 95% 구간은 −1.66~+1.71%p였습니다.</p>
       <p>상승 확률이 0.5 이상인 종목을 시가에 동일가중 매수하고 종가에 청산하는 규칙을 비교했습니다. 아래 수익률은 왕복 비용 20bp를 공제한 누적수익률입니다. 거래가 없는 날은 수익률 0으로 처리했습니다. 샤프는 무위험수익률 0과 연 252거래일을 기준으로 계산했습니다.</p>
 <div class="table-scroll" role="region" aria-label="단일 테스트셋 · 10월 1일~11월 26일" tabindex="0">
@@ -122,9 +140,8 @@
         <figcaption>테스트 전체 기간의 비용 후 누적수익률. 첫 거래 전에 한 번만 0%에서 시작합니다.</figcaption>
       </figure>
       <p>비상승만 예측한 기준선의 정확도는 56.90%였습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_backtest_2026.md">별도로 보존한 초기 실험 기록</a></p>
-    </section>
 
-    <section aria-labelledby="anchors">
+      <div aria-labelledby="anchors">
       <h2 id="anchors">삼성전자와 SK하이닉스</h2>
       <p>모형별 셀은 <strong>방향을 맞힌 거래일 / 평가 거래일 · 비용 후 누적수익률</strong>입니다. 자체 공시와 관계를 통한 공시가 같은 거래일에 겹칠 수 있습니다.</p>
 <div class="table-scroll" role="region" aria-label="삼성전자·SK하이닉스 · 전체 테스트셋" tabindex="0">
@@ -136,20 +153,81 @@
         </tbody>
       </table>
     </div>
-    </section>
-
-    <section aria-labelledby="limitations">
-      <h2 id="limitations">한계</h2>
+      </div>
+      <div aria-labelledby="positions">
+      <h3 id="positions">실험 B. 하락장 매매</h3>
+      <p>2026년 10월 1일~11월 26일 삼성전자와 SK하이닉스에 초기 자본을 절반씩 배정했습니다. 종목별 자금을 독립 운용하고, 시가에 주식 또는 현금으로 전환해 마지막 거래일 종가에 청산했습니다. 비용은 편도 10bp이며 현금 이자와 배당은 제외했습니다. 같은 기간 KOSPI는 −30.86%였습니다.</p>
+      <h3>퀀트 전략과 매매 규칙</h3>
       <ul>
+        <li><strong>매수 후 보유.</strong> 첫 시가에 매수해 마지막 종가까지 보유합니다.</li>
+        <li><strong>20거래일 시계열 추세.</strong> 직전 종가의 20거래일 수익률이 양수면 보유하고 그 외에는 현금으로 둡니다.</li>
+        <li><strong>공시 사건과 가격 추세 결합.</strong> 신규 계약과 비교 가능한 증액 정정에 +1, 감액 정정에 −1을 부여합니다. 이전 금액이 불명확하거나 변동이 없으면 0입니다. 이용 가능한 최근 5거래일 신호의 합이 양수면 보유, 음수면 현금, 0이면 가격 추세를 따릅니다.</li>
+      </ul>
+      <figure class="dataset-figure">
+        <ol class="contract-flow"><li><strong>공시 추출</strong><br>구매자·품목·접수번호</li><li><strong>그래프 검사</strong><br>유효 계약·방향·제품군·구매자</li><li><strong>신호 합산</strong><br>최근 5거래일과 가격 추세</li><li><strong>시가 주문</strong><br>목표 보유 상태가 바뀔 때</li></ol>
+        <figcaption>그래프는 공시를 반영할 종목을 정합니다. 포지션과 주문은 검사를 통과한 신호와 가격에서 계산합니다.</figcaption>
+      </figure>
+      <h3>경제적 1홉과 네 가지 공시 입력</h3>
+      <p>공급사에서 계약 노드를 경유해 구매자 기업에 도달하는 공급 관계를 경제적 1홉으로 셉니다. 제품군과 접수번호 조회는 계약의 근거를 확인하는 단계입니다. 기존 계약은 새 공시보다 먼저 공개됐고 그 시점에 유효해야 합니다. 공개 조건이 충돌하면 제외합니다. 접수일 단위로 수집한 새 공시는 다음 거래일 시가부터 사용합니다.</p>
+      <ol>
+        <li><strong>원문 구매자만.</strong> 새 공시에 명시된 구매자를 사용합니다.</li>
+        <li><strong>양방향 계약 경로.</strong> 기존 유효 계약으로 연결된 거래 상대를 사용합니다.</li>
+        <li><strong>방향·제품군 계약 경로.</strong> 공급사에서 구매자로만 전달합니다. 확인된 제품군이 같고 기존 금액이 양수이며 접수번호가 서로 달라야 합니다.</li>
+        <li><strong>시점 검증 계약 경로 전략.</strong> 방향·제품군 조건에 더해 새 공시의 구매자 코드와 주문 대상 기업코드가 일치해야 합니다. Python이 규칙을 실행합니다.</li>
+      </ol>
+      <figure class="dataset-figure"><ul class="return-bars" aria-label="전략별 비용 후 누적수익률"><li><span>매수 후 보유</span><div class="track"><i style="width:95.025%"></i></div><strong>−38.01%</strong></li>
+<li><span>20거래일 가격 추세</span><div class="track"><i style="width:19.228%"></i></div><strong>−7.69%</strong></li>
+<li><span>원문 구매자만</span><div class="track"><i style="width:67.563%"></i></div><strong>−27.03%</strong></li>
+<li><span>양방향 계약 경로</span><div class="track"><i style="width:70.487%"></i></div><strong>−28.19%</strong></li>
+<li><span>방향·제품군 계약 경로</span><div class="track"><i style="width:25.088%"></i></div><strong>−10.04%</strong></li>
+<li><span>시점 검증 계약 경로</span><div class="track"><i style="width:13.152%"></i></div><strong>−5.26%</strong></li>
+</ul><figcaption>비용 후 누적수익률. 가로 척도는 왼쪽 −40%, 오른쪽 0%입니다.</figcaption></figure>
+      <div class="table-scroll" role="region" aria-label="하락장 매매 결과" tabindex="0"><table><caption>실험 B · 왕복 비용 20bp</caption><thead><tr><th scope="col">전략</th><th scope="col">순수익률</th><th scope="col">최대 낙폭</th><th scope="col">보유 종목·일</th><th scope="col">주문</th></tr></thead><tbody><tr><th scope="row">매수 후 보유</th><td>−38.01%</td><td>−42.25%</td><td>78</td><td>4</td></tr>
+<tr><th scope="row">20거래일 가격 추세</th><td>−7.69%</td><td>−11.20%</td><td>11</td><td>6</td></tr>
+<tr><th scope="row">원문 구매자만</th><td>−27.03%</td><td>−32.61%</td><td>52</td><td>16</td></tr>
+<tr><th scope="row">양방향 계약 경로</th><td>−28.19%</td><td>−33.14%</td><td>51</td><td>14</td></tr>
+<tr><th scope="row">방향·제품군 계약 경로</th><td>−10.04%</td><td>−15.46%</td><td>33</td><td>12</td></tr>
+<tr><th scope="row">시점 검증 계약 경로</th><td>−5.26%</td><td>−11.20%</td><td>18</td><td>10</td></tr>
+</tbody></table></div>
+      <p>시점 검증 계약 경로 전략의 손실 폭은 매수 후 보유 대비 32.75%p, 가격 추세 대비 2.43%p, 원문 구매자만 대비 21.76%p 작았습니다. 최종 전략의 공시 신호는 7종목·일에 관측됐습니다. 보유 일수와 주문 수를 맞춘 시점 회전 대조 150개의 중앙값은 −11.24%였고, 77.3%가 실제 전략보다 낮았습니다.</p>
+      </div>
+    </section>
+    <section aria-labelledby="samples">
+      <h2 id="samples">6. 종목별 경로와 주문</h2>
+      <figure class="dataset-figure"><div class="graph-path"><span>케이씨텍<br><small>공급사</small></span><b aria-label="공급자 역할">→</b><span>반도체 제조장비 계약<br><small>20261110800268<br>2026-11-09~2027-04-01</small></span><b aria-label="구매자 역할">→</b><span>SK하이닉스<br><small>구매자 · 000660</small></span></div><figcaption>기존 계약의 서브그래프. 계약 노드의 품목, 유효 기간과 원문 접수번호를 새 공시의 경로 검사에 사용합니다.</figcaption></figure>
+      <div class="table-scroll" role="region" aria-label="공시와 주문 대조 표본" tabindex="0"><table><caption>기존 계약, 신규 공시, 주문 로그</caption><thead><tr><th scope="col">대상 / 공급사</th><th scope="col">기존 계약</th><th scope="col">새 공시의 구매자</th><th scope="col">판정</th></tr></thead><tbody><tr><th scope="row">삼성전자 / 일성건설</th><td>평택2단지 부대동 건축·통신공사<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706800182">20260706800182</a></td><td>삼성전자 · 온양 복지동 신축공사<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124800494">20261124800494</a></td><td>동일 구매자와 제품군을 확인해 +1. 11월 25일 시가 178,500원 매수.</td></tr>
+<tr><th scope="row">SK하이닉스 / 케이씨텍</th><td>반도체 제조장비<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110800268">20261110800268</a></td><td>SK하이닉스 · 반도체 제조장비<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">20261116801609</a></td><td>동일 구매자와 제품군을 확인해 +1. 11월 17일 시가 1,098,000원 매수.</td></tr>
+<tr><th scope="row">삼성전자 / 코오롱글로벌</th><td>평택 공사<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260709800093">20260709800093</a></td><td>금호타이어 · 함평 공장<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026800503">20261026800503</a></td><td>방향·제품군 규칙에서는 10월 27일 시가 222,000원 삼성전자 매수. 최종 규칙은 구매자 불일치로 이 공시를 삼성전자 신호에서 제외.</td></tr>
+</tbody></table></div>
+      <p><a download href="orders.csv">실험 B 주문 로그 CSV</a></p>
+    </section>
+    <section aria-labelledby="limitations">
+      <h2 id="limitations">7. 논의와 한계</h2>
+      <p>매수 후 보유는 78종목·일을 보유했고, 최종 경로 전략은 18종목·일을 보유했습니다. 손실 폭 차이에는 하락장 노출 감소가 포함됩니다. 가격 추세는 11종목·일만 보유했는데도 손실이 더 컸으므로 보유 일수와 진입 시점을 함께 봐야 합니다. 두 종목의 탐색 결과만으로 계약 경로의 독립 효과를 추정하기는 어렵습니다.</p>
+      <ul>
+        <li>실험 B의 최종 구매자 검사는 같은 테스트 기간의 사례를 검토한 후 추가했습니다. 두 종목에서 얻은 탐색 결과이며 새 기간에 규칙을 고정해 재검증해야 합니다. 이 글의 백테스트는 공급계약 그래프를 대상으로 하며, 지분·지배권 및 LPG·OWL 네 조건 평가는 별도 실험입니다.</li>
         <li>테스트는 39거래일이며, 일부 날짜는 초기 실험에서도 사용했습니다. 관계를 통한 예측 효과와 매수 전략의 장기 성과를 판단하기에는 기간이 짧습니다. 단기 연환산 샤프의 절댓값은 크게 움직일 수 있습니다.</li>
         <li>공시 유형과 공개된 국내 상장 구매자에 따라 그래프의 범위가 달라집니다. 거래할 수 있는 모든 한국 종목의 무조건적 성과로 일반화하기 어렵습니다.</li>
         <li>가격 소스의 수정주가 처리 및 실제 시가·종가 체결을 독립 검증하지 않았습니다. 공시 목록은 일 단위로 사용했고, 일별 선후관계를 보수적으로 처리했습니다.</li>
       </ul>
     </section>
     <section aria-labelledby="next">
-      <h2 id="next">후속 연구</h2>
+      <h2 id="next">8. 결론과 부록</h2>
+      <p>방향 예측에서는 거래 경로 추가에 따른 정확도 향상을 관측하지 못했습니다. 두 종목의 하락장 매매에서 최종 경로의 손실 폭이 가장 작았고, 이 차이는 같은 구간에서 확인한 탐색 결과입니다. 다음 검증은 1홉 규칙을 먼저 고정한 새 기간에 수행하고, 두 계약의 시점·역할·제품군이 모두 확인되는 제한적 2홉을 별도 비교합니다.</p>
       <p>유효 계약을 통한 공시 전파를 더 긴 새 기간에서 반복하고, 업종과 기업 규모를 맞춰 거래 상대를 바꾼 대조군을 둡니다. 그러면 같은 날 공시가 많은 경우와 실제 거래 상대가 공시한 경우를 구별할 수 있습니다. 시설투자와 공급계약을 직접 연결하는 실험은 공시가 시설이나 프로젝트를 명시한 경로로 한정합니다.</p>
       <p>EC2에서 내보낸 그래프와 보관 일봉으로 단일 테스트셋의 결과를 다시 계산했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_economic_revision_2026.md">상세 수치와 재현 방법</a></p>
+      <h3>부록 A. 주문 원장과 재현 코드</h3>
+      <p><a href="orders.csv" download>주문 원장 62행</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/backtest_trace_positions.py">매매 재현 코드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/controller_graph_benchmark.py">그래프 조건 비교 코드</a></p>
+      <h3>부록 B. 최대주주 변경 그래프 네 조건과 가드레일</h3>
+      <p>금호에이치티를 포함한 코스피 30개사의 최대주주 변경 사건을 대상으로, 151개 질문에서 완전한 답과 근거가 일치하는지 평가했습니다. 공시를 다시 파싱해 값을 대조한 표본입니다.</p>
+      <div class="table-scroll" role="region" aria-label="네 그래프 조건 평가" tabindex="0"><table><caption>최대주주 변경 그래프의 질문별 정답</caption><thead><tr><th scope="col">질문</th><th scope="col">① LPG</th><th scope="col">② OWL</th><th scope="col">③ 결합</th><th scope="col">④ 단일 LPG</th></tr></thead><tbody>
+        <tr><th scope="row">기준일·원문 근거</th><td>30/30</td><td>0/30</td><td>30/30</td><td>30/30</td></tr>
+        <tr><th scope="row">상위 유형·근거</th><td>0/30</td><td>30/30</td><td>30/30</td><td>30/30</td></tr>
+        <tr><th scope="row">복합 답·근거</th><td>0/31</td><td>0/31</td><td>31/31</td><td>31/31</td></tr>
+        <tr><th scope="row">공개 전</th><td>30/30</td><td>30/30</td><td>30/30</td><td>30/30</td></tr>
+        <tr><th scope="row">다른 유형</th><td>0/30</td><td>30/30</td><td>30/30</td><td>30/30</td></tr>
+      </tbody></table></div>
+      <p>③과 ④는 151개에서 같은 응답을 반환했습니다. 가드레일 검사는 출처 누락 시 SHACL 실패와 복원, 공개 전 값 차단, 정정 전후 유효 값, 공리 삭제 후 재계산·복원, RDF 재가져오기 시 URI 보존, 주입한 미정의 유형의 오추론 방지를 확인했습니다. 이 부록의 결과는 질의와 데이터 검증의 결과이며 매매 수익률은 위 공급계약 실험에서 측정했습니다.</p>
     </section>
   </article></main>
   <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
