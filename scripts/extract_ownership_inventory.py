@@ -67,7 +67,9 @@ def family(report_title):
     if re.match(r"^(?:사업|반기|분기)보고서(?:\(|$)", base):
         return "periodic"
     normalized = compact(base)
-    if normalized.startswith(("최대주주변경을수반하는주식양수도계약", "주요사항보고서주식양수도")):
+    if normalized.startswith(
+        ("최대주주변경을수반하는주식양수도계약", "주요사항보고서주식양수도")
+    ):
         return "share_transfer"
     existing = filing_type(report_title)
     return existing[0] if existing else None
@@ -169,7 +171,7 @@ def extract_fields(document, kind, correction):
     return facts
 
 
-def run(listing, paths, bucket, region, output, workers):
+def run(listing, paths, bucket, region, output, workers, shard=0, shards=1):
     sources = inventory_sources(listing)
     filings = {
         row["rcept_no"]: row
@@ -227,7 +229,7 @@ def run(listing, paths, bucket, region, output, workers):
         return record
 
     counts = Counter()
-    identifiers = sorted(filings)
+    identifiers = sorted(filings)[shard::shards]
     output.mkdir(parents=True, exist_ok=True)
     temporary = output / "ownership.jsonl.part"
     with ThreadPoolExecutor(max_workers=workers) as pool, temporary.open("w") as file:
@@ -261,13 +263,26 @@ def main():
     parser.add_argument("--bucket", required=True)
     parser.add_argument("--region", required=True)
     parser.add_argument("--workers", type=int, default=12)
+    parser.add_argument("--shard", type=int, default=0)
+    parser.add_argument("--shards", type=int, default=1)
     args = parser.parse_args()
+    if not 0 <= args.shard < args.shards:
+        parser.error("--shard must be in the range [0, --shards)")
     paths = sorted(
         p
         for p in args.metadata.rglob("*")
         if p.name in {"filings.json", "filings.jsonl"}
     )
-    run(args.listing, paths, args.bucket, args.region, args.output, args.workers)
+    run(
+        args.listing,
+        paths,
+        args.bucket,
+        args.region,
+        args.output,
+        args.workers,
+        args.shard,
+        args.shards,
+    )
 
 
 if __name__ == "__main__":
