@@ -1,4 +1,4 @@
-"""Build the static research index from metadata on published journal pages."""
+"""Build the static research index from journal headings and metadata."""
 import argparse
 from datetime import date, datetime
 from html import escape
@@ -21,8 +21,12 @@ class ArticleMetadata(HTMLParser):
     def __init__(self):
         super().__init__()
         self.fields = {}
+        self.headings = []
+        self.heading = None
 
     def handle_starttag(self, tag, attrs):
+        if tag == "h1":
+            self.heading = []
         if tag == "meta":
             attributes = dict(attrs)
             name = attributes.get("name")
@@ -32,6 +36,16 @@ class ArticleMetadata(HTMLParser):
                 self.fields[name] = (attributes.get("content") or "").strip()
 
 
+    def handle_data(self, data):
+        if self.heading is not None:
+            self.heading.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "h1" and self.heading is not None:
+            self.headings.append(" ".join("".join(self.heading).split()))
+            self.heading = None
+
+
 def read_posts(source):
     posts = []
     for path in sorted((source / "journal").glob("*/index.html")):
@@ -39,8 +53,11 @@ def read_posts(source):
         try:
             parser.feed(path.read_text(encoding="utf-8"))
             fields = parser.fields
-            title, summary, category, stamp = (
-                fields[f"fintos:{key}"] for key in ("title", "summary", "category", "published")
+            if len(parser.headings) != 1 or not parser.headings[0]:
+                raise ValueError("expected exactly one non-empty article h1")
+            title = parser.headings[0]
+            summary, category, stamp = (
+                fields[f"fintos:{key}"] for key in ("summary", "category", "published")
             )
             published = datetime.fromisoformat(stamp)
             if not (title and summary and category in CATEGORIES and published.tzinfo and
