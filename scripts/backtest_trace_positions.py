@@ -5,6 +5,7 @@ import json
 from bisect import bisect_right
 from collections import defaultdict
 from pathlib import Path
+from statistics import mean
 
 from knowledge_graph.market.economic_backtest import (
     ANCHORS,
@@ -140,7 +141,7 @@ def exposure_timing_placebo(dates, per_stock, fee):
     }
 
 
-def run(graph, archive, later):
+def run(graph, archive, later, *, price_controls=False):
     indexes = {}
     for index in ("KOSPI", "KOSDAQ"):
         indexes[index] = {
@@ -168,12 +169,20 @@ def run(graph, archive, later):
             "explicit_buyer_path": [],
             "named_buyer_only": [],
         }
+        if price_controls:
+            positions.update(sma20=[], reversion5=[])
         signal_days = defaultdict(int)
         for day in dates:
             i = market.index(day)
             price = int(bars[market[i - 1]]["close"] > bars[market[i - 21]]["close"])
             positions["buy_hold"].append(1)
             positions["price_trend"].append(price)
+            if price_controls:
+                prior_closes = [bars[day]["close"] for day in market[i - 20 : i]]
+                positions["sma20"].append(int(prior_closes[-1] > mean(prior_closes)))
+                positions["reversion5"].append(int(prior_closes[-1] < prior_closes[-6]))
+                decision[symbol, day, "sma20"] = {"reason": "20_session_moving_average"}
+                decision[symbol, day, "reversion5"] = {"reason": "5_session_mean_reversion"}
             decision[symbol, day, "buy_hold"] = {"reason": "continuous_equity_exposure"}
             decision[symbol, day, "price_trend"] = {
                 "reason": "20_session_price_trend",
@@ -236,6 +245,16 @@ def run(graph, archive, later):
                 returns(dates, bars, positions[name], bp / 20_000)
                 for bars, positions, _ in per_stock.values()
             ]
+            by_symbol = (
+                {
+                    "stock_returns": {
+                        symbol: portfolio_metrics(portfolio[0])["total_return"]
+                        for symbol, portfolio in zip(per_stock, portfolios)
+                    }
+                }
+                if price_controls
+                else {}
+            )
             # Initial allocations are equal and each sleeve funds its own trades.
             values = [1.0] * len(portfolios)
             daily = []
@@ -245,6 +264,7 @@ def run(graph, archive, later):
                 daily.append(sum(values) / previous - 1)
             summary.setdefault(str(bp), {})[name] = {
                 **portfolio_metrics(daily),
+                **by_symbol,
                 "order_count": sum(p[1] for p in portfolios),
                 "invested_stock_days": sum(
                     sum(positions[name]) for _, positions, _ in per_stock.values()
@@ -278,8 +298,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for key in ("graph", "archive", "later", "output"):
         parser.add_argument(key, type=Path)
+    parser.add_argument("--price-controls", action="store_true")
     a = parser.parse_args()
-    result = run(load(a.graph), a.archive, a.later)
+    result = run(load(a.graph), a.archive, a.later, price_controls=a.price_controls)
     a.output.write_text(json.dumps(result, ensure_ascii=False, indent=2))
     print(json.dumps(result, ensure_ascii=False))
 
