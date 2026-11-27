@@ -15,21 +15,24 @@
       <a href="dataset/">데이터 설명서</a><a href="journal/">연구 보관함</a><a href="#artifacts">산출물</a><a href="#design-validation">설계와 검증</a>
     </nav>
   </header>
-  <main class="shell" id="content">
+  <main class="shell" id="content" tabindex="-1">
     <section class="featured" aria-labelledby="title">
       <div class="featured-copy">
-        <p class="featured-context">OpenDART 지식그래프 연구</p>
         <!-- featured-post:start -->
         <!-- featured-post:end -->
-        <div class="featured-links">
-          <a class="featured-guide" href="dataset/">데이터 설명서</a>
-        </div>
+        <a class="featured-guide" href="dataset/">데이터 설명서</a>
       </div>
-      <figure class="featured-result">
-        <figcaption>직접 공시 모형 대비 거래 경로 모형의 정확도</figcaption>
-        <p class="featured-metric">−0.15<span>%p</span></p>
+      <div class="featured-result">
+        <table>
+          <caption>주가 방향 예측 정확도</caption>
+          <tbody>
+            <tr><th scope="row">가격 + 직접 공시</th><td>56.30%</td></tr>
+            <tr><th scope="row">거래 경로 추가</th><td>56.15%</td></tr>
+          </tbody>
+        </table>
+        <p class="featured-difference">차이 <strong>−0.15%p</strong><br>95% 재표집 구간 −1.66~+1.71%p</p>
         <p class="featured-sample">39거래일 · 659개 종목·거래일</p>
-      </figure>
+      </div>
     </section>
 
     <section id="journal" class="chapter journal-home" aria-labelledby="journal-title">
