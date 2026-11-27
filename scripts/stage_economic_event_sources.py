@@ -1,10 +1,13 @@
 """Stage only ZIPs for economic event filings from an existing catalog inventory."""
 import argparse
 import json
+import os
 import re
+import shutil
 import subprocess
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
 from datetime import date
 from pathlib import Path
 
@@ -22,7 +25,31 @@ FORMS = {
 }
 
 
-def stage(catalog, output, bucket, region, end, workers):
+def sdk_downloader(bucket, region, workers):
+    try:
+        from botocore.config import Config
+        from botocore.exceptions import BotoCoreError, ClientError
+        from botocore.session import get_session
+    except ImportError:
+        from awscli.botocore.config import Config
+        from awscli.botocore.exceptions import BotoCoreError, ClientError
+        from awscli.botocore.session import get_session
+
+    client = get_session().create_client("s3", region_name=region,
+                                         config=Config(max_pool_connections=workers))
+
+    def download(key, path):
+        try:
+            with closing(client.get_object(Bucket=bucket, Key=key)["Body"]) as source, path.open("wb") as sink:
+                shutil.copyfileobj(source, sink)
+        except (BotoCoreError, ClientError):
+            return False
+        return True
+
+    return download
+
+
+def stage(catalog, output, bucket, region, end, workers, use_sdk=False):
     filings = {}
     for path in metadata_files(catalog):
         for row in read_rows(path):
@@ -31,7 +58,9 @@ def stage(catalog, output, bucket, region, end, workers):
     if not filings:
         raise ValueError("No listed-company filing metadata found")
     output.mkdir(parents=True, exist_ok=True)
-    (output / "filings.json").write_text(json.dumps(list(filings.values()), ensure_ascii=False), encoding="utf-8")
+    index = output / f"filings.{os.getpid()}.part"
+    index.write_text(json.dumps(list(filings.values()), ensure_ascii=False), encoding="utf-8")
+    index.replace(output / "filings.json")
     candidates = {
         receipt for receipt, row in filings.items()
         if compact(re.sub(r"^(?:\[[^]]+\]\s*)+", "", row["report_nm"].strip())) in FORMS
@@ -47,6 +76,8 @@ def stage(catalog, output, bucket, region, end, workers):
                 if match and match[0] in candidates:
                     sources[match[0]].add(key)
 
+    download_with_sdk = sdk_downloader(bucket, region, workers) if use_sdk else None
+
     def download(receipt):
         corp = filings[receipt]["corp_code"]
         if not re.fullmatch(r"\d{8}", corp):
@@ -55,14 +86,18 @@ def stage(catalog, output, bucket, region, end, workers):
         if path.is_file():
             return "cached"
         path.parent.mkdir(exist_ok=True, parents=True)
-        temporary = path.with_suffix(".zip.part")
+        temporary = path.with_suffix(f".zip.{os.getpid()}.part")
         keys = sorted(sources[receipt], key=lambda key: ("/documents/partition_day=" not in key, key))
         for key in keys:
-            result = subprocess.run(
-                ["aws", "s3", "cp", f"s3://{bucket}/{key}", str(temporary),
-                 "--region", region, "--only-show-errors"], capture_output=True, check=False,
-            )
-            if result.returncode == 0:
+            if download_with_sdk:
+                success = download_with_sdk(key, temporary)
+            else:
+                result = subprocess.run(
+                    ["aws", "s3", "cp", f"s3://{bucket}/{key}", str(temporary),
+                     "--region", region, "--only-show-errors"], capture_output=True, check=False,
+                )
+                success = result.returncode == 0
+            if success:
                 temporary.replace(path)
                 return "downloaded"
         temporary.unlink(missing_ok=True)
@@ -83,6 +118,7 @@ if __name__ == "__main__":
     parser.add_argument("--region", required=True)
     parser.add_argument("--end", required=True, type=date.fromisoformat)
     parser.add_argument("--workers", type=int, default=6)
+    parser.add_argument("--sdk", action="store_true", help="Reuse a botocore client for S3 downloads")
     args = parser.parse_args()
     print(json.dumps(stage(args.catalog, args.output, args.bucket, args.region,
-                           args.end.strftime("%Y%m%d"), args.workers)))
+                           args.end.strftime("%Y%m%d"), args.workers, args.sdk)))

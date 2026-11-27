@@ -22,6 +22,9 @@ supplier_reported_sales_pct,property,공급자 공시 매출 대비 비율,Contr
 signed_date,property,계약 체결일,ContractTermsObservation,date,0..1,공시에서 확인한 계약 체결일 또는 수주일.,계약 주요내용 표,CQ2 CQ4,defined
 start_date,property,계약 기간 시작일,ContractTermsObservation,date,0..1,공시에서 확인한 계약 기간의 시작일.,계약 주요내용 표,CQ2 CQ4,defined
 end_date,property,계약 기간 종료일,ContractTermsObservation,date,0..1,공시에서 확인한 계약 기간의 종료일.,계약 주요내용 표,CQ2 CQ4,defined
+observation_type,property,계약 조건 관측 유형,ContractTermsObservation,enum,1,원공시 관측과 정정 관측을 구분한다.,계약 원공시 또는 정정표,CQ4,defined
+changed_fields,property,변경 필드 목록,ContractTermsObservation,list<string>,0..1,정정표에서 명시적으로 바뀐 조건만 기록한다.,계약 원공시 또는 정정표,CQ4,defined
+preceding_receipt,property,정정 대상 접수번호,ContractTermsObservation,string,0..1,해당 정정이 가리키는 같은 기업의 기존 계약 공시를 기록한다.,계약 원공시 또는 정정표,CQ4,defined
 planned_amount_krw,property,공시상 시설투자 예정 금액,FacilityInvestment,integer,0..1,보고된 시설투자 계획의 원화 금액. 실제 집행액은 별도 관측으로 표현한다.,투자내역 표,CQ3,defined
 period_start,property,회계기간 시작일,FinancialObservation,date,1,공시 실적표가 보고하는 당기 시작일.,실적기간 표,CQ4,defined
 period_end,property,회계기간 종료일,FinancialObservation,date,1,공시 실적표가 보고하는 당기 종료일.,실적기간 표,CQ4,defined
