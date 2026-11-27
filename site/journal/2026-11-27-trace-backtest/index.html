@@ -128,6 +128,7 @@
       <h3>공시 후보에서 실제 주문까지</h3>
       <p>후보와 채택은 종목·반영 거래일·접수번호 조합으로 셌습니다. CLEAR의 후보는 원문에 구매자가 명시되고 부호가 0이 아닌 공시이며, 채택은 기존 유효 계약 조건까지 충족한 경우입니다. TRACE의 후보는 해당 시점의 그래프에서 세 관계 이내로 닿는 접수번호이며, 채택은 방향이 선택된 규칙의 반환 근거에 포함된 경우입니다. 두 후보군의 범위가 달라 채택률을 직접 비교하기는 어렵습니다.</p>
       <p>신규 신호일은 채택 공시가 처음 반영된 종목·거래일입니다. 활성 신호일은 최근 5거래일 합계가 0이 아닌 날입니다. 주문은 날짜·체결 구간·매수 또는 매도를 대조했습니다. CLEAR는 원문 구매자만 확인한 전략, TRACE는 가격 추세와 비교했습니다. 시점이나 방향이 바뀐 주문은 기존 주문 제외와 새 주문 추가로 각각 셉니다. 마지막 종가 청산도 포함했습니다.</p>
+      <p>후보·채택·신호·주문 차이가 모두 0인 전략·종목 행은 표에서 뺐습니다. CLEAR는 한화오션·파두·대우건설에서 후보가 없어 가격 추세를 그대로 따랐습니다. 주문 차이가 없어도 후보를 검토했거나 신호를 반영한 행은 남겼습니다.</p>
       <div class="table-scroll" role="region" aria-label="종목별 공시와 주문 비교" tabindex="0"><table>
         <caption>EC2 공시·신호·주문 집계</caption>
         <thead><tr><th scope="col">전략 · 종목</th><th scope="col">공시 후보</th><th scope="col">채택 공시</th><th scope="col">신규 신호일</th><th scope="col">활성 신호일</th><th scope="col">추가 주문</th><th scope="col">제외 주문</th></tr></thead>
@@ -135,13 +136,10 @@
 <tr><th scope="row">CLEAR · 삼성전자</th><td>9</td><td>1</td><td>1</td><td>2</td><td>2</td><td>8</td></tr>
 <tr><th scope="row">CLEAR · SK하이닉스</th><td>5</td><td>1</td><td>1</td><td>5</td><td>4</td><td>4</td></tr>
 <tr><th scope="row">CLEAR · 삼성중공업</th><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td></tr>
-<tr><th scope="row">CLEAR · 한화오션</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">CLEAR · HD현대중공업</th><td>3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>6</td></tr>
 <tr><th scope="row">CLEAR · 현대건설</th><td>5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>8</td></tr>
 <tr><th scope="row">CLEAR · 삼성물산</th><td>3</td><td>1</td><td>1</td><td>4</td><td>1</td><td>3</td></tr>
 <tr><th scope="row">CLEAR · 삼성전기</th><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td></tr>
-<tr><th scope="row">CLEAR · 파두</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><th scope="row">CLEAR · 대우건설</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">CLEAR · 합계</th><td>28</td><td>3</td><td>3</td><td>11</td><td>7</td><td>35</td></tr>
 <tr><th scope="row">TRACE · 삼성전자</th><td>20</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · SK하이닉스</th><td>12</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
@@ -165,7 +163,6 @@
 <tr><th scope="row">방향·제품군 계약 경로</th><td>−16.19%</td><td>−3.88%</td><td>−11.97%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td><td>−12.51%</td><td>−7.28%</td></tr>
 <tr><th scope="row">CLEAR</th><td>−6.64%</td><td>−3.88%</td><td>0.00%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td><td>−12.51%</td><td>−7.28%</td></tr>
 <tr><th scope="row">TRACE</th><td>−2.63%</td><td>−12.75%</td><td>0.00%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>11.82%</td><td>−1.30%</td><td>−7.28%</td></tr>
-<tr><th scope="row">TRACE 원문 Top 10 선정·보유</th><td colspan="10">미실행</td></tr>
 </tbody></table></div>
       <p>그래프의 기여는 <strong>원문 구매자만</strong>과 <strong>CLEAR</strong>을 비교하면 확인할 수 있습니다. 두 전략이 쓰는 가격과 주문 규칙은 같습니다. 기존 유효 계약을 확인하는 조건을 더하자 보유 상태가 달라진 날은 삼성전자 23일, SK하이닉스 11일이었습니다. 가격 추세와 비교하면 CLEAR의 순수익률은 삼성전자에서 4.00%p 낮고 SK하이닉스에서 8.87%p 높았습니다. 이 두 종목의 차이가 합산 격차 대부분을 설명합니다.</p>
       <p>TRACE는 학습 표본 197개 종목·일에서 공급사 신규 계약과 정정 공시 경로 두 개를 채택했습니다. 두 규칙 모두 하락을 가리켰습니다. 평가 중 공시 후보가 있었던 72개 종목·일에서 21개 신호를 반영했습니다. 거래 상대를 거치는 경로는 채택되지 않았습니다.</p>
@@ -173,23 +170,19 @@
       <p>10종목 합산에서 계약 그래프를 추가한 전략의 손실은 매수 후 보유보다 38.33%p, 가격 추세보다 0.49%p, 원문 구매자만 확인한 전략보다 8.29%p 작았습니다. 평가 구간을 본 뒤 규칙을 정했으므로 이 차이는 탐색 결과입니다.</p>
       <h3 id="stock-attribution">종목별 주문과 손익 기여</h3>
       <p>10종목의 일별 주문을 다시 재생해 성과표와 일치하는지 확인했습니다. 그다음 공시 신호를 뺀 경우와 실제 전략을 같은 시가·종가와 비용으로 비교했습니다. CLEAR에서는 지정한 공시의 부호를 제거했습니다. TRACE에서는 이미 판정한 방향을 고정하고, 지정한 공시를 제거한 뒤 반환된 근거가 하나도 남지 않은 날의 신호를 끊었습니다. 이 비교는 관측된 신호의 주문 기여를 측정합니다. 규칙을 다시 학습하거나 대체 경로를 재탐색하는 효과는 포함하지 않습니다.</p>
-      <p>초기 배분이 같고 종목 계정끼리 자금을 옮기지 않았으므로, 종목 <var>i</var>의 합산 기여는 TRACE와 CLEAR의 종목별 순수익률 차이를 10으로 나눈 값입니다. 보유 차이 일수는 각 전략이 가격 추세와 다른 목표 보유 상태를 정한 거래일 수입니다.</p>
+      <p>초기 배분이 같고 종목 계정끼리 자금을 옮기지 않았으므로, 종목 <var>i</var>의 합산 기여는 TRACE와 CLEAR의 종목별 순수익률 차이를 10으로 나눈 값입니다. 보유 차이 일수는 각 전략이 가격 추세와 다른 목표 보유 상태를 정한 거래일 수입니다. 아래 표는 두 전략 중 하나라도 가격 추세와 보유 판단이 달라진 5종목만 보여줍니다. 합산 기여의 분모는 전체 10종목입니다.</p>
       <div class="table-scroll" role="region" aria-label="종목별 수익률 기여" tabindex="0"><table>
         <caption>종목별 순수익률과 TRACE−CLEAR 합산 차이 기여도</caption>
         <thead><tr><th scope="col">종목</th><th scope="col">가격 추세</th><th scope="col">CLEAR</th><th scope="col">TRACE</th><th scope="col">CLEAR 보유 차이 일수</th><th scope="col">TRACE 보유 차이 일수</th><th scope="col">합산 기여</th></tr></thead>
         <tbody>
           <tr><th scope="row">삼성전자</th><td>−2.63%</td><td>−6.64%</td><td>−2.63%</td><td>2</td><td>0</td><td>+0.40%p</td></tr>
           <tr><th scope="row">SK하이닉스</th><td>−12.75%</td><td>−3.88%</td><td>−12.75%</td><td>5</td><td>0</td><td>−0.89%p</td></tr>
-          <tr><th scope="row">삼성중공업</th><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0</td><td>0</td><td>0.00%p</td></tr>
-          <tr><th scope="row">한화오션</th><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0</td><td>0</td><td>0.00%p</td></tr>
-          <tr><th scope="row">HD현대중공업</th><td>−2.18%</td><td>−2.18%</td><td>−2.18%</td><td>0</td><td>0</td><td>0.00%p</td></tr>
-          <tr><th scope="row">현대건설</th><td>−0.63%</td><td>−0.63%</td><td>−0.63%</td><td>0</td><td>0</td><td>0.00%p</td></tr>
           <tr><th scope="row">삼성물산</th><td>−7.08%</td><td>−7.08%</td><td>−7.08%</td><td>4</td><td>0</td><td>0.00%p</td></tr>
           <tr><th scope="row">삼성전기</th><td>−8.41%</td><td>−8.41%</td><td>+11.82%</td><td>0</td><td>4</td><td>+2.02%p</td></tr>
           <tr><th scope="row">파두</th><td>−12.51%</td><td>−12.51%</td><td>−1.30%</td><td>0</td><td>2</td><td>+1.12%p</td></tr>
-          <tr><th scope="row">대우건설</th><td>−7.28%</td><td>−7.28%</td><td>−7.28%</td><td>0</td><td>0</td><td>0.00%p</td></tr>
         </tbody></table></div>
       <p>TRACE는 합산에서 CLEAR보다 2.66%p 높았습니다. 삼성전기 +2.02%p와 파두 +1.12%p가 주된 기여였고, SK하이닉스의 CLEAR 수익은 격차를 0.89%p 줄였습니다. 삼성전자는 TRACE에 +0.40%p를 보탰습니다. 삼성물산의 차이는 0.001%p 미만이었습니다.</p>
+      <p>두 전략 모두 공시 후보가 있었던 7종목에만 초기 자본을 똑같이 배정해 다시 집계하면 TRACE −1.92%, CLEAR −4.12%, 가격 추세 −4.81%였습니다. 이 7종목은 평가기간에 후보가 있었는지를 보고 골랐으므로 보조 비교입니다. 본실험 수익률은 10종목 기준으로 제시합니다. 파두는 CLEAR 후보가 없어 이 보조 비교에서 빠지지만, TRACE가 공시로 매도를 앞당겼으므로 본실험의 파두 사례에는 남겼습니다.</p>
       <h3>공시가 주문을 바꾼 네 사례</h3>
       <p><strong>삼성전자 · CLEAR의 추가 진입이 손실을 키웠습니다.</strong> CLEAR는 일성건설에서 기존 평택 건설계약을 거쳐 삼성전자에 이르는 경로를 확인했습니다. 기존 계약이 새 공시 전에 공개돼 유효했고, 공급 방향·제품군과 구매자가 일치했습니다. 이 검사를 통과한 온양 복지동 공시는 신규 계약이어서 +1을 받았습니다. 11월 25일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었습니다. CLEAR는 양의 신호를 우선해 목표를 현금에서 주식으로 바꿨습니다. 시가 178,500원에 매수했고, 26일 평가 종료 규칙에 따라 종가 171,500원에 청산했습니다. 이 공시의 신호를 빼면 비용 후 종목 수익률은 −6.64%에서 −2.63%로 바뀝니다. TRACE는 이 종목에서 가격 추세와 같은 주문을 냈습니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124800494">일성건설 공시</a></p>
       <p><strong>SK하이닉스 · CLEAR의 재진입이 앞선 손실을 일부 만회했습니다.</strong> CLEAR는 케이씨텍의 새 공시에서 구매자가 SK하이닉스임을 확인하고, 그래프에서 공시 전에 공개돼 당시 유효한 같은 제품군의 반도체 제조장비 계약을 찾았습니다. 기존 계약은 금액이 양수였고 새 공시와 접수번호가 달랐습니다. 이 조건을 통과했으므로, 신규 계약의 부호 +1을 SK하이닉스에 반영했습니다. 11월 17일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었습니다. CLEAR는 현금에서 주식으로 목표를 바꿔 1,098,000원에 매수했습니다. 24일에는 공시가 5거래일 창에서 빠져 합계가 0이 됐습니다. 가격 추세도 0이어서 시가 1,212,000원에 매도했습니다. 이 공시의 신호를 빼면 비용 후 수익률은 −3.88%에서 −12.75%로 내려갑니다. TRACE는 같은 기간 가격 추세에 따라 현금을 유지했습니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">케이씨텍 공시</a></p>
