@@ -1,10 +1,10 @@
-**[연구 블로그 · GitHub Pages](https://gugstockkg.github.io/knowledge_graph/)**
+**[FINTOS 연구 블로그](https://gugstockkg.github.io/knowledge_graph/)**
 
 ![OpenDART 수집부터 온톨로지 기반 지식그래프 구축·Neo4j 조회·EC2 배포 준비까지](docs/diagrams/overview.svg)
 
 [draw.io 원본 편집](docs/diagrams/overview.drawio) · [로컬 실행](docs/runbooks/local.md) · [EC2 실행](docs/runbooks/ec2.md) · [온톨로지 v0.1](ontology/v0.1/)
 
-# GUG Financial Knowledge Graph
+# FINTOS Financial Knowledge Graph
 
 한국 기업의 공시에서 **기업·주주·지분·사건과 원문 근거를 연결하는 지식그래프**를 구축하는 사이드프로젝트입니다. 기업 간 관계를 설명하고, 특정 시점에 어떤 근거를 알 수 있었는지 추적하는 것이 목표입니다. 이후 GraphRAG 질의응답과 시간적 관계 추론으로 확장합니다.
 
