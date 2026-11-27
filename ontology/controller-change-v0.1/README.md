@@ -23,6 +23,17 @@
 
 S3 원본과 실제 적재 파일은 권한이 있는 저장소에 둔다. 공개 Git에는 정의·코드·문서·합성 예제만 둔다. 이 초안의 사례는 로컬 원문에서 검토했으며 S3 대조와 팀 검수는 별도 단계다.
 
+## 한 사건 데모 실행
+
+`knowledge_graph.graph.controller_change`는 검토한 원공시와 정정본 한 쌍에 한정된다. 두 ZIP을 이름 순서에 맞춰 넘기면 변경 후 그룹 소유비율과 변경일을 읽고, 원문 해시와 표 위치를 반환한다. `--load`를 붙이면 이미 실행 중인 Neo4j에 적재하고 날짜별 결과를 검증한다. 표의 위치는 파서가 센 1-based 표·행·셀 순번이다. `NEO4J_PASSWORD`는 서버 전용 설정에서 주입한다.
+
+```bash
+PYTHONPATH=src python3 -m knowledge_graph.graph.controller_change ORIGINAL.zip CORRECTION.zip
+PYTHONPATH=src python3 -m knowledge_graph.graph.controller_change ORIGINAL.zip CORRECTION.zip --load
+```
+
+브라우저에서 데모를 볼 때 `MATCH p=(n:ControllerDemoAssertion)-[:SUPPORTED_BY|ASSERTED_IN|ABOUT_EVENT]->() RETURN p`를 실행한다. 정정 연결은 `MATCH p=(:ControllerDemoFiling)-[:CORRECTS]->(:ControllerDemoFiling) RETURN p`로 볼 수 있다. 모듈의 `AS_OF`는 기준일 조건과 원문 위치를 포함한다.
+
 ## 근거 자료
 
 - [OpenDART 공시검색](https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001)
