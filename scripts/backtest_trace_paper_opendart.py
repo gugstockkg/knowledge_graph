@@ -142,13 +142,40 @@ def run(graph, archive, later, min_support, *, clear_filter=False):
     curves = []
     stock_returns, stock_orders, signal_days = {}, {}, {}
     exposure = 0
+    active_signal_days = {}
+    order_records = []
+    receipts_by_session = {(row["symbol"], row["session"]): row["receipts"] for row in audit}
     for code, symbol in selected.items():
         targets = []
+        prior = 0
+        active_signal_days[symbol] = 0
         for day in dates:
             i = market.index(day)
             signal = sum(daily_signs[code].get(j, 0) for j in range(i - 4, i + 1))
+            active_signal_days[symbol] += bool(signal)
             trend = bars[code][market[i - 1]]["close"] > bars[code][market[i - 21]]["close"]
-            targets.append(int(signal > 0) if signal else int(trend))
+            target = int(signal > 0) if signal else int(trend)
+            targets.append(target)
+            if target != prior:
+                receipts = {
+                    receipt for j in range(i - 4, i + 1)
+                    for receipt in receipts_by_session.get((symbol, market[j]), ())
+                }
+                order_records.append({
+                    "date": day, "symbol": symbol, "strategy": "trace",
+                    "side": "buy" if target else "sell", "session": "open",
+                    "price": bars[code][day]["open"],
+                    "reason": "net_trace_signal" if signal else "20_session_price_trend",
+                    "trend_target": int(trend), "net_signal": signal,
+                    "signal_receipts": "|".join(sorted(receipts)),
+                })
+            prior = target
+        if prior:
+            order_records.append({
+                "date": dates[-1], "symbol": symbol, "strategy": "trace",
+                "side": "sell", "session": "close", "price": bars[code][dates[-1]]["close"],
+                "reason": "end_of_evaluation",
+            })
         daily, orders = returns(dates, bars[code], targets, 0.001)
         curves.append([prod(1 + r for r in daily[:n]) for n in range(len(dates) + 1)])
         stock_returns[symbol] = curves[-1][-1] - 1
@@ -163,6 +190,7 @@ def run(graph, archive, later, min_support, *, clear_filter=False):
         "training_stock_days": len(observations), "evaluation_stock_days": len(audit),
         "rules": [vars(rule) for rule in rules], "predictions": audit,
         "clear_filter": clear_filter, "min_support": min_support,
+        "order_records": order_records, "active_signal_days": active_signal_days,
     }
 
 

@@ -1,0 +1,1191 @@
+{
+  "revision": "e03a44f3de5144a346d8f5f6f83c7cea5f0a9cb9",
+  "source_sha256": {
+    "audit_disclosure_backtest.py": "f15384064c79d9823cb83d4103309ff015c25186ac4b623b0fa8b0578445bfd1",
+    "backtest_trace_positions.py": "7435a518c164d664a33301549714b36c8b22e8d799958f3c6d1f2ce2483e9829",
+    "backtest_trace_paper_opendart.py": "9595af0d23b7416979b0347ae9fe7013c0bf843f21f7f1f79eb47642206a2fa7",
+    "trace_paper.py": "01e1b3bc5199e653cdcd5a619bfafe9ed8882fbf6a5912cedebae4d290162f26"
+  },
+  "graph_sha256": "55cfaf9ac0455bed513e3b5943ce0dcd841e9c12ca7092b22337ab379ab9ef63",
+  "prices_sha256": {
+    "archive/000660.json": "78df3ac12d3d9732809afc6cac316d9aed43bfe44b486ba7884987e7b243b5d9",
+    "archive/000720.json": "3052e088f77764f441b4e89142d7fb76fbf52a4e25eddf58019d27bb87dc7114",
+    "archive/005930.json": "92b4504e5f8e2d11a6440d76302a0768611b85fb52e0024f020d9a8a3b079cfb",
+    "archive/009150.json": "3503684d3d0f51ed75024ead2c19e8df130f38960de87d7c4a4e092ba67ce517",
+    "archive/010140.json": "168eb23771a8d4211c7b37e5a6b5e78b39e80de39a5e6750f27e0d99e30491b0",
+    "archive/028260.json": "46e6d781e4ed256c4ab12a1d16de0d0d2fb979f56b584be1d5d2f9e57ac36a90",
+    "archive/042660.json": "1ed8a9047b935f8a02a7c900305d97cf58abc3646bbc9895406acff19bc555a4",
+    "archive/047040.json": "b42dd617391897a859adbde280fbcb0aee20f316d0d577650acf6dffaed551e2",
+    "archive/329180.json": "466f380da5fc93fce2052af000391a20522da6512e23c3092b0fe7b2609af82c",
+    "archive/440110.json": "623580fe9fd8f3516340d6b319b8f01f6da8da9c1397abd925aabf18d4731df7",
+    "archive/KOSDAQ.json": "c741524d308a368690d2ade496d9b273ee79a1d6c2d460b8b45856f8d5fd8fbf",
+    "archive/KOSPI.json": "3dad2a274c1e76fa207fea9a16662ca804a8e0424151c11571d04f8142017f9d",
+    "later/000660.json": "27d3c32499944031b56092dbbd609f9b8a077d4f178cd9c6568910e065b56bfe",
+    "later/000720.json": "1e0e9b658f1e936937beeecf17bb7f399b15a0ef086702319eda2fa03e74e737",
+    "later/005930.json": "d3662a8dde28fcc8f4077685f9dd979972ecd416540d180a5fa5de7c346bec73",
+    "later/009150.json": "210f640e9850a2bd7af21eb069111d8aa3f220a073be4f5ef2ef19498e1e71f2",
+    "later/010140.json": "d489708e23f0da77fe315de2fabecccf81d7512cd40fa46fe94dee66f681c0aa",
+    "later/028260.json": "9d1da877436a63200da2963e53d02ac8f63851a66533f513517b647ea2720cae",
+    "later/042660.json": "a99739169f5ead9e85c1cacaa01b13c3038ca1ee3754306e00237fd1bdb9a38a",
+    "later/047040.json": "f44d2f99b9f87b63f46c1a954c7ee55033c6eb27e994c75d5351b990f2827e64",
+    "later/329180.json": "31707c2a9029cc809992dcb1ec916d4c4d4ee69484a33d07ea684da68280dd51",
+    "later/440110.json": "106c5fb5ffb5000865f3069f9e53330204dc4665f6712e32d5876777dc13aab2",
+    "later/KOSDAQ.json": "a15d4c21f545b7ff1940f44641cb92c5e36f180dcfaaa2b0a6dd797623838793",
+    "later/KOSPI.json": "89a0cf02e5018f0e472ad2fa8214bb1d3a1d477b54c85bcc28e5759284f26818"
+  },
+  "period": [
+    "2026-10-01",
+    "2026-11-26"
+  ],
+  "days": 39,
+  "round_trip_bp": 20,
+  "selection": [
+    {
+      "symbol": "005930",
+      "name": "삼성전자",
+      "pretest_contract_filings": 33
+    },
+    {
+      "symbol": "000660",
+      "name": "SK하이닉스",
+      "pretest_contract_filings": 16
+    },
+    {
+      "symbol": "010140",
+      "name": "삼성중공업",
+      "pretest_contract_filings": 30
+    },
+    {
+      "symbol": "042660",
+      "name": "한화오션",
+      "pretest_contract_filings": 21
+    },
+    {
+      "symbol": "329180",
+      "name": "HD현대중공업",
+      "pretest_contract_filings": 18
+    },
+    {
+      "symbol": "000720",
+      "name": "현대건설",
+      "pretest_contract_filings": 13
+    },
+    {
+      "symbol": "028260",
+      "name": "삼성물산",
+      "pretest_contract_filings": 6
+    },
+    {
+      "symbol": "009150",
+      "name": "삼성전기",
+      "pretest_contract_filings": 4
+    },
+    {
+      "symbol": "440110",
+      "name": "파두",
+      "pretest_contract_filings": 17
+    },
+    {
+      "symbol": "047040",
+      "name": "대우건설",
+      "pretest_contract_filings": 15
+    }
+  ],
+  "audit": [
+    {
+      "strategy": "CLEAR",
+      "symbol": "005930",
+      "candidate_receipt_sessions": 9,
+      "adopted_receipt_sessions": 1,
+      "new_signal_days": 1,
+      "active_signal_days": 2,
+      "orders_added": 2,
+      "orders_removed": 8
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "005930",
+      "candidate_receipt_sessions": 20,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "000660",
+      "candidate_receipt_sessions": 5,
+      "adopted_receipt_sessions": 1,
+      "new_signal_days": 1,
+      "active_signal_days": 5,
+      "orders_added": 4,
+      "orders_removed": 4
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "000660",
+      "candidate_receipt_sessions": 12,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "010140",
+      "candidate_receipt_sessions": 2,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 4
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "010140",
+      "candidate_receipt_sessions": 9,
+      "adopted_receipt_sessions": 2,
+      "new_signal_days": 2,
+      "active_signal_days": 10,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "042660",
+      "candidate_receipt_sessions": 0,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "042660",
+      "candidate_receipt_sessions": 6,
+      "adopted_receipt_sessions": 2,
+      "new_signal_days": 2,
+      "active_signal_days": 10,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "329180",
+      "candidate_receipt_sessions": 3,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 6
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "329180",
+      "candidate_receipt_sessions": 7,
+      "adopted_receipt_sessions": 4,
+      "new_signal_days": 4,
+      "active_signal_days": 14,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "000720",
+      "candidate_receipt_sessions": 5,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 8
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "candidate_receipt_sessions": 10,
+      "adopted_receipt_sessions": 2,
+      "new_signal_days": 2,
+      "active_signal_days": 6,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "028260",
+      "candidate_receipt_sessions": 3,
+      "adopted_receipt_sessions": 1,
+      "new_signal_days": 1,
+      "active_signal_days": 4,
+      "orders_added": 1,
+      "orders_removed": 3
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "028260",
+      "candidate_receipt_sessions": 5,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "009150",
+      "candidate_receipt_sessions": 1,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 2
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "009150",
+      "candidate_receipt_sessions": 4,
+      "adopted_receipt_sessions": 3,
+      "new_signal_days": 3,
+      "active_signal_days": 15,
+      "orders_added": 1,
+      "orders_removed": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "440110",
+      "candidate_receipt_sessions": 0,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "440110",
+      "candidate_receipt_sessions": 4,
+      "adopted_receipt_sessions": 4,
+      "new_signal_days": 4,
+      "active_signal_days": 17,
+      "orders_added": 1,
+      "orders_removed": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "047040",
+      "candidate_receipt_sessions": 0,
+      "adopted_receipt_sessions": 0,
+      "new_signal_days": 0,
+      "active_signal_days": 0,
+      "orders_added": 0,
+      "orders_removed": 0
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "047040",
+      "candidate_receipt_sessions": 5,
+      "adopted_receipt_sessions": 5,
+      "new_signal_days": 4,
+      "active_signal_days": 16,
+      "orders_added": 0,
+      "orders_removed": 0
+    }
+  ],
+  "trace_predictions": [
+    {
+      "symbol": "042660",
+      "filing_day": "2026-10-15",
+      "session": "2026-10-16",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "042660",
+      "filing_day": "2026-10-30",
+      "session": "2026-11-02",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261030800228"
+      ]
+    },
+    {
+      "symbol": "042660",
+      "filing_day": "2026-11-18",
+      "session": "2026-11-19",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "042660",
+      "filing_day": "2026-11-19",
+      "session": "2026-11-20",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261119800082"
+      ]
+    },
+    {
+      "symbol": "042660",
+      "filing_day": "2026-11-25",
+      "session": "2026-11-26",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "047040",
+      "filing_day": "2026-10-13",
+      "session": "2026-10-14",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261013800134"
+      ]
+    },
+    {
+      "symbol": "047040",
+      "filing_day": "2026-10-16",
+      "session": "2026-10-19",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261016800313"
+      ]
+    },
+    {
+      "symbol": "047040",
+      "filing_day": "2026-10-30",
+      "session": "2026-11-02",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261030800255",
+        "20261030800384"
+      ]
+    },
+    {
+      "symbol": "047040",
+      "filing_day": "2026-11-23",
+      "session": "2026-11-24",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261123800132"
+      ]
+    },
+    {
+      "symbol": "009150",
+      "filing_day": "2026-10-06",
+      "session": "2026-10-07",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261006800130"
+      ]
+    },
+    {
+      "symbol": "009150",
+      "filing_day": "2026-10-19",
+      "session": "2026-10-20",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261019800610"
+      ]
+    },
+    {
+      "symbol": "009150",
+      "filing_day": "2026-10-30",
+      "session": "2026-11-02",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261030800604"
+      ]
+    },
+    {
+      "symbol": "009150",
+      "filing_day": "2026-11-24",
+      "session": "2026-11-25",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-08",
+      "session": "2026-10-12",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-16",
+      "session": "2026-10-19",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-20",
+      "session": "2026-10-21",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-23",
+      "session": "2026-10-26",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-26",
+      "session": "2026-10-27",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-29",
+      "session": "2026-10-30",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-10-30",
+      "session": "2026-11-02",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-10",
+      "session": "2026-11-11",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-12",
+      "session": "2026-11-13",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-16",
+      "session": "2026-11-17",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-17",
+      "session": "2026-11-18",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-19",
+      "session": "2026-11-20",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-20",
+      "session": "2026-11-23",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-24",
+      "session": "2026-11-25",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "005930",
+      "filing_day": "2026-11-25",
+      "session": "2026-11-26",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-10-01",
+      "session": "2026-10-02",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-10-02",
+      "session": "2026-10-06",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261002800245"
+      ]
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-10-15",
+      "session": "2026-10-16",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-10-22",
+      "session": "2026-10-23",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-10-26",
+      "session": "2026-10-27",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-11-05",
+      "session": "2026-11-06",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-11-09",
+      "session": "2026-11-10",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-11-16",
+      "session": "2026-11-17",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261116800077"
+      ]
+    },
+    {
+      "symbol": "010140",
+      "filing_day": "2026-11-19",
+      "session": "2026-11-20",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "028260",
+      "filing_day": "2026-10-13",
+      "session": "2026-10-14",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "028260",
+      "filing_day": "2026-10-29",
+      "session": "2026-10-30",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "028260",
+      "filing_day": "2026-11-06",
+      "session": "2026-11-09",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "028260",
+      "filing_day": "2026-11-20",
+      "session": "2026-11-23",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "028260",
+      "filing_day": "2026-11-25",
+      "session": "2026-11-26",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-10-08",
+      "session": "2026-10-12",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-10-21",
+      "session": "2026-10-22",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-10-23",
+      "session": "2026-10-26",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-10-26",
+      "session": "2026-10-27",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-10-29",
+      "session": "2026-10-30",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261029800011"
+      ]
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-11-09",
+      "session": "2026-11-10",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-11-20",
+      "session": "2026-11-23",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-11-23",
+      "session": "2026-11-24",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000720",
+      "filing_day": "2026-11-25",
+      "session": "2026-11-26",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261125800307"
+      ]
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-10-06",
+      "session": "2026-10-07",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-10-16",
+      "session": "2026-10-19",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-10-19",
+      "session": "2026-10-20",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-10-21",
+      "session": "2026-10-22",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-10-30",
+      "session": "2026-11-02",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-11-10",
+      "session": "2026-11-11",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-11-12",
+      "session": "2026-11-13",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-11-16",
+      "session": "2026-11-17",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-11-17",
+      "session": "2026-11-18",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "000660",
+      "filing_day": "2026-11-19",
+      "session": "2026-11-20",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "440110",
+      "filing_day": "2026-10-08",
+      "session": "2026-10-12",
+      "label": "DOWN",
+      "confidence": 0.7142857142857143,
+      "adopted": true,
+      "receipts": [
+        "20261008900573"
+      ]
+    },
+    {
+      "symbol": "440110",
+      "filing_day": "2026-10-15",
+      "session": "2026-10-16",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261015900127"
+      ]
+    },
+    {
+      "symbol": "440110",
+      "filing_day": "2026-11-03",
+      "session": "2026-11-04",
+      "label": "DOWN",
+      "confidence": 0.7142857142857143,
+      "adopted": true,
+      "receipts": [
+        "20261103900506"
+      ]
+    },
+    {
+      "symbol": "440110",
+      "filing_day": "2026-11-06",
+      "session": "2026-11-09",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261106900228"
+      ]
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-10-12",
+      "session": "2026-10-13",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-10-15",
+      "session": "2026-10-16",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261015800353"
+      ]
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-10-20",
+      "session": "2026-10-21",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261020800221"
+      ]
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-10-21",
+      "session": "2026-10-22",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-11-05",
+      "session": "2026-11-06",
+      "label": "DOWN",
+      "confidence": 0.0,
+      "adopted": false,
+      "receipts": []
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-11-06",
+      "session": "2026-11-09",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261106800310"
+      ]
+    },
+    {
+      "symbol": "329180",
+      "filing_day": "2026-11-09",
+      "session": "2026-11-10",
+      "label": "DOWN",
+      "confidence": 0.6097560975609756,
+      "adopted": true,
+      "receipts": [
+        "20261109800193"
+      ]
+    }
+  ],
+  "trace_rules": [
+    {
+      "body": [
+        "SUPPLIER_AMENDMENT",
+        "EXTRACTED_FROM"
+      ],
+      "label": "DOWN",
+      "support": 7,
+      "confidence": 0.7142857142857143
+    },
+    {
+      "body": [
+        "SUPPLIER_ORIGINAL",
+        "EXTRACTED_FROM"
+      ],
+      "label": "DOWN",
+      "support": 82,
+      "confidence": 0.6097560975609756
+    }
+  ],
+  "metrics": {
+    "buy_hold": {
+      "total_return": -0.43185355692241656,
+      "sharpe": -4.886834473959731,
+      "annualized_volatility": 0.693384728770116,
+      "max_drawdown": -0.45335564982404797,
+      "stock_returns": {
+        "005930": -0.3577585641375507,
+        "000660": -0.40244488768892805,
+        "010140": -0.2924914841750539,
+        "042660": -0.47503575105097906,
+        "329180": -0.4481094941924436,
+        "000720": -0.44909635818726723,
+        "028260": -0.2787301194380841,
+        "009150": -0.47596550606584054,
+        "440110": -0.6801275647429492,
+        "047040": -0.4587758395450696
+      },
+      "order_count": 20,
+      "invested_stock_days": 390
+    },
+    "price_trend": {
+      "total_return": -0.05347635719455135,
+      "sharpe": -3.862733847665763,
+      "annualized_volatility": 0.09082730019620225,
+      "max_drawdown": -0.07129653166964167,
+      "stock_returns": {
+        "005930": -0.02633951414439195,
+        "000660": -0.12748716012755157,
+        "010140": 0.0,
+        "042660": 0.0,
+        "329180": -0.02179500779267396,
+        "000720": -0.006333371233458007,
+        "028260": -0.07082572599813952,
+        "009150": -0.08410786537876835,
+        "440110": -0.1250727294683338,
+        "047040": -0.07280219780219777
+      },
+      "order_count": 18,
+      "invested_stock_days": 33
+    },
+    "legacy_path": {
+      "total_return": -0.1602417642807813,
+      "sharpe": -4.879715949624939,
+      "annualized_volatility": 0.2256359886115454,
+      "max_drawdown": -0.18618699210957612,
+      "stock_returns": {
+        "005930": -0.2368966398178738,
+        "000660": -0.32699979330217277,
+        "010140": -0.16357294769257846,
+        "042660": -0.1859770403563119,
+        "329180": -0.02179500779267396,
+        "000720": -0.15529700976684657,
+        "028260": -0.2298964114300519,
+        "009150": -0.08410786537876835,
+        "440110": -0.1250727294683338,
+        "047040": -0.07280219780219777
+      },
+      "order_count": 48,
+      "invested_stock_days": 137
+    },
+    "filtered_path": {
+      "total_return": -0.07012823413297242,
+      "sharpe": -3.4222684971805606,
+      "annualized_volatility": 0.13456413392067879,
+      "max_drawdown": -0.09254636782971515,
+      "stock_returns": {
+        "005930": -0.16188524533011672,
+        "000660": -0.03882267426245667,
+        "010140": -0.11967738738993805,
+        "042660": 0.0,
+        "329180": -0.02179500779267396,
+        "000720": -0.006333371233458007,
+        "028260": -0.07078586267178466,
+        "009150": -0.08410786537876835,
+        "440110": -0.1250727294683338,
+        "047040": -0.07280219780219777
+      },
+      "order_count": 28,
+      "invested_stock_days": 64
+    },
+    "explicit_buyer_path": {
+      "total_return": -0.04861110732623153,
+      "sharpe": -2.9743953266740784,
+      "annualized_volatility": 0.1063300877080922,
+      "max_drawdown": -0.07140689685949375,
+      "stock_returns": {
+        "005930": -0.06639136465264406,
+        "000660": -0.03882267426245667,
+        "010140": 0.0,
+        "042660": 0.0,
+        "329180": -0.02179500779267396,
+        "000720": -0.006333371233458007,
+        "028260": -0.07078586267178466,
+        "009150": -0.08410786537876835,
+        "440110": -0.1250727294683338,
+        "047040": -0.07280219780219777
+      },
+      "order_count": 24,
+      "invested_stock_days": 44
+    },
+    "named_buyer_only": {
+      "total_return": -0.131459059488497,
+      "sharpe": -3.9772248980815617,
+      "annualized_volatility": 0.22244560872270144,
+      "max_drawdown": -0.15836328623374707,
+      "stock_returns": {
+        "005930": -0.4180215092277302,
+        "000660": -0.12247945687901685,
+        "010140": -0.04986874774609584,
+        "042660": 0.0,
+        "329180": -0.09245918133814801,
+        "000720": -0.24432004727080237,
+        "028260": -0.06998244483417848,
+        "009150": -0.11958428031846768,
+        "440110": -0.1250727294683338,
+        "047040": -0.07280219780219777
+      },
+      "order_count": 52,
+      "invested_stock_days": 135
+    },
+    "sma20": {
+      "total_return": -0.08401798210513556,
+      "sharpe": -4.590403000986215,
+      "annualized_volatility": 0.12180408320385364,
+      "max_drawdown": -0.10385392239480429,
+      "stock_returns": {
+        "005930": -0.09884511558922537,
+        "000660": -0.22991371958750817,
+        "010140": -0.0982115431630548,
+        "042660": 0.0,
+        "329180": 0.0,
+        "000720": 0.0,
+        "028260": -0.20402884786446407,
+        "009150": -0.08410786537876835,
+        "440110": -0.1250727294683338,
+        "047040": 0.0
+      },
+      "order_count": 20,
+      "invested_stock_days": 34
+    },
+    "reversion5": {
+      "total_return": -0.3497488106688943,
+      "sharpe": -4.554444009387892,
+      "annualized_volatility": 0.5715647265523687,
+      "max_drawdown": -0.36093521187706323,
+      "stock_returns": {
+        "005930": -0.31859528161681927,
+        "000660": -0.31424057329217403,
+        "010140": -0.1525000451288273,
+        "042660": -0.33193840969659516,
+        "329180": -0.35370591842499244,
+        "000720": -0.3920505847777188,
+        "028260": -0.2994002597725738,
+        "009150": -0.3015041176010068,
+        "440110": -0.606698232672592,
+        "047040": -0.42685468370564406
+      },
+      "order_count": 84,
+      "invested_stock_days": 306
+    },
+    "trace": {
+      "total_return": -0.022038526033834382,
+      "sharpe": -2.0549283885852887,
+      "annualized_volatility": 0.06893046691348037,
+      "max_drawdown": -0.04045057968770771,
+      "stock_returns": {
+        "005930": -0.02633951414439195,
+        "000660": -0.12748716012755157,
+        "010140": 0.0,
+        "042660": 0.0,
+        "329180": -0.02179500779267396,
+        "000720": -0.006333371233458007,
+        "028260": -0.07082572599813952,
+        "009150": 0.11816277368116856,
+        "440110": -0.012965056921100837,
+        "047040": -0.07280219780219777
+      },
+      "order_count": 18,
+      "invested_stock_days": 27
+    }
+  }
+}
