@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="퀀트 연구와 실무 자료 14개를 비교하고, 공시 관계가 예측과 비용 후 성과에 기여하는지 검증할 실험과 기록 양식을 제안합니다.">
+  <meta name="fintos:summary" content="퀀트 연구와 실무 자료 14개를 비교하고, 공시 관계가 예측과 비용 후 성과에 기여하는지 검증할 실험과 기록 양식을 제안합니다.">
+  <meta name="fintos:category" content="evaluation">
+  <meta name="fintos:published" content="2026-11-28T16:43:48+09:00">
+  <title>퀀트 트레이더는 무엇을 검증하는가? FINTOS 공시·지식그래프 실험 설계 | FINTOS</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 이동</a>
+  <header class="shell top site-header">
+    <a class="brand" href="../../"><img src="../../assets/fintos-logo.webp" width="540" height="138" alt="FINTOS 홈"></a>
+    <nav aria-label="주요 메뉴"><a href="../../dataset/">데이터 설명서</a><a href="../">연구 보관함</a><a href="../../library/">도서관</a><a href="../../#artifacts">산출물</a><a href="../../#design-validation">설계와 검증</a></nav>
+  </header>
+  <main id="content" class="post dataset research-post" tabindex="-1"><article>
+    <a class="back" href="../">연구 보관함</a>
+    <h1>퀀트 트레이더는 무엇을 검증하는가? FINTOS 공시·지식그래프 실험 설계</h1>
+    <p class="post-meta"><span class="tag">실험 설계</span> <time datetime="2026-11-28">2026년 11월 28일</time></p>
+    <p class="lead"><strong>초록.</strong> 퀀트 연구의 검증 절차를 파악하기 위해 논문, 공개 직무와 실무 사례, 실험 플랫폼 및 성과 보고 자료 14개를 비교했다. 사건 반응, 예측력, 거래비용 후 성과와 체결 품질은 서로 다른 평가 문제였다. 이를 바탕으로 한국 공급계약 공시의 명시 구매자 신호에 과거 유효 계약 경로를 추가했을 때의 증분 성과를 검증하는 실험을 설계했다. 관계 위약과 노출 대조를 별도로 둔다. 본 글은 문헌 검토와 사전 설계이며 신규 독립 표본의 결과는 없다.</p>
+    <nav class="dataset-nav" aria-label="문서 목차"><a href="#question">연구 질문</a><a href="#related">관련 연구</a><a href="#comparison">출처 비교</a><a href="#design">실험 설계</a><a href="#templates">템플릿</a><a href="#limitations">한계</a><a href="#references">참고문헌</a></nav>
+
+    <section aria-labelledby="question">
+      <h2 id="question">1. 연구 질문과 검토 범위</h2>
+      <p>예측 점수가 달라지는 것과 주문 또는 비용 후 손익이 달라지는 것은 별개의 관찰이다. 이 글은 퀀트 연구가 그 차이를 어떤 자료로 확인하는지 조사하고, 공시 관계 그래프를 평가할 때 재사용할 수 있는 설계로 정리한다.</p>
+      <p>자료는 가설·재현·체결·운용을 함께 비교할 수 있도록 목적에 맞춰 골랐다. 회사 사례는 업무 범위를 보여주고, 학술 자료는 비교와 추론 방법을, 공개 구현은 실제 저장하는 산출물을 보여준다. 체계적 문헌고찰이나 현업 종사자 표본조사를 수행하지는 않았다.</p>
+    </section>
+
+    <section aria-labelledby="related">
+      <h2 id="related">2. 관련 연구</h2>
+      <h3>2.1 공시 반응과 관계 경로</h3>
+      <p><strong>MacKinlay의 사건 연구.</strong> 사건 전에 정상수익률을 추정할 구간을 놓고, 사건 전후 실제수익률에서 그 기대값을 빼 초과수익률을 계산한다. 사건창에 걸쳐 초과수익을 합치고 사건들 사이에서 집계한다. 이 방법은 반응의 방향과 시점을 진단할 수 있지만 같은 날 다른 공시나 시장 충격이 겹치면 어느 사건의 효과인지 판별하기 어렵다. FINTOS는 공시 시각 기준 반응창을 투자 판단 이후 실제 주문이 가능한 창과 따로 기록한다. <a href="#ref-4">[4]</a></p>
+      <p><strong>Cohen과 Frazzini의 고객–공급사 연구.</strong> 공개된 고객 관계를 이용해 고객의 주가 충격을 공급사의 후속 수익과 연결했다. 저자들은 해당 관계의 효과가 공급사 자체 모멘텀, 업종 모멘텀, 유동성 등을 통제해도 남았다고 보고했다. 이 연구의 정보 방향은 고객에서 공급사로 향한다. FINTOS의 비교는 공급사가 제출한 계약 공시를 명시 구매자에게 연결하는 문제여서 방향과 정보 원천부터 따로 기록한다. <a href="#ref-5">[5]</a></p>
+      <p><strong>TRACE의 근거 경로.</strong> Ding 등은 당시 알려진 시간관계로 그래프를 만들고, 경제적으로 허용된 관계 순서를 따라 여러 홉을 탐색했다. 찾아낸 경로는 동시기 뉴스로 검토하고 상승 또는 하락 판단과 함께 근거를 남겼다. 논문의 S&amp;P 500 평가에서 정확도 55.1%, F1 60.8%가 보고됐다. FINTOS가 채택하는 것은 시점 제한과 근거 추적이며, 수정종가 방향을 대상으로 한 본문의 수치는 KRX 시가·종가 또는 보유 정책과 직접 비교하기 어렵다. <a href="#ref-6">[6, 3–5절]</a></p>
+      <h3>2.2 선택 편향과 재현</h3>
+      <p><strong>백테스트 프로토콜과 과적합.</strong> Arnott 등은 경제적으로 설명할 수 있는 가설, 연구 설계와 구현 가능성을 함께 검토하고, 이미 확인한 결과를 거듭 보고 규칙을 바꾸는 문제를 다룬다. Harvey 등은 수백 개 후보 중 유의한 것만 남기는 관행이 통상적인 검정의 해석을 바꾼다고 지적했다. Bailey 등은 여러 후보 조합에서 표본 내 최적 규칙을 고른 뒤 표본 밖 순위가 얼마나 악화되는지 점검하는 방법을 제안했다. FINTOS에서는 창·필터·종목군 변형과 실패를 등록하며, 사건이 드문 표본에서는 과적합 진단의 추정치도 제한적으로 해석한다. <a href="#ref-3">[3]</a> <a href="#ref-7">[7]</a> <a href="#ref-8">[8]</a></p>
+      <p><strong>기간·시장 재현과 판본 기록.</strong> Jensen 등은 팩터를 유사한 주제로 묶고 93개국 신규 자료로 표본 밖 재현을 평가했다. 대다수 팩터에 재현 근거가 있다고 보고했으나, 본 연구에서는 같은 기업이나 공동 충격을 포함한 두 기간을 독립적인 두 번의 성공으로 세지 않는다. Chen과 Zimmermann의 공개 프로젝트에는 신호 코드와 수익률뿐 아니라 공시 시점 누수 수정 이력도 남아 있다. FINTOS에서는 같은 스냅샷과 설정으로 기존 결과를 재실행할 수 있어야 하며, 수정이 있으면 어느 거래가 달라졌는지 확인한다. <a href="#ref-9">[9]</a> <a href="#ref-10">[10]</a></p>
+      <h3>2.3 거래비용과 운용 기록</h3>
+      <p><strong>기관 주문 자료.</strong> Frazzini 등은 19개 선진국 시장의 실제 기관 거래를 이용해 시장 충격과 순성과, 손익분기 운용 규모를 분석했다. 종이 위의 신호 수익과 실제 포트폴리오의 수익 사이에 주문 크기와 체결 비용이 개입한다는 점이 중요하다. 해당 기관에서 추정한 비용을 한국 종목에 가져오는 대신, 여기서는 동일한 주문 규칙에서 비용 가정을 바꾸고 성과 차이가 사라지는 지점을 기록한다. <a href="#ref-11">[11]</a></p>
+      <p><strong>연구·거래 기록을 연결하는 방식.</strong> Jane Street의 직무 설명은 신호 연구, 통계 모형, 실행, 위험 관리를 함께 다룬다. Optiver와 Schroders의 인터뷰는 실행 도구 선택과 체결 후 영향, 교차상품 헤지 사례를 보여준다. Qlib은 예측·순위 상관·포지션·위험 결과를 실험 기록으로 묶고, QuantConnect는 같은 시기의 운용과 재생 결과에서 차이가 처음 생긴 단계를 찾는다. CFA Institute의 성과 보고 자료는 이론 성과와 실제 성과를 구분하는 근거로 참고했다. <a href="#ref-1">[1]</a> <a href="#ref-2">[2]</a> <a href="#ref-12">[12]</a> <a href="#ref-13">[13]</a> <a href="#ref-14">[14]</a></p>
+    </section>
+
+    <section aria-labelledby="comparison">
+      <h2 id="comparison">3. 출처별 산출물과 적용 범위</h2>
+      <div class="table-scroll" role="region" aria-label="표 1. 공개 자료 14개의 문제, 산출물과 적용 한계" tabindex="0">
+        <table><caption>표 1. 공개 자료 14개의 문제, 산출물과 적용 한계</caption>
+          <thead><tr><th scope="col">출처</th><th scope="col">실제로 다루는 문제</th><th scope="col">가져올 템플릿</th><th scope="col">적용 한계</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">Jane Street 트레이더 직무 <a href="#ref-1">[1]</a></th><td>신호, 통계 모형, 알고리즘 실행, 위험을 한 직무에서 다룬다.</td><td>가설별로 연구·실행·위험 검토와 판단 근거를 연결한다.</td><td>내부 승인 절차와 업무 빈도는 알 수 없다.</td></tr>
+          <tr><th scope="row">Optiver·Schroders 실행 사례 <a href="#ref-2">[2]</a></th><td>데이터 기반 브로커 선택, 체결 이후 영향, 교차상품 헤지.</td><td>체결비용과 위험 노출을 신호 평가와 분리한다.</td><td>호가·재고 연구의 주문장 자료는 일봉으로 대체할 수 없다.</td></tr>
+          <tr><th scope="row">Arnott·Harvey·Markowitz <a href="#ref-3">[3]</a></th><td>경제 가설, 표본 밖 검증, 탐색 편향, 구현 가능성을 묶은 연구 프로토콜.</td><td>사전 가설, 반증 조건, 테스트 분할, 계획 변경표.</td><td>특정 분할법이나 채택 기준을 모든 전략에 정해 주지 않는다.</td></tr>
+          <tr><th scope="row">MacKinlay <a href="#ref-4">[4]</a></th><td>정상 수익률의 추정 구간과 사건창을 분리하고 초과수익을 집계한다.</td><td>사건 시각, 기대수익 기준, 창별 초과수익, 겹치는 사건 기록.</td><td>사건 반응은 체결 가능한 전략 수익과 다르며 동시 사건은 인과 해석을 제한한다.</td></tr>
+          <tr><th scope="row">Cohen·Frazzini <a href="#ref-5">[5]</a></th><td>공개 고객–공급사 관계에서 고객 충격이 공급사에 늦게 반영되는지 검증한다.</td><td>정보 원천·대상·관계 방향·공개일과 업종·자체 모멘텀 대조.</td><td>고객→공급사 효과를 공급사 발행 공시→구매자 효과로 일반화할 수 없다.</td></tr>
+          <tr><th scope="row">TRACE v1 <a href="#ref-6">[6]</a></th><td>경제적 관계 규칙으로 다중 홉을 제한하고 동시기 뉴스에서 경로 근거를 찾는다.</td><td>문서 접수번호, 관계 버전, 유효기간, 경로와 탈락 이유.</td><td>원문의 수정종가 방향과 FINTOS의 시가→종가 또는 보유 정책은 서로 다른 질문이다.</td></tr>
+          <tr><th scope="row">Harvey·Liu·Zhu <a href="#ref-7">[7]</a></th><td>다수 팩터 후보와 검정 간 의존에 따른 선택 편향.</td><td>확인·실패한 모든 특징·보유창·필터의 등록부.</td><td>논문의 임계 통계량을 희소 공시 전략에 바로 적용할 수 없다.</td></tr>
+          <tr><th scope="row">Bailey 외 <a href="#ref-8">[8]</a></th><td>좋은 백테스트를 골랐을 때 표본 밖 순위가 나빠지는 선택 과적합을 진단한다.</td><td>후보군 전체 성과와 선택 민감도 표.</td><td>독립 블록이 부족한 희소 신호에서는 진단 정밀도가 낮다.</td></tr>
+          <tr><th scope="row">Jensen·Kelly·Pedersen <a href="#ref-9">[9]</a></th><td>동일한 팩터 정의를 유사 주제로 묶고 여러 시장에서 재현한다.</td><td>정의를 고정한 기간·시장·종목군 재현 행렬.</td><td>같은 기업과 충격을 공유하는 표본은 독립 재현으로 볼 수 없다.</td></tr>
+          <tr><th scope="row">Chen·Zimmermann <a href="#ref-10">[10]</a></th><td>신호 코드, 수익률, 데이터 판본, 공시 시점 누수 수정 이력을 공개한다.</td><td>변수 정의서, 데이터 버전, 기준 재현값, 수정 변경표.</td><td>미국 시장의 회계 자료 가용일을 OpenDART에 옮길 수 없다.</td></tr>
+          <tr><th scope="row">Frazzini·Israel·Moskowitz <a href="#ref-11">[11]</a></th><td>실제 기관 거래로 시장 충격, 비용 후 수익, 운용 규모를 분석한다.</td><td>결정 가격·체결·미체결 장부, 비용 민감도와 손익분기 비용.</td><td>기관의 비용 계수를 한국 주식에 그대로 쓰지 않는다.</td></tr>
+          <tr><th scope="row">Microsoft Qlib <a href="#ref-12">[12]</a></th><td>예측 기록, 순위 상관, 포지션·성과·위험을 실험 산출물로 묶는다.</td><td>실행 ID 하나에 데이터·코드·설정 해시와 재현 산출물을 연결한다.</td><td>기록 기능이 공시 시점 또는 비교 설계의 타당성을 검증해 주지는 않는다.</td></tr>
+          <tr><th scope="row">QuantConnect 실거래 대조 <a href="#ref-13">[13]</a></th><td>같은 시기의 운용과 백테스트를 대조해 데이터·기업행동·체결 차이를 찾는다.</td><td>예상값, 관측값, 처음 어긋난 단계, 이유, 조치.</td><td>실제 주문 기록이 없는 단계에서는 모의 주문과 관측 시세까지 대조한다.</td></tr>
+          <tr><th scope="row">CFA Institute 성과 보고 <a href="#ref-14">[14]</a></th><td>성과 계산의 비교 가능성과 실제·이론 성과 표시를 다룬다.</td><td>통화, 기간, 기준, 비용 포함 여부, 모의/실거래 구분.</td><td>보고 원칙의 참고 자료이며 FINTOS의 규제 적용을 판정한 자료가 아니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-scroll" role="region" aria-label="표 2. 공통점, 차이와 FINTOS 적용" tabindex="0">
+        <table><caption>표 2. 공통점, 차이와 FINTOS 적용</caption>
+          <thead><tr><th scope="col">축</th><th scope="col">공통</th><th scope="col">차이</th><th scope="col">FINTOS 적용</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">비교 단위</th><td>비교 조건과 대조군을 명시한다.</td><td>이벤트 연구는 공시·사건, 예측은 종목·세션, 포트폴리오는 거래일, 실행은 주문·체결 단위다.</td><td>네 단위를 분리하고 식별자로 연결한다.</td></tr>
+          <tr><th scope="row">시점</th><td>미래 정보를 넣지 않는다.</td><td>사건창은 시장 반응을, 주문창은 체결 가능성을 본다.</td><td>발생·공개·관측·신호 동결·주문 가능 시각과 관계 유효일을 구분한다.</td></tr>
+          <tr><th scope="row">대조</th><td>경쟁 설명을 시험한다.</td><td>관계 위약은 연결의 의미를, 노출 대조는 현금·시장 비중 차이를 검증한다.</td><td>대조군 두 개를 따로 구성하고 비용·출처·가용 시점은 공통으로 적용한다.</td></tr>
+          <tr><th scope="row">성공 지표</th><td>측정 범위와 가정을 남긴다.</td><td>초과수익, 분류, 순손익, 실행 비용은 서로 대체할 수 없다.</td><td>매매는 비용 후 증분 손익, 분류와 커버리지는 진단 지표로 둔다.</td></tr>
+          <tr><th scope="row">재검증</th><td>데이터 판본과 실패도 기록한다.</td><td>학술 재현은 새 기간·시장, 운영 검증은 동일 기간의 모의·실측 차이를 본다.</td><td>과거 재현, 독립 검증, 새 공시 모의 운용을 구분한다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>FINTOS에서는 공시 사건, 종목·거래일, 주문·체결, 포트폴리오 손익을 여러 원장으로 관리하되 식별자로 이어서 조회한다. 이렇게 하면 공시를 먹인 모형의 점수만 달라졌는지, 주문이나 위험 노출까지 달라졌는지 추적할 수 있다.</p>
+    </section>
+
+    <section aria-labelledby="design">
+      <h2 id="design">4. FINTOS 실험 설계</h2>
+      <p><strong>가설.</strong> 공급계약이나 금액 정정 공시가 상장 구매자를 명시할 때, 사건 전에 확인된 유효 거래 경로를 더 요구하면 명시 구매자만 사용하는 정책보다 거래비용 후 성과가 개선된다. 여기서 검정하는 것은 명시 구매자에 적용하는 경로 필터의 증분 효과다.</p>
+      <p>기존 두 종목·39거래일의 순수익률은 가격 추세 −7.69%, 명시 구매자 −27.03%, 유효 경로 −5.26%였다. 유효 경로와 구매자군의 보유 종목·일도 각각 18과 52로 달랐다. 이 기간은 이미 열어 봤고 결과 확인 후 규칙이 추가됐다. 별도 방향 분류에서 거래 경로 추가의 정확도 차이가 −0.15%p였던 결과도 같은 매매 성과로 해석할 수 없다. <a href="#ref-15">[15]</a> <a href="#ref-16">[16]</a></p>
+      <div class="table-scroll" role="region" aria-label="표 3. 매매 기준, 주 비교와 두 대조군" tabindex="0">
+        <table><caption>표 3. 매매 기준, 주 비교와 두 대조군</caption>
+          <thead><tr><th scope="col">비교군</th><th scope="col">바꾸는 요소</th><th scope="col">판단할 질문</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">A0 매수 후 보유</th><td>최초 배분 후 유지</td><td>전체 시장·보유 성과의 맥락</td></tr>
+          <tr><th scope="row">A1 가격 추세</th><td>가격 규칙만 사용</td><td>단순 거래 기준</td></tr>
+          <tr><th scope="row">A2 가격 + 명시 구매자</th><td>같은 정책에 공시상 구매자 신호를 추가</td><td>직접 공시만으로 달라지는 것</td></tr>
+          <tr><th scope="row">A3 가격 + 구매자 + 유효 경로</th><td>A2에 기존 공개·유효 계약, 역할과 품목 조건을 추가</td><td><strong>주 비교 A3−A2</strong></td></tr>
+          <tr><th scope="row">관계 위약</th><td>시점별 업종·규모·유동성이 비슷한 무관계 연결로 대체</td><td>실제 연결이 추가 가치가 있는가</td></tr>
+          <tr><th scope="row">노출 대조</th><td>사전에 정한 위험·노출 예산으로 가격 또는 공시 대조군을 구성</td><td>더 적게 투자한 효과가 얼마나 설명하는가</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>관계 위약은 기존에 알 수 있었던 업종·규모·유동성에 따라 대체 연결을 만들고, 매칭되는 사건은 실제 경로와 짝을 맞춘다. 노출 대조는 개발 구간에서 정한 예산으로 구성한다. 평가 결과를 보고 비교군 비중을 맞추면 선택 편향이 생긴다. <a href="#ref-3">[3]</a> <a href="#ref-5">[5]</a></p>
+      <div class="table-scroll" role="region" aria-label="표 4. 모집단, 시점, 주문, 비용과 판정 조건" tabindex="0">
+        <table><caption>표 4. 모집단, 시점, 주문, 비용과 판정 조건</caption>
+          <thead><tr><th scope="col">항목</th><th scope="col">설계안</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">종목군</th><td>당시 거래 가능했고 식별을 확인한 국내 상장 구매자. 시장·주식 종류·가격 이력 기준은 데이터 감사 후 동결한다. 삼성전자·SK하이닉스는 재현 사례로 표시한다.</td></tr>
+          <tr><th scope="row">시점·버전</th><td>공시 접수번호, 원문 위치, 원공시·정정, 법인–종목 매핑 버전을 기록한다. 관계는 신호 공시 전에 알려져 있었고 사건일에 유효해야 한다. 날짜만 있고 장중 가용 시각을 확인할 수 없으면 다음 세션을 가장 이른 후보로 둔다. 자료 지연을 복원할 수 없으면 그 행은 독립 운용 검증에서 제외한다.</td></tr>
+          <tr><th scope="row">개발과 검증</th><td>이미 확인한 구간은 과거 재현과 진단용이다. 독립 구간 후보의 접촉 이력과 가격·공시 커버리지를 감사한다. 레이블의 보유 창이 경계를 넘는 행은 제거한다. 평가 기간은 독립 사건·세션·변경 주문 수와 최소 의미 효과를 기준으로 결정한다.</td></tr>
+          <tr><th scope="row">주문·비용</th><td>기존 롱온리·현금 정책과 다음 거래일 시가 가정을 먼저 재현한다. 공식 시가 체결은 모의 가정으로 표시한다. 거래정지·결측·부분/미체결과 주문 크기 제약을 기록한다. 기존 왕복 0·20·40bp는 비교용 민감도이며 실측 비용이 아니다.</td></tr>
+          <tr><th scope="row">주 지표</th><td>같은 세션에서 A3−A2의 평균 일별 비용 후 포트폴리오 수익 차이. 누적 차이, 최대낙폭, 시장 노출, 회전율, 비용 손익분기점도 보고한다.</td></tr>
+          <tr><th scope="row">불확실성과 채택</th><td>같은 날 종목을 묶고 시간 의존을 고려해 짝지은 거래일 블록으로 구간을 추정한다. 사건 및 변경 주문이 너무 적거나 한 기업을 빼면 효과가 뒤집힐 때는 보류한다. 활성일과 전체 기간을 둘 다 표시한다.</td></tr>
+          <tr><th scope="row">경제적 판정</th><td>데이터·누수 검증에 통과하고 주 비교가 사전에 합의한 효과와 비용·노출 조건을 충족할 때 모의 운용으로 진행한다. 성과가 나오지 않거나 확인이 불가능한 경우도 결과로 기록한다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-scroll" role="region" aria-label="표 5. 단계별 산출물과 다음 단계의 조건" tabindex="0">
+        <table><caption>표 5. 단계별 산출물과 다음 단계의 조건</caption>
+          <thead><tr><th scope="col">단계</th><th scope="col">산출물</th><th scope="col">넘어갈 조건</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">0 데이터 감사</th><td>날짜·가용 시점·가격·기업행동·원문·관계 커버리지 표</td><td>정정 전 미래 정보 차단 사례와 예외 집계, 독립 구간 후보 확인</td></tr>
+          <tr><th scope="row">1 과거 재현</th><td>A0–A3 손익·포지션·거래 원장</td><td>기존 수치 대조와 불일치 이유 확인</td></tr>
+          <tr><th scope="row">2 진단·동결</th><td>사건창 초과수익, 커버리지, 매칭 품질, 노출/변경 주문 분석, 사전 등록본</td><td>비교·정책·검증 기간·판정선 확정</td></tr>
+          <tr><th scope="row">3 독립 검증</th><td>순성과 차이와 구간, 비용 민감도, 집중도, 위약·노출 대조</td><td>사전 판정에 따라 보류·기각·모의 운용 결정</td></tr>
+          <tr><th scope="row">4 모의 운용</th><td>새 공시의 신호→주문→모의체결 대조표</td><td>최초 불일치 단계와 가능한 조치를 기록</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="templates">
+      <h2 id="templates">5. 재사용할 실험 템플릿</h2>
+      <div class="table-scroll" role="region" aria-label="표 6. 사전계획부터 운영 대조까지의 기록 양식" tabindex="0">
+        <table><caption>표 6. 사전계획부터 운영 대조까지의 기록 양식</caption>
+          <thead><tr><th scope="col">템플릿</th><th scope="col">열 또는 필드</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">출처 카드</th><td>출처·판본 / 연구 질문 / 데이터·제약 / 비교법 / 산출물 / 채택 요소 / 적용 불가 조건</td></tr>
+          <tr><th scope="row">사전계획</th><td>가설 ID / 반증 조건 / 모집단·기간 / 가용 시각 / 비교·위약 / 정책·비용 / 주 지표 / 채택·보류 기준 / 동결 시각</td></tr>
+          <tr><th scope="row">실행 등록부</th><td>실행 ID / 가설 ID / 커밋 / 데이터·그래프 해시 / 설정·시드 / 실행 명령 / 산출물 경로 / 결과 상태 / 탐색·검증 구분</td></tr>
+          <tr><th scope="row">사건·신호 원장</th><td>공시·정정 ID / 원문 위치 / 공개·가용 시각 / 공급자·구매자 / 계약 ID와 유효기간 / 통과·탈락 사유 / 전략 ID</td></tr>
+          <tr><th scope="row">주문·체결 원장</th><td>신호 ID / 세션·종목 / 목표·기존 비중 / 주문 시각·수량 / 결정·체결 가격 / 비용 / 미체결 사유</td></tr>
+          <tr><th scope="row">결과표</th><td>비교군 / 짝지은 일·종목 / 적격 사건 / 활성일 / 변경 주문 / 체결 수 / 평균 노출 / 순성과 차이·구간 / 낙폭·회전율 / 민감도 / 결정</td></tr>
+          <tr><th scope="row">운영 대조표</th><td>동일 ID / 예상값 / 관측값 / 최초 불일치 단계 / 원인 / 조치</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>사전계획에는 반증 조건과 주 지표를 적고, 각 실행은 데이터·그래프 판본과 함께 보존한다. 결과표에는 신호가 0건이거나 주문이 달라지지 않은 경우도 넣는다. 체결 원장의 주문별 식별자는 순손익 차이를 공시와 경로 근거까지 역추적하는 데 쓴다. <a href="#ref-12">[12]</a> <a href="#ref-13">[13]</a></p>
+    </section>
+
+    <section aria-labelledby="limitations">
+      <h2 id="limitations">6. 한계와 결론</h2>
+      <p>공개 자료로 회사의 내부 승인 방식이나 연구 유형의 빈도를 추정하지 않았다. 다음 단계에서 먼저 확인할 것은 공시 접수 시점과 당시 가용성, 유효 계약의 커버리지, 거래 가능 가격이다. 독립 구간의 날짜, 최소 사건·변경 주문 수, 최소 개선 폭, 매칭 허용 범위와 노출 한도는 데이터 감사가 끝난 뒤 검증 결과를 열기 전에 정한다. 소수 종목의 손익에 좌우되거나 실제 변경 주문이 부족하면 설계를 보류한다.</p>
+      <p>핵심 검증은 같은 매매 정책에서 경로 필터가 비용 후 성과를 바꾸는지, 그 차이가 관계 위약과 노출 대조에서도 설명되는지를 확인하는 것이다. 결과가 나오기 전에는 기존 탐색 성과와 신규 검증 계획을 분리해 기록한다.</p>
+    </section>
+
+    <section aria-labelledby="references">
+      <h2 id="references">참고문헌과 실무 자료</h2>
+      <ol>
+        <li id="ref-1"><a href="https://www.janestreet.com/join-jane-street/position/8415898002/">Jane Street. Quantitative Trader, Hong Kong. 공개 직무 설명.</a></li>
+        <li id="ref-2"><a href="https://www.optiver.com/insights/markets/the-evolving-equity-trading-landscape-qa/">Optiver. The evolving equity trading landscape: Q&amp;A. Optiver·Schroders 실무 인터뷰.</a></li>
+        <li id="ref-3"><a href="https://people.duke.edu/~charvey/Research/Published_Papers/P138_A_backtesting_protocol.pdf">Arnott, R., Harvey, C. R., &amp; Markowitz, H. (2019). A Backtesting Protocol in the Era of Machine Learning. The Journal of Financial Data Science.</a></li>
+        <li id="ref-4"><a href="https://www.bu.edu/econ/files/2011/01/MacKinlay-1996-Event-Studies-in-Economics-and-Finance.pdf">MacKinlay, A. C. (1997). Event Studies in Economics and Finance. Journal of Economic Literature, 35(1), 13–39.</a></li>
+        <li id="ref-5"><a href="https://www.aqr.com/Insights/Research/Journal-Article/Economic-Links-and-Predictable-Returns">Cohen, L., &amp; Frazzini, A. (2008). Economic Links and Predictable Returns. The Journal of Finance. 저자 소속 기관의 논문 소개.</a></li>
+        <li id="ref-6"><a href="https://arxiv.org/html/2603.12500v1">Ding, Q. 등 (2026). TRACE: Temporal Rule-Anchored Chain-of-Evidence on Knowledge Graphs for Interpretable Stock Movement Prediction. arXiv:2603.12500v1, 3–5절 및 부록.</a></li>
+        <li id="ref-7"><a href="https://www.nber.org/papers/w20592">Harvey, C. R., Liu, Y., &amp; Zhu, H. (2014). … and the Cross-Section of Expected Returns. NBER Working Paper 20592.</a></li>
+        <li id="ref-8"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2326253">Bailey, D. H., Borwein, J. M., López de Prado, M., &amp; Zhu, Q. J. (2015). The Probability of Backtest Overfitting. 저자 공개 작업논문.</a></li>
+        <li id="ref-9"><a href="https://www.nber.org/papers/w28432">Jensen, T. I., Kelly, B. T., &amp; Pedersen, L. H. (2021). Is There a Replication Crisis in Finance? NBER Working Paper 28432.</a></li>
+        <li id="ref-10"><a href="https://www.openassetpricing.com/">Chen, A. Y., &amp; Zimmermann, T. Open Source Cross-Sectional Asset Pricing. 데이터, 코드 및 판본 변경 이력.</a></li>
+        <li id="ref-11"><a href="https://www.aqr.com/insights/research/working-paper/trading-costs-of-asset-pricing-anomalies">Frazzini, A., Israel, R., &amp; Moskowitz, T. J. (2012). Trading Costs of Asset Pricing Anomalies. AQR 작업논문 소개.</a></li>
+        <li id="ref-12"><a href="https://github.com/microsoft/qlib/blob/main/qlib/workflow/record_temp.py">Microsoft. Qlib workflow/record_temp.py. 공개 실험 기록 구현.</a></li>
+        <li id="ref-13"><a href="https://www.quantconnect.com/docs/v2/writing-algorithms/live-trading/reconciliation">QuantConnect. Live Trading Reconciliation. 공개 플랫폼 문서.</a></li>
+        <li id="ref-14"><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-of-the-global-investment-performance-standards">CFA Institute. Overview of the Global Investment Performance Standards. 2026년 교육자료.</a></li>
+        <li id="ref-15"><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/quant_kg_experiment_results.md">FINTOS (2026). 명시 구매자와 유효 거래 경로 대조. 기존 매매 실험.</a></li>
+        <li id="ref-16"><a href="../2026-11-27-trace-backtest/">FINTOS (2026). 개정 공시 지식그래프의 주가 방향 예측 재실험. 기존 분류 실험.</a></li>
+      </ol>
+    </section>
+  </article></main>
+  <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>
