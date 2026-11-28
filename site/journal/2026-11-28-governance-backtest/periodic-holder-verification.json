@@ -1,0 +1,207 @@
+[
+  {
+    "symbol": "005610",
+    "reports": [
+      {
+        "receipt": "20260318001066",
+        "line": 57766,
+        "hash": "4fad78edc987156af53cf3dbc364a6aeac0520e1b5301bb86da2aba6aedf0eb4"
+      },
+      {
+        "receipt": "20260515001010",
+        "line": 44642,
+        "hash": "e00f49c6266e65b9565ed2e1bdbf72afa5895204032affdb3e1c6d0ab04407b9"
+      }
+    ],
+    "verification": {
+      "kind": "same_entity_rename",
+      "receipt": "20260515001010",
+      "lines": [
+        19103,
+        44888
+      ],
+      "summary": "기존 법인의 상호 변경. 신설 파리크라상과 구 파리크라상을 공시에서 구별한다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  },
+  {
+    "symbol": "015590",
+    "reports": [
+      {
+        "receipt": "20260515001723",
+        "line": 27791,
+        "hash": "f04a8fef828a36d5d3cefba0faebf546f53cdfdbc66bf384e92501acca993677"
+      },
+      {
+        "receipt": "20260814003231",
+        "line": 51538,
+        "hash": "85bbc12fb8bcead8a5ac058f34e670c88fc9c5216769fc82645f38f4a885e5e2"
+      }
+    ],
+    "verification": {
+      "kind": "confirmed_standalone",
+      "receipt": "20260511800635",
+      "lines": [
+        90,
+        103,
+        115,
+        131
+      ],
+      "summary": "주식양수도로 DKME에서 덕양에너젠·울프 공동 보유로 넘어갔다. 이후 5월 공시에서 덕양에너젠 측 단독 대표 표기를 확인했다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  },
+  {
+    "symbol": "007590",
+    "reports": [
+      {
+        "receipt": "20260515001078",
+        "line": 24336,
+        "hash": "a520371c6e5cc6ec3fa7b8d75af93899668a8f4aa0eea2d0662998e7dfe9e2ff"
+      },
+      {
+        "receipt": "20260814002764",
+        "line": 42753,
+        "hash": "01cdde7a921b7a4c52eedbd2805f1a93a526cd4af1a2466727d50393d23f296e"
+      }
+    ],
+    "verification": {
+      "kind": "confirmed_standalone",
+      "receipt": "20260408800949",
+      "lines": [
+        90,
+        103,
+        115,
+        131,
+        139
+      ],
+      "summary": "지분 증여 이후 변경 전후 최대주주가 별도 공시에 명시됐다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  },
+  {
+    "symbol": "004060",
+    "reports": [
+      {
+        "receipt": "20260515000415",
+        "line": 23952,
+        "hash": "0e72c20ebdccc71df35d6cf2c008cede55186f41e551bf04685249ee5fe030f2"
+      },
+      {
+        "receipt": "20260814002318",
+        "line": 45386,
+        "hash": "65035f3a5d9e12f059f463b6d4c43577dc19a535a9378d1fd459aa0d6b3003bc"
+      }
+    ],
+    "verification": {
+      "kind": "confirmed_standalone",
+      "receipt": "20260630800535",
+      "lines": [
+        90,
+        103,
+        115,
+        131,
+        139
+      ],
+      "summary": "흡수합병으로 보유 주체가 승계됐고 승계 법인이 이전 상호를 사용하게 됐다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  },
+  {
+    "symbol": "200350",
+    "reports": [
+      {
+        "receipt": "20260515001609",
+        "line": 19188,
+        "hash": "2b4d969c48ec11ae2d33544caf0a95cecdc709e35ba8233da931bb3bdd3399b0"
+      },
+      {
+        "receipt": "20260814002900",
+        "line": 21311,
+        "hash": "48a60d921adac2707d2aba0cb05f394449acb78dfe0845cb450f9ad6567d0b17"
+      }
+    ],
+    "verification": {
+      "kind": "same_entity_note",
+      "receipt": "20260814002900",
+      "lines": [
+        21311,
+        21424
+      ],
+      "summary": "보유자명은 같고 보고서 주석 기호만 달라졌다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  },
+  {
+    "symbol": "372910",
+    "reports": [
+      {
+        "receipt": "20260813001484",
+        "line": 42070,
+        "hash": "2c38c796bb4e100109373a84c6d97e7f1583920d03616d524f9cfaf028eb7173"
+      },
+      {
+        "receipt": "20261112000099",
+        "line": 27869,
+        "hash": "8707beaf0b4438d00334edc8a86f20c933d84361afd32372243f19f3eb6b643d"
+      }
+    ],
+    "verification": {
+      "kind": "same_entity_rename",
+      "receipt": "20261112000099",
+      "lines": [
+        6235,
+        27869
+      ],
+      "summary": "분기보고서가 한컴과 구 한글과컴퓨터의 동일성을 명시한다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  },
+  {
+    "symbol": "351320",
+    "reports": [
+      {
+        "receipt": "20261027000123",
+        "line": 31902,
+        "hash": "a0ab7f8abc0c382778a782da140979b3ce953dd29cf58998a7ab691013d6658d"
+      },
+      {
+        "receipt": "20261116000087",
+        "line": 32835,
+        "hash": "82741c1dd2a574a4c1d9120d36605efbc870bf490326b115fe70eb3e60518758"
+      }
+    ],
+    "verification": {
+      "kind": "confirmed_periodic",
+      "receipt": "20261116000087",
+      "lines": [
+        33068,
+        33069,
+        33072
+      ],
+      "summary": "분기보고서의 변경 이력에 9월 15일 유상증자와 새 최대주주가 명시됐다. 대조 범위에서 별도 변경 공시는 확인되지 않았다."
+    },
+    "new_buy_overlap": {
+      "CLEAR": false,
+      "TRACE": false
+    }
+  }
+]
