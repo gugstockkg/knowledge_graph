@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="424" viewBox="0 0 760 424" role="img" aria-labelledby="title desc">
+<title id="title">한·미 상대강도 배분과 주문</title>
+<desc id="desc">두 ETF의 11개월 원화 수익률을 비교하고 우위 국가에 15%포인트를 이동한다. 다음 체결 가능 시가로 집행한 주문의 가격과 수량을 원장에 기록한다.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#475569"/></marker></defs>
+<rect width="760" height="424" rx="20" fill="#f5f7fb"/>
+<g fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+<path d="M201 94V112H379V129"/><path d="M559 94V112H383V129"/>
+<path d="M379 188V211H201V232"/><path d="M383 188V211H559V232"/>
+<path d="M201 305V323H379V342"/><path d="M559 305V323H383V342"/>
+</g>
+<g stroke-width="1.5">
+<rect x="45" y="26" width="312" height="68" rx="12" fill="#e3efff" stroke="#7cafe8"/><rect x="403" y="26" width="312" height="68" rx="12" fill="#dcf6ed" stroke="#71bca5"/>
+<rect x="222" y="130" width="316" height="58" rx="12" fill="#efe8fc" stroke="#ad97d9"/>
+<rect x="45" y="233" width="312" height="72" rx="12" fill="#e3efff" stroke="#7cafe8"/><rect x="403" y="233" width="312" height="72" rx="12" fill="#dcf6ed" stroke="#71bca5"/>
+<rect x="120" y="343" width="520" height="60" rx="12" fill="#21324b" stroke="#21324b"/>
+</g>
+<g text-anchor="middle" font-family="system-ui, sans-serif" fill="#17243a">
+<g font-size="21" font-weight="700"><text x="201" y="54">미국 · SPY</text><text x="559" y="54">한국 · KODEX 200</text><text x="380" y="165">11개월 원화 수익률 비교</text><text x="201" y="261">미국 수익률 ≥ 한국</text><text x="559" y="261">한국 수익률 &gt; 미국</text><text x="380" y="368" fill="white">목표 비중으로 주문하고 체결을 기록</text></g>
+<g font-size="17"><text x="201" y="79">조정 종가에 환율 반영</text><text x="559" y="79">원화 조정 종가</text><text x="201" y="287">미국 65% · 한국 15% · 현금 20%</text><text x="559" y="287">미국 35% · 한국 45% · 현금 20%</text><text x="380" y="391" fill="#d7e5f9">진입 · 우위 변경 · 분기말에 판단, 이후 시가에 집행</text></g>
+</g>
+</svg>
