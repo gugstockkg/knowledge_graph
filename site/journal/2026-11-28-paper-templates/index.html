@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="FINTOS 도서관의 2025–2026년 원문 60편을 비교하고 공시·지식그래프 예측과 퀀트 백테스트에 적용할 논문 템플릿을 정리했다.">
+<meta name="fintos:summary" content="FINTOS 도서관의 2025–2026년 원문 60편을 비교하고 공시·지식그래프 예측과 퀀트 백테스트에 적용할 논문 템플릿을 정리했다.">
+<meta name="fintos:category" content="evaluation">
+<meta name="fintos:published" content="2026-11-28T17:32:24+09:00">
+<title>최근 퀀트·금융 AI 논문 60편은 실험을 어떻게 보고하는가 | FINTOS</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#content">본문으로 이동</a>
+<header class="shell top site-header"><a class="brand" href="../../"><img src="../../assets/fintos-logo.webp" width="540" height="138" alt="FINTOS 홈"></a><nav aria-label="주요 메뉴"><a href="../">연구 보관함</a><a href="../../library/">FINTOS 도서관</a></nav></header>
+<main class="post dataset research-post" id="content" tabindex="-1"><article>
+<h1>최근 퀀트·금융 AI 논문 60편은 실험을 어떻게 보고하는가</h1>
+<p><strong>초록.</strong> FINTOS 도서관에 등록된 2025–2026년 문헌 가운데 내려받은 원문 60편의 목차, 절 제목과 표를 비교했다. 연구 질문에서 결과 해석까지의 흐름은 공통적이지만, 금융 실증은 효과 크기와 추정의 신뢰성, 그래프 예측은 정보의 증분 가치, 배분은 비용과 제약 아래의 성과를 중심으로 보고했다. 이 차이를 바탕으로 FINTOS 실험의 질문, 데이터 시점, 기준선, 결과표와 재현 자료를 작성하는 템플릿을 제시한다.</p>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#scope">자료와 방법</a><a href="#findings">공통점과 차이</a><a href="#template">FINTOS 템플릿</a><a href="#papers">논문별 비교와 원문</a></nav>
+
+<h2 id="scope">1. 비교 대상과 방법</h2>
+<p>2025년 27편과 2026년 33편을 분석했다. <a href="../../library/reading-index.csv">FINTOS 읽기 인덱스</a>의 해당 연도 항목 62개를 기존 퀀트 보관함, 최근 문헌 갱신 목록, Stock + KG PDF와 매칭했다. 파일 해시 기준으로 60개가 서로 달랐다. Q162와 Q165는 대응하는 로컬 PDF를 확인하지 못해 집계에서 제외했다.</p>
+<p>연도와 표제는 도서관 인덱스를 따랐다. 원문은 출판사 판본 또는 공개 저자판으로, 공개 시점과 출판 연도가 다를 수 있다. 각 논문의 주된 평가 대상을 기준으로 다섯 유형을 지정했다. 아래 쪽수는 보관한 PDF의 첫 장부터 세며, 비교표는 주요 절과 표의 위치를 요약한 것이다. 세부 항목별 출현 빈도는 집계하지 않았다.</p>
+
+<section aria-labelledby="findings">
+<h2 id="findings">2. 공통점과 유형별 차이</h2>
+<p>공통 흐름은 연구 질문과 기여, 데이터 또는 문제 정의, 방법, 결과, 해석과 적용 범위다. 관련 연구는 <a href="#Q168">TRACE</a>에서는 방법 앞에, <a href="#Q218">DeepFund</a>와 <a href="#Q225">BacktestBench</a>에서는 결과 뒤에 배치됐다. <a href="#Q198">거래비용 실증 연구</a>는 가설·데이터·주 분석·강건성을 독립 절에 두고, <a href="#Q235">교차 가격충격 최적화 연구</a>는 모형과 정리, 수치 예시를 제시한 뒤 증명을 전개했다.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="연구 유형별 방법과 결과"><table class="data-table"><thead><tr><th scope="col">유형</th><th scope="col">편수</th><th scope="col">방법에 들어가는 내용</th><th scope="col">결과에서 보여주는 근거</th><th scope="col">상세 자료</th></tr></thead><tbody>
+<tr><td><a href="#empirical">가격결정·시장 실증</a></td><td>17</td><td>경제 가설, 표본, 변수, 제도, 추정 및 식별</td><td>계수와 경제적 크기, 포트폴리오 정렬, 기간·시장·자료 판본·정의 변경에 대한 강건성</td><td>변수 정의, 표본 필터, 추가 회귀</td></tr>
+<tr><td><a href="#allocation">배분·최적화</a></td><td>11</td><td>목적함수, 비중 제약, 신호에서 비중으로의 변환, 거래 마찰과 비교군</td><td>비용 전후 성과, 회전율, 위험. 알고리즘 논문은 수렴이나 목적함수 값</td><td>알고리즘, 증명, 제약·비용 민감도</td></tr>
+<tr><td><a href="#prediction">텍스트·그래프 예측</a></td><td>13</td><td>시간 순서, 목표 변수, 관계나 이벤트 표현, 모델, 훈련 설정</td><td>예측력, 단순 기준 대비 증분, 관계 정보·모듈 제거 효과. 일부는 투자 성과를 별도로 제시</td><td>프롬프트, 특징, 하이퍼파라미터, 근거 경로</td></tr>
+<tr><td><a href="#benchmark">데이터·벤치마크</a></td><td>13</td><td>표본·태스크 구축, 시간 경계, 판정 기준, 평가 지표</td><td>기준선 순위, 실패 사례, 데이터 오염·판정 안정성·재표집 영향을 검토</td><td>데이터 스키마, 채점 규칙, 추가 실험</td></tr>
+<tr><td><a href="#systems">KG·에이전트 시스템</a></td><td>6</td><td>스키마, 데이터 출처, 처리 흐름, 도구 또는 역할</td><td>추출 품질, 질의 결과의 근거, 사람이 검증한 사례, 구성별 차이</td><td>질의 예시, 역할·호출 설정, 근거 추적</td></tr>
+</tbody></table></div>
+<p>비교군이 하는 역할도 다르다. <a href="#Q196">팩터 타이밍 연구</a>는 표본 밖 포트폴리오 수익률에 회전율과 비용을 연결한다. TRACE는 관계와 모듈의 추가 기여를 제거 실험으로 확인한다. <a href="#Q199">CRSP 개정 연구</a>는 데이터 판본 변경이 월수익률과 프리미엄 추정에 미치는 영향을 추적한다. FINTOS에서는 검증하려는 주장을 먼저 정하면 어떤 기준선과 강건성 검사가 필요한지 결정할 수 있다.</p>
+</section>
+
+<section aria-labelledby="template">
+<h2 id="template">3. FINTOS 논문 템플릿</h2>
+<p>초록은 질문 한 문장, 비교 설계 한 문장, 주 결과와 불확실성 한 문장, 적용 범위 한 문장으로 작성한다. 아래 항목에서 대괄호는 실험별로 채운다.</p>
+<ol>
+<li><strong>서론과 관련 연구.</strong> 같은 [종목군·평가 기간]에서 [추가 신호 또는 운용 규칙]이 [기준선] 대비 [주 지표]를 개선하는가? 선행 연구에서 가져온 설계와 이번에 추가로 검증하는 주장을 명시한다.</li>
+<li><strong>데이터와 정보 시점.</strong> [시장], [표본 기간], [관측 단위], [편입·제외 규칙], [데이터 판본]을 기록한다. 공시 제출과 정정, 관계 확인, 신호 계산, 목표 구간의 시작과 종료가 시간상 어떻게 이어지는지 표로 제시한다. 운용 실험에는 주문과 체결 시점도 넣는다.</li>
+<li><strong>방법과 평가.</strong> [기준선]과 [비교군] 사이에 바꾸는 요소를 명시한다. 데이터와 표본, 예측 시계, 평가 시점은 통일한다. 학습·튜닝·평가 기간, 주 지표의 산식, 차이의 추정과 불확실성 계산 방법을 적는다.</li>
+<li><strong>결과와 강건성.</strong> 첫 표의 열은 [평가 표본], [기준선 값], [비교군 값], [차이와 구간]으로 둔다. 이후 관계 제거, 기간·유니버스 변경, 비용·체결 민감도 등 주장의 취약점을 확인하는 결과를 제시한다.</li>
+<li><strong>논의와 재현.</strong> 개선이 유지된 조건과 실패한 조건을 적는다. [코드 버전], [데이터 판본], [실행 설정], [결과 CSV]와 판단 근거의 위치를 제공한다.</li>
+</ol>
+<h3>FINTOS 실험별 작성 예시</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="FINTOS 실험별 작성 예시"><table class="data-table"><thead><tr><th scope="col">실험</th><th scope="col">핵심 비교</th><th scope="col">첫 결과표와 후속 검증</th></tr></thead><tbody>
+<tr><td>공시·거래 관계로 주가 방향 예측</td><td>가격만 → 가격 + 직접 공시 → 가격 + 직접 공시 + 거래 관계</td><td>같은 종목·거래일의 주 지표와 짝지은 차이. 날짜별 의존성을 반영한 구간, 관계 유형 제거, 관계 공개 시점 점검</td></tr>
+<tr><td>한·미 주식·ETF 전략</td><td>동일 시작월·투자 대상에서 매수 후 보유와 규칙 추가를 비교</td><td>비용 차감 만기 수익률과 짝지은 차이, 최대낙폭, 회전율. 비용 또는 체결 지연을 바꾼 민감도</td></tr>
+<tr><td>공시 KG 구축과 질의</td><td>동일 공시·질문에서 검색 또는 추출 기준선과 그래프 방식 비교</td><td>이벤트·관계 추출 품질, 원문 근거 일치율. 정정 공시, 관계 방향과 유효기간 오류를 유형별 점검</td></tr>
+</tbody></table></div>
+<p><a href="../2026-11-28-quant-research-design/">퀀트 실험 설계</a>와 <a href="../2026-11-28-strategy-catalog/">FINTOS 전략 비교</a>에 이 항목을 적용할 수 있다.</p>
+</section>
+
+<h2 id="papers">4. 논문별 비교표와 원문</h2>
+<p>제목을 선택하면 원문 링크가 열린다. Q194는 도서관 표제와 로컬 PDF의 표제 <cite>Agentic Graph Retrieval-Augmented Generation for Auditable Commercial Registry Analysis</cite>가 달라 보관 판본의 구성을 기록했다.</p>
+<section aria-labelledby="allocation"><h3 id="allocation">배분·최적화 · 11편</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="배분·최적화"><table class="data-table"><thead><tr><th scope="col">논문과 원문 링크</th><th scope="col">장·절과 주요 보고 내용</th><th scope="col">PDF 쪽</th></tr></thead><tbody>
+<tr><td><a id="Q088" href="https://research-api.cbs.dk/ws/portalfiles/portal/81132615/theis_ingerslev_jensen_et_al_machine_learning_and_the_implementable_efficient_frontier_publishersversion.pdf">Machine Learning and the Implementable Efficient Frontier</a><br><small>Q088 · 2026</small></td><td>거래 마찰을 포함한 효율적 투자선 정의 → 해법 → 표준 비교군 → 데이터와 실증 성과</td><td>10–31</td></tr>
+<tr><td><a id="Q196" href="https://bpb-us-w2.wpmucdn.com/voices.uchicago.edu/dist/f/575/files/2025/01/FactorDynamics_revision.pdf">Optimal Factor Timing in a High-Dimensional Setting</a><br><small>Q196 · 2025</small></td><td>팩터·예측변수 목록 → 표본 밖 포트폴리오 수익률 → 회전율과 비용 차감</td><td>14–26</td></tr>
+<tr><td><a id="Q202" href="https://www.nber.org/system/files/working_papers/w32004/w32004.pdf">Universal Portfolio Shrinkage</a><br><small>Q202 · 2026</small></td><td>이차 모멘트 축소 → UPSA 구성 → 실증 → 경제적 설명과 시뮬레이션</td><td>9–39</td></tr>
+<tr><td><a id="Q210" href="https://www.nber.org/system/files/working_papers/w34861/w34861.pdf">Machine Learning Meets Markowitz</a><br><small>Q210 · 2026</small></td><td>기존 포트폴리오 이론과 ML의 접점 → 방법 → 실증 응용</td><td>8–48</td></tr>
+<tr><td><a id="Q219" href="https://proceedings.iclr.cc/paper_files/paper/2026/file/4d4dbc5c955c5d273eed12d565335068-Paper-Conference.pdf">STABLE: Shift-Tolerant Allocation via Black-Litterman Using Conditional Diffusion Estimates</a><br><small>Q219 · 2026</small></td><td>확산 기반 추정과 Black–Litterman 배분 → 시장별 성과 → 모듈 제거</td><td>3–24</td></tr>
+<tr><td><a id="Q223" href="https://arxiv.org/pdf/2510.26165">Learning to Manage Investment Portfolios beyond Simple Utility Functions</a><br><small>Q223 · 2025</small></td><td>운용 의사결정 학습 → 무거래·무작위·팩터 기준선 → 실험 비교</td><td>2–6</td></tr>
+<tr><td><a id="Q226" href="https://raw.githubusercontent.com/mlresearch/v306/main/assets/jeon26a/jeon26a.pdf">Decision-focused Sparse Tangent Portfolio Optimization</a><br><small>Q226 · 2026</small></td><td>희소 접점 포트폴리오 문제 → 의사결정 중심 학습 → 기존 예측·최적화법 비교</td><td>3–7</td></tr>
+<tr><td><a id="Q227" href="https://raw.githubusercontent.com/mlresearch/v306/main/assets/yao26s/yao26s.pdf">A Linearly Convergent Proximal Subgradient Algorithm for Sparse Portfolio Optimization with Transaction Cost</a><br><small>Q227 · 2026</small></td><td>거래비용이 있는 희소 최적화 문제 → 알고리즘과 수렴 근거 → 수치 실험</td><td>3–8</td></tr>
+<tr><td><a id="Q228" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/76981cb7a06b5ad53639f5bbe9924388-Paper-Conference.pdf">Online Portfolio Selection with ML Predictions</a><br><small>Q228 · 2025</small></td><td>예측 없는 기준과 예측 순위 입력 → 최악·최선 성능 보장 → 실증</td><td>4–10</td></tr>
+<tr><td><a id="Q235" href="https://arxiv.org/pdf/2403.10273v2">Optimal Portfolio Choice With Cross‐Impact Propagators</a><br><small>Q235 · 2026</small></td><td>교차 가격충격 모형과 해 → 수치 예시 → 확률적 적분방정식과 증명</td><td>4–34</td></tr>
+<tr><td><a id="Q236" href="https://arxiv.org/pdf/2312.16448v1">Randomized signature methods in optimal portfolio selection</a><br><small>Q236 · 2025</small></td><td>시그니처 기반 최적화 → 거래비용 → 벤치마크와 데이터 → 결과</td><td>5–27</td></tr>
+</tbody></table></div>
+</section>
+<section aria-labelledby="prediction"><h3 id="prediction">텍스트·그래프 예측 · 13편</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="텍스트·그래프 예측"><table class="data-table"><thead><tr><th scope="col">논문과 원문 링크</th><th scope="col">장·절과 주요 보고 내용</th><th scope="col">PDF 쪽</th></tr></thead><tbody>
+<tr><td><a id="Q094" href="https://arxiv.org/pdf/2304.07619">Can ChatGPT forecast stock price movements? Return predictability and large language models</a><br><small>Q094 · 2026</small></td><td>제도와 정보처리 가설 → 표본과 프롬프트 → 모델별 비교 → 가격 반응 속도</td><td>8–35</td></tr>
+<tr><td><a id="Q168" href="https://arxiv.org/pdf/2603.12500">TRACE: Temporal Rule-Anchored Chain-of-Evidence on Knowledge Graphs for Interpretable Stock Movement Prediction</a><br><small>Q168 · 2026</small></td><td>시간 규칙과 근거 경로 → 평가 표본 → 방향 예측 비교 → 구성요소 제거</td><td>2–9</td></tr>
+<tr><td><a id="Q170" href="https://arxiv.org/pdf/2410.17266">Temporal Relational Reasoning of Large Language Models for Detecting Stock Portfolio Crashes</a><br><small>Q170 · 2025</small></td><td>시간 관계 추론 문제 → 포트폴리오 급락 실험 → 결과 → 후속 과제</td><td>3–8</td></tr>
+<tr><td><a id="Q171" href="https://arxiv.org/pdf/2512.02720">StockMem: An Event-Reflection Memory Framework for Stock Forecasting</a><br><small>Q171 · 2025</small></td><td>이벤트와 반성 메모리 설계 → 예측 실험 → 결론</td><td>4–8</td></tr>
+<tr><td><a id="Q178" href="https://arxiv.org/pdf/2607.10932">LLM-Enhanced Dynamic Financial Knowledge Graphs for Cross-Entity Signal Propagation and alpha discovery</a><br><small>Q178 · 2026</small></td><td>전파 메커니즘 → 계량 가설 → 시뮬레이션 → Russell 1000 적용 설계와 보정 평가 → 한계</td><td>7–29</td></tr>
+<tr><td><a id="Q184" href="https://arxiv.org/pdf/2505.23826">FinRipple: Aligning Large Language Models with Financial Market for Event Ripple Effect Awareness</a><br><small>Q184 · 2025</small></td><td>이벤트의 파급 영향 모델 → 예측 평가와 장중 포트폴리오 규칙 → 한계</td><td>3–9</td></tr>
+<tr><td><a id="Q190" href="https://ojs.aaai.org/index.php/AAAI/article/view/31993">FactorGCL: A Hypergraph-Based Factor Model with Temporal Residual Contrastive Learning for Stock Returns Prediction</a><br><small>Q190 · 2025</small></td><td>하이퍼그래프 팩터 모형 → 예측 비교 → 제거 실험 → 투자 시뮬레이션</td><td>6–7</td></tr>
+<tr><td><a id="Q193" href="https://doi.org/10.1007/s41060-026-01064-2">Beyond sentiment: knowledge graph-driven financial market forecasting with large language models-extracted enterprise relations and adaptive residual networks</a><br><small>Q193 · 2026</small></td><td>기업 관계 추출 프롬프트와 잔차망 → 종목 선택과 하이퍼파라미터 → 예측 결과표</td><td>5–15</td></tr>
+<tr><td><a id="Q204" href="https://arxiv.org/pdf/2508.21285v4">A Financial Brain Scan of the LLM</a><br><small>Q204 · 2026</small></td><td>LLM 진단 방법 → 거시 경제적 성향 측정 → 시뮬레이션과 조정 실험</td><td>8–31</td></tr>
+<tr><td><a id="Q220" href="https://arxiv.org/pdf/2502.04737">Learning Universal Multi-level Market Irrationality Factors to Improve Stock Return Forecasting</a><br><small>Q220 · 2025</small></td><td>개별·시장 수준 비합리성 팩터 → 예측 모형·훈련 → 실험 → 관련 연구</td><td>2–9</td></tr>
+<tr><td><a id="Q221" href="https://arxiv.org/pdf/2610.26456">Regime-Aware Interpretable Ranking for Sector Rotation</a><br><small>Q221 · 2026</small></td><td>국면 인지 섹터 순위 방법 → 실험 설정 → 결과</td><td>3–8</td></tr>
+<tr><td><a id="Q230" href="https://www.belindachenchen.com/uploads/GNN/Attention_based_Graph_Neural_Networks_in_Firm_CDS_Prediction.pdf">Attention-based Graph Neural Networks in Firm CDS Prediction</a><br><small>Q230 · 2025</small></td><td>기업 CDS 예측 개념 → 그래프 모델과 방법 → 실증 결과</td><td>6–30</td></tr>
+<tr><td><a id="Q237" href="https://discovery.ucl.ac.uk/id/eprint/10218102/1/Deep%20limit%20order%20book%20forecasting%20a%20microstructural%20guide.pdf">Deep limit order book forecasting: a microstructural guide</a><br><small>Q237 · 2025</small></td><td>호가장 데이터 → 방법과 미시구조 가정 → 예측 결과 → 향후 과제</td><td>5–22</td></tr>
+</tbody></table></div>
+</section>
+<section aria-labelledby="benchmark"><h3 id="benchmark">데이터·벤치마크 · 13편</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="데이터·벤치마크"><table class="data-table"><thead><tr><th scope="col">논문과 원문 링크</th><th scope="col">장·절과 주요 보고 내용</th><th scope="col">PDF 쪽</th></tr></thead><tbody>
+<tr><td><a id="Q175" href="https://arxiv.org/pdf/2504.20058">Predictive AI with External Knowledge Infusion: Datasets and Benchmarks for Stock Markets</a><br><small>Q175 · 2026</small></td><td>시간 KG 구축 → 학습 기준선 → 실험 설정 → 제거 실험과 반사실 설명</td><td>3–9</td></tr>
+<tr><td><a id="Q186" href="https://arxiv.org/pdf/2603.20252">FinReflectKG -- HalluBench: GraphRAG Hallucination Benchmark for Financial Question Answering Systems</a><br><small>Q186 · 2026</small></td><td>환각 검출기와 삼중항 입력 → 검증된 문답 표본 → 분류 성능과 KG 품질 민감도</td><td>4–10</td></tr>
+<tr><td><a id="Q187" href="https://arxiv.org/pdf/2510.05710">FinReflectKG -- EvalBench: Benchmarking Financial KG with Multi-Dimensional Evaluation</a><br><small>Q187 · 2026</small></td><td>다차원 평가 방법 → 평가자 비교와 안정성 → 결과</td><td>4–6</td></tr>
+<tr><td><a id="Q205" href="https://www.nber.org/system/files/working_papers/w33363/w33363.pdf">AI-Powered (Finance) Scholarship</a><br><small>Q205 · 2025</small></td><td>연구 아이디어 생성·평가 절차 → 결과 → 연구 생산 과정에 대한 논의</td><td>8–19</td></tr>
+<tr><td><a id="Q207" href="https://arxiv.org/pdf/2603.11838">DatedGPT: Preventing Lookahead Bias in Large Language Models with Time-Aware Pretraining</a><br><small>Q207 · 2026</small></td><td>시점별 학습 데이터 구축 → 시간 인지 사전학습 → 평가 결과</td><td>2–4</td></tr>
+<tr><td><a id="Q213" href="https://www.paris-december.eu/sites/default/files/papers/2025/coqueret-perignon-oct-2025.pdf">Persistent Anomalies and Nonstandard Sharpe Ratios</a><br><small>Q213 · 2026</small></td><td>복수 연구 설계 → 상관된 결과의 문제 → 경로별 재표집 → 이상현상 대규모 평가</td><td>5–24</td></tr>
+<tr><td><a id="Q216" href="https://arxiv.org/pdf/2504.14765">The Memorization Problem: Can We Trust LLMs’ Economic Forecasts?</a><br><small>Q216 · 2026</small></td><td>암기 문제의 정식화 → 식별·평가 방법 → 데이터 → 결과</td><td>9–58</td></tr>
+<tr><td><a id="Q218" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/f37b0e09b90e9a6833aacf5768362b54-Paper-Datasets_and_Benchmarks_Track.pdf">Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking</a><br><small>Q218 · 2025</small></td><td>라이브 투자 환경 → LLM·시점 설정표 → 실시간 성과표 → 한계와 체크리스트</td><td>2–17</td></tr>
+<tr><td><a id="Q222" href="https://arxiv.org/pdf/2504.15800v3">FinDER: Financial Dataset for Question Answering and Evaluating Retrieval-Augmented Generation</a><br><small>Q222 · 2025</small></td><td>금융 QA 데이터 구축 → 검색·답변 평가 설정 → 비교 결과</td><td>3–10</td></tr>
+<tr><td><a id="Q224" href="https://arxiv.org/pdf/2510.11695v2">When Agents Trade: Live Multi-Market Trading Arena for LLM Agents</a><br><small>Q224 · 2026</small></td><td>실시간 다중시장 투자 환경 → 실험 설정 → 성과 → 규칙과 채점</td><td>3–10</td></tr>
+<tr><td><a id="Q225" href="https://arxiv.org/pdf/2605.17937">BacktestBench: Benchmarking Large Language Models for Automated Quantitative Strategy Backtesting</a><br><small>Q225 · 2026</small></td><td>과제 구성 → AutoBacktest → 실험과 제거 비교 → DB 스키마와 프롬프트 부록</td><td>2–24</td></tr>
+<tr><td><a id="Q231" href="https://arxiv.org/pdf/2311.10685">High-Throughput Asset Pricing</a><br><small>Q231 · 2025</small></td><td>대량 탐색 설계 → 데이터 마이닝 성과 → 경험적 베이즈 → 거짓발견 통제 비교</td><td>5–17</td></tr>
+<tr><td><a id="Q233" href="https://arxiv.org/pdf/2503.00549">The Uncertainty of Machine Learning Predictions in Asset Pricing</a><br><small>Q233 · 2025</small></td><td>ML 예측 신뢰구간 추정 → 응용 → 실증 검증</td><td>6–40</td></tr>
+</tbody></table></div>
+</section>
+<section aria-labelledby="systems"><h3 id="systems">KG·에이전트 시스템 · 6편</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="KG·에이전트 시스템"><table class="data-table"><thead><tr><th scope="col">논문과 원문 링크</th><th scope="col">장·절과 주요 보고 내용</th><th scope="col">PDF 쪽</th></tr></thead><tbody>
+<tr><td><a id="Q180" href="https://arxiv.org/pdf/2601.11528">Knowledge Graph Construction for Stock Markets with LLM-Based Explainable Reasoning</a><br><small>Q180 · 2025</small></td><td>시장 KG 구축과 질의 방식 → 기업 사례 및 설명</td><td>2–5</td></tr>
+<tr><td><a id="Q183" href="https://arxiv.org/pdf/2605.27864">FundaPod: A Multi-Persona Agent Pod Platform with Knowledge Graph Memory for AI-Assisted Fundamental Investment Research</a><br><small>Q183 · 2026</small></td><td>리서치 설계 원칙 → 에이전트 구조와 메모리 → 연구 참여 사례 → 한계 논의</td><td>6–18</td></tr>
+<tr><td><a id="Q185" href="https://dl.acm.org/doi/10.1145/3768292.3770363">FinReflectKG: Agentic Construction and Evaluation of Financial Knowledge Graphs</a><br><small>Q185 · 2025</small></td><td>금융 KG 스키마 → 구성 파이프라인 → 평가 → 논의</td><td>2–7</td></tr>
+<tr><td><a id="Q188" href="https://arxiv.org/pdf/2508.00961">FinKario: Event-Enhanced Automated Construction of Financial Knowledge Graph</a><br><small>Q188 · 2025</small></td><td>사건 강화 KG 구축 → 추출·구축 실험 → 결론</td><td>3–9</td></tr>
+<tr><td><a id="Q194" href="https://arxiv.org/pdf/2605.18770">Agentic GraphRAG: Navigating Unstructured Financial Data with Collaborative AI</a><br><small>Q194 · 2026</small></td><td>상업등기 데이터 → 질의 시스템과 호출 구성 → 추출 수동 검증 → 질문군별 구조 비교</td><td>6–25</td></tr>
+<tr><td><a id="Q229" href="https://proceedings.iclr.cc/paper_files/paper/2026/file/2db9fbe4f34340cb928c653a6333084b-Paper-Conference.pdf">Trade in Minutes! Rationality-Driven Agentic System for Quantitative Financial Trading</a><br><small>Q229 · 2026</small></td><td>정책·최적화·배포 단계와 주문 규칙 → 실험 → 관련 연구와 결론</td><td>2–10</td></tr>
+</tbody></table></div>
+</section>
+<section aria-labelledby="empirical"><h3 id="empirical">가격결정·시장 실증 · 17편</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="가격결정·시장 실증"><table class="data-table"><thead><tr><th scope="col">논문과 원문 링크</th><th scope="col">장·절과 주요 보고 내용</th><th scope="col">PDF 쪽</th></tr></thead><tbody>
+<tr><td><a id="Q197" href="https://www.hbs.edu/ris/Publication%20Files/26-070_4d9218f6-e1d0-439b-a233-d91503eba0f6.pdf">Short versus long-run demand elasticities in asset pricing</a><br><small>Q197 · 2026</small></td><td>동태 수요탄력성 이론 → 변수 구축 → 축약형 증거 → 구조 추정 → 반전 지표와 응용</td><td>9–27</td></tr>
+<tr><td><a id="Q198" href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/CD89C67B3D931D0BE4123C3BFFE6803B/S0022109025101695a.pdf/do-individual-investors-ignore-transaction-costs.pdf">Do Individual Investors Ignore Transaction Costs?</a><br><small>Q198 · 2025</small></td><td>가설 → 거래 자료 → 비용과 보유 기간 → 강건성</td><td>5–29</td></tr>
+<tr><td><a id="Q199" href="https://jfqa.org/wp-content/uploads/2026/02/26501_Rewriting_CRSP_History.pdf">Rewriting CRSP’s History: Impact of Altered Monthly Returns on Asset Pricing</a><br><small>Q199 · 2026</small></td><td>CRSP 판본 변경 → 월수익률 차이 → 프리미엄 차이 → 해석</td><td>10–37</td></tr>
+<tr><td><a id="Q200" href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/406C5E422D79B42AE16618F062A21A4B/S0022109026103275a.pdf/trended-momentum.pdf">Trended Momentum</a><br><small>Q200 · 2026</small></td><td>추세 명료도 개념과 산식 → 모멘텀 포트폴리오 결과</td><td>5–8</td></tr>
+<tr><td><a id="Q201" href="https://cityuhkfintech.com/wp-content/uploads/2022/04/submission_94.pdf">Alpha Go Everywhere: Machine Learning and International Stock Returns</a><br><small>Q201 · 2025</small></td><td>학습 모형 소개 → 추정 방법 → 미국 종목 예측 → 국제시장 검증</td><td>8–37</td></tr>
+<tr><td><a id="Q203" href="https://memento.epfl.ch/public/upload/files/vanderBeckpaper.pdf">A Bound on Price Impact and Disagreement</a><br><small>Q203 · 2026</small></td><td>가격충격 이론 → 데이터와 관측 사실 → 상한 추정 → 이벤트 밖 적용</td><td>7–35</td></tr>
+<tr><td><a id="Q206" href="https://www.paulhuebner.com/_files/ugd/3d316e_ae78d3a55704491ba906c427e6d0e6c2.pdf">Causal Inference for Asset Pricing</a><br><small>Q206 · 2025</small></td><td>가격결정의 인과 문제 → 자산 수요 모형과 추정 → 가격충격과 회사채 응용</td><td>7–45</td></tr>
+<tr><td><a id="Q208" href="https://iksa.or.kr/file/download/11833">Equity Valuation Without DCF</a><br><small>Q208 · 2025</small></td><td>할인 알파 기반 가치평가 → 데이터와 변수 → 종목 펀더멘털 가치 추정</td><td>7–20</td></tr>
+<tr><td><a id="Q209" href="https://fraconference.com/wp-content/uploads/ninja-forms/2/chen_2025-07-03_qd32l.pdf">Haven’t We Seen This Before? Return Predictions from 200 Years of News</a><br><small>Q209 · 2025</small></td><td>역사 뉴스의 측정 → 주식시장 예측 → 위험과 거시 예측</td><td>8–32</td></tr>
+<tr><td><a id="Q211" href="https://chelseayao.com/static/file/Cohen_Lu_Nguyen_WP25_Mimicking%20Finance.pdf">Mimicking Finance</a><br><small>Q211 · 2026</small></td><td>이론 → 펀드·종목 데이터와 ML → 정밀도의 동학 → 펀드 수익 예측</td><td>7–35</td></tr>
+<tr><td><a id="Q212" href="https://leeds-faculty.colorado.edu/garcia/News_Consumption_in_the_Wild_20260201.pdf">News Consumption in the Wild</a><br><small>Q212 · 2026</small></td><td>뉴스 소비 자료 → 행태의 실증 패턴 → 결론</td><td>7–24</td></tr>
+<tr><td><a id="Q214" href="https://patrick-adams.com/files/papers/PatrickAdams_JMP_Latest.pdf">Stocks for the Long Run or Liquidity? Tax Data Evidence and Portfolio Choice Implications</a><br><small>Q214 · 2026</small></td><td>가계 대차대조표 → 행정 세금 자료 → 저축 행태 분석과 배분 함의</td><td>10–22</td></tr>
+<tr><td><a id="Q215" href="https://www.sikorskaya.net/files/Pastor_Sikorskaya_Wang_2025.pdf">The Hidden Cost of Stock Market Concentration: When Funds Hit Regulatory Limits</a><br><small>Q215 · 2026</small></td><td>규제 배경 → 규제 구속 여부 → 펀드 대응 → 성과와 수익 예측 → 능동·수동 구분</td><td>8–39</td></tr>
+<tr><td><a id="Q217" href="https://www.nber.org/system/files/working_papers/w33554/revisions/w33554.rev0.pdf">The Unintended Consequences of Rebalancing</a><br><small>Q217 · 2025</small></td><td>리밸런싱 압력 측정 → 신호 검증 → 선행 매매 시뮬레이션과 해석</td><td>7–39</td></tr>
+<tr><td><a id="Q232" href="https://www.nber.org/system/files/working_papers/w31583/w31583.pdf">Machine Forecast Disagreement</a><br><small>Q232 · 2025</small></td><td>모형 간 예측 불일치 정의 → 데이터·변수 → 실증과 강건성 → 예측력의 원천</td><td>8–38</td></tr>
+<tr><td><a id="Q234" href="https://www.quoniam.com/wp-content/uploads/2025/10/The-Many-Facets-of-Stock-Momentum.pdf">The Many Facets of Stock Momentum: Distinguishing Factor and Stock Components</a><br><small>Q234 · 2025</small></td><td>종목·팩터 모멘텀 분해 → 팩터 적재·스패닝 → 강건성 및 시변 노출</td><td>8–22</td></tr>
+<tr><td><a id="Q238" href="https://fnce.wharton.upenn.edu/wp-content/uploads/2021/10/AdrianaRobertsonNoisyFactors.pdf">Noisy factors? The retroactive impact of methodological changes on the Fama–French factors</a><br><small>Q238 · 2026</small></td><td>팩터 개정 전후 자료 → 주식·펀드 결과 변화 → 개정 품질과 권고</td><td>8–29</td></tr>
+</tbody></table></div>
+</section>
+<p class="back"><a href="../">연구 보관함으로 돌아가기</a></p>
+</article></main>
+</body>
+</html>
