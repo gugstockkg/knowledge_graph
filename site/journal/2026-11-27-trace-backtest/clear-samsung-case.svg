@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 306" role="img" aria-labelledby="title desc">
+  <title id="title">삼성전자 CLEAR 지식그래프</title>
+  <desc id="desc">일성건설와 삼성전자는 기존 유효 계약과 새 공급계약에 각각 공급자와 구매자로 연결된다. 새 공시 접수번호는 20261124800494이다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" markerWidth="7" markerHeight="7" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#3c7468"/></marker>
+  </defs>
+  <style>
+    text { font-family: system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; text-anchor: middle; fill: #143731; }
+    .name { font-size: 20px; font-weight: 700; }
+    .label { font-size: 16px; }
+    .edge { fill: none; stroke: #3c7468; stroke-width: 2; marker-end: url(#arrow); }
+    .node { stroke: #83b8a5; stroke-width: 1.5; fill: #edf7f4; }
+    .record { fill: #fff; }
+  </style>
+  <rect class="node" x="10" y="66" width="142" height="63" rx="10"/>
+  <text class="name" x="81" y="92">일성건설</text>
+  <text class="label" x="81" y="115">공급사</text>
+  <rect class="node" x="568" y="66" width="142" height="63" rx="10"/>
+  <text class="name" x="639" y="92">삼성전자</text>
+  <text class="label" x="639" y="115">구매자</text>
+  <rect class="node" x="234" y="12" width="252" height="64" rx="10"/>
+  <text class="name" x="360" y="38">기존 유효 계약</text>
+  <text class="label" x="360" y="61">평택 부대동 건축·통신공사</text>
+  <rect class="node" x="234" y="120" width="252" height="64" rx="10"/>
+  <text class="name" x="360" y="146">신규 공급계약</text>
+  <text class="label" x="360" y="169">기존 계약과 같은 제품군</text>
+  <rect class="node record" x="234" y="228" width="252" height="64" rx="10"/>
+  <text class="name" x="360" y="254">새 공시</text>
+  <text class="label" x="360" y="277">20261124800494</text>
+  <text class="label" x="360" y="99">기존 원공시 20260706800182</text>
+  <path class="edge" d="M152 84L234 47"/>
+  <path class="edge" d="M568 84L486 47"/>
+  <path class="edge" d="M152 112L234 146"/>
+  <path class="edge" d="M568 112L486 146"/>
+  <text class="label" x="187" y="53">공급</text>
+  <text class="label" x="535" y="53">구매</text>
+  <path class="edge" d="M360 184L360 227"/>
+  <text class="label" x="411" y="211">공시 근거</text>
+</svg>

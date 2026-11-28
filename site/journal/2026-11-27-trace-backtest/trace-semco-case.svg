@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 133" role="img" aria-labelledby="title desc">
+  <title id="title">삼성전기 TRACE 지식그래프</title>
+  <desc id="desc">삼성전기에서 공급사 신규 계약 사건을 거쳐 MLCC 원문 공시 20261006800130에 이르는 경로.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" markerWidth="7" markerHeight="7" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#3c7468"/></marker>
+  </defs>
+  <style>
+    text { font-family: system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; text-anchor: middle; fill: #143731; }
+    .name { font-size: 20px; font-weight: 700; }
+    .label { font-size: 16px; }
+    .edge { fill: none; stroke: #3c7468; stroke-width: 2; marker-end: url(#arrow); }
+    .node { stroke: #83b8a5; stroke-width: 1.5; fill: #edf7f4; }
+    .record { fill: #fff; }
+  </style>
+  <rect class="node" x="10" y="51" width="144" height="64" rx="10"/>
+  <text class="name" x="82" y="77">삼성전기</text>
+  <text class="label" x="82" y="100">공급사</text>
+  <rect class="node" x="239" y="51" width="228" height="64" rx="10"/>
+  <text class="name" x="353" y="77">신규 계약 사건</text>
+  <text class="label" x="353" y="100">MLCC 공급계약</text>
+  <rect class="node record" x="552" y="51" width="158" height="64" rx="10"/>
+  <text class="name" x="631" y="77">원문 공시</text>
+  <text class="label" x="631" y="100">20261006800130</text>
+  <path class="edge" d="M154 83L238 83"/>
+  <path class="edge" d="M467 83L551 83"/>
+  <text class="label" x="196" y="39">공급 역할</text>
+  <text class="label" x="509" y="39">공시 근거</text>
+</svg>

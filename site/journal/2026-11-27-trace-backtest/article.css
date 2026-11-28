@@ -91,7 +91,7 @@
 
 .decision-flow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .75rem;
   margin: 0 0 .75rem;
   padding: 0;
@@ -120,10 +120,18 @@
   border-color: #83b8a5;
   background: #e4f3eb;
 }
-@media (max-width: 800px) {
-  .decision-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.decision-graph {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-@media (max-width: 460px) {
+.decision-connector {
+  text-align: center;
+  color: #3c7468;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
   .decision-flow { grid-template-columns: 1fr; }
 }
 
