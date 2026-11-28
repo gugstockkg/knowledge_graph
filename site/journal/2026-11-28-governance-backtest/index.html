@@ -18,7 +18,7 @@
 <h1>지배권 공시와 공급계약 반응 학습을 활용한 매매 실험</h1>
 <p class="post-meta">LPG·RDF·OWL 통합 그래프 백테스트 · 2026년 11월 28일</p>
 <p class="lead"><strong>초록.</strong> 공급계약 공시가 매수·매도 판단에 도움이 되는지 평가하기 위해 <strong>공시 반응 학습 CLEAR</strong>를 제안한다. 공급계약 그래프에서 공시 기업(0홉)과 직접 구매자(1홉)를 찾고, 유사 공시의 비용 후 수익률로 신호를 학습한다. 10~11월 172종목 평가에서 CLEAR의 순수익률은 −7.39%로 가격 추세보다 0.20%p 높았다. 삼성전기에서는 0홉 신호가 매도를 앞당겼고, 1홉을 추가해 달라진 체결은 없었다. 별도 지배권 실험에서는 원문으로 확인한 최대주주 교체와 신규 매수가 겹치지 않았다.</p>
-<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#method">방법론</a><a href="#clear-method-video">영상</a><a href="#results">결과</a><a href="#clear-case">주문 사례</a><a href="#limits">논의</a><a href="#governance-details">지배권 실험</a><a href="#reproduce">재현</a></nav>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#method">방법론</a><a href="#results">결과</a><a href="#clear-case">주문 사례</a><a href="#limits">논의</a><a href="#governance-details">지배권 실험</a><a href="#reproduce">재현</a></nav>
 <section aria-labelledby="intro">
 <h2 id="intro">1. 서론</h2>
 <p>앞선 CLEAR·TRACE 연구는 계약 당사자와 유효 기간을 확인해 공급계약 공시를 주문에 반영했다 [1]. 이 연구에서는 공시를 낸 기업과 직접 구매자의 반응을 과거 데이터에서 학습하면 가격 추세만으로 결정한 주문이 어떻게 달라지는지 살핀다.</p>
@@ -74,16 +74,9 @@
   </tbody>
 </table>
 <p>가격 추세는 시가 체결 전에 확인할 수 있는 종가 <var>C</var><sub>i,t−1</sub>과 <var>C</var><sub>i,t−21</sub>을 비교한다. 상태가 같으면 주문을 내지 않는다. 마지막 거래일 종가에 남은 보유분을 청산한다. 5일 수익률은 학습용 정답이며, 실제 보유 기간은 거래일마다 갱신한 목표 상태에 따라 달라진다. <a href="#clear-learning">평가 결과와 삼성전기 주문 원장</a></p>
-<h3 id="clear-method-video">3.2 학습과 매매 사례 영상</h3>
-<figure class="dataset-figure">
-  <video controls preload="metadata" playsinline width="1280" height="720" style="display:block;width:100%;height:auto" poster="clear-methodology-poster.jpg" aria-label="CLEAR의 공급계약 그래프 학습과 삼성전기 매도 사례" aria-describedby="clear-method-video-caption">
-    <source src="clear-methodology.mp4" type="video/mp4">
-    <a href="clear-methodology.mp4" download>CLEAR 방법론 MP4 다운로드</a>
-  </video>
-  <figcaption id="clear-method-video-caption">공급계약 그래프에서 학습 관측을 만들고 삼성전기 MLCC 공시에 적용하는 과정이다. 화면 자막으로 설명한다. <a href="clear-methodology.mp4" download>MP4 다운로드</a></figcaption>
-</figure>
+<h3>3.2 학습과 매매 사례 요약</h3>
 <details>
-  <summary>영상 내용 읽기</summary>
+  <summary>사례 요약 읽기</summary>
   <ol>
     <li>OpenDART 원공시와 정정본으로 공급사, 계약, 직접 구매자를 연결한다. 그래프는 계약의 품목·기간·정정 이력과 원문 접수번호를 보존한다. 공시 기업 자신은 0홉이며, 1홉은 구매자가 새 공시에 명시되고 기존 동일 제품군 계약이 당시 유효할 때 적용한다.</li>
     <li>9월 말까지 결과를 확인할 수 있는 관측을 신규·정정 유형과 공급사 매출 대비 계약 비중으로 묶는다. 거래 비용을 반영한 5거래일 수익률에서 홉별 점수를 학습한 뒤, 10~11월에 들어온 공시에 적용한다.</li>
