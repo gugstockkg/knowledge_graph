@@ -12,6 +12,8 @@ FINTOS는 금융감독원 OpenDART 공시에서 **기업·공급계약·지배�
 
 2026년 11월 27일 공개 v1에는 이후 EC2 연구에서 추가한 정기보고서의 보유자명·역할·기초와 기말의 주식 수 및 지분율이 포함되지 않습니다. [정기보고서 연구와 재현 원장](https://gugstockkg.github.io/knowledge_graph/journal/2026-11-28-governance-backtest/#periodic-ownership)
 
+**v1.1 정기보고서 RDF 보강**은 v1 명시 RDF에 트리플 364,537개를 추가합니다. [GitHub 릴리스](https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261128-v1.1) · [Hugging Face 고정 리비전](https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/tree/ada92b01e62bfa781da85c6bfcee261c6220bb2e) · [SPARQL 예제](docs/dataset-release/periodic-ownership.rq)
+
 | 배포본 | 수록 범위 | 규모 | 형식 |
 | --- | --- | --- | --- |
 | **LPG** | 2026년 11월 27일 Neo4j 스냅샷. 공시 목록과 기업을 연결하고, 추출한 공급계약·시설투자·재무 관측을 포함합니다. | 공시 **253,432건**, 노드 **721,797개**, 관계 **681,886개** | 압축 CSV, Parquet |
