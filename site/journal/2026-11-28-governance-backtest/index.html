@@ -18,7 +18,7 @@
 <h1>지배권 공시가 CLEAR·TRACE 매매에 미치는 영향</h1>
 <p class="post-meta">LPG·RDF·OWL 통합 그래프 백테스트 · 2026년 11월 28일</p>
 <p class="lead"><strong>초록.</strong> 공급계약 그래프 기반 매매에 지배권 공시를 추가할 때 제목과 사건 근거가 주문 및 손익에 미치는 차이를 분석하였다. 기존 CLEAR·TRACE 연구와 동일한 7종목·39거래일에서 두 전략의 세 조건과 매수 후 보유를 비교하였다. 제목 조건은 CLEAR의 매수 세 건을 미뤘고, 통합 조건은 세 후보를 보유 관측으로 분류하여 기존 주문을 유지하였다. TRACE 주문은 세 조건에서 같았다. 매수 후 보유의 낙폭이 가장 컸으며, 통합 그래프의 추가 수익률 기여와 OWL 추론의 독립적인 주문 효과는 관찰되지 않았다. 정기보고서 사건창에서는 원문으로 확인한 최대주주 교체가 신규 매수와 겹치지 않았다. 동일 보유자의 지분율 변동에 따른 매수 보류는 주문 시점을 바꾸었으며, 두 지분율 비교 기준에서 결과를 대조하였다.</p>
-<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#method">방법론</a><a href="#dataset">데이터셋</a><a href="#results">실험 결과</a><a href="#orders">주문 사례</a><a href="#reproduce">재현</a></nav>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#method">방법론</a><a href="#dataset">데이터셋</a><a href="#results">실험 결과</a><a href="#orders">주문 사례</a><a href="#clear-learning">공시 반응 학습</a><a href="#reproduce">재현</a></nav>
 <section aria-labelledby="intro">
 <h2 id="intro">1. 서론</h2>
 <p>이전 연구는 공급계약의 당사자·유효 기간·근거를 사용하여 CLEAR와 TRACE의 매매를 비교하였다 [1]. 후속 사전 분석에서는 지분 관련 공시가 일부 매수와 겹쳤으나, 그 매수에 최대주주 변경 근거가 연결되지 않았다 [2]. 제목으로 포착한 공시와 사건으로 확인한 사실의 차이가 실제 체결과 손익에 얼마나 영향을 미치는지 확인할 필요가 있다.</p>
@@ -175,6 +175,21 @@
 <p><strong>SK하이닉스.</strong> SK스퀘어는 직전 보고서와 현재 보고서에서 모두 최대주주였다. 현재 분기보고서의 기초·기말 주식 수는 146,100,000주로 같았다. 같은 보고서 안의 지분율은 20.07%에서 20.00%로 달라졌고, 직전 반기보고서 기말과 비교하면 20.50%에서 20.00%로 변했다. 교체만 보류하는 CLEAR는 케이씨텍 공급계약의 +1 신호로 11월 17일 시가 1,098,000원에 매수하였다. 지분율 변동까지 보류하면 11월 18일 시가 1,154,000원에 매수하였다. 두 조건 모두 11월 24일 시가 1,212,000원에 매도했다. 평가창 순수익률은 각각 +3.47%, −1.55%로 교체만 보류한 조건이 5.02%p 높았다. TRACE에서는 이 공시와 겹친 신규 매수가 없었다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003509">반기보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715">분기보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">공급계약 공시</a></p>
 <p>지분율 변동으로 보류한 매수 가운데 가격 추세가 만든 후보는 CLEAR 28건 중 27건, TRACE 27건 중 27건이었다. 사건창이 서로 겹칠 수 있고 거래 가능한 시세가 있는 관측만 평가했으므로, 표의 평균은 포트폴리오 성과로 해석하기 어렵다.</p>
 
+<h3 id="clear-learning">4.9 공시 반응 학습 CLEAR</h3>
+<p>CLEAR는 공급계약 공시를 낸 기업(0홉)과 그 공시의 직접 구매자(1홉)의 과거 반응을 학습한다. 1홉 후보에는 구매자가 새 공시에 명시되고 두 기업 사이에 당시 유효한 동일 제품군의 기존 공급계약이 있는 경우만 포함한다. 그래프는 공시와 주문 후보를 연결하며, 매매 신호의 방향은 과거 수익률로 정한다.</p>
+<p>홉별로 공시를 신규·정정 유형과 공급사 매출 대비 계약 비중으로 묶고, 공시 다음 거래일 시가에 진입해 5거래일째 종가에 청산했을 때의 비용 후 수익률을 계산하였다. 같은 종목·거래일에 공시가 여러 건이면 학습 관측은 한 건만 사용하였다. 표본이 5건 이상인 패턴을 채택하고, 각 집단의 평균을 같은 홉의 전체 평균 쪽으로 조정하였다. 실제 매매는 최근 5거래일 공시 점수의 합이 양수면 보유하고, 음수면 현금을 유지한다. 합이 0이면 20거래일 가격 추세를 따른다. 매매 시가는 당일 시가이며 비용은 편도 10bp다.</p>
+<p>2026년 9월 30일까지 결과를 확인할 수 있는 0홉 관측 967건과 1홉 관측 15건으로 학습하였다. 평가 기간은 10월 1일~11월 26일 39거래일이며, 필요한 거래일 시세를 갖춘 172종목에 동일한 초기 자본을 배정하였다. 앞 절의 규칙형 CLEAR는 해당 연구의 방식으로 기술하고, 이 절에서 CLEAR는 공시 반응 학습 전략을 뜻한다.</p>
+<div class="table-scroll" role="region" aria-label="공시 반응 학습 CLEAR의 10월과 11월 성과" tabindex="0"><table>
+<caption>172종목·39거래일 비용 후 성과</caption>
+<thead><tr><th scope="col">전략</th><th scope="col">순수익률</th><th scope="col">최대낙폭</th><th scope="col">샤프비율</th><th scope="col">체결</th></tr></thead>
+<tbody>
+<tr><th scope="row">CLEAR</th><td>−7.39%</td><td>−10.42%</td><td>−3.97</td><td>650</td></tr>
+<tr><th scope="row">20거래일 가격 추세</th><td>−7.59%</td><td>−10.69%</td><td>−3.88</td><td>652</td></tr>
+<tr><th scope="row">매수 후 보유</th><td>−18.85%</td><td>−23.34%</td><td>−3.34</td><td>344</td></tr>
+</tbody></table></div>
+<p>가격 추세와 비교하면 CLEAR의 순수익률은 0.20%p 높았고 샤프비율은 낮았다. 종목·날짜·매매 방향을 기준으로 대조한 결과, CLEAR에만 있는 체결은 42건, 가격 추세에만 있는 체결은 44건이었다. 1홉에서는 신규 계약의 매출 비중 10% 이상 30% 미만 패턴 하나가 학습 기준을 충족했다. 1홉 점수를 빼고 다시 비교했을 때 바뀐 체결은 <strong>0건</strong>이었다.</p>
+<p><strong>삼성전기.</strong> 10월 6일 MLCC 공급계약의 금액은 매출 대비 2.50%였고 구매자는 공개되지 않았다. CLEAR는 공시 기업에 0홉을 적용했다. 학습 구간의 매출 비중 10% 미만 신규 계약 집단이 음의 점수를 받아, 두 전략이 10월 1일 시가 1,495,000원에 매수한 주식을 CLEAR는 <strong>10월 7일 시가 1,675,000원</strong>에 매도했다. 가격 추세는 보유를 이어가다 <strong>10월 14일 시가 1,372,000원</strong>에 매도했다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800130">MLCC 계약 원문</a></p>
+<p>이 구간은 앞선 연구에서도 사용하였다. 따라서 0.20%p 차이는 이 구간의 비교 결과이며, 새 기간의 성과는 추가 검증이 필요하다. <a href="clear-learning-results.json.gz" download>종목별 성과와 체결 원장</a></p>
 </section>
 <section aria-labelledby="limits">
 <h2 id="limits">5. 논의와 한계</h2>
@@ -182,6 +197,10 @@
 </section>
 <section aria-labelledby="reproduce">
 <h2 id="reproduce">부록 · EC2 재현과 원장</h2>
+<p>공시 반응 학습 CLEAR는 EC2에서 기존 계약 그래프와 두 일봉 아카이브를 사용해 재실행한다. 기본 평가 구간은 2026년 10월 1일~11월 26일이다.</p>
+<pre><code>PYTHONPATH=src python3.11 scripts/backtest_clear_hops.py \
+  "$GRAPH" "$ARCHIVE" "$LATER" --start 2026-10-01 &gt; clear-learning-results.json</code></pre>
+<p><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/backtest_clear_hops.py">공시 반응 학습 재현 코드</a> · <a href="clear-learning-results.json.gz" download>성과·체결 원장</a></p>
 <p>같은 계약 그래프와 아카이브·보강 일봉, RDF 적재본을 사용한다. 다음 명령에서 <code>--original-panel</code>을 빼면 같은 기간의 80종목 확대 비교를 재현한다. 체결 원장의 <code>panel</code>은 두 표본을 구분한다.</p>
 <pre><code>PYTHONPATH=src python3.11 scripts/backtest_governance_integration.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OUTPUT" \
