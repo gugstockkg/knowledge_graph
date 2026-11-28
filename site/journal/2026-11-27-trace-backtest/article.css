@@ -89,11 +89,22 @@
   justify-self: end;
 }
 
+.trade-case {
+  margin-block: 1rem 1.5rem;
+}
+.trade-case > p {
+  margin: 0;
+}
+.trade-case .decision-case {
+  display: grid;
+  gap: .75rem;
+  margin: .75rem 0 0;
+}
 .decision-flow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .75rem;
-  margin: 0 0 .75rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -125,12 +136,7 @@
   width: 100%;
   height: auto;
 }
-.decision-connector {
-  text-align: center;
-  color: #3c7468;
-  font-size: 1.5rem;
-  line-height: 1.5;
-}
+.decision-flow li + li { margin-top: 0; }
 @media (max-width: 640px) {
   .decision-flow { grid-template-columns: 1fr; }
 }

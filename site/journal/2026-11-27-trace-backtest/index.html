@@ -151,39 +151,42 @@
       <p>공통 후보 표본에서는 TRACE, CLEAR, 가격 추세 순으로 손실 폭이 작았다. CLEAR는 같은 체결 규칙을 적용한 원문 구매자 기준보다 순수익률이 높았다. 공통 후보 표본과 CLEAR의 최종 필터는 평가 자료를 본 뒤 정하였다.</p>
       <h3>5.2 공시가 주문을 바꾼 세 사례</h3>
       <p>공통 후보 표본에서는 삼성전자와 SK하이닉스의 CLEAR 매수 결과가 서로 달랐고, 삼성전기에서는 TRACE의 조기 매도가 수익률 차이를 만들었다. 각 도해에서 지식그래프의 노드와 관계를 먼저 제시하고, 이어서 신호·주문·손익을 표시하였다. 손익은 해당 신호를 제거한 경우와 비교하였다.</p>
-      <p><strong>삼성전자 · CLEAR의 추가 진입이 손실을 키웠다.</strong> CLEAR는 일성건설에서 기존 평택 건설계약을 거쳐 삼성전자에 이르는 경로를 확인하였다. 기존 계약이 새 공시 전에 공개돼 유효했고, 공급 방향·제품군과 구매자가 일치하였다. 이 검사를 통과한 온양 복지동 공시는 신규 계약이어서 +1을 받았다. 11월 25일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었다. CLEAR는 양의 신호를 우선해 목표를 현금에서 주식으로 바꾸었다. 시가 178,500원에 매수했고, 26일 평가 종료 규칙에 따라 종가 171,500원에 청산하였다. 이 공시의 신호를 빼면 비용 후 종목 수익률은 −6.64%에서 −2.63%로 바뀐다. TRACE는 이 종목에서 가격 추세와 같은 주문을 냈다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124800494">일성건설 공시</a></p>
-      <figure class="dataset-figure decision-case">
-        <img class="decision-graph" src="clear-samsung-case.svg" width="720" height="306" alt="일성건설과 삼성전자가 기존 평택 계약과 새 공급계약에 공급자와 구매자로 연결되고, 새 계약에서 원문 공시를 확인하는 그래프">
-        <div class="decision-connector" aria-hidden="true">↓</div>
-        <ol class="decision-flow" aria-label="그래프 근거를 신호와 주문에 반영한 결과">
-          <li><strong>신호 판정</strong><span>온양 공시의 구매자·제품군 일치 → 신규 계약 +1</span></li>
-          <li><strong>주문 변화</strong><span>11월 25일 현금 → 매수 178,500원 → 26일 171,500원 청산</span></li>
-          <li class="decision-loss"><strong>비용 후 손익 차이</strong><span>추가 진입으로 종목 수익률 4.00%p 감소</span></li>
-        </ol>
-        <figcaption>사례 1. 삼성전자 · CLEAR의 공시 경로와 주문.</figcaption>
-      </figure>
-      <p><strong>SK하이닉스 · CLEAR의 재진입이 앞선 손실을 일부 만회하였다.</strong> CLEAR는 케이씨텍의 새 공시에서 구매자가 SK하이닉스임을 확인하고, 그래프에서 공시 전에 공개돼 당시 유효한 같은 제품군의 반도체 제조장비 계약을 찾았다. 기존 계약은 금액이 양수였고 새 공시와 접수번호가 달랐다. 이 조건을 통과했으므로, 신규 계약의 부호 +1을 SK하이닉스에 반영하였다. 11월 17일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었다. CLEAR는 현금에서 주식으로 목표를 바꿔 1,098,000원에 매수하였다. 24일에는 공시가 5거래일 창에서 빠져 합계가 0이 되었다. 가격 추세도 0이어서 시가 1,212,000원에 매도하였다. 이 공시의 신호를 빼면 비용 후 수익률은 −3.88%에서 −12.75%로 낮아진다. TRACE는 같은 기간 가격 추세에 따라 현금을 유지하였다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">케이씨텍 공시</a></p>
-      <figure class="dataset-figure decision-case">
-        <img class="decision-graph" src="clear-hynix-case.svg" width="720" height="306" alt="케이씨텍과 SK하이닉스가 기존 반도체 제조장비 계약과 새 공급계약에 공급자와 구매자로 연결되고, 새 계약에서 원문 공시를 확인하는 그래프">
-        <div class="decision-connector" aria-hidden="true">↓</div>
-        <ol class="decision-flow" aria-label="그래프 근거를 신호와 주문에 반영한 결과">
-          <li><strong>신호 판정</strong><span>새 공시의 구매자·제품군 일치 → 신규 계약 +1 → 5거래일 후 만료</span></li>
-          <li><strong>주문 변화</strong><span>11월 17일 1,098,000원 매수 → 24일 1,212,000원 매도</span></li>
-          <li class="decision-gain"><strong>비용 후 손익 차이</strong><span>추가 진입으로 종목 수익률 8.87%p 증가</span></li>
-        </ol>
-        <figcaption>사례 2. SK하이닉스 · CLEAR의 공시 경로와 주문.</figcaption>
-      </figure>
-      <p><strong>삼성전기 · TRACE의 조기 매도가 이후 하락을 피하였다.</strong> TRACE는 10월 6일 MLCC 신규 공급계약에서 삼성전기 → 공급사의 신규 계약 사건 → 원문 공시 경로를 찾았다. 이 경로가 나온 학습 표본 82개 중 50개가 하락해, 하락 규칙의 신뢰도 61.0%가 채택 기준인 60%를 넘었다. 평가에서도 경로가 접수번호까지 이어져 하락 부호 −1을 반영하였다. 10월 7일 시가에 5거래일 신호 합계는 −1이었다. 가격 추세는 1이었지만 TRACE는 양의 추세보다 음의 공시 신호를 우선해 보유 상태를 현금으로 바꿨고, 1,675,000원에 매도하였다. CLEAR와 가격 추세는 14일 시가 1,372,000원에 매도하였다. 해당 신호를 빼면 TRACE의 종목 수익률은 +11.82%에서 −8.41%로 바뀐다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800130">삼성전기 공시</a></p>
-      <figure class="dataset-figure decision-case">
-        <img class="decision-graph" src="trace-semco-case.svg" width="720" height="133" alt="삼성전기에서 MLCC 신규 계약 사건을 거쳐 20261006800130 원문 공시에 도달하는 TRACE 경로">
-        <div class="decision-connector" aria-hidden="true">↓</div>
-        <ol class="decision-flow" aria-label="그래프 근거를 신호와 주문에 반영한 결과">
-          <li><strong>신호 판정</strong><span>학습 표본 50/82 하락 → 신뢰도 61.0% → −1</span></li>
-          <li><strong>주문 변화</strong><span>10월 7일 1,675,000원 매도 → 가격 추세는 14일 1,372,000원 매도</span></li>
-          <li class="decision-gain"><strong>비용 후 손익 차이</strong><span>조기 매도로 종목 수익률 20.23%p 증가</span></li>
-        </ol>
-        <figcaption>사례 3. 삼성전기 · TRACE의 공시 경로와 주문.</figcaption>
-      </figure>
+      <div class="trade-case">
+        <p><strong>삼성전자 · CLEAR의 추가 진입이 손실을 키웠다.</strong> CLEAR는 일성건설에서 기존 평택 건설계약을 거쳐 삼성전자에 이르는 경로를 확인하였다. 기존 계약이 새 공시 전에 공개돼 유효했고, 공급 방향·제품군과 구매자가 일치하였다. 이 검사를 통과한 온양 복지동 공시는 신규 계약이어서 +1을 받았다. 11월 25일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었다. CLEAR는 양의 신호를 우선해 목표를 현금에서 주식으로 바꾸었다. 11월 25일 시가 178,500원에 매수했고, 11월 26일 평가 종료 시 종가 171,500원에 매도하였다. 이 공시의 신호를 빼면 비용 후 종목 수익률은 −6.64%에서 −2.63%로 바뀐다. TRACE는 이 종목에서 가격 추세와 같은 주문을 냈다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124800494">일성건설 공시</a></p>
+        <figure class="dataset-figure decision-case">
+          <img class="decision-graph" src="clear-samsung-case.svg" width="720" height="306" alt="일성건설과 삼성전자가 기존 평택 계약과 새 공급계약에 공급자와 구매자로 연결되고, 새 계약에서 원문 공시를 확인하는 그래프">
+          <ol class="decision-flow" aria-label="그래프 근거를 신호와 주문에 반영한 결과">
+            <li><strong>신호 판정</strong><span>온양 공시의 구매자·제품군 일치 → 신규 계약 +1</span></li>
+            <li><strong>주문 변화</strong><span>11월 25일 시가 178,500원에 매수하고, 11월 26일 종가 171,500원에 매도하였다.</span></li>
+            <li class="decision-loss"><strong>비용 후 손익 차이</strong><span>추가 진입으로 종목 수익률 4.00%p 감소</span></li>
+          </ol>
+          <figcaption>사례 1. 삼성전자 · CLEAR의 공시 경로와 주문.</figcaption>
+        </figure>
+      </div>
+      <div class="trade-case">
+        <p><strong>SK하이닉스 · CLEAR의 재진입이 앞선 손실을 일부 만회하였다.</strong> CLEAR는 케이씨텍의 새 공시에서 구매자가 SK하이닉스임을 확인하고, 그래프에서 공시 전에 공개돼 당시 유효한 같은 제품군의 반도체 제조장비 계약을 찾았다. 기존 계약은 금액이 양수였고 새 공시와 접수번호가 달랐다. 이 조건을 통과했으므로, 신규 계약의 부호 +1을 SK하이닉스에 반영하였다. 11월 17일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었다. CLEAR는 현금에서 주식으로 목표를 바꿔 1,098,000원에 매수하였다. 24일에는 공시가 5거래일 창에서 빠져 합계가 0이 되었다. 가격 추세도 0이어서 시가 1,212,000원에 매도하였다. 이 공시의 신호를 빼면 비용 후 수익률은 −3.88%에서 −12.75%로 낮아진다. TRACE는 같은 기간 가격 추세에 따라 현금을 유지하였다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">케이씨텍 공시</a></p>
+        <figure class="dataset-figure decision-case">
+          <img class="decision-graph" src="clear-hynix-case.svg" width="720" height="306" alt="케이씨텍과 SK하이닉스가 기존 반도체 제조장비 계약과 새 공급계약에 공급자와 구매자로 연결되고, 새 계약에서 원문 공시를 확인하는 그래프">
+          <ol class="decision-flow" aria-label="그래프 근거를 신호와 주문에 반영한 결과">
+            <li><strong>신호 판정</strong><span>새 공시의 구매자·제품군 일치 → 신규 계약 +1 → 5거래일 후 만료</span></li>
+            <li><strong>주문 변화</strong><span>11월 17일 시가 1,098,000원에 매수하고, 11월 24일 시가 1,212,000원에 매도하였다.</span></li>
+            <li class="decision-gain"><strong>비용 후 손익 차이</strong><span>추가 진입으로 종목 수익률 8.87%p 증가</span></li>
+          </ol>
+          <figcaption>사례 2. SK하이닉스 · CLEAR의 공시 경로와 주문.</figcaption>
+        </figure>
+      </div>
+      <div class="trade-case">
+        <p><strong>삼성전기 · TRACE의 조기 매도가 이후 하락을 피하였다.</strong> TRACE는 10월 6일 MLCC 신규 공급계약에서 삼성전기 → 공급사의 신규 계약 사건 → 원문 공시 경로를 찾았다. 이 경로가 나온 학습 표본 82개 중 50개가 하락해, 하락 규칙의 신뢰도 61.0%가 채택 기준인 60%를 넘었다. 평가에서도 경로가 접수번호까지 이어져 하락 부호 −1을 반영하였다. 10월 7일 시가에 5거래일 신호 합계는 −1이었다. 가격 추세는 1이었지만 TRACE는 양의 추세보다 음의 공시 신호를 우선해 보유 상태를 현금으로 바꿨고, 1,675,000원에 매도하였다. CLEAR와 가격 추세는 14일 시가 1,372,000원에 매도하였다. 해당 신호를 빼면 TRACE의 종목 수익률은 +11.82%에서 −8.41%로 바뀐다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800130">삼성전기 공시</a></p>
+        <figure class="dataset-figure decision-case">
+          <img class="decision-graph" src="trace-semco-case.svg" width="720" height="133" alt="삼성전기에서 MLCC 신규 계약 사건을 거쳐 20261006800130 원문 공시에 도달하는 TRACE 경로">
+          <ol class="decision-flow" aria-label="그래프 근거를 신호와 주문에 반영한 결과">
+            <li><strong>신호 판정</strong><span>학습 표본 50/82 하락 → 신뢰도 61.0% → −1</span></li>
+            <li><strong>주문 변화</strong><span>TRACE는 10월 7일 시가 1,675,000원에 매도하였다. 가격 추세 전략은 10월 14일 시가 1,372,000원에 매도하였다.</span></li>
+            <li class="decision-gain"><strong>비용 후 손익 차이</strong><span>조기 매도로 종목 수익률 20.23%p 증가</span></li>
+          </ol>
+          <figcaption>사례 3. 삼성전기 · TRACE의 공시 경로와 주문.</figcaption>
+        </figure>
+      </div>
       <h3>5.3 공시 채택과 주문 변화</h3>
       <p>후보와 채택은 종목·반영 거래일·접수번호 조합으로 집계하였다. CLEAR의 후보는 원문에 구매자가 명시되고 부호가 0이 아닌 공시이며, 채택은 기존 유효 계약 조건까지 충족한 경우이다. TRACE의 후보는 해당 시점의 그래프에서 세 관계 이내로 닿는 접수번호이며, 채택은 방향이 선택된 규칙의 반환 근거에 포함된 경우이다. 두 후보군의 범위가 달라 채택률을 직접 비교하기는 어렵다.</p>
       <p>신규 신호일은 채택 공시가 처음 반영된 종목·거래일이다. 활성 신호일은 최근 5거래일 합계가 0이 아닌 날이다. 주문은 날짜·체결 구간·매수 또는 매도를 대조하였다. CLEAR는 원문 구매자만 확인한 전략, TRACE는 가격 추세와 비교하였다. 시점이나 방향이 바뀐 주문은 기존 주문 제외와 새 주문 추가로 각각 센다. 마지막 종가 청산도 포함하였다.</p>
