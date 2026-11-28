@@ -70,7 +70,18 @@
         <img src="../../dataset/economic-contract.svg" width="900" height="250" alt="넥스틴이 공급자, SK하이닉스가 구매자로 연결된 웨이퍼 검사장비 공급계약 그래프">
         <figcaption>공급계약 LPG 사례. 넥스틴에서 계약을 거쳐 SK하이닉스에 이르는 경로를 회사 간 직접 거래 관계로 본다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146">넥스틴 공급계약 원문</a></figcaption>
       </figure>
-      <p><strong>이 실험에는 두 도메인 온톨로지 중 경제 사건 모델의 공급계약 부분을 사용하였다.</strong> Neo4j LPG에서 기업·계약·공시와 당시 공개된 계약 조건을 내보냈다. CLEAR는 공급사와 구매자가 기존 유효 계약으로 연결되는지 조회하였다. TRACE는 같은 공급계약 자료에서 공시 시점별 경로를 구성하여 방향 규칙을 채굴하였다. 시설투자·재무 관측과 최대주주 변경·지분 관측 모델의 OWL 추론은 이 주문 계산에 사용하지 않았다. 최대주주 변경 모델은 별도 실험에서 정정 전후 유효 값과 원문 근거를 복원하는 데 사용하였다. <a href="../../dataset/#models">두 온톨로지의 구성과 사용처</a> · <a href="../2026-11-27-ontology-and-shacl/#benchmark">최대주주 변경 검증</a></p>
+      <p><strong>이 실험에는 경제 사건 모델의 공급계약 LPG를 사용하였다.</strong> 두 도메인 모델의 구현 형식과 실험에서 사용한 범위는 아래 표에 정리하였다. <a href="../../dataset/#downloads">공개 배포본 다운로드</a></p>
+      <div class="table-scroll" role="region" aria-label="도메인별 그래프 구현과 사용 범위" tabindex="0">
+        <table>
+          <caption>도메인별 구현 형식, 실험 사용처와 공개 범위</caption>
+          <thead><tr><th scope="col">도메인·구성</th><th scope="col">구현 형식과 구성 요소</th><th scope="col">실제로 사용한 실험</th><th scope="col">공개 배포본 v1</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">공통 공시 카탈로그</th><td><strong>LPG</strong>에서는 공시에서 기업과 원문 객체를 연결합니다. <strong>RDF</strong>에서는 접수번호·접수일·기업과 DART 링크를 표현합니다.</td><td>기업과 공시 원문을 찾고 두 배포본의 공시를 접수번호로 대조하는 공통 구조입니다.</td><td><strong>LPG</strong>는 공시 목록 253,432건, <strong>RDF·OWL</strong>은 원문을 확보한 공시 211,458건의 메타데이터를 담습니다.</td></tr>
+            <tr><th scope="row">경제 사건</th><td><strong>LPG</strong>로 공급사·구매자·공급계약·제품군을 연결하고 계약 조건과 정정 관측의 공개일·유효 기간을 기록합니다. 시설투자와 재무 관측도 기업에 연결합니다.</td><td><strong>CLEAR·TRACE 매매 실험</strong>에 공급계약 부분을 사용했습니다. CLEAR는 기존 유효 계약과 새 공시의 구매자를 대조합니다. TRACE는 같은 공시 자료에서 시점별 경로를 만들고 방향 규칙을 채굴합니다. 시설투자와 재무 관측은 주문 계산에서 제외했습니다.</td><td><strong>LPG</strong>에 공급계약·조건 관측·제품군·시설투자·재무 관측을 담습니다. <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/economic-events-v0.1">경제 사건 정의서</a></td></tr>
+            <tr><th scope="row">최대주주 변경·지분 관측</th><td><strong>LPG</strong>로 원공시·정정본과 항목별 주장을 연결해 유효 값과 근거를 조회했습니다. <strong>RDF</strong>로 변경 사건·주장·보유 관측과 원문 근거를 표현하고, <strong>OWL</strong>로 사건의 상위 유형을 추론했습니다.</td><td><strong>지분·지배권 검증</strong>에서 기준일별 지분율과 원문 근거를 복원하고 관련 공시를 연결했습니다. 별도의 네 그래프 조건 비교에서는 시점 조회와 상위 유형 추론을 대조했습니다.</td><td><strong>RDF·OWL</strong>에 지분·지배권 5개 공시군의 추출 결과, OWL 공리와 상위 유형 추론을 담습니다. <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/controller-change-v0.1">최대주주 변경 정의서</a></td></tr>
+          </tbody>
+        </table>
+      </div>
       <p>공시 접수일과 계약 유효 기간은 따로 기록하였다. 그래프 조회에는 그때까지 공개된 계약 조건만 사용하고, 접수일만 확인한 공시는 다음 거래일 시가부터 신호에 반영하였다. 최초 실행 후 두 전략 모두 공시 후보가 있었던 7종목을 추려 성과와 공시·주문 집계를 제시하였다.</p>
     </section>
     <section aria-labelledby="strategy">
