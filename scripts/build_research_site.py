@@ -9,7 +9,7 @@ from pathlib import Path
 from shutil import copytree
 from urllib.parse import urlsplit
 
-FEATURED_POST = "2026-11-27-trace-backtest"
+HOME_POST_LIMIT = 6
 
 CATEGORIES = {
     "backtest": "백테스트",
@@ -189,15 +189,16 @@ def build(source, destination):
         raise ValueError("No published posts found")
     home = (source / "index.html").read_text(encoding="utf-8")
     archive = (source / "journal/index.html").read_text(encoding="utf-8")
-    featured = next((post for post in posts if post["path"] == FEATURED_POST), None)
-    if featured is None:
-        raise ValueError(f"Featured post not found: {FEATURED_POST}")
+    research = [post for post in posts if post["category"] in ("backtest", "research")]
+    featured = next((post for post in research if post["category"] == "backtest"), posts[0])
+    featured_href = escape(f'journal/{featured["path"]}/', quote=True)
     home = replace(home, "featured-post", (
-        f'        <h1 id="title"><a href="journal/{FEATURED_POST}/">{escape(featured["title"])}</a></h1>\n'
-        f'        <p class="featured-summary">{escape(featured["summary"])}</p>\n'
-        f'        <a class="featured-read" href="journal/{FEATURED_POST}/">대표 연구 읽기</a>'
+        f'      <h1 id="title"><a href="{featured_href}">{escape(featured["title"])}</a></h1>\n'
+        f'      <p class="featured-summary">{escape(featured["summary"])}</p>\n'
+        f'      <a class="featured-read" href="{featured_href}">연구 글 읽기</a>'
     ))
-    home = replace(home, "latest-posts", "\n".join(article(post, "journal/", "h3") for post in posts[:3]))
+    remaining = [post for post in (research or posts) if post != featured][:HOME_POST_LIMIT]
+    home = replace(home, "latest-posts", "\n".join(article(post, "journal/", "h3") for post in remaining))
     editions = []
     for year, entries in groupby(posts, key=lambda post: post["published"].year):
         editions.append(f'      <section class="journal-year" data-group aria-labelledby="year-{year}">\n'
