@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FINTOS의 퀀트 투자 문헌 도서관. 전략별 문헌, 한 줄 요약, 재현 조건과 원문을 찾아보세요.">
+  <title>FINTOS 도서관</title>
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="../journal/archive.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 이동</a>
+  <header class="shell top site-header">
+    <a class="brand" href="../"><img src="../assets/fintos-logo.webp" width="540" height="138" alt="FINTOS 홈"></a>
+    <nav aria-label="주요 메뉴">
+      <a href="../dataset/">데이터 설명서</a>
+      <a href="../journal/">연구 보관함</a>
+      <a href="./" aria-current="page">도서관</a>
+      <a href="../#artifacts">산출물</a>
+      <a href="../#design-validation">설계와 검증</a>
+    </nav>
+  </header>
+  <main id="content" tabindex="-1" class="shell archive">
+    <h1>FINTOS 도서관</h1>
+    <p class="lead">한·미 주식과 ETF에서 검증할 퀀트 전략의 문헌을 모았습니다. 각 문헌의 한 줄 요약, 재현 시 확인할 항목, 원문 링크를 제공합니다.</p>
+    <!-- library-stats:start -->
+    <!-- library-stats:end -->
+    <p><a href="reading-index.csv" download>문헌 인덱스 내려받기(CSV)</a></p>
+    <nav class="dataset-nav" aria-label="도서관 목차">
+      <a href="#guide">읽기 안내</a>
+      <a href="#catalog">문헌 인덱스</a>
+      <a href="#sources">공개 데이터와 재현 자료</a>
+    </nav>
+
+    <section class="chapter" id="guide" aria-labelledby="guide-title">
+      <h2 id="guide-title">읽기 안내</h2>
+      <div>
+        <p><strong>우선 읽기(P1)</strong>는 비교 기준과 핵심 전략, <strong>확장 읽기(P2)</strong>는 개별 팩터와 추가 검증, <strong>심화 읽기(P3)</strong>는 고급 모형에 해당합니다. 우선순위는 FINTOS 실험과의 연결성과 국내·미국 시장에서의 재현 가능성을 고려했습니다.</p>
+        <p>먼저 동일비중과 매수 후 보유를 기준으로 익히고, 상대 모멘텀·시계열 추세·리밸런싱의 차이를 살펴보세요. 가치·수익성·발생액을 비교할 때는 과거 종목군, 상장폐지, 재무제표의 실제 공개 시점을 함께 확인해야 합니다.</p>
+        <p>요약은 확보한 서지와 초록, 공개 PDF의 1차 검토를 바탕으로 정리했습니다. 각 항목에 검토 범위를 표시했습니다. 원문은 출판사나 공개 저장소에서 볼 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section id="catalog" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">문헌 인덱스</h2>
+      <form class="archive-filters" id="archive-filters" role="search" hidden>
+        <div class="archive-field"><label for="archive-query">제목·저자·요약 검색</label>
+          <input type="search" id="archive-query" name="q" placeholder="예: Jegadeesh, 공분산, Q031">
+        </div>
+        <div class="archive-field"><label for="archive-category">주제</label>
+          <select id="archive-category" name="category">
+            <option value="">전체 주제</option>
+            <!-- library-topics:start -->
+            <!-- library-topics:end -->
+          </select>
+        </div>
+        <div class="archive-field"><label for="archive-year">공개 판본 연도</label>
+          <select id="archive-year" name="year">
+            <option value="">전체 연도</option>
+            <!-- library-years:start -->
+            <!-- library-years:end -->
+          </select>
+        </div>
+        <button type="reset">초기화</button>
+      </form>
+      <p id="archive-status" class="archive-status" role="status" hidden></p>
+      <div id="archive-results">
+        <!-- library-catalog:start -->
+        <!-- library-catalog:end -->
+      </div>
+      <nav id="archive-pages" class="archive-pages" aria-label="문헌 인덱스 페이지" hidden>
+        <button type="button" data-direction="-1">이전</button>
+        <span id="archive-page-number"></span>
+        <button type="button" data-direction="1">다음</button>
+      </nav>
+    </section>
+
+    <section class="chapter" id="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">공개 데이터와 재현 자료</h2>
+      <ul class="index">
+        <li><a href="https://mba.tuck.dartmouth.edu/pages/faculty/Ken.French/data_library.html"><span class="artifact-text"><strong>Kenneth R. French Data Library</strong><span>가치·수익성·투자·모멘텀 팩터와 포트폴리오 수익률</span></span><span class="format">데이터</span></a></li>
+        <li><a href="https://www.aqr.com/Insights/Datasets/An-Academic-Quality-Data-Library-for-Practitioners"><span class="artifact-text"><strong>AQR Data Library</strong><span>추세·가치·모멘텀·저베타 연구의 시계열 자료</span></span><span class="format">데이터</span></a></li>
+        <li><a href="https://github.com/OpenSourceAP/CrossSection"><span class="artifact-text"><strong>Open Source Cross-Sectional Asset Pricing</strong><span>Chen·Zimmermann의 횡단면 수익률 예측 변수 재현 코드</span></span><span class="format">코드</span></a></li>
+        <li><a href="https://github.com/bkelly-lab/ReplicationCrisis"><span class="artifact-text"><strong>Is There a Replication Crisis in Finance?</strong><span>Jensen·Kelly·Pedersen의 국제 팩터 재현 코드</span></span><span class="format">코드</span></a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>
