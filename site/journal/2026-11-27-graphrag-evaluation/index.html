@@ -6,6 +6,7 @@
   <meta name="fintos:title" content="정정 공시 GraphRAG 평가 계획">
   <meta name="fintos:summary" content="문서 검색과 그래프 검색에서 기준일에 맞는 답과 원문 인용을 함께 채점하는 평가 계획입니다.">
   <meta name="fintos:category" content="evaluation">
+  <meta name="fintos:topic" content="knowledge-graph">
   <meta name="fintos:published" content="2026-11-27T14:41:48+09:00">
   <title>정정 공시 GraphRAG 평가 계획 | FINTOS</title>
   <link rel="stylesheet" href="../../style.css">
@@ -24,7 +25,7 @@
   <main id="content" tabindex="-1" class="post research-post"><article>
     <a class="back" href="../">연구 보관함</a>
     <h1>정정 공시 GraphRAG 평가 계획</h1>
-    <p class="status"><span class="tag">실험 설계</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
+    <p class="status"><span class="tag">지식그래프</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
     <p class="lead">정정 공시를 읽는 GraphRAG에서 숫자와 그 숫자를 뒷받침하는 원문을 함께 채점하는 계획입니다. 30개사·151개 구조화 질의는 EC2에서 검증했습니다. 자연어 답변과 인용 정확도를 비교하는 이 실험은 아직 실행 전입니다. <a href="../2026-11-27-ontology-and-shacl/#benchmark">선행 구조화 질의 검증</a></p>
     <h2>연구 질문과 가설</h2>
     <p>연구 대상은 특정 기준일 당시 공개돼 있던 공시를 근거로 답하는 시간 질의응답입니다. 첫 가설은 문서 간 정정 관계를 활용하면 같은 문서 집합에서 올바른 근거와 답을 함께 반환하는 비율이 높아진다는 것입니다. 두 번째 가설은 근거 검사를 추가하면 근거 오류가 줄어드는 대신 보류가 늘 수 있다는 것입니다. 질문 유형과 집계 범위는 시간 지식그래프 질의응답 연구를 참고했습니다. <a href="https://aclanthology.org/2021.acl-long.520/">Saxena 외, CronQuestions (2021)</a></p>
