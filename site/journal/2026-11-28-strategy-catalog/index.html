@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="한·미 포트폴리오와 미국 팩터 전략 22개를 공통 진입월과 만기월로 맞춰 비교했다.">
-<meta name="fintos:summary" content="한·미 포트폴리오와 미국 팩터 전략 22개를 공통 진입월과 만기월로 맞춰 비교했다.">
+<meta name="description" content="기존 퀀트 전략 22개를 최근 원문 기반 변형 5개로 확장하고 EC2 공통 평가창에서 비교했다.">
+<meta name="fintos:summary" content="기존 퀀트 전략 22개를 최근 원문 기반 변형 5개로 확장하고 EC2 공통 평가창에서 비교했다.">
 <meta name="fintos:category" content="backtest">
 <meta name="fintos:published" content="2026-11-28T17:00:00+09:00">
-<title>퀀트 전략 22개 비교 · 매수 후 보유를 앞선 조건 | FINTOS</title>
+<title>퀀트 전략 27개 비교 · 매수 후 보유를 앞선 조건 | FINTOS</title>
 <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 <a class="skip" href="#content">본문으로 이동</a>
 <header class="shell top site-header"><a class="brand" href="../../"><img src="../../assets/fintos-logo.webp" width="540" height="138" alt="FINTOS 홈"></a><nav aria-label="주요 메뉴"><a href="../">연구 보관함</a><a href="../../library/">FINTOS 도서관</a></nav></header>
 <main class="post dataset research-post" id="content" tabindex="-1"><article>
-<h1>퀀트 전략 22개 비교 · 매수 후 보유를 앞선 조건</h1>
-<p><strong>초록.</strong> 기존 한·미 포트폴리오의 17개 전략, 미국 종목별 팩터 4개, 공개 팩터 타이밍 1개를 동일한 진입월과 만기월로 맞춰 평가하였다. 주식 계좌의 비용 후 수익률과 공개 요인의 비용 전 수익률, 최대낙폭, +15% 목표 도달, 보유 대비 차이를 비교하였다. 한·미 혼합형에서는 상대강도가 짝지은 보유 대비 차이가 가장 높았다. 미국 종목별 실험에서는 24개월 모멘텀과 두 기한의 저발생액이 앞섰다. 공개 팩터 타이밍은 고정 팩터 바스켓을 앞섰으나 미국 주식시장보다 낮았다.</p>
-<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#related">관련 연구</a><a href="#methods">비교 설계</a><a href="#strategies">22개 방법론</a><a href="#results">결과</a><a href="#discussion">논의</a><a href="#reproduce">재현</a><a href="#references">참고문헌</a></nav>
+<h1>퀀트 전략 27개 비교 · 매수 후 보유를 앞선 조건</h1>
+<p><strong>초록.</strong> 기존 퀀트 전략 22개에 최근 문헌에서 도출한 다섯 가지 변형을 추가하고, EC2의 12·24개월 평가창에서 매수 후 보유와 비교하였다. 한·미 혼합 포트폴리오에서는 기존 상대강도가 24개월 짝지은 수익률 차이에서 앞섰다. 부분 조정은 거래액을 줄였고 비중 축소는 낙폭을 줄였으나, 개선은 전략마다 달랐다. 한국 주식에서는 추세 일관성 모멘텀이 과거 수익률 순위를 맞춘 대조군을 앞섰다. 한국 실험은 배당을 제외하고 상장폐지 정산액을 가정한 가격수익률 비교다.</p>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#related">관련 연구</a><a href="#methods">비교 설계</a><a href="#strategies">27개 방법론</a><a href="#results">결과</a><a href="#discussion">논의</a><a href="#reproduce">재현</a><a href="#references">참고문헌</a></nav>
 <h2 id="intro">1. 연구 질문</h2>
 <p>투자 규칙을 추가했을 때 같은 시점의 단순 보유보다 순수익률을 개선하는지 검증한다. 만기 수익률 중앙값과 시작월별 초과수익률 중앙값은 다른 질문에 답한다. 전자는 전략의 전형적인 계좌 성과를, 후자는 같은 시점에 시작한 대조군과의 전형적인 격차를 나타낸다. 이 연구의 주 비교 기준은 짝지은 수익률 차이이며, 최대낙폭과 목표 도달도 함께 제시한다.</p>
 <section aria-labelledby="related">
@@ -32,12 +32,14 @@
 <h3>2.4 가치·수익성·발생액과 팩터 타이밍</h3>
 <p>Fama와 French는 규모·장부가치 대비 시가 등을 사용해 포트폴리오 간 수익률을 설명했고, 이후 수익성과 투자 요인을 추가했다. Novy-Marx는 매출총이익을 자산으로 나눈 수익성이 횡단면 수익 차이를 설명한다고 보고했다. Sloan은 이익을 현금흐름과 발생액으로 분해해 지속성의 차이와 가격 반영을 조사했다. 미국 종목별 실험은 이 연구들을 참고해 공개 연차 재무에서 세 점수를 만들고 상위 종목만 담는다. 공개 롱쇼트 요인은 개별주 계좌와 구성·비용·공매도 가정이 다르다. <a href="#ref-12">[12]</a> <a href="#ref-13">[13]</a> <a href="#ref-14">[14]</a> <a href="#ref-15">[15]</a> <a href="#ref-17">[17]</a></p>
 <p>Ehsani와 Linnainmaa는 요인 수익률의 시계열 지속성과 종목 모멘텀의 관계를 분석했다. 본 비교는 이 문제의식에 따라 공개 스타일 요인의 과거 수익 합계로 방향을 바꾼다. 요인의 구체적인 선택과 한 달 제외 규칙은 FINTOS 구현에서 정한 값이다. <a href="#ref-16">[16]</a> <a href="#ref-17">[17]</a> <a href="#ref-20">[20]</a></p>
+<h3>2.5 최근 문헌에서 가져온 비교 조건</h3>
+<p>거래비용을 반영한 목표 포트폴리오 조정과 정기 리밸런싱의 체결 시점을 검토했다. 목표 비중의 축소와 팩터 예측의 축소는 적용 대상이 다르다. 종목 선별에는 과거 수익률에 더해 가격 추세가 얼마나 일관적인지도 비교했다. <a href="#ref-21">[21]</a> <a href="#ref-22">[22]</a> <a href="#ref-23">[23]</a> <a href="#ref-24">[24]</a> <a href="#ref-25">[25]</a></p>
 </section>
 <h2 id="methods">3. 데이터와 비교 설계</h2>
-<p>EC2에서 종전 실행의 계좌별 결과를 읽고, 세 실험에 모두 존재하는 시작월과 만기월만 남겼다. 최초 진입월은 2021년 11월, 마지막 만기월은 2026년 9월이다. 공통 평가창은 12개월 46개와 24개월 35개다. 혼합형 활성 전략 17개와 해당 매수 후 보유 기준에는 ETF와 개별주를 함께 담았다. 혼합형의 수익률은 원화 기준이고 수수료와 환전 비용을 반영한다. 미국 종목별 실험은 당시 공개된 재무와 가격을 연결한 고정 표본으로, 달러 기준 편도 10bp를 차감한다. 공개 팩터 타이밍은 미국의 롱쇼트 요인 수익률에 무위험 이자율을 더한 합성 계열이며 체결비용이 없다.</p>
-<p>혼합형과 미국 종목별 실험에서는 같은 바스켓의 매수 후 보유를 대조군으로 사용했다. 공개 팩터 타이밍은 미국 주식시장을 기준으로 표에 올리고, 고정 팩터 바스켓과의 차이는 별도로 해석했다. 날짜를 맞추었으나 보유 자산, 통화, 낙폭을 관측한 주기, 비용 모델이 달라 각 실험 안에서 순위를 매겼다. 공통 날짜에서도 종전 전략의 우열은 투자 대상을 함께 반영한다. <a href="../2026-11-28-portfolio-exit/">포트폴리오 실험</a> · <a href="../2026-11-28-factor-followup/">팩터 실험</a></p>
+<p>기존 22개 조건에 문헌 기반 변형 5개를 추가했다. 2021년 11월 이후 진입하고 2026년 9월까지 만기가 온 계좌 가운데 네 실험에 공통인 진입·만기월을 사용했다. 공통 평가창은 12개월 46개, 24개월 35개다. 기존 22개 조건의 비교 수치가 확장 전 결과와 일치하는지 확인했다. 한·미 혼합형은 수수료와 환전을 포함한 원화 계좌, 미국 종목별은 공시 공개일과 연계한 편도 10bp 달러 계좌다. 공개 요인 비교는 달러 합성 수익률로, 표의 기본 조건은 비용 전이다. 한국 종목군에는 편도 10bp와 폐지월 직전 평가액의 50% 회수 가정을 적용했다.</p>
+<p>문헌의 원래 질문과 비교가 가능한 범위에서 실험을 설계했다. 공시 시점, 거래 원장, 자료 판본, 전략 선택 편향은 별도 진단으로 구분했다. 기간을 통일해도 투자 대상과 통화, 낙폭 관측 주기, 비용이 다르므로 순위는 각 투자 범위 안에서 해석한다. <a href="../2026-11-28-portfolio-exit/">포트폴리오 실험</a> · <a href="../2026-11-28-factor-followup/">팩터 실험</a></p>
 <section aria-labelledby="strategies">
-<h2 id="strategies">4. 전략 22개의 방법론</h2>
+<h2 id="strategies">4. 전략 27개의 방법론</h2>
 <p>22개는 혼합형 활성 전략 17개, 미국 종목별 팩터 4개, 공개 팩터 타이밍 1개다. 매수 후 보유, 미국 시장, 고정 팩터 바스켓은 비교 기준이다. 2배 비용은 같은 전략의 민감도 점검이다.</p>
 <h3>4.1 한·미 혼합형 17개</h3>
 <p>공통 기준 배분은 SPY 40%, KODEX 200 20%, 미국·한국 개별주 각 국가 합계 10%씩, 원화 현금 20%다. 국가 비중 자체를 바꾸는 전략은 국가 안에서 미국 ETF에 80%, 한국 ETF에 3분의 2를 배정하고 나머지는 해당 국가의 개별주에 동일 배분한다. 월말 판단 뒤 각 종목의 다음 거래 가능 시가에서 모의 체결하고, 만기에는 각 시장의 마지막 가용 종가에서 청산한다. 기본 비용은 체결당 10bp이며 미국 거래에는 환전 비용 10bp를 추가한다. <a href="#ref-18">[18]</a> <a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/portfolio_engine.py">주문 엔진</a></p>
@@ -86,17 +88,54 @@
 </tbody>
 </table></div>
 <p>SMB는 규모, HML은 가치, RMW는 영업수익성, CMA는 투자 요인이다. 시장 기준은 시장 위험 프리미엄 + 무위험 수익률이며, 고정 팩터 기준은 같은 네 공개 수익률을 방향 전환 없이 평균한 뒤 무위험 수익률을 더한다. <a href="#ref-17">[17]</a> <a href="#ref-20">[20]</a></p>
+<h3>4.4 최근 문헌 기반 변형 5개</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="표 2. 추가 전략의 신호 및 대조 조건"><table><caption>표 2. 추가 전략의 신호 및 대조 조건</caption>
+<thead>
+<tr>
+<th>추가 조건</th>
+<th>신호와 주문</th>
+<th>대조군</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>상대강도 부분 조정</td>
+<td>최초 편입은 기존과 같고, 재조정일에 현재 수량의 평가액과 목표 평가액 차이의 절반을 주문한다.</td>
+<td>기존 상대강도 전량 조정, 매수 후 보유</td>
+</tr>
+<tr>
+<td>상대강도 한 세션 지연</td>
+<td>기존 신호·목표를 유지하고 정기·신호 전환 주문만 각 종목의 첫 거래 가능 시가에서 한 세션 늦춘다. 최초 편입과 만기 청산은 같은 일정이다.</td>
+<td>기존 상대강도, 매수 후 보유</td>
+</tr>
+<tr>
+<td>최소분산 비중 축소</td>
+<td>최소분산의 목표 비중과 한·미 동일 배분의 목표 비중을 50:50으로 결합한다.</td>
+<td>최소분산, 동일 배분, 매수 후 보유</td>
+</tr>
+<tr>
+<td>공개 팩터 타이밍 축소</td>
+<td>미국 4개 스타일 팩터의 지연 3·12개월 수익률을 사용한다. 2021년 11월까지 검증한 뒤 축소 강도를 고정했다. 선택된 조건은 시변 예측 성분을 완전히 축소했다.</td>
+<td>기존 부호 타이밍, 고정 팩터 바스켓, 미국 주식시장</td>
+</tr>
+<tr>
+<td>한국 추세 일관성 모멘텀</td>
+<td>과거 수익률 상위 20%에서 일별 가격의 시간 회귀 R² 상위 20%를 골라 분기마다 재조정한다.</td>
+<td>매수 후 보유, 같은 종목 수 모멘텀, 과거 수익률 순위가 가까운 미편입 종목</td>
+</tr>
+</tbody>
+</table></div>
 </section>
 <h2 id="results">5. 전략별 비교</h2>
-<p>전략 행은 24개월 짝지은 수익률 차이 순이다. 범위별 기준 행을 먼저 표시했다. 수익률과 낙폭은 중앙값이고 목표 달성은 만기 수익률이 15% 이상인 창의 수다. 공개 요인 결과는 비용 전이다.</p>
+<p>각 범위에서 매수 후 보유 또는 시장 기준을 먼저 표시했다. 추가 조건은 굵게 표시했다. 전략 행은 24개월 짝지은 수익률 차이 순이며 대조 조건은 표 하단에 두었다. 수익률과 최대낙폭은 중앙값이고, 목표 달성은 만기 수익률이 15% 이상인 창의 수다.</p>
 <h3>한·미 혼합형 · 원화</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
+<div class="table-scroll" tabindex="0" role="region" aria-label="표 3. 한·미 혼합형 비교"><table><caption>표 3. 한·미 혼합형 비교</caption>
 <thead>
 <tr>
 <th>전략</th>
-<th style="text-align:right">12개월 보유 대비</th>
+<th style="text-align:right">12개월 기준 대비</th>
 <th style="text-align:right">24개월 수익률</th>
-<th style="text-align:right">24개월 보유 대비</th>
+<th style="text-align:right">24개월 기준 대비</th>
 <th style="text-align:right">24개월 최대낙폭</th>
 <th style="text-align:right">우위 창</th>
 <th style="text-align:right">+15% 도달</th>
@@ -119,6 +158,24 @@
 <td style="text-align:right">+4.03%p</td>
 <td style="text-align:right">−14.31%</td>
 <td style="text-align:right">28/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td><strong>상대강도 · 목표까지 절반 조정</strong></td>
+<td style="text-align:right">+1.84%p</td>
+<td style="text-align:right">+56.68%</td>
+<td style="text-align:right">+3.69%p</td>
+<td style="text-align:right">−14.49%</td>
+<td style="text-align:right">27/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td><strong>상대강도 · 체결 한 세션 지연</strong></td>
+<td style="text-align:right">+1.88%p</td>
+<td style="text-align:right">+55.20%</td>
+<td style="text-align:right">+3.34%p</td>
+<td style="text-align:right">−14.26%</td>
+<td style="text-align:right">27/35</td>
 <td style="text-align:right">33/35</td>
 </tr>
 <tr>
@@ -155,6 +212,15 @@
 <td style="text-align:right">−5.32%p</td>
 <td style="text-align:right">−13.17%</td>
 <td style="text-align:right">7/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td><strong>최소분산 · 동일 비중 쪽으로 축소</strong></td>
+<td style="text-align:right">−2.38%p</td>
+<td style="text-align:right">+47.25%</td>
+<td style="text-align:right">−6.22%p</td>
+<td style="text-align:right">−12.77%</td>
+<td style="text-align:right">6/35</td>
 <td style="text-align:right">32/35</td>
 </tr>
 <tr>
@@ -268,13 +334,13 @@
 </tbody>
 </table></div>
 <h3>미국 종목별 · 달러</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
+<div class="table-scroll" tabindex="0" role="region" aria-label="표 4. 미국 종목별 비교"><table><caption>표 4. 미국 종목별 비교</caption>
 <thead>
 <tr>
 <th>전략</th>
-<th style="text-align:right">12개월 보유 대비</th>
+<th style="text-align:right">12개월 기준 대비</th>
 <th style="text-align:right">24개월 수익률</th>
-<th style="text-align:right">24개월 보유 대비</th>
+<th style="text-align:right">24개월 기준 대비</th>
 <th style="text-align:right">24개월 최대낙폭</th>
 <th style="text-align:right">우위 창</th>
 <th style="text-align:right">+15% 도달</th>
@@ -326,16 +392,25 @@
 <td style="text-align:right">0/35</td>
 <td style="text-align:right">16/35</td>
 </tr>
+<tr>
+<td>분기 동일비중 (대조)</td>
+<td style="text-align:right">−0.79%p</td>
+<td style="text-align:right">+27.83%</td>
+<td style="text-align:right">−2.86%p</td>
+<td style="text-align:right">−12.12%</td>
+<td style="text-align:right">4/35</td>
+<td style="text-align:right">31/35</td>
+</tr>
 </tbody>
 </table></div>
 <h3>미국 공개 롱쇼트 · 달러</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
+<div class="table-scroll" tabindex="0" role="region" aria-label="표 5. 공개 요인 비교"><table><caption>표 5. 공개 요인 비교</caption>
 <thead>
 <tr>
 <th>전략</th>
-<th style="text-align:right">12개월 보유 대비</th>
+<th style="text-align:right">12개월 기준 대비</th>
 <th style="text-align:right">24개월 수익률</th>
-<th style="text-align:right">24개월 보유 대비</th>
+<th style="text-align:right">24개월 기준 대비</th>
 <th style="text-align:right">24개월 최대낙폭</th>
 <th style="text-align:right">우위 창</th>
 <th style="text-align:right">+15% 도달</th>
@@ -352,7 +427,7 @@
 <td style="text-align:right">32/35</td>
 </tr>
 <tr>
-<td>공개 팩터 타이밍</td>
+<td>공개 팩터 부호 타이밍</td>
 <td style="text-align:right">−14.31%p</td>
 <td style="text-align:right">+9.36%</td>
 <td style="text-align:right">−31.17%p</td>
@@ -360,24 +435,102 @@
 <td style="text-align:right">2/35</td>
 <td style="text-align:right">1/35</td>
 </tr>
+<tr>
+<td><strong>공개 팩터 타이밍 · 예측 축소</strong></td>
+<td style="text-align:right">−15.95%p</td>
+<td style="text-align:right">+4.95%</td>
+<td style="text-align:right">−36.69%p</td>
+<td style="text-align:right">−6.71%</td>
+<td style="text-align:right">3/35</td>
+<td style="text-align:right">2/35</td>
+</tr>
+<tr>
+<td>고정 팩터 바스켓 (대조)</td>
+<td style="text-align:right">−16.50%p</td>
+<td style="text-align:right">+4.06%</td>
+<td style="text-align:right">−39.73%p</td>
+<td style="text-align:right">−5.20%</td>
+<td style="text-align:right">2/35</td>
+<td style="text-align:right">2/35</td>
+</tr>
+</tbody>
+</table></div>
+<h3>한국 과거 종목군 · 원화</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="표 6. 한국 과거 종목군 비교"><table><caption>표 6. 한국 과거 종목군 비교</caption>
+<thead>
+<tr>
+<th>전략</th>
+<th style="text-align:right">12개월 기준 대비</th>
+<th style="text-align:right">24개월 수익률</th>
+<th style="text-align:right">24개월 기준 대비</th>
+<th style="text-align:right">24개월 최대낙폭</th>
+<th style="text-align:right">우위 창</th>
+<th style="text-align:right">+15% 도달</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>매수 후 보유</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">−1.64%</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">−18.01%</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">5/35</td>
+</tr>
+<tr>
+<td><strong>한국 추세 일관성 모멘텀</strong></td>
+<td style="text-align:right">+14.32%p</td>
+<td style="text-align:right">+28.13%</td>
+<td style="text-align:right">+28.21%p</td>
+<td style="text-align:right">−18.74%</td>
+<td style="text-align:right">33/35</td>
+<td style="text-align:right">22/35</td>
+</tr>
+<tr>
+<td>같은 종목 수 단순 모멘텀 (대조)</td>
+<td style="text-align:right">+4.50%p</td>
+<td style="text-align:right">−1.88%</td>
+<td style="text-align:right">−0.45%p</td>
+<td style="text-align:right">−29.27%</td>
+<td style="text-align:right">16/35</td>
+<td style="text-align:right">11/35</td>
+</tr>
+<tr>
+<td>과거 수익률 순위 대응 대조 (대조)</td>
+<td style="text-align:right">+0.99%p</td>
+<td style="text-align:right">−7.07%</td>
+<td style="text-align:right">−1.76%p</td>
+<td style="text-align:right">−29.23%</td>
+<td style="text-align:right">13/35</td>
+<td style="text-align:right">7/35</td>
+</tr>
 </tbody>
 </table></div>
 <h2 id="discussion">6. 우위가 나타난 조건</h2>
-<p><strong>한·미 상대강도.</strong> 짝지은 보유 대비 차이는 12개월 +1.78%p, 24개월 +4.03%p였다. 24개월 평가창 35개 중 28개에서 보유를 앞섰다. 24개월 진입월을 앞뒤로 나눴을 때도 차이 중앙값은 +1.50%p와 +5.29%p였다. 거래비용을 두 배로 올려도 24개월 차이 중앙값은 +3.65%p였다. 반면 전략별 24개월 수익률 중앙값은 보유 +58.89%, 상대강도 +55.04%였다. +15% 목표 달성은 둘 다 33개였다. 전량 익절은 낙폭을 −6.13%로 줄였지만, 보유 대비 차이는 −43.37%p였다.</p>
-<p><strong>미국 종목별 팩터.</strong> 24개월에서는 모멘텀의 차이 중앙값이 +1.85%p로 가장 높았다. 앞쪽 진입월에서는 −4.57%p, 뒤쪽에서는 +9.27%p였다. 저발생액은 두 쪽에서 모두 앞섰으며, 12개월과 24개월 전체 차이 중앙값도 각각 +0.47%p와 +0.56%p였다. 다만 저발생액의 24개월 최대낙폭은 −15.25%로 보유보다 깊었다.</p>
-<p><strong>공개 팩터 타이밍.</strong> 24개월에는 고정 팩터 바스켓 대비 짝지은 차이 중앙값이 +3.62%p였다. 미국 주식시장 대비로는 −31.17%p였다. 보유 기준을 바꾸면 같은 전략의 성과 질문도 달라지는 사례다.</p>
-<h2>7. 결론과 해석 범위</h2>
-<p>이번 표본에서 <strong>한·미 혼합 포트폴리오의 우선 검증 후보는 상대강도</strong>다. 혼합형 17개 가운데 짝지은 수익률이 가장 높았고, 두 보유 기간과 비용 스트레스에서 차이의 방향이 유지됐다. 미국 종목 선별에서는 24개월 수익을 우선하면 모멘텀, 기간별 성과 방향의 일관성을 우선하면 저발생액이 후속 후보다. 자산과 체결 모델이 다른 세 실험을 하나의 절대수익률 순위로 일반화할 수 없다. 12·24개월 평가창이 겹치고 같은 기간에 여러 전략을 검토했으므로 새 기간에 순위를 다시 확인해야 한다.</p>
+<p><strong>한·미 혼합형.</strong> 기존 상대강도의 24개월 보유 대비 차이 중앙값은 +4.03%p였다. 한·미 상대강도 부분 조정과 한 세션 지연은 각각 +3.69%p와 +3.34%p였다. 기존 상대강도를 직접 대조군으로 삼으면 부분 조정은 +0.26%p, 지연은 +0.17%p였다. 각 시작월에서 먼저 차이를 구하므로 두 기준에서 전략 순서가 다를 수 있다. 부분 조정은 초기 자산 대비 재조정 거래액을 1.69배에서 0.85배로 줄였다. 지연은 1.70배로 거래액이 줄지 않았다. 목표 비중을 동일 배분 쪽으로 축소한 최소분산은 보유 대비 −6.22%p였고, 기존 최소분산 대비 거래액은 약 43% 감소했다.</p>
+<p><strong>한국 추세 일관성.</strong> 24개월 기준 보유 대비 +28.21%p였으며, 편입 규모와 과거 수익률 순위를 맞춘 대조군 대비 +28.62%p였다. 두 비교에서 각각 35개 중 33개 창에서 앞섰다. 평가창을 2026년 10월까지 넓힌 개별 실험의 추정치와 공통창 수치가 다른 이유는 공통 만기월에서 계좌를 다시 골랐기 때문이다. 시가총액·유동성·업종은 맞추지 않았으며, 거래정지 포지션은 직전 평가액을 이월한다. 실제 상장폐지 정산이나 월중 낙폭을 이 수치로 추정할 수 없다.</p>
+<p><strong>미국 요인과 종목 선별.</strong> 공개 요인 타이밍 축소는 비용을 10bp로 놓았을 때 24개월 고정 팩터 대비 +2.04%p, 기존 부호 타이밍 대비 −2.08%p였다. 월평균 팩터 비중 변동은 19.83%에서 2.16%로 감소했다. 미국 종목별에서는 기존 24개월 모멘텀이 보유 대비 +1.85%p였으며 저발생액은 두 기한 모두 양수였다.</p>
+<h3>자료와 결과 검증</h3>
+<p>공시 공개 시점 순서를 확인할 수 있던 미국 신호 7,389건에서 날짜 위반을 발견하지 않았다. 가격 모멘텀 2,463건은 원본 행 식별자가 없어 시점 검증 보류로 남겼다. 세 혼합형 재실행에서 체결 120,528행을 최종 잔액과 대사했고, 원본 가격 파일 해시를 비교했다. 프렌치 팩터의 FIZ·CIZ 공통 37개월에서는 부호 타이밍의 짝지은 차이가 +0.21%p였다. 같은 6개월 시간 블록을 사용해 8개 전략 조건을 함께 재표본한 결과의 경로 간 평균 절대 상관은 0.731이었다. 따라서 서로 겹치는 계좌와 유사 전략의 승수를 독립 반복으로 해석하지 않았다.</p>
+<h2 id="conclusion">7. 결론과 해석 범위</h2>
+<p>한·미 대표자산을 배분할 때 기존 상대강도는 보유 대비 짝지은 성과가 가장 높았다. 거래액을 줄이는 목적에서는 절반 조정이 평가할 가치가 있다. 한국 종목 선별에서는 추세 일관성 모멘텀의 차이가 가장 컸으나 한국 가격 전용 실험의 폐지 가정과 표본에 의존한다. 시장과 집행 가정이 다른 두 결과로 전체 절대수익률 1위를 정할 수 없다.</p>
 <h2 id="reproduce">재현 자료</h2>
-<p><a href="strategy-catalog.csv">공통 평가창 성과표 CSV</a> · <a href="compare_strategy_catalog.py">재집계 코드</a></p>
+<p>44편마다 적용한 실험 또는 필요한 입력을 기록했다. 다섯 편에서 매매 조건을 만들었고 다섯 편은 진단 실험에 연결하였다. 한 편은 원본 파일 해시까지 확인했으며, 33편은 필요한 자료가 없거나 이번 비교 질문의 범위를 벗어났다.</p>
+<p><a href="strategy-catalog-expanded.csv">27개 전략 공통창 결과 CSV</a> · <a href="recent-paper-readiness.csv">44편 검토 기록 CSV</a> · <a href="compare_strategy_catalog.py">재집계 코드</a> · <a href="expanded-catalog-reproduction.zip">진단·재현 자료 ZIP</a></p>
 <pre><code class="language-bash">study=/var/lib/fintos-portfolio/2026-11-28
+kr=/var/lib/fintos-portfolio/kr-research-data
 python3 scripts/compare_strategy_catalog.py \
   --portfolio &quot;$study/literature-stock-backtest/validated/cohorts.csv&quot; \
   --stocks &quot;$study/us-factor-extension/verified/us_factor_cohorts.csv&quot; \
   --factors &quot;$study/factors-pit/public-followup/public_factor_months.csv&quot; \
-  --out results/strategy-catalog.csv
+  --portfolio-extension &quot;$study/recent-literature/relative-partial/results/cohorts.csv&quot; \
+  --portfolio-extension &quot;$study/recent-literature/weight-shrinkage/results/cohorts.csv&quot; \
+  --portfolio-extension &quot;$study/recent-literature/relative-delay/results/cohorts.csv&quot; \
+  --korean &quot;$kr/trended-momentum/rank-match/kr_trended_matched_cohorts.csv&quot; \
+  --shrinkage &quot;$study/factors-pit/timing-shrinkage/factor_timing_shrinkage_months.csv&quot; \
+  --out results/strategy-catalog-expanded.csv
 </code></pre>
-
 <section aria-labelledby="references">
 <h2 id="references">참고문헌과 구현 자료</h2>
 <ol>
@@ -401,6 +554,11 @@ python3 scripts/compare_strategy_catalog.py \
 <li id="ref-18"><a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/run_research.py">FINTOS 주식 연구 소스. 혼합형 연구 규칙 및 주문 엔진, stock_backtest 32fccf7.</a></li>
 <li id="ref-19"><a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/us_factor_extension.py">FINTOS 주식 연구 소스. 미국 종목별 팩터, stock_backtest 32fccf7.</a></li>
 <li id="ref-20"><a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/run_public_factor_followup.py">FINTOS 주식 연구 소스. 공개 요인 타이밍, stock_backtest 32fccf7.</a></li>
+<li id="ref-21"><a href="https://doi.org/10.1093/rfs/hhag022">Jensen, T. I., Kelly, B. T., Malamud, S., &amp; Pedersen, L. H. (2026). Machine Learning and the Implementable Efficient Frontier. <em>The Review of Financial Studies</em>.</a></li>
+<li id="ref-22"><a href="https://doi.org/10.1080/0015198X.2025.2474385">Lehnherr, R., Mehta, M., &amp; Nagel, S. (2025). Optimal Factor Timing in a High-Dimensional Setting. <em>Financial Analysts Journal</em>.</a></li>
+<li id="ref-23"><a href="https://doi.org/10.1017/S0022109026103275">Cai, C. X., Li, P., &amp; Keasey, K. (2026). Trended Momentum. <em>Journal of Financial and Quantitative Analysis</em>.</a></li>
+<li id="ref-24"><a href="https://doi.org/10.1093/rfs/hhag084">Kelly, B., Malamud, S., Pourmohammadi, M., &amp; Trojani, F. (2026). Universal Portfolio Shrinkage. <em>The Review of Financial Studies</em>.</a></li>
+<li id="ref-25"><a href="https://www.nber.org/papers/w33554">Harvey, C. R., Mazzoleni, M. G., &amp; Melone, A. (2025). The Unintended Consequences of Rebalancing.</a></li>
 </ol>
 </section>
 <p class="back"><a href="../">연구 보관함으로 돌아가기</a></p>
