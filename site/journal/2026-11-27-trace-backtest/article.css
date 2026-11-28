@@ -126,3 +126,39 @@
 @media (max-width: 460px) {
   .decision-flow { grid-template-columns: 1fr; }
 }
+
+.comparison-input {
+  padding: .75rem 1rem;
+  border: 1px solid #bad0ce;
+  border-radius: .5rem;
+  background: #edf7f4;
+  color: #143731;
+  text-align: center;
+}
+.comparison-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: .75rem;
+}
+.comparison-lanes > div {
+  padding: .75rem 1rem;
+  border: 1px solid #bad0ce;
+  border-radius: .5rem;
+}
+.comparison-lanes h4 {
+  margin: 0 0 .5rem;
+}
+.comparison-lanes ol {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+.comparison-lanes li + li {
+  margin-top: .5rem;
+}
+.comparison-lanes li span {
+  display: block;
+}
+@media (max-width: 540px) {
+  .comparison-lanes { grid-template-columns: 1fr; }
+}
