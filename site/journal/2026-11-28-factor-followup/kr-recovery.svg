@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 275" role="img" aria-labelledby="title detail">
+<title id="title">한국 모멘텀의 매수 후 보유 대비 차이</title>
+<desc id="detail">회수율 0, 50, 100%에서 12개월 차이는 1.65, 2.70, 3.70%p, 24개월 차이는 2.75, 4.60, 6.87%p.</desc>
+<rect width="720" height="275" rx="12" fill="#f8fafc"/>
+<g font-family="sans-serif" font-size="15" fill="#142239">
+<text x="24" y="34" font-weight="700">모멘텀 − 매수 후 보유 · 짝지은 차이 중앙값</text>
+<rect x="427" y="54" width="12" height="12" rx="2" fill="#087d78"/><text x="447" y="65">12개월</text>
+<rect x="543" y="54" width="12" height="12" rx="2" fill="#3559ab"/><text x="563" y="65">24개월</text>
+<text x="24" y="106">회수율 0%</text><text x="24" y="161">회수율 50%</text><text x="24" y="216">회수율 100%</text>
+<path d="M133 82v154" fill="none" stroke="#a5b7cc"/>
+<rect x="133" y="85" width="116" height="13" rx="2" fill="#087d78"/><text x="250" y="97">+1.65</text>
+<rect x="133" y="103" width="193" height="13" rx="2" fill="#3559ab"/><text x="344" y="115">+2.75</text>
+<rect x="133" y="140" width="189" height="13" rx="2" fill="#087d78"/><text x="333" y="152">+2.70</text>
+<rect x="133" y="158" width="322" height="13" rx="2" fill="#3559ab"/><text x="471" y="170">+4.60</text>
+<rect x="133" y="195" width="259" height="13" rx="2" fill="#087d78"/><text x="408" y="207">+3.70</text>
+<rect x="133" y="213" width="481" height="13" rx="2" fill="#3559ab"/><text x="619" y="225">+6.87</text>
+<text x="24" y="255" fill="#42546b">%p · 월말 가격수익률과 가정한 정산금을 반영</text>
+</g>
+</svg>
