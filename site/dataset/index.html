@@ -87,7 +87,7 @@ RETURN supplier.name AS supplier, buyer.name AS buyer,
 
     <section aria-labelledby="schema">
       <h2 id="schema">스키마와 규모</h2>
-      <p>FINTOS는 공시 원문과 그래프가 답할 질문을 바탕으로 개념·관계·검증 규칙을 정합니다. <strong>CSV는 온톨로지 정의서 형식이며, 실제 데이터는 Neo4j의 레이블 속성 그래프(LPG)</strong>로 구현합니다. 노드와 관계에 속성을 저장하고 Cypher로 조회합니다. RDF 내보내기와 SHACL 검증은 후속 실험으로 설계했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">온톨로지 설계 방법과 RDF·OWL의 역할</a></p>
+      <p>FINTOS는 공시 원문과 그래프가 답할 질문을 바탕으로 개념·관계·검증 규칙을 정합니다. <strong>CSV는 온톨로지 정의서 형식이며, 실제 데이터는 Neo4j의 레이블 속성 그래프(LPG)</strong>로 구현합니다. 노드와 관계에 속성을 저장하고 Cypher로 조회합니다. RDF·OWL도 별도 스냅샷으로 배포하며, 원문 근거 구조를 검사하는 SHACL 예제를 함께 제공합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">온톨로지 설계 방법과 RDF·OWL의 역할</a></p>
       <h3 id="lpg">레이블 속성 그래프(LPG)란?</h3>
       <p>레이블 속성 그래프(Labeled Property Graph)는 기업이나 계약 같은 대상을 <strong>노드</strong>로, 대상 사이의 연결을 <strong>관계</strong>로 표현하는 데이터 모델입니다. 노드에는 <code>Company</code>, <code>SupplyContract</code> 같은 <strong>레이블</strong>을 붙여 무엇인지 표시합니다. 관계에는 <code>SUPPLIED_IN</code>, <code>PURCHASED_IN</code> 같은 <strong>타입</strong>과 방향을 두어 어떤 역할로 연결됐는지 나타냅니다. 노드와 관계 모두 이름이나 확인 근거를 키와 값의 쌍인 <strong>속성</strong>으로 저장할 수 있습니다.</p>
       <p>예를 들어 넥스틴과 SK하이닉스는 각각 <code>Company</code> 노드입니다. 두 기업은 같은 <code>SupplyContract</code> 노드에 연결되며, 넥스틴은 공급자, SK하이닉스는 구매자입니다. 계약에 연결된 조건 관측 노드에서 공개일과 금액을 읽을 수 있습니다. Cypher로 이 연결을 따라가면 “SK하이닉스에 무엇을 누가 공급하기로 했나?”라는 질문에 답할 수 있습니다. <a href="https://neo4j.com/docs/getting-started/appendix/graphdb-concepts/">Neo4j 그래프 데이터 모델</a></p>
@@ -96,31 +96,46 @@ RETURN supplier.name AS supplier, buyer.name AS buyer,
         <div class="table-scroll" role="region" aria-label="그래프 스키마 그림" tabindex="0">
           <img src="disclosure-graph.svg" width="952" height="408" alt="Filing에서 Company로 IS_ABOUT, SourceDocument로 HAS_SOURCE_DOCUMENT 관계가 이어집니다.">
         </div>
-        <figcaption><a href="disclosure-graph.drawio" download>편집용 draw.io 다운로드</a> · <a href="disclosure-graph.svg">SVG 보기</a></figcaption>
+        <figcaption>기본 공시 카탈로그의 기업·공시·원문 연결. <a href="disclosure-graph.drawio" download>편집용 draw.io 다운로드</a> · <a href="disclosure-graph.svg">SVG 보기</a></figcaption>
       </figure>
       <div class="table-scroll" role="region" aria-label="엔티티 목록" tabindex="0">
         <table>
-          <caption>노드 716,921개</caption>
-          <thead><tr><th scope="col">노드 라벨</th><th scope="col">개수</th><th scope="col">고유 키와 주요 속성</th></tr></thead>
+          <caption>공개 LPG 노드 721,797개 · 라벨 10종</caption>
+          <thead><tr><th scope="col">노드 라벨</th><th scope="col">개수</th><th scope="col">공개본의 주요 속성</th></tr></thead>
           <tbody>
             <tr><th scope="row"><code>Company</code></th><td>45,201</td><td><code>corp_code</code> · 기업명, 기업 구분, 종목 코드. 종목 코드가 비어 있는 기업도 있습니다.</td></tr>
-            <tr><th scope="row"><code>Filing</code></th><td>253,432</td><td><code>receipt</code> · 접수일, 제목, 제출인명, 비고, 원문 연결 상태, 목록 파티션.</td></tr>
-            <tr><th scope="row"><code>SourceDocument</code></th><td>418,288</td><td><code>s3_key</code> · 파일 형식과 바이트 수. ZIP 219,278개와 XML 199,010개가 연결됐습니다.</td></tr>
+            <tr><th scope="row"><code>Filing</code></th><td>253,432</td><td><code>receipt</code> · 접수일, 제목, 원문 연결 상태.</td></tr>
+            <tr><th scope="row"><code>SourceDocument</code></th><td>418,288</td><td>파일 형식과 바이트 수, DART 공개 링크. ZIP 219,278개와 XML 199,010개입니다.</td></tr>
+            <tr><th scope="row"><code>SupplyContract</code></th><td>1,294</td><td>접수번호, 구매자 식별 상태.</td></tr>
+            <tr><th scope="row"><code>ContractTermsObservation</code></th><td>1,377</td><td>계약 금액, 기간, 공시 공개일, 정정 등 관측 유형.</td></tr>
+            <tr><th scope="row"><code>ProductCategory</code></th><td>5</td><td>제품군 식별자와 이름.</td></tr>
+            <tr><th scope="row"><code>FacilityInvestment</code></th><td>37</td><td>발표 공시 접수번호, 계획 투자금액, 상태, 원문 줄 번호.</td></tr>
+            <tr><th scope="row"><code>FinancialObservation</code></th><td>2,160</td><td>재무 항목, 금액, 기간, 연결·별도 범위, 공개일.</td></tr>
+            <tr><th scope="row"><code>TraceSupplyContract</code></th><td>3</td><td>TRACE 파일럿 계약의 접수번호와 구매자 식별 상태.</td></tr>
+            <tr><th scope="row"><code>TraceContractEvidence</code></th><td>3</td><td>TRACE 계약 근거의 XML 줄 번호와 해시.</td></tr>
           </tbody>
         </table>
       </div>
       <div class="table-scroll" role="region" aria-label="관계 목록" tabindex="0">
         <table>
-          <caption>관계 671,720개</caption>
+          <caption>공개 LPG 관계 681,886개 · 타입 10종</caption>
           <thead><tr><th scope="col">관계</th><th scope="col">방향</th><th scope="col">개수</th><th scope="col">뜻</th></tr></thead>
           <tbody>
             <tr><th scope="row"><code>IS_ABOUT</code></th><td>공시 → 기업</td><td>253,432</td><td>OpenDART 목록의 기업 코드와 연결됩니다.</td></tr>
-            <tr><th scope="row"><code>HAS_SOURCE_DOCUMENT</code></th><td>공시 → 원문 객체</td><td>418,288</td><td>접수번호에 해당하는 S3 파일을 가리킵니다.</td></tr>
+            <tr><th scope="row"><code>HAS_SOURCE_DOCUMENT</code></th><td>공시 → 원문 객체</td><td>418,288</td><td>접수번호에 해당하는 수집 원문 객체를 가리킵니다.</td></tr>
+            <tr><th scope="row"><code>SUPPLIED_IN</code></th><td>기업 → 공급계약</td><td>1,294</td><td>기업이 계약의 공급자입니다.</td></tr>
+            <tr><th scope="row"><code>PURCHASED_IN</code></th><td>기업 → 공급계약</td><td>226</td><td>기업이 계약의 구매자입니다.</td></tr>
+            <tr><th scope="row"><code>HAS_TERMS_OBSERVATION</code></th><td>계약 → 계약 조건 관측</td><td>1,377</td><td>해당 시점에 공개된 계약 조건을 연결합니다.</td></tr>
+            <tr><th scope="row"><code>COVERS_PRODUCT</code></th><td>계약 → 제품군</td><td>201</td><td>계약에 연결된 제품군을 표시합니다.</td></tr>
+            <tr><th scope="row"><code>ANNOUNCED_INVESTMENT</code></th><td>기업 → 시설투자</td><td>37</td><td>기업이 공시한 시설투자 발표를 연결합니다.</td></tr>
+            <tr><th scope="row"><code>HAS_FINANCIAL_OBSERVATION</code></th><td>기업 → 재무 관측</td><td>2,160</td><td>기업이 보고한 재무 수치 관측을 연결합니다.</td></tr>
+            <tr><th scope="row"><code>REPORTED_IN</code></th><td>계약·관측·투자·근거 → 공시</td><td>4,868</td><td>사실이나 근거를 보고한 접수 공시로 이어집니다.</td></tr>
+            <tr><th scope="row"><code>SUPPORTED_BY</code></th><td>TRACE 계약 → TRACE 근거</td><td>3</td><td>파일럿에서 계약을 뒷받침한 원문 위치를 가리킵니다.</td></tr>
           </tbody>
         </table>
       </div>
       <p>한 공시에 ZIP과 XML이 각각 있을 수 있고, 여러 수집분에서 확보한 ZIP도 별도 객체로 남습니다. 원문 객체 수보다 <strong>원문이 연결된 공시 수</strong>가 분석 범위를 판단하는 데 적합합니다. 접수번호와 기업 코드는 앞자리 0을 보존하는 문자열이며, 접수일은 Neo4j의 <code>DATE</code> 속성입니다. 고유 키 세 개에 유일성 제약을 두고 접수일에 인덱스를 만들었습니다.</p>
-      <p>위 집계는 기본 공시 카탈로그의 세 노드 타입과 두 관계 타입을 대상으로 합니다. 공급자·구매자 관계는 별도 실험 라벨을 사용합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/docs/research/trace_fintos_experiment_plan.md">TRACE 공급계약 파일럿</a></p>
+      <p>기본 공시 카탈로그만 집계하면 노드 716,921개, 관계 671,720개입니다. 위 표는 공급계약·시설투자·재무 관측과 TRACE 파일럿을 포함한 공개 LPG v1 전체입니다. TRACE 계약 3개는 <code>SupplyContract</code>와 <code>TraceSupplyContract</code> 두 라벨을 함께 가지므로, 노드 총계에서는 각각 한 번만 셉니다. <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/manifest.json">배포 매니페스트</a></p>
     </section>
 
     <section aria-labelledby="graph-samples">
