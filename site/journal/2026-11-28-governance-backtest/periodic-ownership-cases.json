@@ -1,0 +1,702 @@
+{
+  "classified": {
+    "same_holder": 1794,
+    "holder_replacement": 90,
+    "same_holder_ratio_change": 1083
+  },
+  "screening": {
+    "holder_replacement:incomplete": 83,
+    "same_holder_ratio_change:incomplete": 918,
+    "same_holder_ratio_change:evaluated": 165,
+    "same_holder_ratio_change:CLEAR": 28,
+    "same_holder_ratio_change:TRACE": 27,
+    "holder_replacement:evaluated": 7
+  },
+  "results": [
+    {
+      "kind": "holder_replacement",
+      "previous": {
+        "receipt": "20260318001066",
+        "filed": "20260318",
+        "corp": "00125530",
+        "period": "2025-12",
+        "title": "사업보고서 (2025.12)",
+        "holder": "㈜파리크라상",
+        "identity": "파리크라상",
+        "line": 57766,
+        "role": "최대주주",
+        "opening_shares": "3508240",
+        "closing_shares": "3508240",
+        "opening_ratio": "40.66",
+        "closing_ratio": "40.66"
+      },
+      "current": {
+        "receipt": "20260515001010",
+        "filed": "20260515",
+        "corp": "00125530",
+        "period": "2026-03",
+        "title": "분기보고서 (2026.03)",
+        "holder": "㈜상미당홀딩스",
+        "identity": "상미당홀딩스",
+        "line": 44642,
+        "role": "최대주주",
+        "opening_shares": "3508240",
+        "closing_shares": "3508240",
+        "opening_ratio": "40.66",
+        "closing_ratio": "40.66"
+      },
+      "symbol": "005610",
+      "strategy": "CLEAR",
+      "policies": {
+        "base": {
+          "return": 0.0,
+          "orders": [],
+          "delays": []
+        },
+        "any_change": {
+          "return": 0.0,
+          "orders": [],
+          "delays": []
+        },
+        "replacement_only": {
+          "return": 0.0,
+          "orders": [],
+          "delays": []
+        }
+      },
+      "window": [
+        "2026-05-11",
+        "2026-06-02"
+      ],
+      "cutoff": "2026-05-08",
+      "overlap": false,
+      "training": 606,
+      "buy_hold": -0.12466908091908091
+    },
+    {
+      "kind": "holder_replacement",
+      "previous": {
+        "receipt": "20260318001066",
+        "filed": "20260318",
+        "corp": "00125530",
+        "period": "2025-12",
+        "title": "사업보고서 (2025.12)",
+        "holder": "㈜파리크라상",
+        "identity": "파리크라상",
+        "line": 57766,
+        "role": "최대주주",
+        "opening_shares": "3508240",
+        "closing_shares": "3508240",
+        "opening_ratio": "40.66",
+        "closing_ratio": "40.66"
+      },
+      "current": {
+        "receipt": "20260515001010",
+        "filed": "20260515",
+        "corp": "00125530",
+        "period": "2026-03",
+        "title": "분기보고서 (2026.03)",
+        "holder": "㈜상미당홀딩스",
+        "identity": "상미당홀딩스",
+        "line": 44642,
+        "role": "최대주주",
+        "opening_shares": "3508240",
+        "closing_shares": "3508240",
+        "opening_ratio": "40.66",
+        "closing_ratio": "40.66"
+      },
+      "symbol": "005610",
+      "strategy": "TRACE",
+      "policies": {
+        "base": {
+          "return": 0.0,
+          "orders": [],
+          "delays": []
+        },
+        "any_change": {
+          "return": 0.0,
+          "orders": [],
+          "delays": []
+        },
+        "replacement_only": {
+          "return": 0.0,
+          "orders": [],
+          "delays": []
+        }
+      },
+      "window": [
+        "2026-05-11",
+        "2026-06-02"
+      ],
+      "cutoff": "2026-05-08",
+      "overlap": false,
+      "training": 606,
+      "buy_hold": -0.12466908091908091
+    },
+    {
+      "kind": "same_holder_ratio_change",
+      "previous": {
+        "receipt": "20260814003509",
+        "filed": "20260814",
+        "corp": "00164779",
+        "period": "2026-06",
+        "title": "반기보고서 (2026.06)",
+        "holder": "SK스퀘어(주)",
+        "identity": "SK스퀘어",
+        "line": 57275,
+        "role": "최대주주",
+        "opening_shares": "146100000",
+        "closing_shares": "146100000",
+        "opening_ratio": "20.07",
+        "closing_ratio": "20.50"
+      },
+      "current": {
+        "receipt": "20261116001715",
+        "filed": "20261116",
+        "corp": "00164779",
+        "period": "2026-09",
+        "title": "분기보고서 (2026.09)",
+        "holder": "SK스퀘어(주)",
+        "identity": "SK스퀘어",
+        "line": 50100,
+        "role": "최대주주",
+        "opening_shares": "146100000",
+        "closing_shares": "146100000",
+        "opening_ratio": "20.07",
+        "closing_ratio": "20.00"
+      },
+      "symbol": "000660",
+      "strategy": "CLEAR",
+      "policies": {
+        "base": {
+          "return": 0.034746967942027585,
+          "orders": [
+            {
+              "date": "2026-11-13",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1292000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-16",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1216000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-17",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1098000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        },
+        "any_change": {
+          "return": -0.015466056498833147,
+          "orders": [
+            {
+              "date": "2026-11-13",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 1292000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-16",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "open",
+              "price": 1216000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-18",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 1154000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [
+                "20261116001715"
+              ],
+              "reason": "reevaluated_after_delay"
+            },
+            {
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": [
+            {
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "date": "2026-11-17",
+              "open": 1098000,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "signal": 1,
+              "governance_receipts": [
+                "20261116001715"
+              ],
+              "events": [],
+              "next_session": "2026-11-18",
+              "outcome": "executed",
+              "next_open": 1154000
+            }
+          ]
+        },
+        "replacement_only": {
+          "return": 0.034746967942027585,
+          "orders": [
+            {
+              "date": "2026-11-13",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1292000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-16",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1216000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-17",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1098000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        }
+      },
+      "window": [
+        "2026-11-10",
+        "2026-11-26"
+      ],
+      "cutoff": "2026-11-09",
+      "overlap": true,
+      "training": 1679,
+      "buy_hold": -0.13270831310370024
+    },
+    {
+      "kind": "same_holder_ratio_change",
+      "previous": {
+        "receipt": "20260814003509",
+        "filed": "20260814",
+        "corp": "00164779",
+        "period": "2026-06",
+        "title": "반기보고서 (2026.06)",
+        "holder": "SK스퀘어(주)",
+        "identity": "SK스퀘어",
+        "line": 57275,
+        "role": "최대주주",
+        "opening_shares": "146100000",
+        "closing_shares": "146100000",
+        "opening_ratio": "20.07",
+        "closing_ratio": "20.50"
+      },
+      "current": {
+        "receipt": "20261116001715",
+        "filed": "20261116",
+        "corp": "00164779",
+        "period": "2026-09",
+        "title": "분기보고서 (2026.09)",
+        "holder": "SK스퀘어(주)",
+        "identity": "SK스퀘어",
+        "line": 50100,
+        "role": "최대주주",
+        "opening_shares": "146100000",
+        "closing_shares": "146100000",
+        "opening_ratio": "20.07",
+        "closing_ratio": "20.00"
+      },
+      "symbol": "000660",
+      "strategy": "TRACE",
+      "policies": {
+        "base": {
+          "return": -0.060704001880472425,
+          "orders": [
+            {
+              "date": "2026-11-13",
+              "symbol": "000660",
+              "strategy": "TRACE",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1292000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-16",
+              "symbol": "000660",
+              "strategy": "TRACE",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1216000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        },
+        "any_change": {
+          "return": -0.060704001880472425,
+          "orders": [
+            {
+              "date": "2026-11-13",
+              "symbol": "000660",
+              "strategy": "TRACE",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 1292000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-16",
+              "symbol": "000660",
+              "strategy": "TRACE",
+              "condition": "title",
+              "side": "sell",
+              "session": "open",
+              "price": 1216000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        },
+        "replacement_only": {
+          "return": -0.060704001880472425,
+          "orders": [
+            {
+              "date": "2026-11-13",
+              "symbol": "000660",
+              "strategy": "TRACE",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1292000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-11-16",
+              "symbol": "000660",
+              "strategy": "TRACE",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1216000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        }
+      },
+      "window": [
+        "2026-11-10",
+        "2026-11-26"
+      ],
+      "cutoff": "2026-11-09",
+      "overlap": false,
+      "training": 1679,
+      "buy_hold": -0.13270831310370024
+    }
+  ],
+  "evidence": {
+    "20260318001066": {
+      "sha256": "4fad78edc987156af53cf3dbc364a6aeac0520e1b5301bb86da2aba6aedf0eb4",
+      "fields": [
+        {
+          "field": "reported_shareholder_position",
+          "line": 57766
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57777
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57788
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57799
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57810
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57821
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57832
+        }
+      ]
+    },
+    "20260515001010": {
+      "sha256": "e00f49c6266e65b9565ed2e1bdbf72afa5895204032affdb3e1c6d0ab04407b9",
+      "fields": [
+        {
+          "field": "reported_shareholder_position",
+          "line": 44642
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 44653
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 44664
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 44675
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 44686
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 44697
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 44708
+        }
+      ]
+    },
+    "20260814003509": {
+      "sha256": "2a599027a5742e5dd2d592b512c41705c273a65b0c70929291c2added32b223d",
+      "fields": [
+        {
+          "field": "reported_shareholder_position",
+          "line": 57275
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57286
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57297
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57308
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57319
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57330
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57341
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57352
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57363
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57374
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57385
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 57396
+        }
+      ]
+    },
+    "20261116001715": {
+      "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185",
+      "fields": [
+        {
+          "field": "reported_shareholder_position",
+          "line": 50100
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50111
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50122
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50133
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50144
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50155
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50166
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50177
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50188
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50199
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50210
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50221
+        },
+        {
+          "field": "reported_shareholder_position",
+          "line": 50232
+        }
+      ]
+    }
+  }
+}
