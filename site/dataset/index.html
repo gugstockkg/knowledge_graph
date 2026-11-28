@@ -28,7 +28,7 @@
       <div><dt>기업</dt><dd>45,201개</dd></div>
       <div><dt>원문 연결 공시</dt><dd>81.0%</dd></div>
     </dl>
-    <nav class="dataset-nav" aria-label="문서 목차"><a href="#downloads">공개 데이터 다운로드</a><a href="#economic-events">공급 관계 연구</a><a href="#schema">스키마</a><a href="#graph-samples">실제 그래프</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
+    <nav class="dataset-nav" aria-label="문서 목차"><a href="#downloads">공개 데이터 다운로드</a><a href="#economic-events">공급 관계 연구</a><a href="#models">온톨로지 구성</a><a href="#schema">스키마</a><a href="#graph-samples">실제 그래프</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
 
     <section aria-labelledby="downloads">
       <h2 id="downloads">공개 데이터 다운로드</h2>
@@ -43,6 +43,23 @@
         </table>
       </div>
       <p>두 배포본과 Cypher·SPARQL 예제, 적재 방법, SHA-256 체크섬을 한 번에 받을 수 있습니다. 공개본은 DART 링크와 근거 위치를 제공합니다. <a href="https://github.com/gugstockkg/knowledge_graph/releases/download/fintos-opendart-20261127-v1/fintos-opendart-20261127-v1.zip">전체 ZIP 다운로드</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph">Hugging Face 데이터 카드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261127-v1">GitHub 릴리스</a></p>
+    </section>
+
+    <section aria-labelledby="models">
+      <h2 id="models">온톨로지 구성과 연구에서의 사용</h2>
+      <p>현재 구현하고 검증한 도메인 온톨로지는 <strong>경제 사건</strong>과 <strong>최대주주 변경·지분 관측</strong> 두 가지입니다. 기업·공시·원문을 연결하는 기본 카탈로그는 공시와 출처를 찾아가는 공통 구조입니다.</p>
+      <div class="table-scroll" role="region" aria-label="온톨로지 구성과 사용처" tabindex="0">
+        <table>
+          <caption>공통 구조와 구현한 두 도메인 온톨로지</caption>
+          <thead><tr><th scope="col">구성</th><th scope="col">담는 사실과 관계</th><th scope="col">실제 사용처</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">공통 공시 카탈로그</th><td>기업 코드, 공시 접수번호, 접수일, 원문 위치. 공시에서 기업과 원문으로 이어집니다.</td><td>공개 배포본의 출처를 찾고, 같은 접수번호의 공시를 대조하는 데 사용합니다.</td></tr>
+            <tr><th scope="row">경제 사건 온톨로지</th><td>공급사·구매자·공급계약, 제품군, 계약 조건과 정정 관측, 시설투자, 재무 관측. 계약 조건에 공개일과 유효 기간을 둡니다.</td><td><strong>CLEAR·TRACE 매매 실험의 입력</strong>입니다. CLEAR는 기존 유효 계약과 새 공시의 구매자를 대조합니다. TRACE는 공급계약 공시에서 시점별 경로를 만들고 방향 규칙을 채굴합니다. <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/economic-events-v0.1">경제 사건 정의서</a> · <a href="../journal/2026-11-27-trace-backtest/#strategy">매매 방법론</a></td></tr>
+            <tr><th scope="row">최대주주 변경·지분 관측 온톨로지</th><td>최대주주 변경 사건, 원공시와 정정, 항목별 주장과 원문 위치, 주식 이전·보유 관측. RDF·OWL에서는 사건의 상위 유형도 표현합니다.</td><td>기준일별 유효 지분율과 근거를 찾고, 대량보유·주식양수도 등의 관련 공시를 연결하는 검증에 사용합니다. <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/controller-change-v0.1">최대주주 변경 정의서</a> · <a href="../journal/2026-11-27-ontology-and-shacl/">정정·추론 검증</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>공개 <strong>LPG</strong>는 공시 카탈로그와 경제 사건 그래프를, <strong>RDF·OWL</strong>은 원문이 확보된 공시의 메타데이터와 지분·지배권 분야의 추출 결과 및 상위 유형을 담습니다. 초기 범용 v0.1과 v0.2 확장안은 도메인 구현에 참고한 설계 기록입니다. <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/v0.1">범용 설계 초안</a> · <a href="https://github.com/gugstockkg/knowledge_graph/tree/main/ontology/drafts/v0.2">확장 초안</a></p>
     </section>
 
     <section aria-labelledby="economic-events">
