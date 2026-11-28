@@ -132,6 +132,7 @@
 <p>실행 가능한 표본에서 공급계약 공시가 직접 만든 매수와 최대주주 변경·정정이 겹친 사례는 0건이었다. 스맥에서 관찰된 6.57%p 차이는 가격 추세로 발생한 매수에 지배권 공시 보류 규칙을 적용한 결과이며, 두 전략에 공통된 한 건의 거래이다. 일봉이 없었던 관측의 결과는 미확인이다. <a href="correction-order-audit.json" download>공시 선별·체결·XML 근거 원장</a></p>
 <h3 id="periodic-ownership">4.8 정기보고서의 최대주주 교체와 지분율 변동</h3>
 <p>EC2의 기존 OpenDART RDF에 정기보고서 12,828건의 보유자 행 83,706개를 보강하였다. 같은 주장 노드에 이름과 역할을 문자열, 기초·기말 주식 수를 정수, 기초·기말 지분율을 퍼센트 단위 소수로 추가하였다. Neo4j에서 증분 트리플 502,135개를 확인하였다. 집계행 또는 수량·비율 형식이 맞지 않은 12,631개 행은 보강에서 제외했고, 원문이 대시인 값은 비워 두었다.</p>
+<p>공개 v1.1은 이 가운데 364,537개 트리플을 제공한다. 보고서와 XML 근거의 연결을 조회하려면 v1.1 보강본을 v1 명시 RDF와 같은 그래프에 불러온다. <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-asserted.nt.gz">v1 명시 RDF 다운로드</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/ada92b01e62bfa781da85c6bfcee261c6220bb2e/rdf-periodic-ownership.nt.gz">v1.1 보강 RDF 다운로드</a></p>
 <p>후속 실험은 기업별로 먼저 공개된 직전 분기와 새 보고서의 최대주주를 대조한다. 두 보고서 각각에서 최대주주 이름이 하나로 식별되고 그 이름이 바뀌면 <strong>보고서 간 최대주주 교체</strong>로 판정한다. 같은 최대주주의 현재 보고서 기초·기말 지분율이 다르면 <strong>동일 보유자의 지분율 변동</strong>으로 판정한다. 사업·반기보고서도 분기말 관측을 제공하므로 포함하였다. 이 판정은 공시에서 확인한 이름을 비교한 것이며, 별도 최대주주 변경 원공시의 법적 사건 판정과는 구분된다.</p>
 <p>보고서 접수 다음 거래일부터 5거래일 이내의 신규 매수를 비교했다. <strong>기존 전략</strong>은 공급계약과 가격 신호를 그대로 사용한다. <strong>두 변동 모두 보류</strong>는 교체 또는 지분율 변동이 있으면 신규 매수를 한 거래일 미룬다. <strong>교체만 보류</strong>는 똑같은 규칙을 최대주주 교체에만 적용한다. 평가창은 보고서 사용 가능일 5거래일 전부터 이후 최대 10거래일까지이며, TRACE 규칙은 평가창 시작 전에 관측 가능한 자료로 채굴한다. 이미 보유한 주식을 강제로 매도하지 않으며 거래 비용은 편도 10bp다.</p>
 <p>보고서 비교에서 최대주주 교체 90건, 동일 보유자 지분율 변동 1,083건을 찾았다. 이 가운데 거래 가능한 시세가 있는 7건과 165건을 각각 재실행하였다.</p>
@@ -160,7 +161,8 @@
 <pre><code>PYTHONPATH=src python3.11 scripts/backtest_governance_integration.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OUTPUT" \
   --start 2026-10-01 --end 2026-11-26 --original-panel</code></pre>
-<p>정기보고서 보강과 주문 재실행은 두 단계로 재현한다. 첫 명령에 <code>--load</code>를 추가하면 EC2의 기존 Neo4j RDF에 증분 트리플을 병합한다.</p>
+<p>공개 자료로 SK하이닉스 사례를 조회하려면 <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-asserted.nt.gz">v1 명시 RDF</a>와 <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/ada92b01e62bfa781da85c6bfcee261c6220bb2e/rdf-periodic-ownership.nt.gz">v1.1 보강 RDF</a>를 압축 해제하고, 두 N-Triples 파일을 같은 RDF 그래프에 불러온다. <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/ada92b01e62bfa781da85c6bfcee261c6220bb2e/periodic-ownership.rq">SPARQL 예제</a>를 실행하면 SK스퀘어의 기초·기말 주식 수와 지분율, XML 근거 행을 확인할 수 있다. <a href="https://github.com/gugstockkg/knowledge_graph/releases/download/fintos-opendart-20261128-v1.1/fintos-opendart-20261128-v1.1.zip">v1.1 ZIP 다운로드</a></p>
+<p>EC2의 원문 추출 원장으로 정기보고서 보강과 주문 재실행을 두 단계로 재현한다. 첫 명령에 <code>--load</code>를 추가하면 EC2의 기존 Neo4j RDF에 증분 트리플을 병합한다.</p>
 <pre><code>PYTHONPATH=src python scripts/periodic_ownership_rdf.py \
   "$OWNERSHIP" "$RDF" periodic-ownership.nt.gz periodic-pairs.json
 PYTHONPATH=src python3.11 scripts/backtest_periodic_ownership.py \
