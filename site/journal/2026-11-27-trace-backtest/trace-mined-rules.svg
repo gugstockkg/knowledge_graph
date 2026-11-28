@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 286" role="img" aria-labelledby="title desc">
+<title id="title">TRACE가 채굴한 공급사 공시 경로 두 가지</title>
+<desc id="desc">공급사의 신규 계약과 정정 계약이 각각 원문 공시로 이어진다. 두 경로 모두 다음 거래일 하락 규칙으로 채택됐다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#35675f"/></marker></defs>
+<rect x="1" y="1" width="718" height="284" rx="15" fill="#f7fbfa" stroke="#bfd5d0"/>
+<g font-family="system-ui, Apple SD Gothic Neo, sans-serif" text-anchor="middle" fill="#183f38">
+<rect x="23" y="50" width="106" height="42" rx="8" fill="#e4f3ef" stroke="#84aaa0"/><text x="76.0" y="76" font-size="17" font-weight="700">공급사</text>
+<rect x="287" y="50" width="146" height="42" rx="8" fill="#e4f3ef" stroke="#84aaa0"/><text x="360.0" y="76" font-size="17" font-weight="700">신규 계약 사건</text>
+<rect x="579" y="50" width="118" height="42" rx="8" fill="#e4f3ef" stroke="#84aaa0"/><text x="638.0" y="76" font-size="17" font-weight="700">원문 공시</text>
+<path d="M129 71H287" stroke="#35675f" stroke-width="2" marker-end="url(#arrow)"/><text x="208.0" y="56" font-size="12" font-weight="700">SUPPLIER_ORIGINAL</text>
+<path d="M433 71H579" stroke="#35675f" stroke-width="2" marker-end="url(#arrow)"/><text x="506.0" y="56" font-size="12" font-weight="700">EXTRACTED_FROM</text>
+<text x="360" y="122" font-size="17" fill="#833a27" font-weight="700">하락 규칙 · 50/82 종목·거래일 하락 · 신뢰도 61.0%</text>
+<rect x="23" y="184" width="106" height="42" rx="8" fill="#e4f3ef" stroke="#84aaa0"/><text x="76.0" y="210" font-size="17" font-weight="700">공급사</text>
+<rect x="287" y="184" width="146" height="42" rx="8" fill="#e4f3ef" stroke="#84aaa0"/><text x="360.0" y="210" font-size="17" font-weight="700">정정 계약 사건</text>
+<rect x="579" y="184" width="118" height="42" rx="8" fill="#e4f3ef" stroke="#84aaa0"/><text x="638.0" y="210" font-size="17" font-weight="700">원문 공시</text>
+<path d="M129 205H287" stroke="#35675f" stroke-width="2" marker-end="url(#arrow)"/><text x="208.0" y="190" font-size="12" font-weight="700">SUPPLIER_AMENDMENT</text>
+<path d="M433 205H579" stroke="#35675f" stroke-width="2" marker-end="url(#arrow)"/><text x="506.0" y="190" font-size="12" font-weight="700">EXTRACTED_FROM</text>
+<text x="360" y="256" font-size="17" fill="#833a27" font-weight="700">하락 규칙 · 5/7 종목·거래일 하락 · 신뢰도 71.4%</text>
+<path d="M28 143H692" stroke="#bfd5d0"/></g></svg>
