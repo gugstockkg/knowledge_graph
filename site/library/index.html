@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FINTOS의 퀀트 투자 문헌 도서관. 전략별 문헌, 한 줄 요약, 재현 조건과 원문을 찾아보세요.">
+  <meta name="description" content="퀀트 투자, 금융 지식그래프, 공시 분석과 GraphRAG 문헌의 요약, 재현 항목, 원문 링크를 제공합니다.">
   <title>FINTOS 도서관</title>
   <link rel="stylesheet" href="../style.css">
   <script defer src="../journal/archive.js"></script>
@@ -22,7 +22,7 @@
   </header>
   <main id="content" tabindex="-1" class="shell archive">
     <h1>FINTOS 도서관</h1>
-    <p class="lead">한·미 주식과 ETF에서 검증할 퀀트 전략의 문헌을 모았습니다. 각 문헌의 한 줄 요약, 재현 시 확인할 항목, 원문 링크를 제공합니다.</p>
+    <p class="lead">한·미 주식과 ETF의 퀀트 전략부터 공시·뉴스로 금융 지식그래프를 구축하고 검증하는 연구까지 모았습니다. 문헌별 요약, 재현할 때 확인할 항목, 출판사나 공개 저장소의 원문 링크를 제공합니다.</p>
     <!-- library-stats:start -->
     <!-- library-stats:end -->
     <p><a href="reading-index.csv" download>문헌 인덱스 내려받기(CSV)</a></p>
@@ -37,7 +37,8 @@
       <div>
         <p><strong>우선 읽기(P1)</strong>는 비교 기준과 핵심 전략, <strong>확장 읽기(P2)</strong>는 개별 팩터와 추가 검증, <strong>심화 읽기(P3)</strong>는 고급 모형에 해당합니다. 우선순위는 FINTOS 실험과의 연결성과 국내·미국 시장에서의 재현 가능성을 고려했습니다.</p>
         <p>먼저 동일비중과 매수 후 보유를 기준으로 익히고, 상대 모멘텀·시계열 추세·리밸런싱의 차이를 살펴보세요. 가치·수익성·발생액을 비교할 때는 과거 종목군, 상장폐지, 재무제표의 실제 공개 시점을 함께 확인해야 합니다.</p>
-        <p>요약은 확보한 서지와 초록, 공개 PDF의 1차 검토를 바탕으로 정리했습니다. 각 항목에 검토 범위를 표시했습니다. 원문은 출판사나 공개 저장소에서 볼 수 있습니다.</p>
+        <p>금융 지식그래프 문헌은 공시·그래프 구축, 관계 기반 주가 예측, 금융 GraphRAG, 예측·그래프 방법론으로 나뉩니다.</p>
+        <p>요약은 확보한 서지와 초록 또는 원문 PDF의 1차 검토를 바탕으로 정리했습니다. 각 항목에 검토 범위를 표시했습니다. 원문은 출판사나 공개 저장소에서 볼 수 있습니다.</p>
       </div>
     </section>
 
@@ -45,7 +46,7 @@
       <h2 id="catalog-title">문헌 인덱스</h2>
       <form class="archive-filters" id="archive-filters" role="search" hidden>
         <div class="archive-field"><label for="archive-query">제목·저자·요약 검색</label>
-          <input type="search" id="archive-query" name="q" placeholder="예: Jegadeesh, 공분산, Q031">
+          <input type="search" id="archive-query" name="q" placeholder="예: 모멘텀, TRACE, GraphRAG">
         </div>
         <div class="archive-field"><label for="archive-category">주제</label>
           <select id="archive-category" name="category">

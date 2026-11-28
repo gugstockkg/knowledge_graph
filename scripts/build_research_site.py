@@ -146,15 +146,14 @@ def render_library(source):
         )
 
     template = (source / "library/index.html").read_text(encoding="utf-8")
-    recent = sum(int(paper["year"]) >= 2020 for paper in papers)
+    topics = sorted({paper["topic"] for paper in papers})
     pdf_count = sum(bool(paper["pdf_source"]) for paper in papers)
     template = replace(template, "library-stats", (
-        f'    <p class="post-meta">전체 {len(papers)}편 · 2020년 이전 {len(papers) - recent}편 '
-        f'· 2020년 이후 {recent}편 · 공개 PDF 링크 {pdf_count}편</p>'
+        f'    <p class="post-meta">문헌 {len(papers)}편 · 주제 {len(topics)}개 · 공개 PDF 링크 {pdf_count}편</p>'
     ))
     template = replace(template, "library-topics", "\n".join(
         f'            <option value="{escape(topic)}">{escape(topic)}</option>'
-        for topic in sorted({paper["topic"] for paper in papers})
+        for topic in topics
     ))
     template = replace(template, "library-years", "\n".join(
         f'            <option value="{year}">{year}년</option>'
