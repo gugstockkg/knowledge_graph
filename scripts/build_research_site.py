@@ -1,11 +1,13 @@
 """Build the static research index from journal headings and metadata."""
 import argparse
+from csv import DictReader
 from datetime import date, datetime
 from html import escape
 from html.parser import HTMLParser
 from itertools import groupby
 from pathlib import Path
 from shutil import copytree
+from urllib.parse import urlsplit
 
 FEATURED_POST = "2026-11-27-trace-backtest"
 
@@ -14,6 +16,12 @@ CATEGORIES = {
     "research": "연구 기록",
     "validation": "설계와 검증",
     "evaluation": "실험 설계",
+}
+
+READING_PRIORITIES = {
+    "P1": "우선 읽기",
+    "P2": "확장 읽기",
+    "P3": "심화 읽기",
 }
 
 
@@ -95,6 +103,72 @@ def replace(template, marker, content):
     return template[:start] + "\n" + content + "\n" + template[stop:]
 
 
+def render_library(source):
+    with (source / "library/reading-index.csv").open(encoding="utf-8-sig", newline="") as stream:
+        papers = list(DictReader(stream))
+    if not papers:
+        raise ValueError("No papers found in the library")
+    paper_ids = set()
+    groups = {priority: [] for priority in READING_PRIORITIES}
+    for rank, paper in enumerate(papers, 1):
+        paper_id = paper["id"]
+        if (paper_id in paper_ids or not paper_id.startswith("Q") or not paper_id[1:].isdigit()
+                or int(paper["rank"]) != rank or paper["priority"] not in groups
+                or not 1900 <= int(paper["year"]) <= 2100
+                or not all(paper[key].strip() for key in ("topic", "title", "summary", "analysis", "evidence"))):
+            raise ValueError(f"Invalid library record {paper_id} at rank {rank}")
+        paper_ids.add(paper_id)
+        for field in ("primary_source", "pdf_source"):
+            if field == "pdf_source" and not paper[field]:
+                continue
+            url = urlsplit(paper[field])
+            if url.scheme != "https" or not url.hostname or url.username or url.password:
+                raise ValueError(f"Invalid {field} for {paper_id}")
+
+        fields = {key: escape(value) for key, value in paper.items()}
+        bibliographic = " · ".join(fields[key] for key in ("authors", "venue") if fields[key])
+        pdf_link = f' · <a href="{fields["pdf_source"]}">공개 PDF</a>' if fields["pdf_source"] else ""
+        groups[paper["priority"]].append(
+            '        <article class="journal-entry" data-entry '
+            f'data-category="{fields["topic"]}" data-year="{fields["year"]}">\n'
+            f'          <p class="journal-meta"><span>{fields["topic"]}</span>'
+            f'<time datetime="{fields["year"]}">{fields["year"]}</time> · '
+            f'{rank}순위 · {fields["id"]} · {fields["priority"]}</p>\n'
+            f'          <h3><a href="{fields["primary_source"]}">{fields["title"]}</a></h3>\n'
+            f'          <p class="journal-meta">{bibliographic}{pdf_link}</p>\n'
+            f'          <p class="journal-summary">{fields["summary"]}</p>\n'
+            '          <details class="journal-summary">\n'
+            '            <summary>1차 검토와 재현 항목</summary>\n'
+            f'            <p>{fields["analysis"]}</p>\n'
+            f'            <p>검토 범위 · {fields["evidence"]}</p>\n'
+            '          </details>\n'
+            '        </article>'
+        )
+
+    template = (source / "library/index.html").read_text(encoding="utf-8")
+    recent = sum(int(paper["year"]) >= 2020 for paper in papers)
+    pdf_count = sum(bool(paper["pdf_source"]) for paper in papers)
+    template = replace(template, "library-stats", (
+        f'    <p class="post-meta">전체 {len(papers)}편 · 2020년 이전 {len(papers) - recent}편 '
+        f'· 2020년 이후 {recent}편 · 공개 PDF 링크 {pdf_count}편</p>'
+    ))
+    template = replace(template, "library-topics", "\n".join(
+        f'            <option value="{escape(topic)}">{escape(topic)}</option>'
+        for topic in sorted({paper["topic"] for paper in papers})
+    ))
+    template = replace(template, "library-years", "\n".join(
+        f'            <option value="{year}">{year}년</option>'
+        for year in sorted({int(paper["year"]) for paper in papers}, reverse=True)
+    ))
+    return replace(template, "library-catalog", "\n".join(
+        f'      <section class="journal-year" data-group aria-labelledby="reading-{priority}">\n'
+        f'        <h2 id="reading-{priority}">{READING_PRIORITIES[priority]}</h2>\n'
+        + "\n".join(articles)
+        + "\n      </section>"
+        for priority, articles in groups.items() if articles
+    ))
+
+
 def build(source, destination):
     posts = read_posts(source)
     if not posts:
@@ -123,9 +197,11 @@ def build(source, destination):
     archive = replace(archive, "year-options", "\n".join(
         f'          <option value="{year}">{year}년</option>'
         for year in sorted({post["published"].year for post in posts}, reverse=True)))
+    library = render_library(source)
     copytree(source, destination)
     (destination / "index.html").write_text(home, encoding="utf-8")
     (destination / "journal/index.html").write_text(archive, encoding="utf-8")
+    (destination / "library/index.html").write_text(library, encoding="utf-8")
 
 
 if __name__ == "__main__":
