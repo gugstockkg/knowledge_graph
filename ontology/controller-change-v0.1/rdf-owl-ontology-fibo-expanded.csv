@@ -1,0 +1,56 @@
+﻿kind,id,label_ko,iri,subject,predicate,object_or_datatype,constraint,neo4j_mapping,definition,status,reference_iri,alignment,opendart_evidence
+class,Merger,합병,urn:fintos:benchmark:Merger,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,Split,분할,urn:fintos:benchmark:Split,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,Gift,증여,urn:fintos:benchmark:Gift,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,Inheritance,상속,urn:fintos:benchmark:Inheritance,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,Issuance,증자,urn:fintos:benchmark:Issuance,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,Acquisition,양수도·취득,urn:fintos:benchmark:Acquisition,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,CorporateRestructuring,기업구조재편,urn:fintos:benchmark:CorporateRestructuring,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,OwnershipTransfer,소유권 이전,urn:fintos:benchmark:OwnershipTransfer,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,EquityFinancing,자기자본 조달,urn:fintos:benchmark:EquityFinancing,,,,,BenchmarkType.id,실험에서 사용한 사건 유형,EC2 비교 검증,,,
+class,Assertion,항목별 주장,urn:fintos:benchmark:Assertion,,,,,ControllerExperimentAssertion,SHACL 검사 대상 주장 유형,EC2 비교 검증,,,
+subclass,Merger_subclass,합병 ⊑ 기업구조재편,,Merger,rdfs:subClassOf,CorporateRestructuring,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함,EC2 비교 검증,,,
+subclass,Split_subclass,분할 ⊑ 기업구조재편,,Split,rdfs:subClassOf,CorporateRestructuring,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함,EC2 비교 검증,,,
+subclass,Gift_subclass,증여 ⊑ 소유권 이전,,Gift,rdfs:subClassOf,OwnershipTransfer,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함,EC2 비교 검증,,,
+subclass,Inheritance_subclass,상속 ⊑ 소유권 이전,,Inheritance,rdfs:subClassOf,OwnershipTransfer,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함,EC2 비교 검증,,,
+subclass,Issuance_subclass,증자 ⊑ 자기자본 조달,,Issuance,rdfs:subClassOf,EquityFinancing,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함,EC2 비교 검증,,,
+subclass,Acquisition_subclass,양수도·취득 ⊑ 소유권 이전,,Acquisition,rdfs:subClassOf,OwnershipTransfer,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함,EC2 비교 검증,,,
+mapping,event_type,사건 유형 배정,,사건 IRI,rdf:type,하위 사건 유형 IRI,,CLASSIFIED_AS,공시 사유에서 분류한 사건 유형,EC2 비교 검증,,,
+property,source,원문 근거,urn:fintos:benchmark:source,사건 또는 주장,ex:source,IRI,,BenchmarkEvent.source / 주장 receipt·line,"사건에는 원문 근거 식별자, 주장에는 출처 공시 IRI를 연결",EC2 비교 검증,,,
+property,published,공개 기준일,urn:fintos:benchmark:published,사건 또는 주장,ex:published,xsd:date,,filed,공시 접수일을 기준일 조회에 사용,EC2 비교 검증,,,
+shape,AssertionShape,주장 구조 검사,urn:fintos:benchmark:AssertionShape,Assertion,sh:targetClass,Assertion,,별도 검사,RDF 주장에 적용하는 SHACL 노드 모양,EC2 비교 검증,,,
+shape_constraint,AssertionShape_source,출처 제약,,AssertionShape,sh:path,ex:source,sh:minCount=1; sh:nodeKind=sh:IRI,별도 검사,원문 출처 IRI가 하나 이상 있어야 함,EC2 비교 검증,,,
+shape_constraint,AssertionShape_published,공개일 제약,,AssertionShape,sh:path,ex:published,sh:minCount=1; sh:datatype=xsd:date,별도 검사,공개일이 하나 이상 있으며 xsd:date여야 함,EC2 비교 검증,,,
+class,Company,기업,urn:fintos:disclosure:Company,,,,,Company,공시에서 법인코드로 식별한 기업,설계 제안,https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/BusinessEntity,범위 대조,공시 목록의 corp_code
+class,Person,인물,urn:fintos:disclosure:Person,,,,,Person,공시에서 식별되는 자연인. 동명이인은 이름만으로 합치지 않는다,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/Person,참고 후보,임원·주요주주 및 대량보유 공시의 보고자
+class,Security,증권,urn:fintos:disclosure:Security,,,,,Security,공시에서 식별되는 증권. 발행 법인과 종목코드는 별도 관리,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/Security,조건부 하위유형 후보,증권 종류와 종목 식별자
+class,SupplyContract,공급계약,urn:fintos:disclosure:SupplyContract,,,,,SupplyContract,계약 체결이 보고된 거래의 식별 단위,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/Contract,체결 확인 시 하위유형 후보,단일판매·공급계약 체결 원공시
+class,ContractParticipation,계약 당사자 역할,urn:fintos:disclosure:ContractParticipation,,,,,ContractParticipation,법인 등이 특정 계약에서 맡은 역할,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/ContractParty,역할 범위 대조,공급자·계약상대방 항목
+class,SupplierRole,공급자 역할,urn:fintos:disclosure:SupplierRole,,,,,SupplierRole,해당 계약에서 제품 또는 용역을 공급하는 역할,설계 제안,,자체 정의,공급사 식별과 계약 내용
+class,BuyerRole,구매자 역할,urn:fintos:disclosure:BuyerRole,,,,,BuyerRole,해당 계약에서 제품 또는 용역을 구매하는 역할,설계 제안,,자체 정의,계약상대방과 구매자 식별
+class,HoldingSnapshot,보고된 보유현황,urn:fintos:disclosure:HoldingSnapshot,,,,,HoldingSnapshot,특정 기준일과 보고 범위에 따른 수량·비율 관측,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Ownership,관측과 법적 소유를 구분,대량보유·임원 주요주주·정기보고서의 보유표
+class,LegalOwnership,법적 소유 관계,urn:fintos:disclosure:LegalOwnership,,,,,LegalOwnership,법적 권원을 뒷받침하는 근거가 확인된 경우에 표현,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Ownership,범위 대조,법적 소유를 뒷받침하는 공시 근거
+class,ControlRelationship,지배 관계,urn:fintos:disclosure:ControlRelationship,,,,,ControlRelationship,지배 주체와 대상 및 지배 근거를 표현,설계 제안,https://spec.edmcouncil.org/fibo/ontology/BE/OwnershipAndControl/CorporateControl/,모듈 참고,의결권·약정 등 명시적 근거
+class,ShareholderRole,주주 역할,urn:fintos:disclosure:ShareholderRole,,,,,ShareholderRole,주식 소유가 근거로 확인된 주주의 역할,설계 제안,https://spec.edmcouncil.org/fibo/ontology/BE/OwnershipAndControl/CorporateOwnership/Shareholder,역할 범위 대조,주주와 주식 소유의 명시적 근거
+class,EquityIssuanceEvent,주식 발행 사건,urn:fintos:disclosure:EquityIssuanceEvent,,,,,EquityIssuanceEvent,증자 등 특정 주식 발행을 보고한 사건,설계 제안,,자체 정의,증자·발행 증권·발행사 항목
+class,Filing,접수 공시,urn:fintos:disclosure:Filing,,,,,Filing,OpenDART 접수번호로 식별되는 문서,설계 제안,,자체 정의,접수번호와 접수일
+class,EvidenceSpan,원문 근거 위치,urn:fintos:disclosure:EvidenceSpan,,,,,EvidenceSpan,값이나 관계를 확인할 수 있는 원문 셀·문단,설계 제안,,자체 정의,접수번호·문서 버전·셀 또는 문단 위치
+subclass,SupplierRole_subclass,공급자 역할의 상위 유형,urn:fintos:disclosure:SupplierRole_subclass,SupplierRole,rdfs:subClassOf,ContractParticipation,,SUBCLASS_OF,공급자와 구매자를 계약 참여의 하위 역할로 표현,설계 제안,,자체 정의,계약 당사자 항목
+subclass,BuyerRole_subclass,구매자 역할의 상위 유형,urn:fintos:disclosure:BuyerRole_subclass,BuyerRole,rdfs:subClassOf,ContractParticipation,,SUBCLASS_OF,공급자와 구매자를 계약 참여의 하위 역할로 표현,설계 제안,,자체 정의,계약 당사자 항목
+object_property,hasContractParticipation,계약에 지정된 역할,urn:fintos:disclosure:hasContractParticipation,SupplyContract,owl:ObjectProperty,ContractParticipation,,HAS_PARTICIPATION,계약에 지정된 역할,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/hasContractParty,관계 방향 대조,계약상대방·공급사 항목
+object_property,rolePlayedBy,역할 수행자,urn:fintos:disclosure:rolePlayedBy,ContractParticipation,owl:ObjectProperty,Company 또는 Person,,PLAYED_BY,역할 수행자,설계 제안,https://www.omg.org/spec/Commons/PartiesAndSituations/isPlayedBy,Commons 참조,원문 당사자 식별
+object_property,reportsContract,계약을 보고한 공시,urn:fintos:disclosure:reportsContract,Filing,owl:ObjectProperty,SupplyContract,,REPORTS_CONTRACT,계약을 보고한 공시,설계 제안,,자체 정의,공급계약 본문과 접수번호
+object_property,reportedHolder,보고된 보유 주체,urn:fintos:disclosure:reportedHolder,HoldingSnapshot,owl:ObjectProperty,Company 또는 Person,,REPORTED_HOLDER,보고된 보유 주체,설계 제안,,보고값에 한정,보유표의 개인·법인 식별
+object_property,holdingOfSecurity,보유 보고 대상 증권,urn:fintos:disclosure:holdingOfSecurity,HoldingSnapshot,owl:ObjectProperty,Security,,HOLDING_OF_SECURITY,보유 보고 대상 증권,설계 제안,,자체 정의,보유표의 증권 종류
+object_property,reportedIn,보고 근거 공시,urn:fintos:disclosure:reportedIn,HoldingSnapshot 또는 EquityIssuanceEvent,owl:ObjectProperty,Filing,,REPORTED_IN,보고 근거 공시,설계 제안,,자체 정의,출처 접수번호
+object_property,legalOwner,법적 소유자,urn:fintos:disclosure:legalOwner,LegalOwnership,owl:ObjectProperty,Company 또는 Person,,LEGAL_OWNER,법적 소유자,설계 제안,,근거가 있을 때만 생성,법적 소유에 대한 명시 근거
+object_property,ownershipOfSecurity,법적 소유의 대상 증권,urn:fintos:disclosure:ownershipOfSecurity,LegalOwnership,owl:ObjectProperty,Security,,OWNERSHIP_OF_SECURITY,법적 소유의 대상 증권,설계 제안,,근거가 있을 때만 생성,법적 소유에 대한 명시 근거
+object_property,controllingParty,지배 주체,urn:fintos:disclosure:controllingParty,ControlRelationship,owl:ObjectProperty,Company 또는 Person,,CONTROLLING_PARTY,지배 주체,설계 제안,,근거가 있을 때만 생성,의결권·지배 약정
+object_property,controlledCompany,지배 대상 기업,urn:fintos:disclosure:controlledCompany,ControlRelationship,owl:ObjectProperty,Company,,CONTROLLED_COMPANY,지배 대상 기업,설계 제안,,근거가 있을 때만 생성,의결권·지배 약정
+object_property,issuedBy,증권 발행사,urn:fintos:disclosure:issuedBy,Security,owl:ObjectProperty,Company,,ISSUED_BY,증권 발행사,설계 제안,https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isIssuedBy,관계 방향 대조,발행사 법인코드
+object_property,issuesSecurity,발행 사건의 대상 증권,urn:fintos:disclosure:issuesSecurity,EquityIssuanceEvent,owl:ObjectProperty,Security,,ISSUES_SECURITY,발행 사건의 대상 증권,설계 제안,,자체 정의,발행 증권 종류와 수량
+object_property,hasEvidenceSpan,원문 근거 구간,urn:fintos:disclosure:hasEvidenceSpan,Assertion 또는 관계를 표현한 관측·사건,owl:ObjectProperty,EvidenceSpan,,SUPPORTED_BY,원문 근거 구간,설계 제안,,자체 정의,원문 해시와 표 셀 또는 문단
+data_property,holdingAsOf,보유 기준일,urn:fintos:disclosure:holdingAsOf,HoldingSnapshot,owl:DatatypeProperty,xsd:date,,holdingAsOf,보유 기준일,설계 제안,,자체 정의,표의 보고 기준일
+data_property,reportedQuantity,보고 보유 수량,urn:fintos:disclosure:reportedQuantity,HoldingSnapshot,owl:DatatypeProperty,xsd:decimal,,reportedQuantity,보고 보유 수량,설계 제안,,자체 정의,증권 단위가 확인된 수량 셀
+data_property,reportedPercentage,보고 보유 비율,urn:fintos:disclosure:reportedPercentage,HoldingSnapshot,owl:DatatypeProperty,xsd:decimal,,reportedPercentage,보고 보유 비율,설계 제안,,자체 정의,개인 또는 집단 범위가 확인된 비율 셀
+data_property,holdingScope,보유 집계 범위,urn:fintos:disclosure:holdingScope,HoldingSnapshot,owl:DatatypeProperty,xsd:string,,holdingScope,보유 집계 범위,설계 제안,,자체 정의,개인·보고집단 구분

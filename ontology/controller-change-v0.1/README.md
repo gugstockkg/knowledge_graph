@@ -6,6 +6,7 @@
 | --- | --- |
 | [온톨로지 정의서 CSV](ontology.csv) | 개념, 관계, 속성, 검증 규칙의 기준 정의 |
 | [RDF·OWL 정의서 · Excel용](rdf-owl-ontology-excel.csv) · [Neo4j용 CSV](rdf-owl-ontology.csv) · [Neo4j 유형 계층 적재](import-rdf-owl-hierarchy.cypher) | EC2 비교에서 사용한 사건 유형과 RDF 속성, SHACL 제약, LPG 대응 관계 |
+| [FIBO 참조 확장안 · Excel용 CSV](rdf-owl-ontology-fibo-expanded.csv) | 검증한 유형 계층 22행과 계약·보유·지배·발행 확장 제안 33행 |
 | [범용 공시 그래프 설명서](https://gugstockkg.github.io/knowledge_graph/dataset/) | 전체 공시 목록에서 기업과 원문을 연결한 별도 스냅샷 |
 | [실증 코드](../../src/knowledge_graph/graph/controller_change.py) | 검토한 원공시·정정본 한 쌍의 추출, Neo4j 적재, 기준일별 조회 |
 | [발표자료 PDF](controller-change.pdf) · [PPTX](controller-change.pptx) | 논리 모델, 부분 정정 사례, 네 그래프 조건과 가드레일 결과 |
@@ -169,3 +170,6 @@ CQ5는 “이 최대주주 변경 공시와 같은 거래를 보고한 대량보
 [RDF·OWL 정의서 CSV](rdf-owl-ontology.csv)는 네 조건 실험에서 [비교 코드](../../scripts/controller_graph_benchmark.py)가 생성한 유형과 공리를 사람이 확인할 수 있게 정리한 것이다. `urn:fintos:benchmark:`를 실험 네임스페이스로 사용한다. `class`는 사건 유형과 SHACL 검사 대상, `subclass`는 하위 유형 공리, `property`는 실험에서 사용한 RDF 속성이다. 속성의 대상과 자료형은 실제 사용 형태를 기록한 것이며 OWL의 domain·range 공리를 추가한 것은 아니다. `shape_constraint`의 최소 개수와 자료형은 SHACL 검사에 사용하였다.
 
 시험용 Neo4j 서버의 import 디렉터리에 CSV를 두고 [Cypher 명령](import-rdf-owl-hierarchy.cypher)을 순서대로 실행하면 기존 실험과 같은 `BenchmarkType.id`로 유형 노드 9개와 `SUBCLASS_OF` 관계 6개를 적재한다. 마지막 조회는 하위·상위 유형 쌍을 반환한다. 사건 인스턴스의 `CLASSIFIED_AS` 연결은 비교 코드가 공시별 분류 결과에서 생성한다. SHACL 제약은 RDF에서 검사하며, 이 Cypher 명령이 Neo4j 제약으로 설치하지는 않는다.
+
+
+FIBO 검토를 반영한 확장 CSV에는 원문 근거와 Neo4j 대응 이름을 함께 기록하였다. ‘EC2 비교 검증’은 기존 실험 항목이며, ‘설계 제안’은 확장 후보이다. 참조 IRI와 매핑 판정은 설계 검토용 주석이다. 새 OWL 동치 공리나 운영 그래프 변경을 선언하는 자료는 아니다. [FIBO 검토 근거](../alignment/fibo/FIBO_review.md)
