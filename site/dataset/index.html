@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="FINTOS OpenDART 공시 지식그래프의 데이터 범위, Neo4j 스키마, 원문 연결률과 실제 Cypher 조회 결과">
-  <title>OpenDART 공시 지식그래프 데이터 설명서 | FINTOS</title>
+  <title>FINTOS OpenDART Knowledge Graph | 데이터 설명서</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
   </header>
   <main class="post dataset" id="content" tabindex="-1">
     <a class="back" href="../">연구 홈</a>
-    <h1>OpenDART 공시 지식그래프</h1>
+    <h1>FINTOS OpenDART Knowledge Graph</h1>
     <p class="post-meta">2026년 11월 27일에 검증한 스냅샷 · 접수일 2026년 1월 2일~11월 26일</p>
     <p class="lead">기업별 공시를 접수일 순으로 따라가고, 각 공시의 원문을 찾아갈 수 있는 그래프입니다. 공시 목록과 S3에 확보한 ZIP·XML을 접수번호로 연결했습니다.</p>
     <dl class="dataset-stats">
@@ -28,8 +28,22 @@
       <div><dt>기업</dt><dd>45,201개</dd></div>
       <div><dt>원문 연결 공시</dt><dd>81.0%</dd></div>
     </dl>
-    <p><strong>FINTOS OpenDART Knowledge Graph 공개 스냅샷.</strong> LPG의 노드·관계 전체와 RDF·OWL의 명시 사실·추론 결과를 내려받을 수 있습니다. <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph">Hugging Face 데이터 카드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261127-v1">GitHub 릴리스</a></p>
-    <nav class="dataset-nav" aria-label="문서 목차"><a href="#economic-events">공급 관계 연구</a><a href="#schema">스키마</a><a href="#graph-samples">실제 그래프</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
+    <nav class="dataset-nav" aria-label="문서 목차"><a href="#downloads">공개 데이터 다운로드</a><a href="#economic-events">공급 관계 연구</a><a href="#schema">스키마</a><a href="#graph-samples">실제 그래프</a><a href="#build">구축과 리소스</a><a href="#examples">실제 질의</a><a href="#limits">활용 범위</a></nav>
+
+    <section aria-labelledby="downloads">
+      <h2 id="downloads">공개 데이터 다운로드</h2>
+      <p>FINTOS OpenDART Knowledge Graph v1은 LPG와 RDF·OWL 두 배포본을 제공합니다. 수록 기준과 추출 범위는 아래 표에서 확인할 수 있습니다. 두 그래프의 공시는 접수번호로 대조할 수 있습니다.</p>
+      <div class="table-scroll" role="region" aria-label="공개 그래프 배포본 비교" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">배포본</th><th scope="col">수록 범위</th><th scope="col">파일</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">LPG</th><td>Neo4j 공시 본체의 2026년 11월 27일 스냅샷. 공시 목록 253,432건과 기업·공급계약·재무 관측 등을 포함합니다. 노드 721,797개, 관계 681,886개입니다.</td><td><a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/lpg-nodes.csv.gz">노드 CSV</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/lpg-relationships.csv.gz">관계 CSV</a></td></tr>
+            <tr><th scope="row">RDF·OWL</th><td>2026년 1월 1일~11월 27일 접수분 중 원문을 확보한 공시 211,458건의 메타데이터를 담았습니다. 지분·지배권 5개 공시군에는 사건·정정·원문 근거를 추가했습니다. 명시 트리플 7,783,531개, 상위 유형 추론 트리플 41,661개입니다.</td><td><a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-asserted.nt.gz">명시 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-inferred.nt.gz">추론 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/ontology.ttl">OWL 정의</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>두 배포본과 Cypher·SPARQL 예제, 적재 방법, SHA-256 체크섬을 한 번에 받을 수 있습니다. 공개본은 DART 링크와 근거 위치를 제공합니다. <a href="https://github.com/gugstockkg/knowledge_graph/releases/download/fintos-opendart-20261127-v1/fintos-opendart-20261127-v1.zip">전체 ZIP 다운로드</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph">Hugging Face 데이터 카드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261127-v1">GitHub 릴리스</a></p>
+    </section>
 
     <section aria-labelledby="economic-events">
       <h2 id="economic-events">공시에서 공급 관계를 읽는 법</h2>
