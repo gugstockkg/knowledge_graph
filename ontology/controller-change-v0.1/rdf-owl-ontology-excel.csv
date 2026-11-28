@@ -1,0 +1,23 @@
+﻿kind,id,label_ko,iri,subject,predicate,object_or_datatype,constraint,neo4j_mapping,definition
+class,Merger,합병,urn:fintos:benchmark:Merger,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,Split,분할,urn:fintos:benchmark:Split,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,Gift,증여,urn:fintos:benchmark:Gift,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,Inheritance,상속,urn:fintos:benchmark:Inheritance,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,Issuance,증자,urn:fintos:benchmark:Issuance,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,Acquisition,양수도·취득,urn:fintos:benchmark:Acquisition,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,CorporateRestructuring,기업구조재편,urn:fintos:benchmark:CorporateRestructuring,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,OwnershipTransfer,소유권 이전,urn:fintos:benchmark:OwnershipTransfer,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,EquityFinancing,자기자본 조달,urn:fintos:benchmark:EquityFinancing,,,,,BenchmarkType.id,실험에서 사용한 사건 유형
+class,Assertion,항목별 주장,urn:fintos:benchmark:Assertion,,,,,ControllerExperimentAssertion,SHACL 검사 대상 주장 유형
+subclass,Merger_subclass,합병 ⊑ 기업구조재편,,Merger,rdfs:subClassOf,CorporateRestructuring,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함
+subclass,Split_subclass,분할 ⊑ 기업구조재편,,Split,rdfs:subClassOf,CorporateRestructuring,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함
+subclass,Gift_subclass,증여 ⊑ 소유권 이전,,Gift,rdfs:subClassOf,OwnershipTransfer,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함
+subclass,Inheritance_subclass,상속 ⊑ 소유권 이전,,Inheritance,rdfs:subClassOf,OwnershipTransfer,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함
+subclass,Issuance_subclass,증자 ⊑ 자기자본 조달,,Issuance,rdfs:subClassOf,EquityFinancing,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함
+subclass,Acquisition_subclass,양수도·취득 ⊑ 소유권 이전,,Acquisition,rdfs:subClassOf,OwnershipTransfer,,SUBCLASS_OF,하위 유형의 사건을 상위 유형 질의에도 포함
+mapping,event_type,사건 유형 배정,,사건 IRI,rdf:type,하위 사건 유형 IRI,,CLASSIFIED_AS,공시 사유에서 분류한 사건 유형
+property,source,원문 근거,urn:fintos:benchmark:source,사건 또는 주장,ex:source,IRI,,BenchmarkEvent.source / 주장 receipt·line,"사건에는 원문 근거 식별자, 주장에는 출처 공시 IRI를 연결"
+property,published,공개 기준일,urn:fintos:benchmark:published,사건 또는 주장,ex:published,xsd:date,,filed,공시 접수일을 기준일 조회에 사용
+shape,AssertionShape,주장 구조 검사,urn:fintos:benchmark:AssertionShape,Assertion,sh:targetClass,Assertion,,별도 검사,RDF 주장에 적용하는 SHACL 노드 모양
+shape_constraint,AssertionShape_source,출처 제약,,AssertionShape,sh:path,ex:source,sh:minCount=1; sh:nodeKind=sh:IRI,별도 검사,원문 출처 IRI가 하나 이상 있어야 함
+shape_constraint,AssertionShape_published,공개일 제약,,AssertionShape,sh:path,ex:published,sh:minCount=1; sh:datatype=xsd:date,별도 검사,공개일이 하나 이상 있으며 xsd:date여야 함

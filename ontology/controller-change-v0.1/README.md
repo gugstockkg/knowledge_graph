@@ -5,7 +5,7 @@
 | 자료 | 내용 |
 | --- | --- |
 | [온톨로지 정의서 CSV](ontology.csv) | 개념, 관계, 속성, 검증 규칙의 기준 정의 |
-| [RDF·OWL 비교 정의서 CSV](rdf-owl-ontology.csv) · [Neo4j 유형 계층 적재](import-rdf-owl-hierarchy.cypher) | EC2 비교에서 사용한 사건 유형과 RDF 속성, SHACL 제약, LPG 대응 관계 |
+| [RDF·OWL 정의서 · Excel용](rdf-owl-ontology-excel.csv) · [Neo4j용 CSV](rdf-owl-ontology.csv) · [Neo4j 유형 계층 적재](import-rdf-owl-hierarchy.cypher) | EC2 비교에서 사용한 사건 유형과 RDF 속성, SHACL 제약, LPG 대응 관계 |
 | [범용 공시 그래프 설명서](https://gugstockkg.github.io/knowledge_graph/dataset/) | 전체 공시 목록에서 기업과 원문을 연결한 별도 스냅샷 |
 | [실증 코드](../../src/knowledge_graph/graph/controller_change.py) | 검토한 원공시·정정본 한 쌍의 추출, Neo4j 적재, 기준일별 조회 |
 | [발표자료 PDF](controller-change.pdf) · [PPTX](controller-change.pptx) | 논리 모델, 부분 정정 사례, 네 그래프 조건과 가드레일 결과 |
