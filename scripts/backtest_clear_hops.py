@@ -74,42 +74,84 @@ def run(graph, archive, later, start_date=START):
             return None
         return (sum(sample) + 10 * mean(pooled[hop])) / (len(sample) + 10)
 
-    def preferences(code, j):
+    def preferences(code, j, max_hop=1):
         scores = {}
         for hop, source in enumerate((own, existing)):
+            if hop > max_hop:
+                break
             for release, receipt in source[code]:
                 if j-4 <= release <= j:
                     estimate = score(hop, receipt)
                     if estimate is not None:
-                        scores.setdefault(receipt, estimate)
-        return sum(scores.values()), sorted(scores)
+                        scores.setdefault(receipt, (hop, release, estimate))
+        return scores
 
-    report, ledgers = {}, {}
+    def order_key(row):
+        return row["symbol"], row["date"], row["side"], row["session"]
+
+    diagnostics = {symbols[code]: {"hops": [], "position_days_vs_trend": 0}
+                   for code in panel}
+    for code in panel:
+        stats = diagnostics[symbols[code]]
+        chosen = [preferences(code, j) for j in range(start, start + len(days))]
+        for hop, source in enumerate((own, existing)):
+            # Include carry-in disclosures whose five-session window reaches the test.
+            candidates = {receipt for release, receipt in source[code]
+                          if start-4 <= release < start + len(days)}
+            kept = {receipt for scores in chosen for receipt, (h, _, _) in scores.items()
+                    if h == hop}
+            stats["hops"].append({
+                "candidates": len(candidates),
+                "accepted": len(kept),
+                "new_signal_days": sum(any(h == hop and release == j and value
+                                           for h, release, value in scores.values())
+                                       for j, scores in enumerate(chosen, start)),
+                "active_signal_days": sum(bool(sum(value for h, _, value in scores.values()
+                                                  if h == hop)) for scores in chosen),
+            })
+
+    report, ledgers, changes_due_to_1hop = {}, {}, 0
     for policy in ("hold", "trend", "CLEAR"):
         curves, orders, stock_results, exposure = [], [], [], 0
         for code in panel:
             symbol = symbols[code]
-            positions = []
+            positions, own_positions = [], []
             for j in range(start, start + len(days)):
-                net, refs = preferences(code, j) if policy == "CLEAR" else (0, [])
+                scored = preferences(code, j) if policy == "CLEAR" else {}
+                net, refs = sum(v for _, _, v in scored.values()), sorted(scored)
                 trend = bars[code][market[j-1]]["close"] > bars[code][market[j-21]]["close"]
                 desired = policy == "hold" or (net > 0 if net else trend)
                 positions.append((market[j], j, desired, net, refs))
+                if policy == "CLEAR":
+                    diagnostics[symbol]["position_days_vs_trend"] += desired != trend
+                    first = preferences(code, j, max_hop=0)
+                    net_0 = sum(v for _, _, v in first.values())
+                    own_positions.append((market[j], j, net_0 > 0 if net_0 else trend,
+                                          net_0, sorted(first)))
             equity, exposed, fills, _ = replay(symbol, policy, "base", positions, [], days, bars[code])
+            if policy == "CLEAR":
+                _, _, without_hop, _ = replay(symbol, policy, "base", own_positions,
+                                               [], days, bars[code])
+                changes_due_to_1hop += len({order_key(r) for r in fills}
+                                           ^ {order_key(r) for r in without_hop})
             curves.append(equity)
             exposure += exposed
             orders.extend(fills)
             stock_results.append({"symbol": symbol, "return": equity[-1]-1, "orders": len(fills)})
         ledgers[policy] = orders
         report[policy] = {**summary(curves, exposure, orders, [], days), "stocks": stock_results}
-    def order_key(row):
-        return row["symbol"], row["date"], row["side"], row["session"]
-
     baseline = {order_key(row): row for row in ledgers["trend"]}
     clear = {order_key(row): row for row in ledgers["CLEAR"]}
     changes = {"removed": [baseline[k] for k in sorted(baseline.keys()-clear.keys())],
                "added": [clear[k] for k in sorted(clear.keys()-baseline.keys())]}
-    return {"period": [days[0], days[-1]], "sessions": len(days),
+    for symbol, _, _, _ in baseline.keys()-clear.keys():
+        stats = diagnostics[symbol]
+        stats["removed"] = stats.get("removed", 0) + 1
+    for symbol, _, _, _ in clear.keys()-baseline.keys():
+        stats = diagnostics[symbol]
+        stats["added"] = stats.get("added", 0) + 1
+    return {"diagnostics": diagnostics, "changed_fills_due_to_hop_1": changes_due_to_1hop,
+            "period": [days[0], days[-1]], "sessions": len(days),
             "panel": sorted(symbols[c] for c in panel), "training": {k: len(v) for k,v in pooled.items()},
             "training_cutoff": market[start-1],
             "patterns": [{"hop": h, "kind": k, "size": s, "n": len(v),
