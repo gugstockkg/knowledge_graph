@@ -34,7 +34,7 @@
       <a class="featured-guide" href="#method">데이터·방법 보기</a>
     </div>
     <nav class="dataset-nav" aria-label="연구 기록 목차">
-      <a href="#background">서론</a><a href="#related">관련 연구</a><a href="#method">데이터와 시점</a><a href="#strategy">방법론</a><a href="#results">실험 결과</a><a href="#positions">체결 조건</a><a href="#samples">10종목 상세 결과</a><a href="#limitations">한계</a><a href="#next">결론과 부록</a>
+      <a href="#background">서론</a><a href="#related">관련 연구</a><a href="#method">데이터와 시점</a><a href="#strategy">방법론</a><a href="#results">실험 결과</a><a href="#positions">체결 조건</a><a href="#samples">7종목 상세 결과</a><a href="#limitations">한계</a><a href="#next">결론과 부록</a>
     </nav>
 
     <section aria-labelledby="background">
@@ -52,7 +52,7 @@
       <p>백테스트에는 EC2의 Neo4j에서 내보낸 공급계약 원공시 1,294건과 계약 조건 정정 83건을 사용하였다. 구매자가 확인된 계약은 226건이다. 그래프의 공시 범위는 2026년 1월 1일~11월 26일이다. 시세는 네이버 일봉을 사용했고, 거래 이력과 기업 식별이 맞는 종목·거래일만 평가하였다. <a href="../../dataset/#economic-events">경제 사건 그래프와 원문 검증</a></p>
       <p>기업은 OpenDART 법인코드로 연결하고 시세와 주문은 상장 종목코드로 대응시켰다. 접수번호는 계약 원공시와 정정 원문을 식별한다. 각 거래일에는 그때까지 공개된 계약 조건만 적용한다. 공개 시각을 알 수 없는 공시는 다음 거래일 시가부터 반영한다. 그날 시가와 종가는 체결가와 성과를 계산할 때 쓴다.</p>
       <p>삼성전자·SK하이닉스를 고정하고 대형주 후보 목록을 우선하였다. 평가 시작 전에 공개한 공급계약 원공시·정정에서 공급자나 구매자로 등장한 접수번호를 중복 없이 집계하였다. 기준을 충족한 대형주 후보 6개를 넣고, 나머지 2개는 직전 21거래일 거래대금 상위 30개 가격 표본에서 공시가 많은 순으로 선정하였다. 모든 종목의 평가 일봉을 대조하였다.</p><p>삼성전자 33건, SK하이닉스 16건, 삼성중공업 30건, 한화오션 21건, HD현대중공업 18건, 현대건설 13건, 삼성물산 6건, 삼성전기 4건, 파두 17건, 대우건설 15건</p>
-      <p>전체 비교는 선정한 10종목에서 수행하였다. 두 공시 전략에 후보가 모두 있었던 경우의 성과를 확인하기 위해, 실행이 끝난 뒤 전략별 후보 원장을 교차하여 공통 후보 7종목을 추렸다. 공통 후보 성과는 저장된 종목별 비용 후 수익률에 동일한 초기 비중을 부여해 산출하였다. 공시 채택 건수와 주문 변화, 일별 위험 지표는 최초 10종목을 기준으로 보고한다.</p>
+      <p>전체 비교는 선정한 10종목에서 수행하였다. 두 공시 전략에 후보가 모두 있었던 경우의 성과를 확인하기 위해, 실행이 끝난 뒤 전략별 후보 원장을 교차하여 공통 후보 7종목을 추렸다. 공통 후보 성과는 저장된 종목별 비용 후 수익률에 동일한 초기 비중을 부여해 산출하였다. 이 글의 성과와 공시·주문 집계는 공통 후보 7종목으로 제한한다.</p>
       <figure class="dataset-figure">
         <img src="../../dataset/economic-contract.svg" width="900" height="250" alt="넥스틴이 SK하이닉스에 공급하기로 한 254억 4천만 원 규모의 웨이퍼 검사장비 계약">
         <figcaption>넥스틴이 SK하이닉스에 장비를 공급하는 계약이다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146">넥스틴 공급계약 원문</a></figcaption>
@@ -82,7 +82,7 @@
       </div>
       <p>평가 전에 결과가 확인된 학습 사례에서 지지도 <var>N</var><sub><var>p</var></sub>가 5 이상이고 신뢰도가 0.60 이상인 규칙을 남깁니다. 평가 시점에는 그날까지 공개된 그래프에서 규칙의 앞부분과 일치하는 경로만 확장한다. 깊이마다 후보를 최대 8개 유지하고 관계 3개까지 탐색한다.</p>
       <p>완성된 규칙은 상승과 하락으로 나누고 각 방향의 최대 신뢰도를 비교한다. 선택한 방향의 근거 경로가 OpenDART 접수번호에 닿으면 상승에 +1, 하락에 −1을 부여한다. 채택한 근거가 없으면 0이다. 이렇게 얻은 종목·거래일별 부호를 최근 5거래일에 걸쳐 합산한 뒤 공통 주문 규칙에 적용한다.</p>
-      <p>이 구현에서는 관계 선택 단계가 후보를 그대로 넘깁니다. 근거 검사는 경로가 공시 출처에 닿는지 확인하며, 원문을 다시 읽어 방향을 판정하지는 않는다. 논문은 Qwen으로 원문을 검토하고 평가 시작일에 상위 10종목을 골라 보유하였다. 여기서는 같은 10종목에서 시가 주문 규칙을 공통 적용하였다. <a href="https://arxiv.org/html/2603.12500v1">TRACE 원문 부록 A·C</a></p>
+      <p>이 구현에서는 관계 선택 단계가 후보를 그대로 넘깁니다. 근거 검사는 경로가 공시 출처에 닿는지 확인하며, 원문을 다시 읽어 방향을 판정하지는 않는다. 논문은 Qwen으로 원문을 검토하고 평가 시작일에 상위 10종목을 골라 보유하였다. 국내 자료에 적용할 때는 모든 전략에 같은 시가 주문 규칙을 사용하였다. <a href="https://arxiv.org/html/2603.12500v1">TRACE 원문 부록 A·C</a></p>
       <h3>공통 주문 규칙과 가격 기준선</h3>
       <p><var>C</var><sub><var>i</var>,<var>d</var></sub>를 종목 <var>i</var>의 거래일 <var>d</var> 종가로 둔다. 20거래일 가격 추세 <var>M</var><sub><var>it</var></sub>는 직전 종가가 그보다 20거래일 전 종가보다 높을 때 1이고, 그 외에는 0이다.</p>
       <div class="equation equation-block equation-numbered" id="eq-trend">
@@ -94,30 +94,29 @@
         <span>순수익률 = <span class="equation-fraction"><span><var>W</var>(마지막)</span><span><var>W</var>(초기)</span></span> − 1</span><span class="equation-number">(4)</span>
       </div>
       <h3 id="positions">비교 기간과 체결 조건</h3>
-      <p>2026년 10월 1일~11월 26일 10종목에 초기 자본을 같은 금액으로 배정하였다. 종목별 자금은 따로 운용하였다. 주식을 사거나 현금으로 돌아갈 때는 시가로 체결하고, 마지막 거래일에 남은 주식은 종가로 매도하였다. 비용은 편도 10bp이며 현금 이자와 배당은 제외하였다. 같은 기간 KOSPI는 −30.86%였다.</p>
+      <p>2026년 10월 1일~11월 26일의 39거래일을 평가하였다. 공통 후보 표본의 각 종목에 같은 초기 자본을 배정하였다. 종목별 자금은 따로 운용하였다. 주식을 사거나 현금으로 돌아갈 때는 시가로 체결하고, 마지막 거래일에 남은 주식은 종가로 매도하였다. 비용은 편도 10bp이며 현금 이자와 배당은 제외하였다. 같은 기간 KOSPI는 −30.86%였다.</p>
     </section>
 
     <section aria-labelledby="results">
       <h2 id="results">5. 공시 기반 매매 전략 비교 결과</h2>
       <h3>5.1 공통 후보 표본의 전략별 성과</h3>
-      <p>CLEAR와 TRACE 모두에서 평가기간에 공시 후보가 확인된 종목은 삼성전자, SK하이닉스, 삼성중공업, HD현대중공업, 현대건설, 삼성물산, 삼성전기였다. 각 종목에 같은 초기 자본을 배정하고, EC2에서 산출한 비용 후 종목별 수익률의 산술평균을 구하였다. 두 열 모두 같은 39거래일과 왕복 비용 20bp를 적용하였다.</p>
-      <div class="table-scroll" role="region" aria-label="공통 후보 7종목과 원표본 성과" tabindex="0"><table>
-        <caption>공통 후보 7종목과 최초 실행 10종목의 합산 순수익률</caption>
-        <thead><tr><th scope="col">전략</th><th scope="col">공통 후보 7종목</th><th scope="col">최초 실행 10종목</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">TRACE</th><td>−1.92%</td><td>−2.20%</td></tr>
-          <tr><th scope="row">CLEAR</th><td>−4.12%</td><td>−4.86%</td></tr>
-          <tr><th scope="row">20거래일 가격 추세</th><td>−4.81%</td><td>−5.35%</td></tr>
-          <tr><th scope="row">공급 방향·제품군 확인</th><td>−7.19%</td><td>−7.01%</td></tr>
-          <tr><th scope="row">20일 이동평균</th><td>−10.22%</td><td>−8.40%</td></tr>
-          <tr><th scope="row">원문 구매자만 확인</th><td>−15.95%</td><td>−13.15%</td></tr>
-          <tr><th scope="row">양방향 계약 경로</th><td>−17.41%</td><td>−16.02%</td></tr>
-          <tr><th scope="row">5일 평균회귀</th><td>−30.46%</td><td>−34.97%</td></tr>
-          <tr><th scope="row">매수 후 보유</th><td>−38.64%</td><td>−43.19%</td></tr>
-        </tbody></table></div>
+      <p>CLEAR와 TRACE 모두에서 평가기간에 공시 후보가 확인된 종목은 삼성전자, SK하이닉스, 삼성중공업, HD현대중공업, 현대건설, 삼성물산, 삼성전기였다. 각 종목에 같은 초기 자본을 배정하고, EC2에서 산출한 비용 후 종목별 수익률의 산술평균을 구하였다. 평가 기간은 39거래일이며 왕복 비용 20bp를 적용하였다.</p>
+      <div class="table-scroll" role="region" aria-label="공통 후보 7종목 성과" tabindex="0"><table>
+        <caption>공통 후보 7종목의 합산 순수익률</caption>
+        <thead><tr><th scope="col">전략</th><th scope="col">합산 순수익률</th></tr></thead><tbody>
+<tr><th scope="row">TRACE</th><td>−1.92%</td></tr>
+<tr><th scope="row">CLEAR</th><td>−4.12%</td></tr>
+<tr><th scope="row">20거래일 가격 추세</th><td>−4.81%</td></tr>
+<tr><th scope="row">공급 방향·제품군 확인</th><td>−7.19%</td></tr>
+<tr><th scope="row">20일 이동평균</th><td>−10.22%</td></tr>
+<tr><th scope="row">원문 구매자만 확인</th><td>−15.95%</td></tr>
+<tr><th scope="row">양방향 계약 경로</th><td>−17.41%</td></tr>
+<tr><th scope="row">5일 평균회귀</th><td>−30.46%</td></tr>
+<tr><th scope="row">매수 후 보유</th><td>−38.64%</td></tr>
+</tbody></table></div>
       <p>공통 후보 표본에서는 TRACE, CLEAR, 가격 추세 순으로 손실 폭이 작았다. CLEAR는 같은 체결 규칙을 적용한 원문 구매자 기준보다 순수익률이 높았다. 공통 후보 표본과 CLEAR의 최종 필터는 평가 자료를 본 뒤 정하였다.</p>
-      <h3>5.2 공시가 주문을 바꾼 네 사례</h3>
-      <p>공통 후보 표본에서는 삼성전자와 SK하이닉스의 CLEAR 매수 결과가 서로 달랐고, 삼성전기에서는 TRACE의 조기 매도가 수익률 차이를 만들었다. 각 도해의 손익은 해당 신호를 제거한 경우와 비교하였다. 파두는 TRACE에만 공시 후보가 있었으며, 최초 10종목에서 확인한 별도 사례로 제시한다.</p>
+      <h3>5.2 공시가 주문을 바꾼 세 사례</h3>
+      <p>공통 후보 표본에서는 삼성전자와 SK하이닉스의 CLEAR 매수 결과가 서로 달랐고, 삼성전기에서는 TRACE의 조기 매도가 수익률 차이를 만들었다. 각 도해의 손익은 해당 신호를 제거한 경우와 비교하였다.</p>
       <p><strong>삼성전자 · CLEAR의 추가 진입이 손실을 키웠다.</strong> CLEAR는 일성건설에서 기존 평택 건설계약을 거쳐 삼성전자에 이르는 경로를 확인하였다. 기존 계약이 새 공시 전에 공개돼 유효했고, 공급 방향·제품군과 구매자가 일치하였다. 이 검사를 통과한 온양 복지동 공시는 신규 계약이어서 +1을 받았다. 11월 25일 시가에 5거래일 신호 합계는 +1, 가격 추세는 0이었다. CLEAR는 양의 신호를 우선해 목표를 현금에서 주식으로 바꾸었다. 시가 178,500원에 매수했고, 26일 평가 종료 규칙에 따라 종가 171,500원에 청산하였다. 이 공시의 신호를 빼면 비용 후 종목 수익률은 −6.64%에서 −2.63%로 바뀐다. TRACE는 이 종목에서 가격 추세와 같은 주문을 냈다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124800494">일성건설 공시</a></p>
       <figure class="dataset-figure decision-case">
         <ol class="decision-flow">
@@ -148,20 +147,10 @@
         </ol>
         <figcaption>사례 3. 삼성전기 · TRACE의 공시 경로와 주문.</figcaption>
       </figure>
-      <p><strong>파두 · TRACE가 10월 14일까지의 하락 노출을 줄였다.</strong> TRACE는 10월 8일 기업용 SSD 컨트롤러 공급계약의 종료일 정정에서 파두 → 공급사의 정정 사건 → 원문 공시 경로를 찾았다. 이 경로가 나온 학습 표본 7개 중 5개가 하락해, 하락 규칙의 신뢰도는 71.4%였다. 평가에서 정정 공시의 접수번호까지 연결되자 −1을 반영하였다. 다음 거래일인 12일 시가에 5거래일 신호 합계는 −1, 가격 추세는 1이었다. TRACE는 보유 상태를 현금으로 바꿔 81,000원에 매도하였다. CLEAR와 가격 추세는 14일 시가 71,800원에 매도하였다. 해당 신호를 빼면 TRACE의 종목 수익률은 −1.30%에서 −12.51%로 낮아진다. 하락 신호는 학습 표본의 경로 규칙에서 나왔으며, 공시 자체가 가격 하락을 일으켰다는 뜻은 아닙니다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261008900573">파두 정정 공시</a></p>
-      <figure class="dataset-figure decision-case">
-        <ol class="decision-flow">
-          <li><strong>사용한 지식그래프</strong><span>파두 → 공급사의 계약 정정 사건 → SSD 컨트롤러 원문 공시</span></li>
-          <li><strong>신호 판정</strong><span>학습 표본 5/7 하락 → 신뢰도 71.4% → −1</span></li>
-          <li><strong>주문 변화</strong><span>10월 12일 81,000원 매도 → 가격 추세는 14일 71,800원 매도</span></li>
-          <li class="decision-gain"><strong>비용 후 손익 차이</strong><span>조기 매도로 종목 수익률 11.21%p 증가</span></li>
-        </ol>
-        <figcaption>사례 4. 파두 · TRACE의 공시 경로와 주문.</figcaption>
-      </figure>
       <h3>5.3 공시 채택과 주문 변화</h3>
       <p>후보와 채택은 종목·반영 거래일·접수번호 조합으로 집계하였다. CLEAR의 후보는 원문에 구매자가 명시되고 부호가 0이 아닌 공시이며, 채택은 기존 유효 계약 조건까지 충족한 경우이다. TRACE의 후보는 해당 시점의 그래프에서 세 관계 이내로 닿는 접수번호이며, 채택은 방향이 선택된 규칙의 반환 근거에 포함된 경우이다. 두 후보군의 범위가 달라 채택률을 직접 비교하기는 어렵다.</p>
       <p>신규 신호일은 채택 공시가 처음 반영된 종목·거래일이다. 활성 신호일은 최근 5거래일 합계가 0이 아닌 날이다. 주문은 날짜·체결 구간·매수 또는 매도를 대조하였다. CLEAR는 원문 구매자만 확인한 전략, TRACE는 가격 추세와 비교하였다. 시점이나 방향이 바뀐 주문은 기존 주문 제외와 새 주문 추가로 각각 센다. 마지막 종가 청산도 포함하였다.</p>
-      <p>후보·채택·신호·주문 차이가 모두 0인 전략·종목 행은 표에서 제외하였다. CLEAR는 한화오션·파두·대우건설에서 후보가 없어 가격 추세를 그대로 따랐다. 주문 차이가 없어도 후보를 검토했거나 신호를 반영한 행은 남겼다.</p>
+      <p>집계는 두 전략 모두 공시 후보가 확인된 7종목을 대상으로 하였다. 주문이 달라지지 않은 경우에도 공시 후보와 채택 여부를 표시하였다.</p>
       <div class="table-scroll" role="region" aria-label="종목별 공시와 주문 비교" tabindex="0"><table>
         <caption>EC2 공시·신호·주문 집계</caption>
         <thead><tr><th scope="col">전략 · 종목</th><th scope="col">공시 후보</th><th scope="col">채택 공시</th><th scope="col">신규 신호일</th><th scope="col">활성 신호일</th><th scope="col">추가 주문</th><th scope="col">제외 주문</th></tr></thead>
@@ -177,90 +166,69 @@
 <tr><th scope="row">TRACE · 삼성전자</th><td>20</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · SK하이닉스</th><td>12</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · 삼성중공업</th><td>9</td><td>2</td><td>2</td><td>10</td><td>0</td><td>0</td></tr>
-<tr><th scope="row">TRACE · 한화오션</th><td>6</td><td>2</td><td>2</td><td>10</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · HD현대중공업</th><td>7</td><td>4</td><td>4</td><td>14</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · 현대건설</th><td>10</td><td>2</td><td>2</td><td>6</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · 삼성물산</th><td>5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><th scope="row">TRACE · 삼성전기</th><td>4</td><td>3</td><td>3</td><td>15</td><td>1</td><td>1</td></tr>
-<tr><th scope="row">TRACE · 파두</th><td>4</td><td>4</td><td>4</td><td>17</td><td>1</td><td>1</td></tr>
-<tr><th scope="row">TRACE · 대우건설</th><td>5</td><td>5</td><td>4</td><td>16</td><td>0</td><td>0</td></tr>
-<tr><th scope="row">TRACE · 합계</th><td>82</td><td>22</td><td>21</td><td>88</td><td>2</td><td>2</td></tr>
+<tr><th scope="row">TRACE · 합계</th><td>67</td><td>11</td><td>11</td><td>45</td><td>1</td><td>1</td></tr>
         </tbody></table></div>
       <p>기존 계약을 확인하는 조건의 역할은 원문 구매자 기준과 CLEAR를 비교하여 살펴보았다. 두 전략에는 같은 가격과 주문 규칙을 적용하였다. 기존 유효 계약을 확인하는 조건을 더하자 보유 상태가 달라진 날은 삼성전자 23일, SK하이닉스 11일이었다. 가격 추세와 비교하면 CLEAR의 순수익률은 삼성전자에서 4.00%p 낮고 SK하이닉스에서 8.87%p 높았다. 두 종목에서 CLEAR의 수익률 차이는 반대 방향으로 나타났다.</p>
-      <p>TRACE는 학습 표본 197개 종목·일에서 공급사 신규 계약과 정정 공시 경로 두 개를 채택하였다. 두 규칙 모두 하락을 가리켰다. 평가 중 공시 후보가 있었던 72개 종목·일에서 21개 신호를 반영하였다. 거래 상대를 거치는 경로는 채택되지 않았다.</p>
-      <p>공통 주문 규칙을 적용한 TRACE 변형의 순수익률은 −2.20%, 최대 낙폭은 −4.05%였다. 27종목·일을 보유해 공급계약 그래프 매매 전략보다 주식 노출이 적었다. 가격 추세와의 종목별 수익률 차이는 삼성전기와 파두에서만 나타났다. 이 기간의 결과로 TRACE의 거래 상대 탐색 효과를 판단하기는 어렵다.</p>
-      <p>10종목 합산에서 계약 그래프를 추가한 전략의 손실은 매수 후 보유보다 38.33%p, 가격 추세보다 0.49%p, 원문 구매자만 확인한 전략보다 8.29%p 작았다. 평가 구간을 본 뒤 규칙을 정했으므로 이 차이는 탐색 결과이다.</p>
+      <p>TRACE 규칙은 최초 학습 표본에서 추출하였다. 채택한 두 규칙은 공급사의 신규 계약과 정정 공시를 근거로 하락을 분류하였다. 평가에서 거래 상대를 거치는 규칙은 채택되지 않았다.</p>
+      <p>공통 후보 7종목에서 TRACE와 가격 추세의 종목별 수익률 차이는 삼성전기에서 발생하였다. 이 결과로 거래 상대 탐색의 효과를 추정하기는 어렵다.</p>
       <h3 id="stock-attribution">5.4 종목별 손익 기여</h3>
-      <p>10종목의 일별 주문을 다시 재생해 성과표와 일치하는지 확인하였다. 그다음 공시 신호를 뺀 경우와 실제 전략을 같은 시가·종가와 비용으로 비교하였다. CLEAR에서는 지정한 공시의 부호를 제거하였다. TRACE에서는 이미 판정한 방향을 고정하고, 지정한 공시를 제거한 뒤 반환된 근거가 하나도 남지 않은 날의 신호를 제거하였다. 이 비교는 관측된 신호의 주문 기여를 측정한다. 규칙을 다시 학습하거나 대체 경로를 재탐색하는 효과는 포함하지 않는다.</p>
-      <p>초기 배분이 같고 종목 계정끼리 자금을 옮기지 않았으므로, 종목 <var>i</var>의 합산 기여는 TRACE와 CLEAR의 종목별 순수익률 차이를 10으로 나눈 값이다. 보유 차이 일수는 각 전략이 가격 추세와 다른 목표 보유 상태를 정한 거래일 수이다. 아래 표에는 최초 10종목 가운데 두 전략 중 하나라도 가격 추세와 보유 판단이 달라진 5종목을 제시하였다. 합산 기여의 분모는 최초 표본의 10종목이다.</p>
+      <p>일별 주문을 재생하여 종목별 수익률과 일치하는지 확인하였다. 그다음 공시 신호를 뺀 경우와 실제 전략을 같은 시가·종가와 비용으로 비교하였다. CLEAR에서는 지정한 공시의 부호를 제거하였다. TRACE에서는 이미 판정한 방향을 고정하고, 지정한 공시를 제거한 뒤 반환된 근거가 하나도 남지 않은 날의 신호를 제거하였다. 이 비교는 관측된 신호의 주문 기여를 측정한다. 규칙을 다시 학습하거나 대체 경로를 재탐색하는 효과는 포함하지 않는다.</p>
+      <p>각 종목이 합산 수익률 차이에 기여한 값은 TRACE와 CLEAR의 종목별 순수익률 차이를 7로 나누어 계산하였다. 표에는 두 전략 중 하나라도 가격 추세와 보유 판단이 달라진 종목을 제시하였다.</p>
       <div class="table-scroll" role="region" aria-label="종목별 수익률 기여" tabindex="0"><table>
         <caption>종목별 순수익률과 TRACE−CLEAR 합산 차이 기여도</caption>
         <thead><tr><th scope="col">종목</th><th scope="col">가격 추세</th><th scope="col">CLEAR</th><th scope="col">TRACE</th><th scope="col">CLEAR 보유 차이 일수</th><th scope="col">TRACE 보유 차이 일수</th><th scope="col">합산 기여</th></tr></thead>
         <tbody>
-          <tr><th scope="row">삼성전자</th><td>−2.63%</td><td>−6.64%</td><td>−2.63%</td><td>2</td><td>0</td><td>+0.40%p</td></tr>
-          <tr><th scope="row">SK하이닉스</th><td>−12.75%</td><td>−3.88%</td><td>−12.75%</td><td>5</td><td>0</td><td>−0.89%p</td></tr>
-          <tr><th scope="row">삼성물산</th><td>−7.08%</td><td>−7.08%</td><td>−7.08%</td><td>4</td><td>0</td><td>0.00%p</td></tr>
-          <tr><th scope="row">삼성전기</th><td>−8.41%</td><td>−8.41%</td><td>+11.82%</td><td>0</td><td>4</td><td>+2.02%p</td></tr>
-          <tr><th scope="row">파두</th><td>−12.51%</td><td>−12.51%</td><td>−1.30%</td><td>0</td><td>2</td><td>+1.12%p</td></tr>
+<tr><th scope="row">삼성전자</th><td>−2.63%</td><td>−6.64%</td><td>−2.63%</td><td>2</td><td>0</td><td>+0.57%p</td></tr>
+<tr><th scope="row">SK하이닉스</th><td>−12.75%</td><td>−3.88%</td><td>−12.75%</td><td>5</td><td>0</td><td>−1.27%p</td></tr>
+<tr><th scope="row">삼성물산</th><td>−7.08%</td><td>−7.08%</td><td>−7.08%</td><td>4</td><td>0</td><td>0.00%p</td></tr>
+<tr><th scope="row">삼성전기</th><td>−8.41%</td><td>−8.41%</td><td>11.82%</td><td>0</td><td>4</td><td>+2.89%p</td></tr>
         </tbody></table></div>
-      <p>최초 10종목에서 TRACE는 CLEAR보다 2.66%p 높았다. 삼성전기 +2.02%p와 파두 +1.12%p가 주된 기여였고, SK하이닉스의 CLEAR 수익은 격차를 0.89%p 줄였다. 삼성전자는 TRACE에 +0.40%p를 보탰다. 삼성물산의 차이는 0.001%p 미만이었다.</p>
+      <p>공통 후보 7종목에서 TRACE와 CLEAR의 합산 차이는 +2.19%p였다. 삼성전기의 조기 매도가 가장 크게 기여하였고, SK하이닉스에서 CLEAR가 거둔 성과는 격차를 줄였다.</p>
     </section>
     <section aria-labelledby="samples">
-      <h2 id="samples">6. 최초 10종목의 상세 결과와 원문 근거</h2>
-      <h3>최초 실행 표본의 위험과 거래 지표</h3>
-      <p>아래 샤프비율, 최대 낙폭, 변동성은 최초 10종목의 일별 포트폴리오로 계산한 값이다.</p>
-      <div class="table-scroll" role="region" aria-label="10종목 합산 성과" tabindex="0">
-        <table><caption>참고 · 최초 EC2 실행 10종목의 성과와 위험 지표</caption>
-          <thead><tr><th scope="col">전략</th><th scope="col">순수익률</th><th scope="col">샤프비율</th><th scope="col">최대 낙폭</th><th scope="col">연환산 변동성</th><th scope="col">보유 종목·일</th><th scope="col">주문</th></tr></thead>
-          <tbody>
-        <tr><th scope="row">TRACE</th><td>−2.20%</td><td>−2.05</td><td>−4.05%</td><td>6.89%</td><td>27</td><td>18</td></tr>
-        <tr><th scope="row">CLEAR</th><td>−4.86%</td><td>−2.97</td><td>−7.14%</td><td>10.63%</td><td>44</td><td>24</td></tr>
-        <tr><th scope="row">20거래일 가격 추세</th><td>−5.35%</td><td>−3.86</td><td>−7.13%</td><td>9.08%</td><td>33</td><td>18</td></tr>
-        <tr><th scope="row">공급 방향·제품군 확인</th><td>−7.01%</td><td>−3.42</td><td>−9.25%</td><td>13.46%</td><td>64</td><td>28</td></tr>
-        <tr><th scope="row">20일 이동평균</th><td>−8.40%</td><td>−4.59</td><td>−10.39%</td><td>12.18%</td><td>34</td><td>20</td></tr>
-        <tr><th scope="row">원문 구매자만 확인</th><td>−13.15%</td><td>−3.98</td><td>−15.84%</td><td>22.24%</td><td>135</td><td>52</td></tr>
-        <tr><th scope="row">양방향 계약 경로</th><td>−16.02%</td><td>−4.88</td><td>−18.62%</td><td>22.56%</td><td>137</td><td>48</td></tr>
-        <tr><th scope="row">5일 평균회귀</th><td>−34.97%</td><td>−4.55</td><td>−36.09%</td><td>57.16%</td><td>306</td><td>84</td></tr>
-        <tr><th scope="row">매수 후 보유</th><td>−43.19%</td><td>−4.89</td><td>−45.34%</td><td>69.34%</td><td>390</td><td>20</td></tr>
-          </tbody>
-        </table>
+      <h2 id="samples">6. 공통 후보 7종목 상세 결과와 원문 근거</h2>
+      <div class="table-scroll" role="region" aria-label="공통 후보 7종목의 전략별 순수익률" tabindex="0">
+        <table><caption>전략별 종목 순수익률 · 공통 후보 7종목</caption><thead><tr><th scope="col">전략</th><th scope="col">삼성전자</th><th scope="col">SK하이닉스</th><th scope="col">삼성중공업</th><th scope="col">HD현대중공업</th><th scope="col">현대건설</th><th scope="col">삼성물산</th><th scope="col">삼성전기</th></tr></thead><tbody>
+<tr><th scope="row">TRACE</th><td>−2.63%</td><td>−12.75%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>11.82%</td></tr>
+<tr><th scope="row">CLEAR</th><td>−6.64%</td><td>−3.88%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td></tr>
+<tr><th scope="row">20거래일 가격 추세</th><td>−2.63%</td><td>−12.75%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td></tr>
+<tr><th scope="row">공급 방향·제품군 확인</th><td>−16.19%</td><td>−3.88%</td><td>−11.97%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td></tr>
+<tr><th scope="row">20일 이동평균</th><td>−9.88%</td><td>−22.99%</td><td>−9.82%</td><td>0.00%</td><td>0.00%</td><td>−20.40%</td><td>−8.41%</td></tr>
+<tr><th scope="row">원문 구매자만 확인</th><td>−41.80%</td><td>−12.25%</td><td>−4.99%</td><td>−9.25%</td><td>−24.43%</td><td>−7.00%</td><td>−11.96%</td></tr>
+<tr><th scope="row">양방향 계약 경로</th><td>−23.69%</td><td>−32.70%</td><td>−16.36%</td><td>−2.18%</td><td>−15.53%</td><td>−22.99%</td><td>−8.41%</td></tr>
+<tr><th scope="row">5일 평균회귀</th><td>−31.86%</td><td>−31.42%</td><td>−15.25%</td><td>−35.37%</td><td>−39.21%</td><td>−29.94%</td><td>−30.15%</td></tr>
+<tr><th scope="row">매수 후 보유</th><td>−35.78%</td><td>−40.24%</td><td>−29.25%</td><td>−44.81%</td><td>−44.91%</td><td>−27.87%</td><td>−47.60%</td></tr>
+</tbody></table>
       </div>
-      <p>샤프비율과 변동성은 일별 순수익률을 연 252거래일 기준으로 환산하였다. 샤프비율의 무위험수익률은 0이다. 보유 종목·일은 주식을 보유한 날의 종목별 합계이며, 매수와 매도를 각각 한 주문으로 집계하였다.</p>
-      <figure class="dataset-figure"><ul class="return-bars" aria-label="전략별 비용 후 누적수익률"><li><span>매수 후 보유</span><div class="track"><i style="width:86.371%"></i></div><strong>−43.19%</strong></li>
-<li><span>20거래일 가격 추세</span><div class="track"><i style="width:10.695%"></i></div><strong>−5.35%</strong></li>
-<li><span>20일 이동평균</span><div class="track"><i style="width:16.804%"></i></div><strong>−8.40%</strong></li>
-<li><span>5일 평균회귀</span><div class="track"><i style="width:69.950%"></i></div><strong>−34.97%</strong></li>
-<li><span>원문 구매자만</span><div class="track"><i style="width:26.292%"></i></div><strong>−13.15%</strong></li>
-<li><span>양방향 계약 경로</span><div class="track"><i style="width:32.048%"></i></div><strong>−16.02%</strong></li>
-<li><span>방향·제품군 계약 경로</span><div class="track"><i style="width:14.026%"></i></div><strong>−7.01%</strong></li>
-<li><span>CLEAR</span><div class="track"><i style="width:9.722%"></i></div><strong>−4.86%</strong></li>
-<li><span>TRACE</span><div class="track"><i style="width:4.408%"></i></div><strong>−2.20%</strong></li>
-</ul><figcaption>최초 10종목의 비용 후 누적수익률. 가로 척도는 왼쪽 −50%, 오른쪽 0%이다.</figcaption></figure>
-      <div class="table-scroll" role="region" aria-label="전략별 수익률 비교" tabindex="0"><table><caption>참고 · 최초 EC2 실행 10종목의 종목별 순수익률</caption><thead><tr><th scope="col">전략</th><th scope="col">삼성전자</th><th scope="col">SK하이닉스</th><th scope="col">삼성중공업</th><th scope="col">한화오션</th><th scope="col">HD현대중공업</th><th scope="col">현대건설</th><th scope="col">삼성물산</th><th scope="col">삼성전기</th><th scope="col">파두</th><th scope="col">대우건설</th></tr></thead><tbody>
-<tr><th scope="row">매수 후 보유</th><td>−35.78%</td><td>−40.24%</td><td>−29.25%</td><td>−47.50%</td><td>−44.81%</td><td>−44.91%</td><td>−27.87%</td><td>−47.60%</td><td>−68.01%</td><td>−45.88%</td></tr>
-<tr><th scope="row">20거래일 가격 추세</th><td>−2.63%</td><td>−12.75%</td><td>0.00%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td><td>−12.51%</td><td>−7.28%</td></tr>
-<tr><th scope="row">20일 이동평균</th><td>−9.88%</td><td>−22.99%</td><td>−9.82%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>−20.40%</td><td>−8.41%</td><td>−12.51%</td><td>0.00%</td></tr>
-<tr><th scope="row">5일 평균회귀</th><td>−31.86%</td><td>−31.42%</td><td>−15.25%</td><td>−33.19%</td><td>−35.37%</td><td>−39.21%</td><td>−29.94%</td><td>−30.15%</td><td>−60.67%</td><td>−42.69%</td></tr>
-<tr><th scope="row">원문 구매자만</th><td>−41.80%</td><td>−12.25%</td><td>−4.99%</td><td>0.00%</td><td>−9.25%</td><td>−24.43%</td><td>−7.00%</td><td>−11.96%</td><td>−12.51%</td><td>−7.28%</td></tr>
-<tr><th scope="row">양방향 계약 경로</th><td>−23.69%</td><td>−32.70%</td><td>−16.36%</td><td>−18.60%</td><td>−2.18%</td><td>−15.53%</td><td>−22.99%</td><td>−8.41%</td><td>−12.51%</td><td>−7.28%</td></tr>
-<tr><th scope="row">방향·제품군 계약 경로</th><td>−16.19%</td><td>−3.88%</td><td>−11.97%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td><td>−12.51%</td><td>−7.28%</td></tr>
-<tr><th scope="row">CLEAR</th><td>−6.64%</td><td>−3.88%</td><td>0.00%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>−8.41%</td><td>−12.51%</td><td>−7.28%</td></tr>
-<tr><th scope="row">TRACE</th><td>−2.63%</td><td>−12.75%</td><td>0.00%</td><td>0.00%</td><td>−2.18%</td><td>−0.63%</td><td>−7.08%</td><td>11.82%</td><td>−1.30%</td><td>−7.28%</td></tr>
-</tbody></table></div>
+      <figure class="dataset-figure"><ul class="return-bars" aria-label="공통 후보 7종목의 합산 수익률">
+<li><span>TRACE</span><div class="track"><i style="width:4.800%"></i></div><strong>−1.92%</strong></li>
+<li><span>CLEAR</span><div class="track"><i style="width:10.300%"></i></div><strong>−4.12%</strong></li>
+<li><span>20거래일 가격 추세</span><div class="track"><i style="width:12.025%"></i></div><strong>−4.81%</strong></li>
+<li><span>공급 방향·제품군 확인</span><div class="track"><i style="width:17.975%"></i></div><strong>−7.19%</strong></li>
+<li><span>20일 이동평균</span><div class="track"><i style="width:25.550%"></i></div><strong>−10.22%</strong></li>
+<li><span>원문 구매자만 확인</span><div class="track"><i style="width:39.875%"></i></div><strong>−15.95%</strong></li>
+<li><span>양방향 계약 경로</span><div class="track"><i style="width:43.525%"></i></div><strong>−17.41%</strong></li>
+<li><span>5일 평균회귀</span><div class="track"><i style="width:76.150%"></i></div><strong>−30.46%</strong></li>
+<li><span>매수 후 보유</span><div class="track"><i style="width:96.600%"></i></div><strong>−38.64%</strong></li>
+      </ul><figcaption>공통 후보 7종목의 비용 후 누적수익률. 가로 척도는 왼쪽 −40%, 오른쪽 0%이다.</figcaption></figure>
       <h3>구매자 불일치로 제외된 공시</h3>
       <p>코오롱글로벌의 새 공사는 기존 삼성전자 계약과 제품군이 같았다. 방향·제품군 기준은 이를 삼성전자 신호에 포함했으나, CLEAR는 새 공시의 구매자가 금호타이어라는 이유로 제외하였다.</p>
       <div class="table-scroll" role="region" aria-label="구매자 불일치 사례" tabindex="0">
         <table><caption>삼성전자 신호에서 제외한 공시</caption><thead><tr><th scope="col">대상 / 공급사</th><th scope="col">기존 계약</th><th scope="col">새 공시의 구매자</th><th scope="col">판정</th></tr></thead><tbody><tr><th scope="row">삼성전자 / 코오롱글로벌</th><td>평택 공사<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260709800093">20260709800093</a></td><td>금호타이어 · 함평 공장<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026800503">20261026800503</a></td><td>방향·제품군 규칙에서는 10월 27일 시가 222,000원 삼성전자 매수. 최종 규칙은 구매자 불일치로 이 공시를 삼성전자 신호에서 제외.</td></tr></tbody></table></div>
       <p>채택 사례의 기존 계약 근거는 <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706800182">일성건설 평택2단지 부대동 건축·통신공사</a>와 <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110800268">케이씨텍 반도체 제조장비 계약</a>이다.</p>
       <figure class="dataset-figure"><div class="graph-path"><span>케이씨텍<br><small>공급사</small></span><b aria-label="공급자 역할">→</b><span>반도체 제조장비 계약<br><small>20261110800268<br>2026-11-09~2027-04-01</small></span><b aria-label="구매자 역할">→</b><span>SK하이닉스<br><small>구매자 · 000660</small></span></div><figcaption>기존 계약의 서브그래프. 계약 노드의 품목, 유효 기간과 원문 접수번호를 새 공시의 경로 검사에 사용한다.</figcaption></figure>
-      <p><a download href="main-orders.csv">10종목·9전략 본실험 주문 원장</a></p>
+      <p><a download href="main-orders.csv">최초 실행의 재현용 주문 원장</a></p>
     </section>
     <section aria-labelledby="limitations">
       <h2 id="limitations">7. 논의와 한계</h2>
-      <p>주식을 보유한 종목·거래일은 매수 후 보유에서 390개, 최종 경로 전략에서 44개였다. 하락장에 주식을 덜 들고 있었던 만큼 손실 폭에도 그 영향이 반영되었다. 가격 추세 전략은 33종목·일만 보유했지만 손실은 최종 경로 전략보다 컸다. 주식을 얼마나 오래 보유했는지와 언제 진입했는지를 함께 살펴야 한다. 이 평가 결과에서 계약 경로만의 효과를 따로 추정하기는 어렵다.</p>
+      <p>하락장에서는 주식을 보유한 기간이 짧아져도 손실 폭이 줄 수 있다. 공시가 주문을 바꾼 시점은 원장으로 확인하였으나, 이 표본에서 계약 경로의 효과와 보유 기간의 효과를 분리하여 추정하기는 어렵다.</p>
       <ul>
-        <li>최종 구매자 검사는 같은 테스트 기간의 사례를 검토한 후 추가하였다. 10종목에서 얻은 탐색 결과이며 새 기간에 규칙을 고정해 재검증해야 한다. 이 글의 백테스트는 공급계약 그래프를 대상으로 하며, 지분·지배권 및 LPG·OWL 네 조건 평가는 별도 실험이다.</li>
-        <li>평가 기간은 39거래일이다. 이 구간의 수익률과 연환산 샤프비율은 장기 성과를 판단하기에는 표본이 짧다.</li>
+        <li>최종 구매자 검사는 같은 테스트 기간의 사례를 검토한 후 추가하였다. 7종목 비교는 탐색적 분석이며 새 기간에 규칙을 고정해 재검증해야 한다. 이 글의 백테스트는 공급계약 그래프를 대상으로 하며, 지분·지배권 및 LPG·OWL 네 조건 평가는 별도 실험이다.</li>
+        <li>평가 기간은 39거래일이다. 이 구간의 수익률은 장기 성과를 판단하기에는 표본이 짧다.</li>
         <li>공시 유형과 공개된 국내 상장 구매자에 따라 그래프의 범위가 달라진다. 거래할 수 있는 모든 한국 종목의 무조건적 성과로 일반화하기 어렵다.</li>
         <li>가격 소스의 수정주가 처리 및 실제 시가·종가 체결을 독립 검증하지 않았다. 공시 목록은 일 단위로 사용했고, 일별 선후관계를 보수적으로 처리하였다.</li>
       </ul>
@@ -272,7 +240,7 @@
       <p>EC2에서 그래프와 두 시세 폴더를 고정한 뒤 아래 명령으로 9개 전략을 실행하였다. <code>GRAPH</code>는 Neo4j에서 내보낸 JSON, <code>ARCHIVE</code>와 <code>LATER</code>는 보관 일봉과 추가 일봉의 폴더이다. 결과 JSON에 그래프·시세·실행 코드의 SHA-256을 기록하였다.</p>
       <pre><code>PYTHONPATH=src python3 scripts/audit_disclosure_backtest.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$OUTPUT"</code></pre>
-      <p><a href="main-orders.csv" download>본실험 주문 원장 312행</a> · <a href="filing-audit.csv" download>공시 후보와 채택 원장 110행</a> · <a href="audit-summary.json" download>성과·TRACE 규칙·스냅샷 해시</a></p>
+      <p><a href="main-orders.csv" download>최초 실행 주문 원장 312행</a> · <a href="filing-audit.csv" download>공시 후보와 채택 원장 110행</a> · <a href="audit-summary.json" download>최초 실행 결과·TRACE 규칙·스냅샷 해시</a></p>
       <p>같은 입력에서 아래 명령을 실행하면 일별 판단과 신호 제거 비교를 재현할 수 있다.</p>
       <pre><code>PYTHONPATH=src python3 scripts/attribute_disclosure_returns.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$OUTPUT"</code></pre>
