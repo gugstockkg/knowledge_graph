@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 407" role="img" aria-labelledby="title description">
+<title id="title">조건별 순수익률</title><desc id="description">매수 후 보유만 양수이며 제목 조건이 통합 조건보다 순수익률이 높았다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#395666"/></marker></defs>
+<rect x="1" y="1" width="898" height="405" rx="16" fill="#f7fbfc" stroke="#bdd1d8"/>
+<g font-family="system-ui, Apple SD Gothic Neo, sans-serif" fill="#173642">
+<text x="450" y="35" text-anchor="middle" font-size="24" font-weight="700">7개 조건의 비용 후 순수익률</text>
+<text x="556" y="68" text-anchor="middle" font-size="15" font-weight="400">0%</text>
+<path d="M556 78V377" stroke="#3e5a63" stroke-width="1.5"/><text x="28" y="115" text-anchor="start" font-size="17" font-weight="650">매수 후 보유</text>
+<rect x="556.00" y="96" width="170.74" height="25" rx="5" fill="#278367"/><text x="736.7410985200996" y="115" text-anchor="start" font-size="17" font-weight="700">+2.75%</text>
+<text x="28" y="158" text-anchor="start" font-size="17" font-weight="650">CLEAR 기존</text>
+<rect x="332.24" y="139" width="223.76" height="25" rx="5" fill="#ad5c48"/><text x="322.23770885316173" y="158" text-anchor="end" font-size="17" font-weight="700">-3.61%</text>
+<text x="28" y="201" text-anchor="start" font-size="17" font-weight="650">CLEAR 제목</text>
+<rect x="373.61" y="182" width="182.39" height="25" rx="5" fill="#ad5c48"/><text x="363.61145168552486" y="201" text-anchor="end" font-size="17" font-weight="700">-2.94%</text>
+<text x="28" y="244" text-anchor="start" font-size="17" font-weight="650">CLEAR 통합</text>
+<rect x="330.92" y="225" width="225.08" height="25" rx="5" fill="#ad5c48"/><text x="320.91581865368363" y="244" text-anchor="end" font-size="17" font-weight="700">-3.63%</text>
+<text x="28" y="287" text-anchor="start" font-size="17" font-weight="650">TRACE 기존</text>
+<rect x="331.50" y="268" width="224.50" height="25" rx="5" fill="#ad5c48"/><text x="321.50261364702146" y="287" text-anchor="end" font-size="17" font-weight="700">-3.62%</text>
+<text x="28" y="330" text-anchor="start" font-size="17" font-weight="650">TRACE 제목</text>
+<rect x="369.08" y="311" width="186.92" height="25" rx="5" fill="#ad5c48"/><text x="359.0761509723899" y="330" text-anchor="end" font-size="17" font-weight="700">-3.01%</text>
+<text x="28" y="373" text-anchor="start" font-size="17" font-weight="650">TRACE 통합</text>
+<rect x="330.29" y="354" width="225.71" height="25" rx="5" fill="#ad5c48"/><text x="320.2885695240026" y="373" text-anchor="end" font-size="17" font-weight="700">-3.64%</text>
+</g></svg>

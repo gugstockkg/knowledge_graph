@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 372" role="img" aria-labelledby="title description">
+<title id="title">엑시온그룹 주문과 두 그래프</title><desc id="description">가격 추세가 낸 기존 매수 후보에서 지배권 RDF의 원문과 OWL 유형을 조회하여 매수를 미뤘다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#395666"/></marker></defs>
+<rect x="1" y="1" width="898" height="370" rx="16" fill="#f7fbfc" stroke="#bdd1d8"/>
+<g font-family="system-ui, Apple SD Gothic Neo, sans-serif" fill="#173642">
+<text x="450" y="34" text-anchor="middle" font-size="24" font-weight="700">공급계약 신호와 지배권 사건이 만나는 주문 단계</text>
+<rect x="30" y="65" width="385" height="64" fill="#e1eefb" rx="11" stroke="#7ba3ad"/><text x="222.5" y="93" text-anchor="middle" font-size="18" font-weight="700">경제 사건 LPG</text>
+<text x="222.5" y="114" text-anchor="middle" font-size="15" font-weight="400">공급계약 · CLEAR 조건 / TRACE 경로</text>
+<rect x="485" y="65" width="385" height="64" fill="#e0f3ed" rx="11" stroke="#7ba3ad"/><text x="677.5" y="93" text-anchor="middle" font-size="18" font-weight="700">지배권 RDF</text>
+<text x="677.5" y="114" text-anchor="middle" font-size="15" font-weight="400">20260714900835 · 엑시온그룹 공시</text>
+<rect x="30" y="166" width="385" height="64" fill="#e1eefb" rx="11" stroke="#7ba3ad"/><text x="222.5" y="194" text-anchor="middle" font-size="18" font-weight="700">기존 매수 후보</text>
+<text x="222.5" y="215" text-anchor="middle" font-size="15" font-weight="400">7월 21일 시가 1,602원 · 가격 추세 신호</text>
+<rect x="485" y="166" width="385" height="64" fill="#e0f3ed" rx="11" stroke="#7ba3ad"/><text x="677.5" y="194" text-anchor="middle" font-size="18" font-weight="700">OWL 유형과 원문 근거</text>
+<text x="677.5" y="215" text-anchor="middle" font-size="15" font-weight="400">최대주주 변경 → 지배권 사건 · XML 114·157행</text>
+<path d="M222 129L222 166" stroke="#395666" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M678 129L678 166" stroke="#395666" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M222 230L350 278" stroke="#395666" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M678 230L550 278" stroke="#395666" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="235" y="278" width="430" height="73" fill="#ffeccc" rx="11" stroke="#7ba3ad"/><text x="450.0" y="306" text-anchor="middle" font-size="18" font-weight="700">통합 조건 · 같은 기업 코드로 대조</text>
+<text x="450.0" y="327" text-anchor="middle" font-size="15" font-weight="400">매수 보류 → 7월 22일 시가 1,498원에 매수</text>
+</g></svg>
