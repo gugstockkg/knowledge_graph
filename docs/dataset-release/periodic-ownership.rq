@@ -1,0 +1,12 @@
+PREFIX dart: <urn:fintos:opendart:>
+SELECT ?holder ?role ?openingShares ?closingShares ?openingPercent ?closingPercent ?line WHERE {
+  <urn:fintos:opendart:filing:20261116001715> dart:reportsAssertion ?row .
+  ?row dart:reportedHolderName ?holder ;
+       dart:reportedHolderRole ?role ;
+       dart:openingShareCount ?openingShares ;
+       dart:closingShareCount ?closingShares ;
+       dart:openingOwnershipPercent ?openingPercent ;
+       dart:closingOwnershipPercent ?closingPercent ;
+       dart:supportedBy/dart:line ?line .
+  FILTER (?role = "최대주주")
+}
