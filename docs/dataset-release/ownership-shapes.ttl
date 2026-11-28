@@ -1,0 +1,8 @@
+@prefix kg: <urn:fintos:opendart:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+kg:EvidenceShape a sh:NodeShape ;
+  sh:targetObjectsOf kg:supportedBy ;
+  sh:property [ sh:path kg:line ; sh:minCount 1 ; sh:datatype xsd:integer ] ;
+  sh:property [ sh:path kg:locatedIn ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .

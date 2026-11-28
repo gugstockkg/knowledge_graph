@@ -1,0 +1,9 @@
+PREFIX kg: <urn:fintos:opendart:>
+SELECT DISTINCT ?receipt ?value ?line ?source WHERE {
+  VALUES ?filing { kg:filing:20261028800611 kg:filing:20261029800490 }
+  kg:filing:20261029800490 kg:corrects kg:filing:20261028800611 .
+  ?filing kg:receipt ?receipt ; kg:documentUrl ?source ; kg:reportsAssertion ?claim .
+  ?claim kg:field "ratio" ; kg:phase "after" ; kg:scope "group" ;
+         kg:value ?value ; kg:supportedBy/kg:line ?line .
+}
+ORDER BY ?receipt

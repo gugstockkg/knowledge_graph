@@ -1,0 +1,6 @@
+PREFIX kg: <urn:fintos:opendart:>
+SELECT DISTINCT ?event ?receipt ?source WHERE {
+  ?event a kg:CorporateRestructuring .
+  ?filing kg:reportsEvent ?event ; kg:receipt ?receipt ; kg:documentUrl ?source .
+}
+ORDER BY ?receipt
