@@ -43,8 +43,14 @@
     </section>
     <section aria-labelledby="related">
       <h2 id="related">2. 관련 연구</h2>
-      <p>Ding 등의 TRACE는 과거 그래프에서 규칙을 채굴하고, 빔 탐색으로 근거 경로를 찾은 뒤 텍스트와 대조한다. 부록 A의 탐색 설정은 빔 폭 8, 최대 깊이 3, 가설 문턱 0.60, 근거 5개이다. 논문은 Qwen QwQ-32B로 관계 후보와 근거를 검토한다. 이 글의 공급계약 전략은 사전에 정한 회사 간 1홉 조건으로 공시를 선별한다. <a href="https://arxiv.org/html/2603.12500v1">Ding 외, TRACE (2026), 부록 A·C</a></p>
-      <p>주가 예측 TRACE에서 비교할 절차는 과거 경로의 규칙 채굴, 빔 탐색, 평가 시작일의 종목 선정이다. 이 연구의 계약 경로는 고정 1홉을 검사하고 매 거래일 기존 포지션을 유지하거나 전환한다. 고객–공급사 연결을 통한 정보 전달과 과거 수익률의 부호를 쓰는 시계열 추세를 각각 참고하였다. <a href="https://pages.stern.nyu.edu/~afrazzin/pdf/Economic%20Links%20and%20Predictable%20Returns%20-%20Cohen%20and%20Frazzini.pdf">Cohen·Frazzini, Economic Links and Predictable Returns</a> · <a href="https://research-api.cbs.dk/ws/portalfiles/portal/58851003/time_series_momentum_lasse_heje.pdf">Moskowitz 외, Time Series Momentum</a></p>
+      <h3>2.1 공급계약 공시와 기업 간 정보 전달</h3>
+      <p>공급계약 공시를 매매에 활용하려면 공시를 낸 기업의 주가 반응과 거래 상대에게 전달되는 정보를 구분해야 한다. 우민철과 박수철(2017)은 국내 단일판매·공급계약 공시에서 공시 당일 초과수익률이 양수였고 다음 날에는 반전이 나타났다고 보고하였다. 공시 당일의 반응이 공개 이후에 진입하는 전략에서도 이어지는지는 별도로 검토해야 한다. <a href="https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART002199510">우민철·박수철(2017), 경영연구 32(1), 초록</a></p>
+      <p>Cohen과 Frazzini(2008)는 미국 기업의 주요 고객 공시로 거래 관계를 식별하고, 고객의 전월 수익률을 기준으로 공급기업 포트폴리오를 구성하였다. 고객 주가에 반영된 정보가 공급기업 주가에 지연 반영되는 양상을 보고하였다. 본 연구는 공급사가 낸 계약 공시를 출발점으로, 공시에 명시된 구매자와 당시 유효한 계약을 대조한다. 이 비교의 관측 단위는 월별 고객 수익률이 아니라 공개 시점과 접수번호를 확인할 수 있는 개별 공시이다. <a href="https://pages.stern.nyu.edu/~afrazzin/pdf/Economic%20Links%20and%20Predictable%20Returns%20-%20Cohen%20and%20Frazzini.pdf">Cohen과 Frazzini(2008), Journal of Finance 63(4), II–III절</a></p>
+      <h3>2.2 금융 문서에서 신호와 근거를 얻는 방법</h3>
+      <p>김용석과 조성욱(2019)은 국내 증권발행신고서의 투자위험 문장에 나이브 베이즈 분류를 적용하여 공시의 어조를 측정하였다. 공모가격 변화와 어조 사이에는 관계가 있었으나 상장 직후 수익률과의 유의한 관계는 확인하지 못하였다. 정남주 외(2026)는 삼성전자 관련 뉴스의 영향을 증권사 보고서에 근거해 점수화하고, 금융 변수에 더했을 때 단기 수익률 예측 성능이 개선되었다고 보고하였다. 본 연구에서는 계약 당사자와 정정 내용을 구조화하여 공시가 실제 매수·매도 주문을 바꿨는지, 그 주문의 비용 후 손익이 어떠했는지를 평가한다. <a href="https://www.e-kjfs.org/upload/pdf/kjfs-2019-48-2-215.pdf">김용석·조성욱(2019), 한국증권학회지 48(2)</a> · <a href="https://ask.kips.or.kr/file/downloadSoConfManuscript/abs/KIPS_C2026A0037F">정남주 외(2026), ASK 2026, 3–5절</a></p>
+      <p>Ding 외(2026)의 TRACE는 과거 주가 방향과 함께 나타난 관계 경로를 규칙으로 채굴하고, 공개 시점을 반영한 금융 지식그래프에서 해당 규칙과 일치하는 경로를 빔 탐색으로 찾는다. 논문은 미국 주식에서 방향 예측을 평가하고, 별도 백테스트에서 전략별 상위 10종목을 선정해 보유하였다. 본 연구의 TRACE 구현은 규칙 채굴과 경로 탐색을 OpenDART에 적용한다. 공시 근거는 구조화된 접수번호 연결로 확인하고, CLEAR와 같은 주문 규칙을 사용하여 지정된 종목의 보유 상태를 바꾼다. <a href="https://arxiv.org/pdf/2603.12500v1">Ding 외(2026), TRACE, 3.3–3.5절·5.5절·부록 A와 C</a></p>
+      <h3>2.3 가격 추세와 비교 기준</h3>
+      <p>Moskowitz 외(2012)는 주가지수·통화·상품·채권 선물에서 자산 자체의 과거 수익률과 이후 수익률 사이의 추세 지속을 분석하였다. 대표 전략은 직전 12개월 초과수익률의 부호로 매수·매도 방향을 정한다. 본 연구는 개별 종목의 직전 20거래일 가격 변화로 주식과 현금 사이를 전환하는 기준선을 사용하였다. 매수 후 보유는 하락장에서 시장 노출을 줄였을 때의 차이를 보여주며, 가격 추세는 공시를 반영한 전략과 가격만 사용한 전략을 비교하는 기준이다. <a href="https://research-api.cbs.dk/ws/portalfiles/portal/58851003/time_series_momentum_lasse_heje.pdf">Moskowitz 외(2012), Journal of Financial Economics 104(2), 4절</a></p>
     </section>
 
     <section aria-labelledby="method">
