@@ -15,6 +15,9 @@ concurrency:
   group: github-pages
   cancel-in-progress: false
 
+env:
+  PAGES_ARTIFACT: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+
 jobs:
   publish:
     if: github.ref == 'refs/heads/main'
@@ -28,8 +31,11 @@ jobs:
           persist-credentials: false
       - uses: actions/configure-pages@v5
       - run: python3 scripts/build_research_site.py "${{ runner.temp }}/research-site"
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5.0.0
         with:
+          name: ${{ env.PAGES_ARTIFACT }}
           path: ${{ runner.temp }}/research-site
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5.0.1
         id: deployment
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
