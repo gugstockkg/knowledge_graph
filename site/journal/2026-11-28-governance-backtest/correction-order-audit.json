@@ -1,0 +1,804 @@
+{
+  "controller_filings": 221,
+  "pairs": 22,
+  "screened": [
+    {
+      "receipt": "20260123900531",
+      "original": "20260123900531",
+      "correction": "20260123900849",
+      "symbol": null,
+      "filed": "20260123",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260123900849",
+      "original": "20260123900531",
+      "correction": "20260123900849",
+      "symbol": null,
+      "filed": "20260123",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260129901106",
+      "original": "20260129901106",
+      "correction": "20260130900732",
+      "symbol": null,
+      "filed": "20260129",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260130900732",
+      "original": "20260129901106",
+      "correction": "20260130900732",
+      "symbol": null,
+      "filed": "20260130",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260213901925",
+      "original": "20260213901925",
+      "correction": "20260224901012",
+      "symbol": null,
+      "filed": "20260213",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260224901012",
+      "original": "20260213901925",
+      "correction": "20260224901012",
+      "symbol": null,
+      "filed": "20260224",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260324901691",
+      "original": "20260324901691",
+      "correction": "20260325900570",
+      "symbol": null,
+      "filed": "20260324",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260325900570",
+      "original": "20260324901691",
+      "correction": "20260325900570",
+      "symbol": null,
+      "filed": "20260325",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260407901210",
+      "original": "20260407901210",
+      "correction": "20260408901281",
+      "symbol": null,
+      "filed": "20260407",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260408901281",
+      "original": "20260407901210",
+      "correction": "20260408901281",
+      "symbol": null,
+      "filed": "20260408",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260409901230",
+      "original": "20260409901230",
+      "correction": "20260410901084",
+      "symbol": null,
+      "filed": "20260409",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260410901084",
+      "original": "20260409901230",
+      "correction": "20260410901084",
+      "symbol": null,
+      "filed": "20260410",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260422900860",
+      "original": "20260422900860",
+      "correction": "20260423900428",
+      "symbol": null,
+      "filed": "20260422",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260423900428",
+      "original": "20260422900860",
+      "correction": "20260423900428",
+      "symbol": null,
+      "filed": "20260423",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260422900886",
+      "original": "20260422900886",
+      "correction": "20260424900671",
+      "symbol": "099440",
+      "filed": "20260422",
+      "supply_graph_company": true,
+      "status": "tested",
+      "training": 486,
+      "training_cutoff": "2026-04-15",
+      "window": [
+        "2026-04-16",
+        "2026-05-11"
+      ]
+    },
+    {
+      "receipt": "20260424900671",
+      "original": "20260422900886",
+      "correction": "20260424900671",
+      "symbol": "099440",
+      "filed": "20260424",
+      "supply_graph_company": true,
+      "status": "tested",
+      "training": 501,
+      "training_cutoff": "2026-04-17",
+      "window": [
+        "2026-04-20",
+        "2026-05-13"
+      ]
+    },
+    {
+      "receipt": "20260527800891",
+      "original": "20260527800891",
+      "correction": "20260528800324",
+      "symbol": null,
+      "filed": "20260527",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260528800324",
+      "original": "20260527800891",
+      "correction": "20260528800324",
+      "symbol": null,
+      "filed": "20260528",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260211900817",
+      "original": "20260211900817",
+      "correction": "20260611900370",
+      "symbol": null,
+      "filed": "20260211",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260611900370",
+      "original": "20260211900817",
+      "correction": "20260611900370",
+      "symbol": null,
+      "filed": "20260611",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260604600754",
+      "original": "20260604600754",
+      "correction": "20260616600838",
+      "symbol": null,
+      "filed": "20260604",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260616600838",
+      "original": "20260604600754",
+      "correction": "20260616600838",
+      "symbol": null,
+      "filed": "20260616",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260205901059",
+      "original": "20260205901059",
+      "correction": "20260723901022",
+      "symbol": null,
+      "filed": "20260205",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260723901022",
+      "original": "20260205901059",
+      "correction": "20260723901022",
+      "symbol": null,
+      "filed": "20260723",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260727900769",
+      "original": "20260727900769",
+      "correction": "20260727900810",
+      "symbol": null,
+      "filed": "20260727",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260727900810",
+      "original": "20260727900769",
+      "correction": "20260727900810",
+      "symbol": null,
+      "filed": "20260727",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260813901206",
+      "original": "20260813901206",
+      "correction": "20260814900008",
+      "symbol": null,
+      "filed": "20260813",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260814900008",
+      "original": "20260813901206",
+      "correction": "20260814900008",
+      "symbol": null,
+      "filed": "20260814",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260724900005",
+      "original": "20260724900005",
+      "correction": "20260819900413",
+      "symbol": null,
+      "filed": "20260724",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260819900413",
+      "original": "20260724900005",
+      "correction": "20260819900413",
+      "symbol": null,
+      "filed": "20260819",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261028800611",
+      "original": "20261028800611",
+      "correction": "20261029800490",
+      "symbol": null,
+      "filed": "20261028",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261029800490",
+      "original": "20261028800611",
+      "correction": "20261029800490",
+      "symbol": null,
+      "filed": "20261029",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261106901024",
+      "original": "20261106901024",
+      "correction": "20261110900825",
+      "symbol": null,
+      "filed": "20261106",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261110900825",
+      "original": "20261106901024",
+      "correction": "20261110900825",
+      "symbol": null,
+      "filed": "20261110",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261112900875",
+      "original": "20261112900875",
+      "correction": "20261113901454",
+      "symbol": null,
+      "filed": "20261112",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261113901454",
+      "original": "20261112900875",
+      "correction": "20261113901454",
+      "symbol": null,
+      "filed": "20261113",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260206902226",
+      "original": "20260206902226",
+      "correction": "20261117900650",
+      "symbol": "355390",
+      "filed": "20260206",
+      "supply_graph_company": true,
+      "status": "tested",
+      "training": 93,
+      "training_cutoff": "2026-01-30",
+      "window": [
+        "2026-02-02",
+        "2026-02-26"
+      ]
+    },
+    {
+      "receipt": "20261117900650",
+      "original": "20260206902226",
+      "correction": "20261117900650",
+      "symbol": "355390",
+      "filed": "20261117",
+      "supply_graph_company": true,
+      "status": "incomplete_prices"
+    },
+    {
+      "receipt": "20261112900875",
+      "original": "20261112900875",
+      "correction": "20261120900976",
+      "symbol": null,
+      "filed": "20261112",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261120900976",
+      "original": "20261112900875",
+      "correction": "20261120900976",
+      "symbol": null,
+      "filed": "20261120",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20260206902226",
+      "original": "20260206902226",
+      "correction": "20261127900180",
+      "symbol": "355390",
+      "filed": "20260206",
+      "supply_graph_company": true,
+      "status": "tested",
+      "training": 93,
+      "training_cutoff": "2026-01-30",
+      "window": [
+        "2026-02-02",
+        "2026-02-26"
+      ]
+    },
+    {
+      "receipt": "20261127900180",
+      "original": "20260206902226",
+      "correction": "20261127900180",
+      "symbol": "355390",
+      "filed": "20261127",
+      "supply_graph_company": true,
+      "status": "no_eligible_event"
+    },
+    {
+      "receipt": "20261119900552",
+      "original": "20261119900552",
+      "correction": "20261127901144",
+      "symbol": null,
+      "filed": "20261119",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    },
+    {
+      "receipt": "20261127901144",
+      "original": "20261119900552",
+      "correction": "20261127901144",
+      "symbol": null,
+      "filed": "20261127",
+      "supply_graph_company": false,
+      "status": "no_identified_price_series"
+    }
+  ],
+  "results": [
+    {
+      "receipt": "20260424900671",
+      "original": "20260422900886",
+      "correction": "20260424900671",
+      "symbol": "099440",
+      "filed": "20260424",
+      "supply_graph_company": true,
+      "status": "tested",
+      "training": 501,
+      "training_cutoff": "2026-04-17",
+      "window": [
+        "2026-04-20",
+        "2026-05-13"
+      ],
+      "strategy": "CLEAR",
+      "baseline_overlap": [
+        {
+          "date": "2026-04-30",
+          "symbol": "099440",
+          "strategy": "CLEAR",
+          "condition": "base",
+          "side": "buy",
+          "session": "open",
+          "price": 4700,
+          "signal": 0,
+          "supply_receipts": [],
+          "governance_receipts": [],
+          "reason": "price_trend"
+        }
+      ],
+      "anchor_interventions": [
+        {
+          "symbol": "099440",
+          "strategy": "CLEAR",
+          "condition": "integrated",
+          "date": "2026-04-30",
+          "open": 4700,
+          "supply_receipts": [],
+          "signal": 0,
+          "governance_receipts": [
+            "20260424900671"
+          ],
+          "events": [
+            "urn:fintos:opendart:event:20260422900886"
+          ],
+          "next_session": "2026-05-04",
+          "outcome": "cancelled",
+          "next_open": 4400
+        }
+      ],
+      "conditions": {
+        "base": {
+          "return": -0.0657002571896188,
+          "orders": [
+            {
+              "date": "2026-04-30",
+              "symbol": "099440",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 4700,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-05-04",
+              "symbol": "099440",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 4400,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        },
+        "explicit": {
+          "return": 0.0,
+          "orders": [],
+          "delays": [
+            {
+              "symbol": "099440",
+              "strategy": "CLEAR",
+              "condition": "explicit",
+              "date": "2026-04-30",
+              "open": 4700,
+              "supply_receipts": [],
+              "signal": 0,
+              "governance_receipts": [
+                "20260424900671"
+              ],
+              "events": [
+                "urn:fintos:opendart:event:20260422900886"
+              ],
+              "next_session": "2026-05-04",
+              "outcome": "cancelled",
+              "next_open": 4400
+            }
+          ]
+        },
+        "integrated": {
+          "return": 0.0,
+          "orders": [],
+          "delays": [
+            {
+              "symbol": "099440",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "date": "2026-04-30",
+              "open": 4700,
+              "supply_receipts": [],
+              "signal": 0,
+              "governance_receipts": [
+                "20260424900671"
+              ],
+              "events": [
+                "urn:fintos:opendart:event:20260422900886"
+              ],
+              "next_session": "2026-05-04",
+              "outcome": "cancelled",
+              "next_open": 4400
+            }
+          ]
+        }
+      },
+      "buy_hold": -0.10944105838667428
+    },
+    {
+      "receipt": "20260424900671",
+      "original": "20260422900886",
+      "correction": "20260424900671",
+      "symbol": "099440",
+      "filed": "20260424",
+      "supply_graph_company": true,
+      "status": "tested",
+      "training": 501,
+      "training_cutoff": "2026-04-17",
+      "window": [
+        "2026-04-20",
+        "2026-05-13"
+      ],
+      "strategy": "TRACE",
+      "baseline_overlap": [
+        {
+          "date": "2026-04-30",
+          "symbol": "099440",
+          "strategy": "TRACE",
+          "condition": "base",
+          "side": "buy",
+          "session": "open",
+          "price": 4700,
+          "signal": 0,
+          "supply_receipts": [],
+          "governance_receipts": [],
+          "reason": "price_trend"
+        }
+      ],
+      "anchor_interventions": [
+        {
+          "symbol": "099440",
+          "strategy": "TRACE",
+          "condition": "integrated",
+          "date": "2026-04-30",
+          "open": 4700,
+          "supply_receipts": [],
+          "signal": 0,
+          "governance_receipts": [
+            "20260424900671"
+          ],
+          "events": [
+            "urn:fintos:opendart:event:20260422900886"
+          ],
+          "next_session": "2026-05-04",
+          "outcome": "cancelled",
+          "next_open": 4400
+        }
+      ],
+      "conditions": {
+        "base": {
+          "return": -0.0657002571896188,
+          "orders": [
+            {
+              "date": "2026-04-30",
+              "symbol": "099440",
+              "strategy": "TRACE",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 4700,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            },
+            {
+              "date": "2026-05-04",
+              "symbol": "099440",
+              "strategy": "TRACE",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 4400,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "delays": []
+        },
+        "explicit": {
+          "return": 0.0,
+          "orders": [],
+          "delays": [
+            {
+              "symbol": "099440",
+              "strategy": "TRACE",
+              "condition": "explicit",
+              "date": "2026-04-30",
+              "open": 4700,
+              "supply_receipts": [],
+              "signal": 0,
+              "governance_receipts": [
+                "20260424900671"
+              ],
+              "events": [
+                "urn:fintos:opendart:event:20260422900886"
+              ],
+              "next_session": "2026-05-04",
+              "outcome": "cancelled",
+              "next_open": 4400
+            }
+          ]
+        },
+        "integrated": {
+          "return": 0.0,
+          "orders": [],
+          "delays": [
+            {
+              "symbol": "099440",
+              "strategy": "TRACE",
+              "condition": "integrated",
+              "date": "2026-04-30",
+              "open": 4700,
+              "supply_receipts": [],
+              "signal": 0,
+              "governance_receipts": [
+                "20260424900671"
+              ],
+              "events": [
+                "urn:fintos:opendart:event:20260422900886"
+              ],
+              "next_session": "2026-05-04",
+              "outcome": "cancelled",
+              "next_open": 4400
+            }
+          ]
+        }
+      },
+      "buy_hold": -0.10944105838667428
+    }
+  ],
+  "evidence": {
+    "20260422900886": {
+      "sha256": "2b3ca6c766a85cdcd8bc8d8442d670c8793752caa6f0abbeb0f0b1c11c95a317",
+      "fields": [
+        {
+          "field": "controller_name",
+          "line": 89
+        },
+        {
+          "field": "shares",
+          "line": 93
+        },
+        {
+          "field": "ratio",
+          "line": 97
+        },
+        {
+          "field": "controller_name",
+          "line": 102
+        },
+        {
+          "field": "shares",
+          "line": 106
+        },
+        {
+          "field": "ratio",
+          "line": 110
+        },
+        {
+          "field": "change_reason",
+          "line": 114
+        },
+        {
+          "field": "acquisition_purpose",
+          "line": 126
+        },
+        {
+          "field": "change_date",
+          "line": 157
+        },
+        {
+          "field": "confirmation_date",
+          "line": 161
+        }
+      ]
+    },
+    "20260424900671": {
+      "sha256": "abfd7b22f902c04fb9fc79154bf75ec1a99c9f8fdd21512707b04e933e73cca3",
+      "fields": [
+        {
+          "field": "corrected_title",
+          "line": 93
+        },
+        {
+          "field": "corrected_date",
+          "line": 97
+        },
+        {
+          "field": "correction_reason",
+          "line": 101
+        },
+        {
+          "field": "correction_item",
+          "line": 112
+        },
+        {
+          "field": "controller_name",
+          "line": 139
+        },
+        {
+          "field": "shares",
+          "line": 143
+        },
+        {
+          "field": "ratio",
+          "line": 147
+        },
+        {
+          "field": "controller_name",
+          "line": 152
+        },
+        {
+          "field": "shares",
+          "line": 156
+        },
+        {
+          "field": "ratio",
+          "line": 160
+        },
+        {
+          "field": "change_reason",
+          "line": 164
+        },
+        {
+          "field": "acquisition_purpose",
+          "line": 176
+        },
+        {
+          "field": "change_date",
+          "line": 207
+        },
+        {
+          "field": "confirmation_date",
+          "line": 211
+        }
+      ]
+    }
+  }
+}
