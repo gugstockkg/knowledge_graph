@@ -88,3 +88,41 @@
 .equation-number {
   justify-self: end;
 }
+
+.decision-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 0 0 .75rem;
+  padding: 0;
+  list-style: none;
+}
+.decision-flow li {
+  padding: .85rem;
+  border: 1px solid #bad0ce;
+  border-radius: .5rem;
+  background: #edf7f4;
+  color: #143731;
+  overflow-wrap: anywhere;
+}
+.decision-flow strong, .decision-flow span {
+  display: block;
+}
+.decision-flow span {
+  margin-top: .3rem;
+}
+.decision-flow .decision-loss {
+  border-color: #d9b9b2;
+  background: #fcefea;
+  color: #652820;
+}
+.decision-flow .decision-gain {
+  border-color: #83b8a5;
+  background: #e4f3eb;
+}
+@media (max-width: 800px) {
+  .decision-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 460px) {
+  .decision-flow { grid-template-columns: 1fr; }
+}
