@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 944 480" role="img" aria-labelledby="title desc">
+<title id="title">최대주주 변경 온톨로지 핵심 그래프</title>
+<desc id="desc">공시는 회사, 사건, 원문 버전에 연결된다. 주장은 사건과 출처 공시, 원문 위치에 연결된다. 정정 공시는 원공시를, 정정 주장은 이전 주장을 가리킨다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker></defs>
+<rect x="1" y="1" width="942" height="478" rx="18" fill="#f6f9fd" stroke="#cbd5e1"/>
+<g font-family="system-ui, sans-serif" text-anchor="middle">
+<text x="472" y="36" fill="#0f2742" font-size="20" font-weight="700">최대주주 변경과 정정 이력</text>
+<path d="M365 130 H244" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="304" y="119" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">IS_ABOUT</text>
+<path d="M579 130 H700" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="640" y="119" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">HAS_DOCUMENT</text>
+<path d="M410 178 L219 325" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="296" y="238" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">REPORTS_EVENT</text>
+<path d="M472 325 V178" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="534" y="253" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">ASSERTED_IN</text>
+<path d="M365 358 H244" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="304" y="347" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">ABOUT_EVENT</text>
+<path d="M579 358 H700" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="640" y="347" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">SUPPORTED_BY</text>
+<path d="M807 325 V178" fill="none" stroke="#31577a" stroke-width="2" marker-end="url(#arrow)"/><text x="865" y="253" fill="#31577a" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">LOCATED_IN</text>
+<path d="M398 100 V79 H550 V100" fill="none" stroke="#923616" stroke-width="2" marker-end="url(#arrow)"/><text x="474" y="70" fill="#923616" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">CORRECTS</text>
+<path d="M398 403 V430 H550 V403" fill="none" stroke="#923616" stroke-width="2" marker-end="url(#arrow)"/><text x="474" y="452" fill="#923616" font-size="12" font-weight="700" paint-order="stroke" stroke="#f6f9fd" stroke-width="5" stroke-linejoin="round">SUPERSEDES</text>
+<rect x="30" y="100" width="214" height="78" rx="12" fill="#fff" stroke="#7095b5"/><text x="137" y="131" fill="#0f2742" font-size="16" font-weight="700">Company</text><text x="137" y="155" fill="#31577a" font-size="15">대상 기업</text>
+<rect x="365" y="100" width="214" height="78" rx="12" fill="#fff" stroke="#7095b5"/><text x="472" y="131" fill="#0f2742" font-size="16" font-weight="700">Filing</text><text x="472" y="155" fill="#31577a" font-size="15">접수 공시</text>
+<rect x="700" y="100" width="214" height="78" rx="12" fill="#fff" stroke="#7095b5"/><text x="807" y="131" fill="#0f2742" font-size="16" font-weight="700">DocumentVersion</text><text x="807" y="155" fill="#31577a" font-size="15">해시로 식별한 원문</text>
+<rect x="30" y="325" width="214" height="78" rx="12" fill="#fff" stroke="#7095b5"/><text x="137" y="356" fill="#0f2742" font-size="16" font-weight="700">ControllerChangeEvent</text><text x="137" y="380" fill="#31577a" font-size="15">최대주주 변경 사건</text>
+<rect x="365" y="325" width="214" height="78" rx="12" fill="#fff" stroke="#7095b5"/><text x="472" y="356" fill="#0f2742" font-size="16" font-weight="700">Assertion</text><text x="472" y="380" fill="#31577a" font-size="15">필드별 보고 값</text>
+<rect x="700" y="325" width="214" height="78" rx="12" fill="#fff" stroke="#7095b5"/><text x="807" y="356" fill="#0f2742" font-size="16" font-weight="700">EvidenceSpan</text><text x="807" y="380" fill="#31577a" font-size="15">원문의 표·행·셀</text>
+</g></svg>

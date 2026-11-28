@@ -26,6 +26,12 @@
     <h1>정정 공시의 유효 값과 근거를 어떻게 보존하는가</h1>
     <p class="status"><span class="tag">설계와 검증</span><time datetime="2026-11-27">2026년 11월 27일</time></p>
     <p class="lead">최대주주 변경 공시에서 지분율만 정정하는 경우, 그래프는 지분율의 출처를 새 문서로 바꾸면서 변경일의 원래 근거도 계속 돌려줘야 합니다. 이 동작을 구현하려면 공시 한 건을 사건의 속성으로 통째로 옮기는 방식으로는 부족했습니다.</p>
+    <h2>최대주주 변경 온톨로지 한눈에 보기</h2>
+    <figure style="margin: 1.5rem 0">
+      <a href="../../assets/controller-change-model.svg"><img src="../../assets/controller-change-model.svg" style="display: block; width: 100%; height: auto" width="944" height="480" alt="공시가 회사, 사건, 원문에 연결되고 주장이 사건, 공시, 근거에 연결되는 핵심 LPG 모델"></a>
+      <figcaption>정정 공시는 원공시를 가리키고, 정정된 지분율 주장은 이전 지분율 주장만 대체합니다. 그림을 누르면 확대할 수 있습니다.</figcaption>
+    </figure>
+    <p>공개용 용어표는 영문을 대문자로 표시하고 Excel에서 한글을 읽을 수 있게 저장했습니다. 실제 라벨과 IRI는 정의서에 연결된 원본에서 확인할 수 있습니다. <a href="https://github.com/gugstockkg/knowledge_graph/raw/refs/heads/main/ontology/controller-change-v0.1/lpg-glossary.csv">LPG 용어표 다운로드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/raw/refs/heads/main/ontology/controller-change-v0.1/rdf-owl-glossary.csv">RDF·OWL 및 FIBO 용어표 다운로드</a></p>
     <h2>연구 질문과 설계 근거</h2>
     <p>연구 질문은 부분 정정이 발생했을 때 조회 기준일에 유효한 값과 그 출처를 함께 복원할 수 있는지입니다. 기준일까지의 지분율, 정정된 항목, 실제 변경일, 표 셀의 위치를 각각 질의로 정의했습니다. 공시의 정보가 어디서 파생됐는지를 표현하는 문제는 출처 모델링과 연결됩니다. W3C PROV-O는 이 구분의 참조 틀이며, 파일럿은 프로젝트 고유의 Neo4j 라벨과 관계를 사용합니다. <a href="https://www.w3.org/TR/prov-o/">W3C PROV-O</a></p>
     <p>어느 날짜까지 어떤 내용이 보고됐는지, 정정으로 무엇이 달라졌는지, 실제 변경을 확인할 근거가 있는지, 그 근거가 원문 어디에 있는지를 먼저 정했습니다. 초기 온톨로지에서 보유현황과 법적 소유를 구별한 것도 같은 맥락입니다. FIBO와 개념을 대조하면서 보고서에 적힌 관측값에 주체와 역할, 보고 시점이 필요하다는 점을 확인했습니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md">최대주주 변경 온톨로지</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/alignment/fibo/FIBO_review.md">FIBO 비교 기록</a></p>
