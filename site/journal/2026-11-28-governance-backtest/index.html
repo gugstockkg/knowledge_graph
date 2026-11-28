@@ -38,7 +38,7 @@
 <p>SK하이닉스 분기보고서의 「최대주주 및 특수관계인의 주식 소유 현황」 표에서는 13개 행을 구조화하였다. XML 50100행의 SK스퀘어 보유 현황을 예로 들면, 원문에서 추출한 값과 RDF로 적재한 값은 다음과 같다.</p>
 <div class="table-scroll" role="region" aria-label="분기보고서 파싱과 RDF 적재 범위" tabindex="0"><table>
 <caption>SK하이닉스 분기보고서 XML 50100행</caption>
-<thead><tr><th scope="col">항목</th><th scope="col">원문에서 추출한 값</th><th scope="col">실험 RDF에 적재</th></tr></thead>
+<thead><tr><th scope="col">항목</th><th scope="col">원문에서 추출한 값</th><th scope="col">기존 백테스트 RDF에 적재</th></tr></thead>
 <tbody>
 <tr><th scope="row">보유자와 역할</th><td>SK스퀘어(주), 최대주주</td><td>미적재</td></tr>
 <tr><th scope="row">주식 종류</th><td>의결권 있는 주식</td><td><code>security</code></td></tr>
@@ -46,7 +46,7 @@
 <tr><th scope="row">기초·기말 지분율</th><td>20.07% → 20.00%</td><td>미적재</td></tr>
 <tr><th scope="row">주장 유형과 원문 근거</th><td>보유 현황, XML 50100행</td><td><code>reported_shareholder_position</code>, <code>supportedBy</code></td></tr>
 </tbody></table></div>
-<p>실제로는 공시가 <code>reportsAssertion</code>으로 보유 현황 행을 가리키고, 그 행의 <code>supportedBy</code>가 XML 근거 위치를 가리킨다. 파서는 보유자·역할·기초와 기말의 수량 및 지분율을 추출하지만, 실험에 사용한 RDF 적재기는 이 값들을 트리플로 내보내지 않았다. 따라서 이 배포본의 RDF만 질의해서는 위 표의 수량과 지분율을 복원할 수 없다. SK스퀘어의 주식 수가 그대로인 가운데 지분율이 변했다는 사실만으로 최대주주 변경을 판정할 수도 없다.</p>
+<p>실제로는 공시가 <code>reportsAssertion</code>으로 보유 현황 행을 가리키고, 그 행의 <code>supportedBy</code>가 XML 근거 위치를 가리킨다. 파서는 보유자·역할·기초와 기말의 수량 및 지분율을 추출하지만, 실험에 사용한 RDF 적재기는 이 값들을 트리플로 내보내지 않았다. 따라서 기존 백테스트 배포본의 RDF만 질의해서는 위 표의 수량과 지분율을 복원할 수 없었다. 후속 실험에서는 같은 주장 노드에 보유자·역할·기초와 기말의 수량 및 지분율을 보강하였다. SK스퀘어의 주식 수가 그대로인 가운데 지분율이 변했다는 사실만으로 최대주주 변경을 판정할 수도 없다.</p>
 <p>CLEAR와 TRACE는 기존 공급계약 신호로 매수 후보를 만들며, 신호 합계가 0이면 가격 추세를 사용한다. 지배권 쪽은 공통 보류 조건으로 붙였다. 정정본에 연결된 원공시, 양쪽이 보고하는 사건, 원문 근거 위치를 확인한 뒤 명시 유형 <code>ControllerChange</code> 또는 추론 유형 <code>OwnershipEvent</code>를 조회한다. 분기보고서는 <code>PeriodicOwnershipReport</code>에서 <code>OwnershipObservation</code>으로 분류되므로 보류 조건을 충족하지 않는다. 스맥의 정정본처럼 실제 변경 사건과 연결된 근거가 체결을 어떻게 바꿨는지는 <a href="#correction-overlap">4.7절</a>에 제시한다.</p>
 <h3>3.3 세 비교 조건과 체결</h3>
 <p>① 기존 전략은 원래 주문을 낸다. ② 제목 조건은 최근 5거래일 내 반영할 수 있게 된 지분·지배권 공시가 있으면 신규 매수를 하루 미룬다. ③ 통합 조건은 같은 후보에서 원문 근거와 적격 지배권 사건을 확인했을 때 하루 미룬다. 다음 거래일의 시가에 기존 신호를 다시 평가한다. 같은 공시나 사건으로 반복해서 미루지 않는다. 접수일만 확인되는 공시는 다음 거래일부터 반영한다. 세 조건의 매도, 마지막 종가 청산, 편도 비용 10bp는 동일하다.</p>
@@ -130,6 +130,25 @@
 <li><strong>체결 변화.</strong> 두 전략 모두 공급계약 신호 합계가 0이었다. LPG 단독에서는 20거래일 가격 추세에 따라 4월 30일 시가 4,700원에 매수하였고, 추세 조건이 바뀐 5월 4일 시가 4,400원에 매도하였다. RDF를 추가한 두 조건은 정정 공시가 유효 관측창에 있어 4월 30일 매수를 다음 거래일로 미뤘다. 5월 4일 재평가에서 매수 요건이 사라져 현금을 유지하였다.</li>
 </ol>
 <p>실행 가능한 표본에서 공급계약 공시가 직접 만든 매수와 최대주주 변경·정정이 겹친 사례는 0건이었다. 스맥에서 관찰된 6.57%p 차이는 가격 추세로 발생한 매수에 지배권 공시 보류 규칙을 적용한 결과이며, 두 전략에 공통된 한 건의 거래이다. 일봉이 없었던 관측의 결과는 미확인이다. <a href="correction-order-audit.json" download>공시 선별·체결·XML 근거 원장</a></p>
+<h3 id="periodic-ownership">4.8 정기보고서의 최대주주 교체와 지분율 변동</h3>
+<p>EC2의 기존 OpenDART RDF에 정기보고서 12,828건의 보유자 행 83,706개를 보강하였다. 같은 주장 노드에 이름과 역할을 문자열, 기초·기말 주식 수를 정수, 기초·기말 지분율을 퍼센트 단위 소수로 추가하였다. Neo4j에서 증분 트리플 502,135개를 확인하였다. 집계행 또는 수량·비율 형식이 맞지 않은 12,631개 행은 보강에서 제외했고, 원문이 대시인 값은 비워 두었다.</p>
+<p>후속 실험은 기업별로 먼저 공개된 직전 분기와 새 보고서의 최대주주를 대조한다. 두 보고서 각각에서 최대주주 이름이 하나로 식별되고 그 이름이 바뀌면 <strong>보고서 간 최대주주 교체</strong>로 판정한다. 같은 최대주주의 현재 보고서 기초·기말 지분율이 다르면 <strong>동일 보유자의 지분율 변동</strong>으로 판정한다. 사업·반기보고서도 분기말 관측을 제공하므로 포함하였다. 이 판정은 공시에서 확인한 이름을 비교한 것이며, 별도 최대주주 변경 원공시의 법적 사건 판정과는 구분된다.</p>
+<p>보고서 접수 다음 거래일부터 5거래일 이내의 신규 매수를 비교했다. <strong>기존 전략</strong>은 공급계약과 가격 신호를 그대로 사용한다. <strong>두 변동 모두 보류</strong>는 교체 또는 지분율 변동이 있으면 신규 매수를 한 거래일 미룬다. <strong>교체만 보류</strong>는 똑같은 규칙을 최대주주 교체에만 적용한다. 평가창은 보고서 사용 가능일 5거래일 전부터 이후 최대 10거래일까지이며, TRACE 규칙은 평가창 시작 전에 관측 가능한 자료로 채굴한다. 이미 보유한 주식을 강제로 매도하지 않으며 거래 비용은 편도 10bp다.</p>
+<p>보고서 비교에서 최대주주 교체 90건, 동일 보유자 지분율 변동 1,083건을 찾았다. 이 가운데 거래 가능한 시세가 있는 7건과 165건을 각각 재실행하였다.</p>
+<div class="table-scroll" role="region" aria-label="정기보고서 비교 결과" tabindex="0"><table>
+<caption>사건창별 순수익률의 산술평균과 매수 보류 건수</caption>
+<thead><tr><th scope="col">관측과 전략</th><th scope="col">기존</th><th scope="col">두 변동 모두 보류</th><th scope="col">교체만 보류</th><th scope="col">매수 후 보유</th><th scope="col">보류 건수<br>두 변동 / 교체만</th></tr></thead>
+<tbody>
+<tr><th scope="row">교체 7건 · CLEAR</th><td>−1.71%</td><td>−1.71%</td><td>−1.71%</td><td>−5.50%</td><td>0 / 0</td></tr>
+<tr><th scope="row">교체 7건 · TRACE</th><td>−1.71%</td><td>−1.71%</td><td>−1.71%</td><td>−5.50%</td><td>0 / 0</td></tr>
+<tr><th scope="row">지분율 변동 165건 · CLEAR</th><td>−3.57%</td><td>−3.11%</td><td>−3.57%</td><td>−3.90%</td><td>28 / 0</td></tr>
+<tr><th scope="row">지분율 변동 165건 · TRACE</th><td>−3.76%</td><td>−3.26%</td><td>−3.76%</td><td>−3.90%</td><td>27 / 0</td></tr>
+</tbody></table></div>
+<figure class="dataset-figure"><div class="table-scroll" role="region" aria-label="정기보고서에서 주문까지 두 사례 도해" tabindex="0"><img src="periodic-ownership-flow.svg" width="940" height="470" alt="SPC삼립과 SK하이닉스의 원문에서 RDF, 판정, 주문으로 이어지는 두 경로"></div><figcaption>원문 행에서 RDF 판정과 주문 재평가까지. <a href="periodic-ownership-cases.json" download>두 사례의 XML 근거와 체결 원장</a></figcaption></figure>
+<p><strong>SPC삼립.</strong> 사업보고서는 파리크라상, 분기보고서는 상미당홀딩스를 최대주주로 기록했다. 두 관측의 주식 수는 3,508,240주, 지분율은 40.66%였다. 이름이 달라 교체로 분류했으나, 두 전략 모두 신규 매수 후보가 없어 주문은 발생하지 않았다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001066">사업보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001010">분기보고서</a></p>
+<p><strong>SK하이닉스.</strong> SK스퀘어는 직전 보고서와 현재 보고서에서 모두 최대주주였다. 현재 보고서에서 주식 수는 146,100,000주로 같았고, 기초·기말 지분율은 20.07%에서 20.00%로 달라졌다. 교체만 보류하는 CLEAR는 케이씨텍 공급계약의 +1 신호로 11월 17일 시가 1,098,000원에 매수하였다. 지분율 변동까지 보류하면 11월 18일 시가 1,154,000원에 매수하였다. 두 조건 모두 11월 24일 시가 1,212,000원에 매도했다. 평가창 순수익률은 각각 +3.47%, −1.55%로 교체만 보류한 조건이 5.02%p 높았다. TRACE에서는 이 공시와 겹친 신규 매수가 없었다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003509">반기보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715">분기보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">공급계약 공시</a></p>
+<p>지분율 변동으로 보류된 매수 중 CLEAR 28건 중 27건, TRACE 27건 모두 가격 추세가 만든 후보였다. 사건창이 서로 겹칠 수 있고 거래 가능한 시세가 있는 관측만 평가했으므로, 표의 평균은 포트폴리오 성과로 해석하기 어렵다.</p>
+
 </section>
 <section aria-labelledby="limits">
 <h2 id="limits">5. 논의와 한계</h2>
@@ -141,6 +160,13 @@
 <pre><code>PYTHONPATH=src python3.11 scripts/backtest_governance_integration.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OUTPUT" \
   --start 2026-10-01 --end 2026-11-26 --original-panel</code></pre>
+<p>정기보고서 보강과 주문 재실행은 두 단계로 재현한다. 첫 명령에 <code>--load</code>를 추가하면 EC2의 기존 Neo4j RDF에 증분 트리플을 병합한다.</p>
+<pre><code>PYTHONPATH=src python scripts/periodic_ownership_rdf.py \
+  "$OWNERSHIP" "$RDF" periodic-ownership.nt.gz periodic-pairs.json
+PYTHONPATH=src python3.11 scripts/backtest_periodic_ownership.py \
+  "$GRAPH" "$ARCHIVE" "$LATER" periodic-pairs.json "$OWNERSHIP" "$BUCKET" \
+  &gt; periodic-order-results.json</code></pre>
+<p><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/periodic_ownership_rdf.py">RDF 적재와 판정 코드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/backtest_periodic_ownership.py">주문 재현 코드</a></p>
 <p>정정 공시 사건창 비교는 동일 입력에 최대주주 변경 추출 원장과 S3 버킷을 추가하여 재현한다.</p>
 <pre><code>PYTHONPATH=src python3.11 scripts/audit_governance_correction_orders.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OWNERSHIP" "$BUCKET" \
