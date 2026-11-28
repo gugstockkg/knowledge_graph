@@ -1,0 +1,7 @@
+dataset,source,sheet,column,sha256,first,last
+bab,https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx,BAB Factors,USA,fa7974dffc089a8cd947368d757d62e8c1ee4748729c527dee149dcea8490ebf,193012,202609
+qmj,https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx,QMJ Factors,USA,22b465bdd8d873c7d1f5eaf99c8ab1fdf3e9b626d802c0fc8862ae18796e5c64,195707,202609
+hml_ff,https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx,HML FF,USA,22b465bdd8d873c7d1f5eaf99c8ab1fdf3e9b626d802c0fc8862ae18796e5c64,192607,202609
+hml_devil,https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx,HML Devil,USA,22b465bdd8d873c7d1f5eaf99c8ab1fdf3e9b626d802c0fc8862ae18796e5c64,192607,202609
+mkt,https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx,MKT,USA,22b465bdd8d873c7d1f5eaf99c8ab1fdf3e9b626d802c0fc8862ae18796e5c64,192607,202609
+rf,https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx,RF,Risk Free Rate,22b465bdd8d873c7d1f5eaf99c8ab1fdf3e9b626d802c0fc8862ae18796e5c64,192607,202610
