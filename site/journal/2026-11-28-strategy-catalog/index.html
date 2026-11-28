@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="한·미 포트폴리오와 미국 팩터 전략 22개를 공통 진입월과 만기월로 맞춰 비교했다.">
+<meta name="fintos:summary" content="한·미 포트폴리오와 미국 팩터 전략 22개를 공통 진입월과 만기월로 맞춰 비교했다.">
+<meta name="fintos:category" content="backtest">
+<meta name="fintos:published" content="2026-11-28T17:00:00+09:00">
+<title>퀀트 전략 22개 비교 · 매수 후 보유를 앞선 조건 | FINTOS</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#content">본문으로 이동</a>
+<header class="shell top site-header"><a class="brand" href="../../"><img src="../../assets/fintos-logo.webp" width="540" height="138" alt="FINTOS 홈"></a><nav aria-label="주요 메뉴"><a href="../">연구 보관함</a><a href="../../library/">FINTOS 도서관</a></nav></header>
+<main class="post dataset research-post" id="content" tabindex="-1"><article>
+<h1>퀀트 전략 22개 비교 · 매수 후 보유를 앞선 조건</h1>
+<p><strong>초록.</strong> 기존 한·미 포트폴리오의 17개 전략, 미국 종목별 팩터 4개, 공개 팩터 타이밍 1개를 동일한 진입월과 만기월로 맞춰 평가하였다. 주식 계좌의 비용 후 수익률과 공개 요인의 비용 전 수익률, 최대낙폭, +15% 목표 도달, 보유 대비 차이를 비교하였다. 한·미 혼합형에서는 상대강도가 짝지은 보유 대비 차이가 가장 높았다. 미국 종목별 실험에서는 24개월 모멘텀과 두 기한의 저발생액이 앞섰다. 공개 팩터 타이밍은 고정 팩터 바스켓을 앞섰으나 미국 주식시장보다 낮았다.</p>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#methods">방법</a><a href="#results">결과</a><a href="#discussion">논의</a><a href="#reproduce">재현</a></nav>
+<h2 id="intro">1. 연구 질문</h2>
+<p>투자 규칙을 추가했을 때 같은 시점의 단순 보유보다 순수익률을 개선하는지 검증한다. 만기 수익률 중앙값과 시작월별 초과수익률 중앙값은 다른 질문에 답한다. 전자는 전략의 전형적인 계좌 성과를, 후자는 같은 시점에 시작한 대조군과의 전형적인 격차를 나타낸다. 이 연구의 주 비교 기준은 짝지은 수익률 차이이며, 최대낙폭과 목표 도달도 함께 제시한다.</p>
+<h2 id="methods">2. 비교 설계</h2>
+<p>EC2에서 종전 실행의 계좌별 결과를 읽고, 세 실험에 모두 존재하는 시작월과 만기월만 남겼다. 최초 진입월은 2021년 11월, 마지막 만기월은 2026년 9월이다. 공통 평가창은 12개월 46개와 24개월 35개다. 17개 조건은 ETF와 개별주를 함께 담은 혼합형으로 통일하였다. 혼합형의 수익률은 원화 기준이고 수수료와 환전 비용을 반영한다. 미국 종목별 실험은 당시 공개된 재무와 가격을 연결한 고정 표본으로, 달러 기준 편도 10bp를 차감한다. 공개 팩터 타이밍은 미국의 롱쇼트 요인 수익률에 무위험 이자율을 더한 합성 계열이며 체결비용이 없다.</p>
+<p>혼합형과 미국 종목별 실험에서는 같은 바스켓의 매수 후 보유를 대조군으로 사용했다. 공개 팩터 타이밍은 미국 주식시장을 기준으로 표에 올리고, 고정 팩터 바스켓과의 차이는 별도로 해석했다. 날짜를 맞추었으나 보유 자산, 통화, 낙폭을 관측한 주기, 비용 모델이 달라 각 실험 안에서 순위를 매겼다. 공통 날짜에서도 종전 전략의 우열은 투자 대상을 함께 반영한다. <a href="../2026-11-28-portfolio-exit/">포트폴리오 실험</a> · <a href="../2026-11-28-factor-followup/">팩터 실험</a></p>
+<h2 id="results">3. 전략별 비교</h2>
+<p>전략 행은 24개월 짝지은 수익률 차이 순이다. 범위별 기준 행을 먼저 표시했다. 수익률과 낙폭은 중앙값이고 목표 달성은 만기 수익률이 15% 이상인 창의 수다. 공개 요인 결과는 비용 전이다.</p>
+<h3>한·미 혼합형 · 원화</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
+<thead>
+<tr>
+<th>전략</th>
+<th style="text-align:right">12개월 보유 대비</th>
+<th style="text-align:right">24개월 수익률</th>
+<th style="text-align:right">24개월 보유 대비</th>
+<th style="text-align:right">24개월 최대낙폭</th>
+<th style="text-align:right">우위 창</th>
+<th style="text-align:right">+15% 도달</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>매수 후 보유</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">+58.89%</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">−14.49%</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td>한·미 상대강도</td>
+<td style="text-align:right">+1.78%p</td>
+<td style="text-align:right">+55.04%</td>
+<td style="text-align:right">+4.03%p</td>
+<td style="text-align:right">−14.31%</td>
+<td style="text-align:right">28/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td>상대강도와 절반 보유</td>
+<td style="text-align:right">−0.76%p</td>
+<td style="text-align:right">+48.22%</td>
+<td style="text-align:right">−2.11%p</td>
+<td style="text-align:right">−9.85%</td>
+<td style="text-align:right">12/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>편차 리밸런싱</td>
+<td style="text-align:right">+0.00%p</td>
+<td style="text-align:right">+49.21%</td>
+<td style="text-align:right">−2.63%p</td>
+<td style="text-align:right">−13.21%</td>
+<td style="text-align:right">7/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td>개별주 모멘텀</td>
+<td style="text-align:right">−1.41%p</td>
+<td style="text-align:right">+48.16%</td>
+<td style="text-align:right">−5.28%p</td>
+<td style="text-align:right">−14.20%</td>
+<td style="text-align:right">8/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>한·미 동일 비중</td>
+<td style="text-align:right">−1.92%p</td>
+<td style="text-align:right">+41.58%</td>
+<td style="text-align:right">−5.32%p</td>
+<td style="text-align:right">−13.17%</td>
+<td style="text-align:right">7/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>분기 리밸런싱</td>
+<td style="text-align:right">−1.52%p</td>
+<td style="text-align:right">+46.55%</td>
+<td style="text-align:right">−6.32%p</td>
+<td style="text-align:right">−13.26%</td>
+<td style="text-align:right">3/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td>위험균형</td>
+<td style="text-align:right">−2.07%p</td>
+<td style="text-align:right">+46.06%</td>
+<td style="text-align:right">−7.86%p</td>
+<td style="text-align:right">−12.71%</td>
+<td style="text-align:right">5/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>추세에 따른 절반 보유</td>
+<td style="text-align:right">−3.82%p</td>
+<td style="text-align:right">+41.03%</td>
+<td style="text-align:right">−8.40%p</td>
+<td style="text-align:right">−10.97%</td>
+<td style="text-align:right">0/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>공분산 축소 최소분산</td>
+<td style="text-align:right">−2.20%p</td>
+<td style="text-align:right">+50.70%</td>
+<td style="text-align:right">−9.93%p</td>
+<td style="text-align:right">−12.89%</td>
+<td style="text-align:right">9/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>최소분산</td>
+<td style="text-align:right">−2.39%p</td>
+<td style="text-align:right">+50.12%</td>
+<td style="text-align:right">−10.06%p</td>
+<td style="text-align:right">−12.90%</td>
+<td style="text-align:right">10/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>개별주 반전</td>
+<td style="text-align:right">−2.96%p</td>
+<td style="text-align:right">+41.66%</td>
+<td style="text-align:right">−10.44%p</td>
+<td style="text-align:right">−13.64%</td>
+<td style="text-align:right">3/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td>변동성 목표</td>
+<td style="text-align:right">−2.85%p</td>
+<td style="text-align:right">+44.20%</td>
+<td style="text-align:right">−12.88%p</td>
+<td style="text-align:right">−13.36%</td>
+<td style="text-align:right">3/35</td>
+<td style="text-align:right">33/35</td>
+</tr>
+<tr>
+<td>가격 추세</td>
+<td style="text-align:right">−6.94%p</td>
+<td style="text-align:right">+37.31%</td>
+<td style="text-align:right">−13.02%p</td>
+<td style="text-align:right">−10.97%</td>
+<td style="text-align:right">0/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>손절</td>
+<td style="text-align:right">−6.40%p</td>
+<td style="text-align:right">+46.55%</td>
+<td style="text-align:right">−16.44%p</td>
+<td style="text-align:right">−15.71%</td>
+<td style="text-align:right">2/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>절대 모멘텀</td>
+<td style="text-align:right">−9.35%p</td>
+<td style="text-align:right">+29.03%</td>
+<td style="text-align:right">−23.32%p</td>
+<td style="text-align:right">−11.19%</td>
+<td style="text-align:right">0/35</td>
+<td style="text-align:right">31/35</td>
+</tr>
+<tr>
+<td>부분 익절</td>
+<td style="text-align:right">−8.70%p</td>
+<td style="text-align:right">+25.67%</td>
+<td style="text-align:right">−27.95%p</td>
+<td style="text-align:right">−7.69%</td>
+<td style="text-align:right">0/35</td>
+<td style="text-align:right">31/35</td>
+</tr>
+<tr>
+<td>전량 익절</td>
+<td style="text-align:right">−10.86%p</td>
+<td style="text-align:right">+15.52%</td>
+<td style="text-align:right">−43.37%p</td>
+<td style="text-align:right">−6.13%</td>
+<td style="text-align:right">0/35</td>
+<td style="text-align:right">26/35</td>
+</tr>
+</tbody>
+</table></div>
+<h3>미국 종목별 · 달러</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
+<thead>
+<tr>
+<th>전략</th>
+<th style="text-align:right">12개월 보유 대비</th>
+<th style="text-align:right">24개월 수익률</th>
+<th style="text-align:right">24개월 보유 대비</th>
+<th style="text-align:right">24개월 최대낙폭</th>
+<th style="text-align:right">우위 창</th>
+<th style="text-align:right">+15% 도달</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>매수 후 보유</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">+31.19%</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">−11.96%</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>종목별 모멘텀</td>
+<td style="text-align:right">−0.04%p</td>
+<td style="text-align:right">+34.11%</td>
+<td style="text-align:right">+1.85%p</td>
+<td style="text-align:right">−12.42%</td>
+<td style="text-align:right">22/35</td>
+<td style="text-align:right">31/35</td>
+</tr>
+<tr>
+<td>저발생액</td>
+<td style="text-align:right">+0.47%p</td>
+<td style="text-align:right">+29.41%</td>
+<td style="text-align:right">+0.56%p</td>
+<td style="text-align:right">−15.25%</td>
+<td style="text-align:right">20/35</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>수익성</td>
+<td style="text-align:right">−2.83%p</td>
+<td style="text-align:right">+21.22%</td>
+<td style="text-align:right">−6.24%p</td>
+<td style="text-align:right">−11.87%</td>
+<td style="text-align:right">6/35</td>
+<td style="text-align:right">27/35</td>
+</tr>
+<tr>
+<td>가치</td>
+<td style="text-align:right">−5.94%p</td>
+<td style="text-align:right">+10.36%</td>
+<td style="text-align:right">−17.26%p</td>
+<td style="text-align:right">−13.16%</td>
+<td style="text-align:right">0/35</td>
+<td style="text-align:right">16/35</td>
+</tr>
+</tbody>
+</table></div>
+<h3>미국 공개 롱쇼트 · 달러</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
+<thead>
+<tr>
+<th>전략</th>
+<th style="text-align:right">12개월 보유 대비</th>
+<th style="text-align:right">24개월 수익률</th>
+<th style="text-align:right">24개월 보유 대비</th>
+<th style="text-align:right">24개월 최대낙폭</th>
+<th style="text-align:right">우위 창</th>
+<th style="text-align:right">+15% 도달</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>미국 주식시장</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">+43.35%</td>
+<td style="text-align:right">기준</td>
+<td style="text-align:right">−9.12%</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">32/35</td>
+</tr>
+<tr>
+<td>공개 팩터 타이밍</td>
+<td style="text-align:right">−14.31%p</td>
+<td style="text-align:right">+9.36%</td>
+<td style="text-align:right">−31.17%p</td>
+<td style="text-align:right">−5.12%</td>
+<td style="text-align:right">2/35</td>
+<td style="text-align:right">1/35</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="discussion">4. 우위가 나타난 조건</h2>
+<p><strong>한·미 상대강도.</strong> 짝지은 보유 대비 차이는 12개월 +1.78%p, 24개월 +4.03%p였다. 24개월 평가창 35개 중 28개에서 보유를 앞섰다. 24개월 진입월을 앞뒤로 나눴을 때도 차이 중앙값은 +1.50%p와 +5.29%p였다. 거래비용을 두 배로 올려도 24개월 차이 중앙값은 +3.65%p였다. 반면 전략별 24개월 수익률 중앙값은 보유 +58.89%, 상대강도 +55.04%였다. +15% 목표 달성은 둘 다 33개였다. 전량 익절은 낙폭을 −6.13%로 줄였지만, 보유 대비 차이는 −43.37%p였다.</p>
+<p><strong>미국 종목별 팩터.</strong> 24개월에서는 모멘텀의 차이 중앙값이 +1.85%p로 가장 높았다. 앞쪽 진입월에서는 −4.57%p, 뒤쪽에서는 +9.27%p였다. 저발생액은 두 쪽에서 모두 앞섰으며, 12개월과 24개월 전체 차이 중앙값도 각각 +0.47%p와 +0.56%p였다. 다만 저발생액의 24개월 최대낙폭은 −15.25%로 보유보다 깊었다.</p>
+<p><strong>공개 팩터 타이밍.</strong> 24개월에는 고정 팩터 바스켓 대비 짝지은 차이 중앙값이 +3.62%p였다. 미국 주식시장 대비로는 −31.17%p였다. 보유 기준을 바꾸면 같은 전략의 성과 질문도 달라지는 사례다.</p>
+<h2>5. 결론과 해석 범위</h2>
+<p>이번 표본에서 <strong>한·미 혼합 포트폴리오의 우선 검증 후보는 상대강도</strong>다. 혼합형 17개 가운데 짝지은 수익률이 가장 높았고, 두 보유 기간과 비용 스트레스에서 차이의 방향이 유지됐다. 미국 종목 선별에서는 24개월 수익을 우선하면 모멘텀, 기간별 성과 방향의 일관성을 우선하면 저발생액이 후속 후보다. 자산과 체결 모델이 다른 세 실험을 하나의 절대수익률 순위로 일반화할 수 없다. 12·24개월 평가창이 겹치고 같은 기간에 여러 전략을 검토했으므로 새 기간에 순위를 다시 확인해야 한다.</p>
+<h2 id="reproduce">재현 자료</h2>
+<p><a href="strategy-catalog.csv">공통 평가창 성과표 CSV</a> · <a href="compare_strategy_catalog.py">재집계 코드</a></p>
+<pre><code class="language-bash">study=/var/lib/fintos-portfolio/2026-11-28
+python3 scripts/compare_strategy_catalog.py \
+  --portfolio &quot;$study/literature-stock-backtest/validated/cohorts.csv&quot; \
+  --stocks &quot;$study/us-factor-extension/verified/us_factor_cohorts.csv&quot; \
+  --factors &quot;$study/factors-pit/public-followup/public_factor_months.csv&quot; \
+  --out results/strategy-catalog.csv
+</code></pre>
+
+<p class="back"><a href="../">연구 보관함으로 돌아가기</a></p>
+</article></main>
+</body>
+</html>
