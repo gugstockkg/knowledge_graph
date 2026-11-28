@@ -1,5 +1,7 @@
 # FINTOS OpenDART Knowledge Graph
 
+![OpenDART 수집, LPG·RDF/OWL 구축, CLEAR·TRACE 연구와 공개 배포 흐름](docs/diagrams/fintos-project-flow.svg)
+
 FINTOS는 금융감독원 OpenDART 공시에서 **기업·공급계약·지배권 변경과 원문 근거**를 연결합니다. 어느 기업이 계약의 당사자인지, 지정한 날짜까지 어떤 조건이 공개됐는지, 정정 공시가 어떤 값을 바꿨는지를 접수번호와 원문 위치로 확인할 수 있습니다.
 
 [전체 데이터 다운로드][download] · [데이터 설명서][data] · [CLEAR·TRACE 연구 결과][research] · [빠른 시작](#빠른-시작과-재현)

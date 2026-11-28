@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 570" role="img" aria-labelledby="title desc">
+<title id="title">FINTOS OpenDART 지식그래프 전체 흐름</title>
+<desc id="desc">OpenDART 공시를 EC2에서 추출하고 LPG와 RDF·OWL로 구축한다. 공급계약 LPG는 CLEAR와 TRACE 실험에 쓰고, 두 그래프는 공개 배포한다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516583"/></marker></defs>
+<rect x="1" y="1" width="898" height="568" rx="28" fill="#f8faff" stroke="#ccd8ec"/>
+<g font-family="system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif" text-anchor="middle">
+<text x="450" y="46" font-size="28" font-weight="750" fill="#182d50">FINTOS OpenDART Knowledge Graph</text>
+<g fill="none" stroke="#516583" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)">
+<path d="M450 145V169"/>
+<path d="M450 247V263H252V286"/>
+<path d="M450 247V263H648V286"/>
+<path d="M252 392V435"/>
+<path d="M648 392V435"/>
+<path d="M392 392V416H509V435"/>
+</g>
+<rect x="241" y="72" width="418" height="73" rx="15" fill="#dceaff" stroke="#2354a0" stroke-width="1"/>
+<text x="450.0" y="100" fill="#2354a0" font-size="23" font-weight="750">OpenDART 공시</text>
+<text x="450.0" y="124" fill="#2354a0" font-size="17">접수 목록과 원문 수집 · S3 보관</text>
+<rect x="241" y="169" width="418" height="78" rx="15" fill="#d8f4e9" stroke="#14604d" stroke-width="1"/>
+<text x="450.0" y="197" fill="#14604d" font-size="23" font-weight="750">EC2 전처리</text>
+<text x="450.0" y="221" fill="#14604d" font-size="17">기업·계약·지분 필드 추출</text>
+<text x="450.0" y="242" fill="#14604d" font-size="17">접수번호·정정 관계·원문 위치 연결</text>
+<rect x="63" y="286" width="378" height="106" rx="15" fill="#e8dfff" stroke="#57358e" stroke-width="1"/>
+<text x="252.0" y="314" fill="#57358e" font-size="23" font-weight="750">LPG · Neo4j</text>
+<text x="252.0" y="338" fill="#57358e" font-size="17">기업·공시·공급계약 연결</text>
+<text x="252.0" y="359" fill="#57358e" font-size="17">노드 721,797개 · 관계 681,886개</text>
+<rect x="459" y="286" width="378" height="106" rx="15" fill="#d7f4f7" stroke="#175769" stroke-width="1"/>
+<text x="648.0" y="314" fill="#175769" font-size="23" font-weight="750">RDF·OWL</text>
+<text x="648.0" y="338" fill="#175769" font-size="17">지분·지배권 사건·정정·근거 연결</text>
+<text x="648.0" y="359" fill="#175769" font-size="17">상위 유형 추론 트리플 41,661개</text>
+<rect x="63" y="435" width="378" height="100" rx="15" fill="#ffebd0" stroke="#823e18" stroke-width="1"/>
+<text x="252.0" y="463" fill="#823e18" font-size="23" font-weight="750">CLEAR · TRACE 매매 연구</text>
+<text x="252.0" y="487" fill="#823e18" font-size="17">공급계약 경로로 공시 신호 판정</text>
+<text x="252.0" y="508" fill="#823e18" font-size="17">7종목 매매 비교와 주문 원장</text>
+<rect x="459" y="435" width="378" height="100" rx="15" fill="#ffe0ec" stroke="#82345a" stroke-width="1"/>
+<text x="648.0" y="463" fill="#82345a" font-size="23" font-weight="750">공개 데이터 v1</text>
+<text x="648.0" y="487" fill="#82345a" font-size="17">LPG와 RDF·OWL 스냅샷</text>
+<text x="648.0" y="508" fill="#82345a" font-size="17">Hugging Face · GitHub Releases</text>
+</g></svg>
