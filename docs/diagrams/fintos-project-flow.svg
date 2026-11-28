@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 655" role="img" aria-labelledby="title desc">
 <title id="title">FINTOS OpenDART 공시에서 CLEAR 주문까지</title>
-<desc id="desc">OpenDART 공시를 S3에 보관하고 EC2에서 추출한다. 공급계약 LPG는 학습형 CLEAR의 0홉과 1홉 후보를 정한다. 별도 지배권 실험에서는 공급계약 LPG와 지배권 RDF 및 OWL을 기업 코드로 연결해 기존 CLEAR와 TRACE의 신규 매수 보류 조건을 비교한다. 데이터와 연구 결과를 각각 공개한다.</desc>
+<desc id="desc">OpenDART 공시를 S3에 보관하고 EC2에서 추출한다. 공급계약 LPG는 학습형 CLEAR의 0홉과 1홉 후보를 정한다. 지배권 실험에서는 공급계약 LPG가 기존 CLEAR와 TRACE의 매수 후보를 만들고, 지배권 RDF 사건과 OWL 추론 유형을 후보에 대조해 신규 매수를 보류할지 판정한다. 데이터와 연구 결과를 각각 공개한다.</desc>
 <defs>
   <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#546886"/></marker>
 </defs>
@@ -15,8 +15,8 @@
     <path d="M480 153V174H245V195"/>
     <path d="M480 153V174H715V195"/>
     <path d="M245 305V382"/>
-    <path d="M715 305V382"/>
-    <path d="M446 276H480V342H580V382"/>
+    <path d="M715 305V382" stroke="#378582"/>
+    <path d="M446 276H480V360H570V382" stroke="#7955a8"/>
   </g>
 
   <rect x="45" y="195" width="401" height="110" rx="15" fill="#eee6ff" stroke="#7955a8"/>
@@ -29,8 +29,8 @@
   <text x="715" y="257" font-size="17">RDF의 변경 사건 · 보유 관측 · XML 근거</text>
   <text x="715" y="281" font-size="16">OWL의 사건 상위 유형 추론</text>
 
-  <rect x="492" y="319" width="194" height="27" rx="5" fill="#f7f9fd"/>
-  <text x="589" y="337" font-size="15" fill="#415570">기업 코드와 공개 시점으로 연결</text>
+  <text x="592" y="352" font-size="15" fill="#4e2b79">기존 CLEAR·TRACE 매수 후보</text>
+  <text x="810" y="352" font-size="15" fill="#145654">RDF 사건 · OWL 추론 유형</text>
 
   <rect x="45" y="382" width="401" height="145" rx="15" fill="#e0edff" stroke="#4471a9"/>
   <text x="245" y="416" font-size="22" font-weight="700" fill="#1e4d86">공시 반응 학습 CLEAR</text>
@@ -39,10 +39,10 @@
   <text x="245" y="499" font-size="17">새 공시 점수 → 보유·현금 판단 → 체결</text>
 
   <rect x="515" y="382" width="400" height="145" rx="15" fill="#fff0dc" stroke="#b78046"/>
-  <text x="715" y="416" font-size="22" font-weight="700" fill="#774720">별도 지배권 공시 실험</text>
-  <text x="715" y="446" font-size="17">기존 CLEAR·TRACE의 매수 후보</text>
-  <text x="715" y="473" font-size="17">사건 · 정정 · 근거 · 유형을 확인</text>
-  <text x="715" y="499" font-size="17">신규 매수 보류 → 체결과 손익 비교</text>
+  <text x="715" y="416" font-size="22" font-weight="700" fill="#774720">CLEAR·TRACE 지배권 실험</text>
+  <text x="715" y="446" font-size="17">매수 후보에 지배권 RDF·OWL 적용</text>
+  <text x="715" y="473" font-size="17">기업 코드와 공개 시점으로 대조</text>
+  <text x="715" y="499" font-size="17">매수 보류 판정 → 체결과 손익 비교</text>
 
   <path d="M45 556H915" stroke="#ced9e8"/>
   <text x="480" y="591" font-size="18" font-weight="700">공개 데이터와 연구 재현</text>
