@@ -173,3 +173,9 @@ CQ5는 “이 최대주주 변경 공시와 같은 거래를 보고한 대량보
 
 
 FIBO 검토를 반영한 확장 CSV에는 원문 근거와 Neo4j 대응 이름을 함께 기록하였다. ‘EC2 비교 검증’은 기존 실험 항목이며, ‘설계 제안’은 확장 후보이다. 참조 IRI와 매핑 판정은 설계 검토용 주석이다. 새 OWL 동치 공리나 운영 그래프 변경을 선언하는 자료는 아니다. [FIBO 검토 근거](../alignment/fibo/FIBO_review.md)
+
+### 정기보고서 보유 관측의 RDF 속성
+
+정기보고서에서 파싱한 보유자 행은 기존 `reportsAssertion`의 목적어이며, `aboutEvent`로 기간별 보유 현황을, `supportedBy`로 XML 행을 가리킨다. 여기에 `reportedHolderName`과 `reportedHolderRole`, 정수형 `openingShareCount`와 `closingShareCount`, 소수형 `openingOwnershipPercent`와 `closingOwnershipPercent`를 추가하였다. 지분율 단위는 퍼센트다. 보유자명이 합계인 행과 숫자 자릿값을 확인할 수 없는 행은 이 속성의 적재 대상에서 제외한다. 원문에 대시로 표시한 값은 생략한다.
+
+최대주주 교체는 기업별로 앞서 공개된 직전 분기와 현재 보고서의 최대주주 이름을 비교한 결과다. 최초 공시의 일자와 마찬가지로 보고서 접수일 다음 거래일부터 사용할 수 있다. 교체 판정은 두 관측의 비교이며, 별도 최대주주 변경 공시의 사건 유형과 원문 근거는 그대로 보존한다.
