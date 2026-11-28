@@ -70,7 +70,7 @@
         <img src="../../dataset/economic-contract.svg" width="900" height="250" alt="넥스틴이 공급자, SK하이닉스가 구매자로 연결된 웨이퍼 검사장비 공급계약 그래프">
         <figcaption>공급계약 LPG 사례. 넥스틴에서 계약을 거쳐 SK하이닉스에 이르는 경로를 회사 간 직접 거래 관계로 본다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146">넥스틴 공급계약 원문</a></figcaption>
       </figure>
-      <p><strong>OWL(Web Ontology Language)</strong>은 개념의 계층과 관계의 의미를 정의해 상위 유형을 추론하는 데 쓴다. 예를 들어 별도의 최대주주 변경 실험에서 <span class="equation">합병 ⊑ 기업구조재편</span>을 정의하면, 합병으로 기록된 사건을 기업구조재편 질의에서도 찾을 수 있다. 이 매매 실험에서는 Neo4j LPG에서 내보낸 사실을 사용하였다. CLEAR는 기존 공급계약의 유효성을 검사하고, TRACE는 공개된 관계를 따라 공시 근거를 찾는다. <a href="../2026-11-27-ontology-and-shacl/#benchmark">별도 LPG·OWL 비교 실험</a></p>
+      <p><strong>이 실험에는 두 도메인 온톨로지 중 경제 사건 모델의 공급계약 부분을 사용하였다.</strong> Neo4j LPG에서 기업·계약·공시와 당시 공개된 계약 조건을 내보냈다. CLEAR는 공급사와 구매자가 기존 유효 계약으로 연결되는지 조회하였다. TRACE는 같은 공급계약 자료에서 공시 시점별 경로를 구성하여 방향 규칙을 채굴하였다. 시설투자·재무 관측과 최대주주 변경·지분 관측 모델의 OWL 추론은 이 주문 계산에 사용하지 않았다. 최대주주 변경 모델은 별도 실험에서 정정 전후 유효 값과 원문 근거를 복원하는 데 사용하였다. <a href="../../dataset/#models">두 온톨로지의 구성과 사용처</a> · <a href="../2026-11-27-ontology-and-shacl/#benchmark">최대주주 변경 검증</a></p>
       <p>공시 접수일과 계약 유효 기간은 따로 기록하였다. 그래프 조회에는 그때까지 공개된 계약 조건만 사용하고, 접수일만 확인한 공시는 다음 거래일 시가부터 신호에 반영하였다. 최초 실행 후 두 전략 모두 공시 후보가 있었던 7종목을 추려 성과와 공시·주문 집계를 제시하였다.</p>
     </section>
     <section aria-labelledby="strategy">
