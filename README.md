@@ -1,10 +1,10 @@
 # FINTOS OpenDART Knowledge Graph
 
-![OpenDART 수집, LPG·RDF/OWL 구축, CLEAR·TRACE 연구와 공개 배포 흐름](docs/diagrams/fintos-project-flow.svg)
+![OpenDART 공시에서 공급계약 LPG의 CLEAR 학습과 LPG·RDF·OWL 지배권 실험, 공개 배포로 이어지는 흐름](docs/diagrams/fintos-project-flow.svg)
 
 FINTOS는 금융감독원 OpenDART 공시에서 **기업·공급계약·지배권 변경과 원문 근거**를 연결합니다. 어느 기업이 계약의 당사자인지, 지정한 날짜까지 어떤 조건이 공개됐는지, 정정 공시가 어떤 값을 바꿨는지를 접수번호와 원문 위치로 확인할 수 있습니다.
 
-[전체 데이터 다운로드][download] · [데이터 설명서][data] · [CLEAR·TRACE 연구 결과][research] · [빠른 시작](#빠른-시작과-재현)
+[전체 데이터 다운로드][download] · [데이터 설명서][data] · [공시 반응 학습 CLEAR와 지배권 실험][clear-study] · [초기 CLEAR·TRACE 연구][research] · [빠른 시작](#빠른-시작과-재현)
 
 ## 공개 데이터
 
@@ -30,10 +30,10 @@ FINTOS는 금융감독원 OpenDART 공시에서 **기업·공급계약·지배�
 | 도메인·구성 | 구현 형식과 구성 요소 | 실제 사용처 | 공개 배포본 v1 |
 | --- | --- | --- | --- |
 | 공통 공시 카탈로그 | **LPG·RDF**. 기업, 접수번호, 접수일, 원문 위치 | 기업과 공시를 찾고 두 배포본의 공시를 접수번호로 대조 | **LPG** 공시 목록 253,432건 · **RDF·OWL** 원문 확보 공시 211,458건의 메타데이터 |
-| [경제 사건](ontology/economic-events-v0.1/) | **LPG**. 공급사·구매자·계약·제품군·정정 관측, 시설투자·재무 관측 | **CLEAR·TRACE 백테스트**에는 공급계약 부분을 사용. CLEAR는 기존 유효 계약과 구매자를 대조하고, TRACE는 시점별 공시 경로에서 방향 규칙을 채굴 | **LPG**에 공급계약·계약 조건·제품군·시설투자·재무 관측 수록 |
-| [최대주주 변경·지분 관측](ontology/controller-change-v0.1/) | **LPG**로 시점별 주장과 근거 조회, **RDF**로 사건·정정·보유 관측 표현, **OWL**로 상위 유형 추론 | **지분·지배권 검증**에서 유효 지분율·원문과 관련 공시를 연결. 네 그래프 조건 비교에서 시점 조회와 유형 추론을 검증 | **RDF·OWL**에 지분·지배권 5개 공시군의 추출 결과, OWL 공리·추론 수록 |
+| [경제 사건](ontology/economic-events-v0.1/) | **LPG**. 공급사·구매자·계약·제품군·정정 관측, 시설투자·재무 관측 | **공시 반응 학습 CLEAR**의 0홉(공시 기업)·1홉(직접 구매자) 후보를 판정. **별도 지배권 실험**에서는 기존 CLEAR·TRACE의 기본 매수 후보를 생성 | **LPG**에 공급계약·계약 조건·제품군·시설투자·재무 관측 수록 |
+| [최대주주 변경·지분 관측](ontology/controller-change-v0.1/) | **LPG**로 시점별 주장과 근거 조회, **RDF**로 사건·정정·보유 관측 표현, **OWL**로 상위 유형 추론 | **별도 지배권 실험**에서 기존 CLEAR·TRACE 매수 후보에 사건·정정·원문 근거를 대조. RDF의 명시 유형과 OWL의 추론 유형으로 신규 매수 보류 조건을 비교 | **RDF·OWL**에 지분·지배권 5개 공시군의 추출 결과, OWL 공리·추론 수록 |
 
-시설투자·재무 관측과 최대주주 변경 모델의 OWL 추론은 CLEAR·TRACE의 주문 계산에 사용하지 않았습니다. [공개 배포본과 스키마][data] · [실험 방법론][research]
+172종목의 공시 반응 학습 CLEAR는 공급계약 LPG로 후보를 고르고 과거 수익률로 점수를 학습했습니다. 별도 지배권 실험은 같은 기업의 RDF 사건과 OWL 추론 유형으로 매수 보류 대상을 확인했습니다. 동일 39거래일 비교에서는 OWL을 추가해 바뀐 체결이 0건이었습니다. [학습형 CLEAR 방법][clear-study] · [지배권 매수 보류 실험][governance-study]
 
 ## 그래프에서 확인할 수 있는 질문
 
@@ -55,7 +55,7 @@ flowchart LR
 - **공급계약의 당사자는 누구인가?** 공급사와 구매자가 확인된 계약에서 당사자명과 DART 접수번호를 반환합니다. [Cypher 예제](docs/dataset-release/supply-contract.cypher)
 - **정정 공시로 어떤 값이 바뀌었는가?** 금호에이치티의 최대주주등 지분율은 원공시 **52.25%**에서 정정 공시 **52.39%**로 바뀌었습니다. 공개 RDF에서 두 값의 원문 근거를 각각 **111행**, **166행**으로 확인할 수 있습니다. 합병의 상위 유형인 기업구조재편도 조회할 수 있습니다. [정정 조회](docs/dataset-release/controller-correction.rq) · [상위 유형 조회](docs/dataset-release/controller-type.rq)
 
-## 연구에서 지식그래프를 어떻게 썼나
+## 초기 CLEAR·TRACE 비교
 
 **CLEAR**는 새 공급계약 공시를 구매자 종목의 매매에 반영하기 전에, 당시 공개돼 유효한 동일 제품군의 계약이 그 공급사와 구매자를 연결하는지 확인합니다. **TRACE**는 공개 시점에 확인할 수 있는 그래프에서 공시까지 이어지는 경로를 찾고 학습한 방향 규칙으로 신호를 만듭니다. 공개 실험은 TRACE의 경로 탐색을 OpenDART 구조화 공시에 적용했으며, CLEAR와 TRACE에 같은 주문 규칙을 사용했습니다.
 
@@ -109,6 +109,8 @@ OpenDART 수집부터 재현하려면 [로컬 실행 안내](docs/runbooks/local
 
 [data]: https://gugstockkg.github.io/knowledge_graph/dataset/#downloads
 [research]: https://gugstockkg.github.io/knowledge_graph/journal/2026-11-27-trace-backtest/
+[clear-study]: https://gugstockkg.github.io/knowledge_graph/journal/2026-11-28-governance-backtest/#clear-method
+[governance-study]: https://gugstockkg.github.io/knowledge_graph/journal/2026-11-28-governance-backtest/#governance-overview
 [hf]: https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/tree/3a91f1b15e438eab120b7261bcbab5fdf30fb355
 [release]: https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261127-v1
 [download]: https://github.com/gugstockkg/knowledge_graph/releases/download/fintos-opendart-20261127-v1/fintos-opendart-20261127-v1.zip
