@@ -16,13 +16,78 @@
 <main class="post dataset research-post" id="content" tabindex="-1"><article>
 <h1>퀀트 전략 22개 비교 · 매수 후 보유를 앞선 조건</h1>
 <p><strong>초록.</strong> 기존 한·미 포트폴리오의 17개 전략, 미국 종목별 팩터 4개, 공개 팩터 타이밍 1개를 동일한 진입월과 만기월로 맞춰 평가하였다. 주식 계좌의 비용 후 수익률과 공개 요인의 비용 전 수익률, 최대낙폭, +15% 목표 도달, 보유 대비 차이를 비교하였다. 한·미 혼합형에서는 상대강도가 짝지은 보유 대비 차이가 가장 높았다. 미국 종목별 실험에서는 24개월 모멘텀과 두 기한의 저발생액이 앞섰다. 공개 팩터 타이밍은 고정 팩터 바스켓을 앞섰으나 미국 주식시장보다 낮았다.</p>
-<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#methods">방법</a><a href="#results">결과</a><a href="#discussion">논의</a><a href="#reproduce">재현</a></nav>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#related">관련 연구</a><a href="#methods">비교 설계</a><a href="#strategies">22개 방법론</a><a href="#results">결과</a><a href="#discussion">논의</a><a href="#reproduce">재현</a><a href="#references">참고문헌</a></nav>
 <h2 id="intro">1. 연구 질문</h2>
 <p>투자 규칙을 추가했을 때 같은 시점의 단순 보유보다 순수익률을 개선하는지 검증한다. 만기 수익률 중앙값과 시작월별 초과수익률 중앙값은 다른 질문에 답한다. 전자는 전략의 전형적인 계좌 성과를, 후자는 같은 시점에 시작한 대조군과의 전형적인 격차를 나타낸다. 이 연구의 주 비교 기준은 짝지은 수익률 차이이며, 최대낙폭과 목표 도달도 함께 제시한다.</p>
-<h2 id="methods">2. 비교 설계</h2>
-<p>EC2에서 종전 실행의 계좌별 결과를 읽고, 세 실험에 모두 존재하는 시작월과 만기월만 남겼다. 최초 진입월은 2021년 11월, 마지막 만기월은 2026년 9월이다. 공통 평가창은 12개월 46개와 24개월 35개다. 17개 조건은 ETF와 개별주를 함께 담은 혼합형으로 통일하였다. 혼합형의 수익률은 원화 기준이고 수수료와 환전 비용을 반영한다. 미국 종목별 실험은 당시 공개된 재무와 가격을 연결한 고정 표본으로, 달러 기준 편도 10bp를 차감한다. 공개 팩터 타이밍은 미국의 롱쇼트 요인 수익률에 무위험 이자율을 더한 합성 계열이며 체결비용이 없다.</p>
+<section aria-labelledby="related">
+<h2 id="related">2. 관련 연구</h2>
+<h3>2.1 단순 배분, 위험 배분과 리밸런싱</h3>
+<p>DeMiguel 등은 7개 자료에서 14개 추정 기반 배분 모형을 단순 동일비중과 표본 밖에서 비교했다. 샤프, 확실성 등가 수익률, 회전율에서 일관되게 동일비중을 앞선 모형은 없었다. Vanguard 연구는 수익률과 거래비용을 함께 모의하고, 달력과 허용 편차에 따라 목표비중을 복원할 때 비용 후 효용이 어떻게 달라지는지 비교했다. 이 결과는 단순 기준을 함께 평가할 이유를 제공한다. 본 실험의 국가 동일비중과 5%p 편차는 각각 별도 정의다. <a href="#ref-1">[1]</a> <a href="#ref-2">[2]</a></p>
+<p>Maillard 등은 자본 비중 대신 분산·공분산으로 계산한 위험기여를 같게 하는 포트폴리오를 설명했다. Ledoit과 Wolf는 표본 공분산의 추정오차가 최적화 비중을 흔드는 문제를 다루고, 축소 추정으로 실제 자료에서 추적오차와 정보비율이 개선되는 사례를 보고했다. Moreira와 Muir는 변동성이 높을 때 팩터 노출을 줄이는 전략에서 위험조정 성과 개선을 보고했다. 본 실험은 이 발상을 두 시장에 단순화했다. 위험균형은 ETF 변동성의 역수, 축소는 비대각 공분산에 고정 0.5배, 변동성 목표는 12%를 넘을 때만 노출을 낮추는 규칙이다. <a href="#ref-3">[3]</a> <a href="#ref-4">[4]</a> <a href="#ref-5">[5]</a></p>
+<h3>2.2 추세, 상대 모멘텀과 단기 반전</h3>
+<p>Moskowitz 등은 58개 선물에서 각 자산 자체의 과거 수익률과 이후 수익률을 비교해 1~12개월의 지속성을 보고했다. Faber는 월말 가격과 10개월 이동평균을 비교해 자산 보유와 현금을 전환했다. 여기서는 이동평균을 이용한 가격 추세, 과거 수익률의 부호만 보는 절대 모멘텀, 두 시장의 원화 수익률을 비교하는 상대강도를 별도 전략으로 검증한다. <a href="#ref-6">[6]</a> <a href="#ref-7">[7]</a></p>
+<p>Jegadeesh와 Titman은 과거 3~12개월 수익으로 종목을 정렬해 승자 롱·패자 쇼트 전략의 중기 수익을 조사했다. Lehmann은 주간 승자와 패자에서 다음 주 반전을 보고했다. 본 연구의 개별주 반전은 과거 <em>한 달</em> 기준이며, 두 종목 선별 전략 모두 공매도 없이 국가별 고정 3종목 안에서 순위를 매긴다. 미국 팩터 트랙의 종목별 모멘텀은 이보다 넓은 고정 표본에서 상위 30%를 골라 평가한다. <a href="#ref-8">[8]</a> <a href="#ref-9">[9]</a></p>
+<h3>2.3 손절과 목표 수익 실현</h3>
+<p>Kaminski와 Lo는 누적 손실 한도에서 노출을 낮추는 규칙이 수익률의 동학에 따라 기대수익과 변동성을 어떻게 바꾸는지 분석했다. Odean은 개인계좌 거래에서 이익이 난 종목을 손실 종목보다 더 쉽게 실현하는 경향을 관찰했다. 전자는 손절의 조건부 가치, 후자는 매도 행동에 관한 근거다. 본 비교의 고점 대비 10% 손절이나 초기자본 대비 15% 익절 수치를 이 연구들이 최적이라고 입증한 것은 아니다. <a href="#ref-10">[10]</a> <a href="#ref-11">[11]</a></p>
+<h3>2.4 가치·수익성·발생액과 팩터 타이밍</h3>
+<p>Fama와 French는 규모·장부가치 대비 시가 등을 사용해 포트폴리오 간 수익률을 설명했고, 이후 수익성과 투자 요인을 추가했다. Novy-Marx는 매출총이익을 자산으로 나눈 수익성이 횡단면 수익 차이를 설명한다고 보고했다. Sloan은 이익을 현금흐름과 발생액으로 분해해 지속성의 차이와 가격 반영을 조사했다. 미국 종목별 실험은 이 연구들을 참고해 공개 연차 재무에서 세 점수를 만들고 상위 종목만 담는다. 공개 롱쇼트 요인은 개별주 계좌와 구성·비용·공매도 가정이 다르다. <a href="#ref-12">[12]</a> <a href="#ref-13">[13]</a> <a href="#ref-14">[14]</a> <a href="#ref-15">[15]</a> <a href="#ref-17">[17]</a></p>
+<p>Ehsani와 Linnainmaa는 요인 수익률의 시계열 지속성과 종목 모멘텀의 관계를 분석했다. 본 비교는 이 문제의식에 따라 공개 스타일 요인의 과거 수익 합계로 방향을 바꾼다. 요인의 구체적인 선택과 한 달 제외 규칙은 FINTOS 구현에서 정한 값이다. <a href="#ref-16">[16]</a> <a href="#ref-17">[17]</a> <a href="#ref-20">[20]</a></p>
+</section>
+<h2 id="methods">3. 데이터와 비교 설계</h2>
+<p>EC2에서 종전 실행의 계좌별 결과를 읽고, 세 실험에 모두 존재하는 시작월과 만기월만 남겼다. 최초 진입월은 2021년 11월, 마지막 만기월은 2026년 9월이다. 공통 평가창은 12개월 46개와 24개월 35개다. 혼합형 활성 전략 17개와 해당 매수 후 보유 기준에는 ETF와 개별주를 함께 담았다. 혼합형의 수익률은 원화 기준이고 수수료와 환전 비용을 반영한다. 미국 종목별 실험은 당시 공개된 재무와 가격을 연결한 고정 표본으로, 달러 기준 편도 10bp를 차감한다. 공개 팩터 타이밍은 미국의 롱쇼트 요인 수익률에 무위험 이자율을 더한 합성 계열이며 체결비용이 없다.</p>
 <p>혼합형과 미국 종목별 실험에서는 같은 바스켓의 매수 후 보유를 대조군으로 사용했다. 공개 팩터 타이밍은 미국 주식시장을 기준으로 표에 올리고, 고정 팩터 바스켓과의 차이는 별도로 해석했다. 날짜를 맞추었으나 보유 자산, 통화, 낙폭을 관측한 주기, 비용 모델이 달라 각 실험 안에서 순위를 매겼다. 공통 날짜에서도 종전 전략의 우열은 투자 대상을 함께 반영한다. <a href="../2026-11-28-portfolio-exit/">포트폴리오 실험</a> · <a href="../2026-11-28-factor-followup/">팩터 실험</a></p>
-<h2 id="results">3. 전략별 비교</h2>
+<section aria-labelledby="strategies">
+<h2 id="strategies">4. 전략 22개의 방법론</h2>
+<p>22개는 혼합형 활성 전략 17개, 미국 종목별 팩터 4개, 공개 팩터 타이밍 1개다. 매수 후 보유, 미국 시장, 고정 팩터 바스켓은 비교 기준이다. 2배 비용은 같은 전략의 민감도 점검이다.</p>
+<h3>4.1 한·미 혼합형 17개</h3>
+<p>공통 기준 배분은 SPY 40%, KODEX 200 20%, 미국·한국 개별주 각 국가 합계 10%씩, 원화 현금 20%다. 국가 비중 자체를 바꾸는 전략은 국가 안에서 미국 ETF에 80%, 한국 ETF에 3분의 2를 배정하고 나머지는 해당 국가의 개별주에 동일 배분한다. 월말 판단 뒤 각 종목의 다음 거래 가능 시가에서 모의 체결하고, 만기에는 각 시장의 마지막 가용 종가에서 청산한다. 기본 비용은 체결당 10bp이며 미국 거래에는 환전 비용 10bp를 추가한다. <a href="#ref-18">[18]</a> <a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/portfolio_engine.py">주문 엔진</a></p>
+<p>위험균형·최소분산·축소 최소분산·변동성 목표는 두 ETF 각각의 관측 수익률이 50개 이상일 때 계산한다. 부족하면 기본 배분을 사용한다.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="한·미 혼합형 활성 전략 17개의 신호와 주문 규칙">
+<table><caption>한·미 혼합형 활성 전략 17개의 신호와 주문 규칙</caption>
+<thead><tr><th scope="col">전략</th><th scope="col">입력과 판단 기준</th><th scope="col">비중과 매매 규칙</th></tr></thead>
+<tbody>
+<tr data-strategy="relative"><th scope="row">한·미 상대강도<br><code>relative</code></th><td>판단월을 건너뛰고 전월 말과 12개월 전 월말 사이 11개월 조정 종가 수익률을 비교한다. 미국 ETF 수익에 원·달러 환율 변화를 곱해 원화로 환산한다.</td><td>미국 우세 또는 동률이면 미국 65%·한국 15%, 한국 우세면 35%·45%, 이력이 부족하면 50%·30%. 현금 20%. 신호 상태가 바뀌거나 분기말이면 갱신한다.</td></tr>
+<tr data-strategy="relative_half_trend"><th scope="row">상대강도와 절반 보유<br><code>relative_half_trend</code></th><td>상대강도 목표를 먼저 정한 뒤 시장별 10개월 이동평균을 적용한다.</td><td>추세가 기준을 통과하지 못한 시장의 상대강도 목표만 절반으로 줄이고 차이는 현금에 둔다. 상태 변경과 분기말에 갱신한다.</td></tr>
+<tr data-strategy="threshold"><th scope="row">편차 리밸런싱<br><code>threshold</code></th><td>월말에 원화 평가액으로 편입 종목별 비중을 계산한다.</td><td>하나라도 초기 목표와 절대 5%p 이상 차이 나면 전체를 초기 비중으로 복원한다. 국가 합계 기준이 아니다.</td></tr>
+<tr data-strategy="stock_momentum"><th scope="row">개별주 모멘텀<br><code>stock_momentum</code></th><td>각 나라의 고정 개별주 세 종목을 판단월을 제외한 직전 11개월 조정 종가 수익률로 순위를 매긴다. 미국 개별주 순위는 달러 가격 계열이다.</td><td>상위 두 종목에 나라별 개별주 몫 10%를 동일 배분한다. SPY 40%, KODEX 200 20%를 유지한다. 이력이 부족하면 해당 국가의 세 종목을 모두 담는다. 월말 갱신.</td></tr>
+<tr data-strategy="equal_market"><th scope="row">한·미 동일 비중<br><code>equal_market</code></th><td>가격 신호 없이 두 시장에 같은 예산을 부여한다.</td><td>월말 미국 40%·한국 40%·현금 20%로 복원한다. 시장 안의 ETF·개별주 구성 비율은 공통 규칙을 따른다.</td></tr>
+<tr data-strategy="rebalance"><th scope="row">분기 리밸런싱<br><code>rebalance</code></th><td>분기말(3·6·9·12월) 여부로 재조정을 결정한다.</td><td>미국 50%·한국 30%·원화 현금 20%로 복원한다. 그 외에는 수량을 유지한다.</td></tr>
+<tr data-strategy="risk_parity"><th scope="row">위험균형<br><code>risk_parity</code></th><td>두 ETF의 각 최근 최대 63개 일수익률로 변동성을 구한다. 미국은 원화로 환산한다.</td><td>주식 몫 80%를 두 시장에 변동성 역수 비례로 배분한다. 월말 갱신. 이 구현은 두 시장의 위험 배분이고 개별 종목별 위험기여 최적화는 아니다.</td></tr>
+<tr data-strategy="half_trend"><th scope="row">추세에 따른 절반 보유<br><code>half_trend</code></th><td>시장 ETF의 월말 조정 종가를 현재 월을 포함한 10개월 평균과 비교한다.</td><td>평균을 넘으면 해당 시장의 기준 비중 전체, 같거나 낮거나 이력이 부족하면 절반을 보유한다. 상태 변경과 분기말에 갱신한다.</td></tr>
+<tr data-strategy="shrink_min_variance"><th scope="row">공분산 축소 최소분산<br><code>shrink_min_variance</code></th><td>최소분산 입력 중 두 시장의 공분산 항만 0.5배로 줄이고 분산은 유지한다.</td><td>같은 20~80% 시장 몫 제약과 월말 일정으로 계산한다. 고정 50% 축소이며 Ledoit–Wolf의 논문 추정량을 구현한 것은 아니다.</td></tr>
+<tr data-strategy="min_variance"><th scope="row">최소분산<br><code>min_variance</code></th><td>최근 최대 63개 일수익률에서 공통 거래일로 맞춘 두 시장 분산과 공분산을 추정한다. 공통 날짜가 30개 미만이면 공분산을 0으로 두고 개별 분산을 쓴다.</td><td>미국 몫은 (한국 분산 − 공분산) ÷ (미국 분산 + 한국 분산 − 공분산의 2배)를 20~80%로 제한한다. 한국은 나머지다. 이 비율로 전체 계좌의 주식 80%를 월말에 배분한다.</td></tr>
+<tr data-strategy="stock_reversal"><th scope="row">개별주 반전<br><code>stock_reversal</code></th><td>각 나라의 고정 개별주 세 종목을 직전 월말에서 이번 월말까지의 조정 종가 수익률로 정렬한다.</td><td>하위 두 종목에 국가별 10% 개별주 비중을 동일 배분한다. ETF와 현금 몫, 이력 부족 처리, 월말 일정은 개별주 모멘텀과 같다.</td></tr>
+<tr data-strategy="vol_target"><th scope="row">변동성 목표<br><code>vol_target</code></th><td>두 ETF의 일수익률로 미국 50%·한국 30% 기준 전략의 연율 변동성을 추정한다.</td><td>각 시장 기본 비중에 min(1, 12% ÷ 추정 변동성)을 곱한다. 나머지는 현금이고 레버리지 확대는 없으며 월말 갱신한다.</td></tr>
+<tr data-strategy="trend"><th scope="row">가격 추세<br><code>trend</code></th><td>시장 ETF의 현재 월말 조정 종가가 해당 월을 포함한 10개월 평균을 초과하는지 판단한다.</td><td>통과 시 시장의 초기 목표 비중, 미통과 또는 이력 부족 시 0%. 줄인 몫은 현금. 상태 변경과 분기말에 갱신한다.</td></tr>
+<tr data-strategy="stop_loss"><th scope="row">손절<br><code>stop_loss</code></th><td>일별 계좌 평가액이 추적 중인 고점의 90% 미만이면 작동한다.</td><td>다음 거래 가능 시가에 전량 청산을 예약한다. 한 달이 지난 뒤 첫 월말 판단에서 초기 비중으로 재진입을 예약하고 기준 고점을 재설정한다.</td></tr>
+<tr data-strategy="absolute_momentum"><th scope="row">절대 모멘텀<br><code>absolute_momentum</code></th><td>각 시장 ETF의 전월 말 대 12개월 전 월말 조정 종가를 비교한다. 미국 신호에도 이 비교에는 환율을 곱하지 않는다.</td><td>해당 시장의 11개월 수익률이 양수면 기본 비중, 그 외와 이력 부족은 현금. 월말 갱신.</td></tr>
+<tr data-strategy="partial"><th scope="row">부분 익절<br><code>partial</code></th><td>가격 추세 규칙을 따르다가 일별 비용 차감 예상 청산액이 초기자본의 115% 이상에 처음 도달하면 발동한다.</td><td>다음 거래 가능 시가에 각 보유 종목 수량의 절반을 매도한다. 이후 추세·분기 재조정을 멈추고 남은 수량을 만기까지 보유한다.</td></tr>
+<tr data-strategy="exit"><th scope="row">전량 익절<br><code>exit</code></th><td>부분 익절과 같은 추세 규칙 및 비용 차감 예상 청산액 기준을 쓴다.</td><td>최초 발동 시 다음 거래 가능 시가에 전량 매도 예약 후 현금으로 대기한다. 다음 시가가 달라 실제 확정 수익률 15%는 보장되지 않는다.</td></tr>
+</tbody>
+</table></div>
+<h3>4.2 미국 종목별 팩터 4개</h3>
+<p>진입 전에 확보한 SPY 과거 보유 종목 가운데 전체 준비·평가 구간의 조정 가격과 일대일 식별을 확인한 표본이다. 주문월 직전 월의 시작 전에 공개된 연차 재무를 선별하고, 직전 월말 가격과 연결한다. 네 점수가 모두 있는 종목 중 전략별 상위 30%를 올림한 수만큼 고른다. 진입월과 이후 3개월마다 주문월 말 종가 기준으로 재조정하며 달러 기준 편도 10bp를 적용한다. 완결된 가격 이력 조건으로 빠진 상장폐지·코드 변경 종목이 있을 수 있다. <a href="#ref-19">[19]</a></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="미국 종목별 팩터 4개의 점수 정의">
+<table><caption>미국 종목별 팩터 4개의 점수 정의</caption>
+<thead><tr><th scope="col">전략</th><th scope="col">입력과 판단 기준</th><th scope="col">비중과 매매 규칙</th></tr></thead>
+<tbody>
+<tr data-strategy="momentum"><th scope="row">미국 종목별 모멘텀<br><code>momentum</code></th><td>주문월을 m이라 하면 두 달 전 월말 조정 종가를 13개월 전 월말 조정 종가로 나눈 뒤 1을 뺀다. 11개월 가격 움직임을 사용한다.</td><td>공통 후보 상위 30%를 동일 비중으로 보유한다.</td></tr>
+<tr data-strategy="accruals"><th scope="row">미국 저발생액<br><code>accruals</code></th><td>(영업활동현금흐름 − 순이익) ÷ 총자산을 점수로 쓴다. 점수가 높을수록 자산 대비 발생액이 낮다.</td><td>공통 후보 상위 30%를 동일 비중으로 보유한다.</td></tr>
+<tr data-strategy="profitability"><th scope="row">미국 수익성<br><code>profitability</code></th><td>공개 연차보고서의 매출총이익 ÷ 양의 총자산을 사용한다.</td><td>공통 후보 상위 30%를 동일 비중으로 보유한다. French의 영업수익성 요인과 지표 정의가 다르다.</td></tr>
+<tr data-strategy="value"><th scope="row">미국 가치<br><code>value</code></th><td>양의 장부자기자본 ÷ 추정 시가총액. 같은 회계연도의 공개 발행주식 수와 분할을 맞춘 직전 월말 종가로 시가총액을 추정한다.</td><td>공통 후보 상위 30%를 동일 비중으로 보유한다.</td></tr>
+</tbody>
+</table></div>
+<h3>4.3 공개 팩터 타이밍 1개</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="공개 팩터 타이밍의 노출 판정">
+<table><caption>공개 팩터 타이밍의 노출 판정</caption>
+<thead><tr><th scope="col">전략</th><th scope="col">입력과 판단 기준</th><th scope="col">비중과 매매 규칙</th></tr></thead>
+<tbody>
+<tr data-strategy="timed"><th scope="row">공개 팩터 타이밍<br><code>timed</code></th><td>SMB·HML·RMW·CMA 각각에 대해 적용월 직전 한 달을 건너뛰고 그 이전 12개월 수익률을 단순 합산한다.</td><td>합이 양수면 해당 공개 롱쇼트 수익률에 +1, 0 이하이면 −1을 곱한다. 네 요인을 동일 가중하고 무위험 수익률을 더한다. 월별 합성 계열이며 거래·공매도·차입 비용을 모의하지 않는다.</td></tr>
+</tbody>
+</table></div>
+<p>SMB는 규모, HML은 가치, RMW는 영업수익성, CMA는 투자 요인이다. 시장 기준은 시장 위험 프리미엄 + 무위험 수익률이며, 고정 팩터 기준은 같은 네 공개 수익률을 방향 전환 없이 평균한 뒤 무위험 수익률을 더한다. <a href="#ref-17">[17]</a> <a href="#ref-20">[20]</a></p>
+</section>
+<h2 id="results">5. 전략별 비교</h2>
 <p>전략 행은 24개월 짝지은 수익률 차이 순이다. 범위별 기준 행을 먼저 표시했다. 수익률과 낙폭은 중앙값이고 목표 달성은 만기 수익률이 15% 이상인 창의 수다. 공개 요인 결과는 비용 전이다.</p>
 <h3>한·미 혼합형 · 원화</h3>
 <div class="table-scroll" tabindex="0" role="region" aria-label="실험 결과표"><table>
@@ -297,11 +362,11 @@
 </tr>
 </tbody>
 </table></div>
-<h2 id="discussion">4. 우위가 나타난 조건</h2>
+<h2 id="discussion">6. 우위가 나타난 조건</h2>
 <p><strong>한·미 상대강도.</strong> 짝지은 보유 대비 차이는 12개월 +1.78%p, 24개월 +4.03%p였다. 24개월 평가창 35개 중 28개에서 보유를 앞섰다. 24개월 진입월을 앞뒤로 나눴을 때도 차이 중앙값은 +1.50%p와 +5.29%p였다. 거래비용을 두 배로 올려도 24개월 차이 중앙값은 +3.65%p였다. 반면 전략별 24개월 수익률 중앙값은 보유 +58.89%, 상대강도 +55.04%였다. +15% 목표 달성은 둘 다 33개였다. 전량 익절은 낙폭을 −6.13%로 줄였지만, 보유 대비 차이는 −43.37%p였다.</p>
 <p><strong>미국 종목별 팩터.</strong> 24개월에서는 모멘텀의 차이 중앙값이 +1.85%p로 가장 높았다. 앞쪽 진입월에서는 −4.57%p, 뒤쪽에서는 +9.27%p였다. 저발생액은 두 쪽에서 모두 앞섰으며, 12개월과 24개월 전체 차이 중앙값도 각각 +0.47%p와 +0.56%p였다. 다만 저발생액의 24개월 최대낙폭은 −15.25%로 보유보다 깊었다.</p>
 <p><strong>공개 팩터 타이밍.</strong> 24개월에는 고정 팩터 바스켓 대비 짝지은 차이 중앙값이 +3.62%p였다. 미국 주식시장 대비로는 −31.17%p였다. 보유 기준을 바꾸면 같은 전략의 성과 질문도 달라지는 사례다.</p>
-<h2>5. 결론과 해석 범위</h2>
+<h2>7. 결론과 해석 범위</h2>
 <p>이번 표본에서 <strong>한·미 혼합 포트폴리오의 우선 검증 후보는 상대강도</strong>다. 혼합형 17개 가운데 짝지은 수익률이 가장 높았고, 두 보유 기간과 비용 스트레스에서 차이의 방향이 유지됐다. 미국 종목 선별에서는 24개월 수익을 우선하면 모멘텀, 기간별 성과 방향의 일관성을 우선하면 저발생액이 후속 후보다. 자산과 체결 모델이 다른 세 실험을 하나의 절대수익률 순위로 일반화할 수 없다. 12·24개월 평가창이 겹치고 같은 기간에 여러 전략을 검토했으므로 새 기간에 순위를 다시 확인해야 한다.</p>
 <h2 id="reproduce">재현 자료</h2>
 <p><a href="strategy-catalog.csv">공통 평가창 성과표 CSV</a> · <a href="compare_strategy_catalog.py">재집계 코드</a></p>
@@ -313,6 +378,31 @@ python3 scripts/compare_strategy_catalog.py \
   --out results/strategy-catalog.csv
 </code></pre>
 
+<section aria-labelledby="references">
+<h2 id="references">참고문헌과 구현 자료</h2>
+<ol>
+<li id="ref-1"><a href="https://doi.org/10.1093/rfs/hhm075">DeMiguel, V., Garlappi, L., &amp; Uppal, R. (2009). Optimal Versus Naive Diversification. Review of Financial Studies, 22(5), 1915–1953.</a></li>
+<li id="ref-2"><a href="https://www.vanguardsouthamerica.com/content/dam/intl/americas/documents/latam/en/2022/10/mx-sa-2558523-rational-rebalancing-an-analytical-approach.pdf">Zhang, Y., Ahluwalia, H., Ying, A., Rabinovich, M., &amp; Geysen, A. (2022). Rational Rebalancing. Vanguard Research.</a></li>
+<li id="ref-3"><a href="https://doi.org/10.3905/jpm.2010.36.4.060">Maillard, S., Roncalli, T., &amp; Teïletche, J. (2010). The Properties of Equally Weighted Risk Contribution Portfolios. Journal of Portfolio Management.</a></li>
+<li id="ref-4"><a href="https://ledoit.net/Honey_2004.pdf">Ledoit, O., &amp; Wolf, M. (2004). Honey, I Shrunk the Sample Covariance Matrix. Journal of Portfolio Management, 30(4), 110–119.</a></li>
+<li id="ref-5"><a href="https://www.nber.org/papers/w22208">Moreira, A., &amp; Muir, T. (2017). Volatility-Managed Portfolios. Journal of Finance. 저자 공개 작업논문.</a></li>
+<li id="ref-6"><a href="https://doi.org/10.1016/j.jfineco.2011.11.003">Moskowitz, T. J., Ooi, Y. H., &amp; Pedersen, L. H. (2012). Time Series Momentum. Journal of Financial Economics, 104(2), 228–250.</a></li>
+<li id="ref-7"><a href="https://ssrn.com/abstract=962461">Faber, M. T. (2007). A Quantitative Approach to Tactical Asset Allocation. Journal of Wealth Management. 개정 공개본.</a></li>
+<li id="ref-8"><a href="https://doi.org/10.1111/j.1540-6261.1993.tb04702.x">Jegadeesh, N., &amp; Titman, S. (1993). Returns to Buying Winners and Selling Losers. Journal of Finance, 48(1), 65–91.</a></li>
+<li id="ref-9"><a href="https://www.nber.org/papers/w2533">Lehmann, B. N. (1990). Fads, Martingales, and Market Efficiency. Quarterly Journal of Economics. 저자 공개 작업논문.</a></li>
+<li id="ref-10"><a href="https://dspace.mit.edu/entities/publication/bb69ca4b-0cdc-487f-831d-63b2e84fafee">Kaminski, K. M., &amp; Lo, A. W. (2014). When Do Stop-Loss Rules Stop Losses? Journal of Financial Markets. 공개 저자본.</a></li>
+<li id="ref-11"><a href="https://doi.org/10.1111/0022-1082.00072">Odean, T. (1998). Are Investors Reluctant to Realize Their Losses? Journal of Finance, 53(5), 1775–1798.</a></li>
+<li id="ref-12"><a href="https://doi.org/10.1016/0304-405X(93)90023-5">Fama, E. F., &amp; French, K. R. (1993). Common Risk Factors in the Returns on Stocks and Bonds. Journal of Financial Economics, 33(1), 3–56.</a></li>
+<li id="ref-13"><a href="https://doi.org/10.1016/j.jfineco.2014.10.010">Fama, E. F., &amp; French, K. R. (2015). A Five-Factor Asset Pricing Model. Journal of Financial Economics, 116(1), 1–22.</a></li>
+<li id="ref-14"><a href="https://doi.org/10.1016/j.jfineco.2013.01.003">Novy-Marx, R. (2013). The Other Side of Value: The Gross Profitability Premium. Journal of Financial Economics, 108(1), 1–28.</a></li>
+<li id="ref-15"><a href="https://www.jstor.org/stable/248290">Sloan, R. G. (1996). Do Stock Prices Fully Reflect Information in Accruals and Cash Flows About Future Earnings? The Accounting Review, 71(3), 289–315.</a></li>
+<li id="ref-16"><a href="https://www.nber.org/papers/w25551">Ehsani, S., &amp; Linnainmaa, J. T. (2022). Factor Momentum and the Momentum Factor. Journal of Finance. 저자 공개 작업논문.</a></li>
+<li id="ref-17"><a href="https://mba.tuck.dartmouth.edu/pages/faculty/Ken.French/Data_Library/f-f_5_factors_2x3.html">Kenneth R. French Data Library. Description of Fama/French 5 Factors (2×3). 자료 정의.</a></li>
+<li id="ref-18"><a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/run_research.py">FINTOS 주식 연구 소스. 혼합형 연구 규칙 및 주문 엔진, stock_backtest 32fccf7.</a></li>
+<li id="ref-19"><a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/us_factor_extension.py">FINTOS 주식 연구 소스. 미국 종목별 팩터, stock_backtest 32fccf7.</a></li>
+<li id="ref-20"><a href="https://github.com/gugstockkg/stock_backtest/blob/32fccf74117a4918421ccd83ba54503fcc0de1a8/scripts/run_public_factor_followup.py">FINTOS 주식 연구 소스. 공개 요인 타이밍, stock_backtest 32fccf7.</a></li>
+</ol>
+</section>
 <p class="back"><a href="../">연구 보관함으로 돌아가기</a></p>
 </article></main>
 </body>
