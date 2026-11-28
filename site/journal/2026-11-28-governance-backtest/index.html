@@ -134,7 +134,21 @@
 <p>EC2의 기존 OpenDART RDF에 정기보고서 12,828건의 보유자 행 83,706개를 보강하였다. 같은 주장 노드에 이름과 역할을 문자열, 기초·기말 주식 수를 정수, 기초·기말 지분율을 퍼센트 단위 소수로 추가하였다. Neo4j에서 증분 트리플 502,135개를 확인하였다. 집계행 또는 수량·비율 형식이 맞지 않은 12,631개 행은 보강에서 제외했고, 원문이 대시인 값은 비워 두었다.</p>
 <p>후속 실험은 기업별로 먼저 공개된 직전 분기와 새 보고서의 최대주주를 대조한다. 두 보고서 각각에서 최대주주 이름이 하나로 식별되고 그 이름이 바뀌면 <strong>보고서 간 최대주주 교체</strong>로 판정한다. 같은 최대주주의 현재 보고서 기초·기말 지분율이 다르면 <strong>동일 보유자의 지분율 변동</strong>으로 판정한다. 사업·반기보고서도 분기말 관측을 제공하므로 포함하였다. 이 판정은 공시에서 확인한 이름을 비교한 것이며, 별도 최대주주 변경 원공시의 법적 사건 판정과는 구분된다.</p>
 <p>보고서 접수 다음 거래일부터 5거래일 이내의 신규 매수를 비교했다. <strong>기존 전략</strong>은 공급계약과 가격 신호를 그대로 사용한다. <strong>두 변동 모두 보류</strong>는 교체 또는 지분율 변동이 있으면 신규 매수를 한 거래일 미룬다. <strong>교체만 보류</strong>는 똑같은 규칙을 최대주주 교체에만 적용한다. 평가창은 보고서 사용 가능일 5거래일 전부터 이후 최대 10거래일까지이며, TRACE 규칙은 평가창 시작 전에 관측 가능한 자료로 채굴한다. 이미 보유한 주식을 강제로 매도하지 않으며 거래 비용은 편도 10bp다.</p>
-<!-- PERIODIC_RESULTS -->
+<p>보고서 비교에서 최대주주 교체 90건, 동일 보유자 지분율 변동 1,083건을 찾았다. 이 가운데 거래 가능한 시세가 있는 7건과 165건을 각각 재실행하였다.</p>
+<div class="table-scroll" role="region" aria-label="정기보고서 비교 결과" tabindex="0"><table>
+<caption>사건창별 순수익률의 산술평균과 매수 보류 건수</caption>
+<thead><tr><th scope="col">관측과 전략</th><th scope="col">기존</th><th scope="col">두 변동 모두 보류</th><th scope="col">교체만 보류</th><th scope="col">매수 후 보유</th><th scope="col">보류 건수<br>두 변동 / 교체만</th></tr></thead>
+<tbody>
+<tr><th scope="row">교체 7건 · CLEAR</th><td>−1.71%</td><td>−1.71%</td><td>−1.71%</td><td>−5.50%</td><td>0 / 0</td></tr>
+<tr><th scope="row">교체 7건 · TRACE</th><td>−1.71%</td><td>−1.71%</td><td>−1.71%</td><td>−5.50%</td><td>0 / 0</td></tr>
+<tr><th scope="row">지분율 변동 165건 · CLEAR</th><td>−3.57%</td><td>−3.11%</td><td>−3.57%</td><td>−3.90%</td><td>28 / 0</td></tr>
+<tr><th scope="row">지분율 변동 165건 · TRACE</th><td>−3.76%</td><td>−3.26%</td><td>−3.76%</td><td>−3.90%</td><td>27 / 0</td></tr>
+</tbody></table></div>
+<figure class="dataset-figure"><div class="table-scroll" role="region" aria-label="정기보고서에서 주문까지 두 사례 도해" tabindex="0"><img src="periodic-ownership-flow.svg" width="940" height="470" alt="SPC삼립과 SK하이닉스의 원문에서 RDF, 판정, 주문으로 이어지는 두 경로"></div><figcaption>원문 행에서 RDF 판정과 주문 재평가까지. <a href="periodic-ownership-cases.json" download>두 사례의 XML 근거와 체결 원장</a></figcaption></figure>
+<p><strong>SPC삼립.</strong> 사업보고서는 파리크라상, 분기보고서는 상미당홀딩스를 최대주주로 기록했다. 두 관측의 주식 수는 3,508,240주, 지분율은 40.66%였다. 이름이 달라 교체로 분류했으나, 두 전략 모두 신규 매수 후보가 없어 주문은 발생하지 않았다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001066">사업보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001010">분기보고서</a></p>
+<p><strong>SK하이닉스.</strong> SK스퀘어는 직전 보고서와 현재 보고서에서 모두 최대주주였다. 현재 보고서에서 주식 수는 146,100,000주로 같았고, 기초·기말 지분율은 20.07%에서 20.00%로 달라졌다. 교체만 보류하는 CLEAR는 케이씨텍 공급계약의 +1 신호로 11월 17일 시가 1,098,000원에 매수하였다. 지분율 변동까지 보류하면 11월 18일 시가 1,154,000원에 매수하였다. 두 조건 모두 11월 24일 시가 1,212,000원에 매도했다. 평가창 순수익률은 각각 +3.47%, −1.55%로 교체만 보류한 조건이 5.02%p 높았다. TRACE에서는 이 공시와 겹친 신규 매수가 없었다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003509">반기보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715">분기보고서</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">공급계약 공시</a></p>
+<p>지분율 변동으로 보류된 매수 중 CLEAR 28건 중 27건, TRACE 27건 모두 가격 추세가 만든 후보였다. 사건창이 서로 겹칠 수 있고 거래 가능한 시세가 있는 관측만 평가했으므로, 표의 평균은 포트폴리오 성과로 해석하기 어렵다.</p>
+
 </section>
 <section aria-labelledby="limits">
 <h2 id="limits">5. 논의와 한계</h2>
@@ -146,6 +160,13 @@
 <pre><code>PYTHONPATH=src python3.11 scripts/backtest_governance_integration.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OUTPUT" \
   --start 2026-10-01 --end 2026-11-26 --original-panel</code></pre>
+<p>정기보고서 보강과 주문 재실행은 두 단계로 재현한다. 첫 명령에 <code>--load</code>를 추가하면 EC2의 기존 Neo4j RDF에 증분 트리플을 병합한다.</p>
+<pre><code>PYTHONPATH=src python scripts/periodic_ownership_rdf.py \
+  "$OWNERSHIP" "$RDF" periodic-ownership.nt.gz periodic-pairs.json
+PYTHONPATH=src python3.11 scripts/backtest_periodic_ownership.py \
+  "$GRAPH" "$ARCHIVE" "$LATER" periodic-pairs.json "$OWNERSHIP" "$BUCKET" \
+  &gt; periodic-order-results.json</code></pre>
+<p><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/periodic_ownership_rdf.py">RDF 적재와 판정 코드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/backtest_periodic_ownership.py">주문 재현 코드</a></p>
 <p>정정 공시 사건창 비교는 동일 입력에 최대주주 변경 추출 원장과 S3 버킷을 추가하여 재현한다.</p>
 <pre><code>PYTHONPATH=src python3.11 scripts/audit_governance_correction_orders.py \
   "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OWNERSHIP" "$BUCKET" \
