@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -35,6 +36,19 @@ jobs:
         with:
           name: ${{ env.PAGES_ARTIFACT }}
           path: ${{ runner.temp }}/research-site
+      - name: Confirm the Pages artifact is visible
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in {1..12}; do
+            if gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?name=$PAGES_ARTIFACT" \
+              --jq '.artifacts[] | select(.expired == false) | .name' | grep -Fxq "$PAGES_ARTIFACT"; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Pages artifact is not visible: $PAGES_ARTIFACT" >&2
+          exit 1
       - uses: actions/deploy-pages@v5.0.1
         id: deployment
         with:
