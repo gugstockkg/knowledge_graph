@@ -9,7 +9,7 @@ from statistics import mean
 
 from backtest_governance_integration import FEE, replay, summary
 from backtest_trace_positions import get_series, load, signals
-from knowledge_graph.market.economic_backtest import graph_events
+from knowledge_graph.market.economic_backtest import active_contract, graph_events
 
 START = "2026-10-01"
 END = "2026-11-26"
@@ -111,6 +111,7 @@ def run(graph, archive, later, start_date=START):
             })
 
     report, ledgers, changes_due_to_1hop = {}, {}, 0
+    hop_decisions, hop_paths = [], {}
     for policy in ("hold", "trend", "CLEAR"):
         curves, orders, stock_results, exposure = [], [], [], 0
         for code in panel:
@@ -128,6 +129,37 @@ def run(graph, archive, later, start_date=START):
                     net_0 = sum(v for _, _, v in first.values())
                     own_positions.append((market[j], j, net_0 > 0 if net_0 else trend,
                                           net_0, sorted(first)))
+                    buyer_refs = [r for r, (hop, _, _) in scored.items() if hop == 1]
+                    if buyer_refs:
+                        for receipt in buyer_refs:
+                            if receipt in hop_paths:
+                                continue
+                            item = disclosures[receipt][0]
+                            paths = [h[0] for h in histories.values()
+                                     if h[0]["receipt"] != receipt
+                                     and h[0]["supplier"]["corp_code"] == item["supplier"]["corp_code"]
+                                     and (h[0]["buyer"] or {}).get("corp_code") == code
+                                     and h[0]["category"] == item["category"]
+                                     and (h[0]["amount"] or 0) > 0
+                                     and active_contract(h, item["day"])]
+                            if not paths:
+                                raise ValueError(f"Missing supporting contract for {receipt}")
+                            hop_paths[receipt] = {
+                                "disclosure": item,
+                                "supporting_contracts": sorted(paths, key=lambda r: r["receipt"]),
+                            }
+                        hop_decisions.append({
+                            "symbol": symbol, "date": market[j], "one_hop_receipts": buyer_refs,
+                            "zero_hop_receipts": sorted(first), "score_0": net_0,
+                            "score_1": sum(scored[r][2] for r in buyer_refs), "score": net,
+                            "trend": trend,
+                            "previous_close": bars[code][market[j-1]]["close"],
+                            "trend_reference_close": bars[code][market[j-21]]["close"],
+                            "prior_position": positions[-2][2] if len(positions) > 1 else False,
+                            "prior_without_1hop": own_positions[-2][2] if len(own_positions) > 1 else False,
+                            "target": desired, "target_without_1hop": own_positions[-1][2],
+                        })
+
             equity, exposed, fills, _ = replay(symbol, policy, "base", positions, [], days, bars[code])
             if policy == "CLEAR":
                 _, _, without_hop, _ = replay(symbol, policy, "base", own_positions,
@@ -150,7 +182,8 @@ def run(graph, archive, later, start_date=START):
     for symbol, _, _, _ in clear.keys()-baseline.keys():
         stats = diagnostics[symbol]
         stats["added"] = stats.get("added", 0) + 1
-    return {"diagnostics": diagnostics, "changed_fills_due_to_hop_1": changes_due_to_1hop,
+    return {"one_hop_trace": {"paths": hop_paths, "decisions": hop_decisions},
+            "diagnostics": diagnostics, "changed_fills_due_to_hop_1": changes_due_to_1hop,
             "period": [days[0], days[-1]], "sessions": len(days),
             "panel": sorted(symbols[c] for c in panel), "training": {k: len(v) for k,v in pooled.items()},
             "training_cutoff": market[start-1],
