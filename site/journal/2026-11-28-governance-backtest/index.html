@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="기존과 동일한 7종목의 백테스트에서 CLEAR·TRACE의 제목 조건과 LPG·RDF·OWL 통합 조건을 비교하였다.">
+<meta name="fintos:title" content="지배권 공시가 CLEAR·TRACE 매매에 미치는 영향">
+<meta name="fintos:summary" content="동일 기간·동일 7종목에서 매수 후 보유와 CLEAR·TRACE 여섯 조건을 비교하고, 통합 그래프가 바꾼 주문과 원문 근거를 추적하였다.">
+<meta name="fintos:category" content="backtest">
+<meta name="fintos:published" content="2026-11-28T13:00:00+09:00">
+<title>지배권 공시가 CLEAR·TRACE 매매에 미치는 영향 | FINTOS</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#content">본문으로 이동</a>
+<header class="shell top site-header"><a class="brand" href="../../"><img src="../../assets/fintos-logo.webp" width="540" height="138" alt="FINTOS 홈"></a><nav aria-label="주요 메뉴"><a href="../../dataset/">데이터 설명서</a><a href="../">연구 보관함</a></nav></header>
+<main class="post dataset research-post" id="content" tabindex="-1"><article>
+<h1>지배권 공시가 CLEAR·TRACE 매매에 미치는 영향</h1>
+<p class="post-meta">LPG·RDF·OWL 통합 그래프 백테스트 · 2026년 11월 28일</p>
+<p class="lead"><strong>초록.</strong> 공급계약 그래프 기반 매매에 지배권 공시를 추가할 때 제목과 사건 근거가 주문 및 손익에 미치는 차이를 분석하였다. 기존 CLEAR·TRACE 연구와 동일한 7종목·39거래일에서 두 전략의 세 조건과 매수 후 보유를 비교하였다. 제목 조건은 CLEAR의 매수 세 건을 미뤘고, 통합 조건은 세 후보를 보유 관측으로 분류하여 기존 주문을 유지하였다. TRACE 주문은 세 조건에서 같았다. 매수 후 보유의 낙폭이 가장 컸으며, 통합 그래프의 추가 수익률 기여와 OWL 추론의 독립적인 주문 효과는 관찰되지 않았다.</p>
+<nav class="dataset-nav" aria-label="문서 목차"><a href="#intro">서론</a><a href="#method">방법론</a><a href="#dataset">데이터셋</a><a href="#results">실험 결과</a><a href="#orders">주문 사례</a><a href="#reproduce">재현</a></nav>
+<section aria-labelledby="intro">
+<h2 id="intro">1. 서론</h2>
+<p>이전 연구는 공급계약의 당사자·유효 기간·근거를 사용하여 CLEAR와 TRACE의 매매를 비교하였다 [1]. 후속 사전 분석에서는 지분 관련 공시가 일부 매수와 겹쳤으나, 그 매수에 최대주주 변경 근거가 연결되지 않았다 [2]. 제목으로 포착한 공시와 사건으로 확인한 사실의 차이가 실제 체결과 손익에 얼마나 영향을 미치는지 확인할 필요가 있다.</p>
+<p>본 연구는 이전 실험과 평가 기간·종목·체결 비용을 맞추고, 지배권 공시를 제목으로 확인한 조건과 통합 그래프에서 사건·정정·근거를 확인한 조건을 비교한다. 공시에서 판정, 체결, 종목별 성과까지 연결한 원장을 제시한다.</p>
+</section>
+<section aria-labelledby="related">
+<h2 id="related">2. 관련 연구</h2>
+<p>공급계약 공시의 시장 반응은 공시 시점 전후로 연구되었고 [3], 기업 간 경제적 관계는 거래 상대의 정보 전달 경로로 활용되었다 [4]. TRACE는 과거 금융 그래프에서 학습한 관계 규칙으로 후보 경로를 줄이고 원문과 연결한다 [5]. 이번 실험은 기존 TRACE의 OpenDART 구현과 CLEAR의 계약 조건은 유지한 채, 지배권 근거가 신규 매수에 미치는 영향을 측정한다.</p>
+</section>
+<section aria-labelledby="method">
+<h2 id="method">3. 방법론</h2>
+<h3>3.1 공급계약 신호</h3>
+<p>CLEAR는 새 공시에 명시된 구매자와 동일 제품군의 기존 유효 계약을 확인한다. TRACE는 학습 표본에서 관계 경로와 상승·하락 빈도를 집계하며, 지지도 5 이상과 신뢰도 60% 이상인 규칙으로 빔 탐색을 제한한다. 빔 폭은 8, 최대 깊이는 3이다. 5거래일 공시 신호 합계가 0이면 기존 20거래일 가격 추세를 적용한다. 본실험에서 LLM을 호출하지 않았다. TRACE 관계 탐색과 구조화된 근거 확인을 코드로 실행하였다.</p>
+<h3 id="integration">3.2 두 그래프의 연결</h3>
+<p>공급계약 LPG의 종목을 OpenDART 기업 코드로 대응시키고, 같은 기업 코드의 RDF 지분·지배권 공시를 조회한다. RDF는 원공시·정정·근거 위치를 반환하고 OWL 유형 계층에서 지배권 변경에 해당하는 상위 유형을 조회한다. 그림 1의 분기보고서는 보유 현황을 보고하며, 이 근거만으로 최대주주 변경을 확인할 수 없었다.</p>
+<figure class="dataset-figure"><div class="table-scroll" role="region" aria-label="SK하이닉스 공시의 두 그래프 연결" tabindex="0"><img src="../2026-11-28-governance-signal-overlap/joined-case.svg" width="900" height="475" alt="SK하이닉스 기업 코드로 공급계약 LPG와 분기보고서 RDF가 만나는 경로"></div><figcaption>그림 1. 케이씨텍 계약과 SK하이닉스의 분기보고서를 같은 기업에서 조회하였다. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116801609">공급계약</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715">분기보고서</a></figcaption></figure>
+<h3>3.3 세 비교 조건과 체결</h3>
+<p>① 기존 전략은 원래 주문을 낸다. ② 제목 조건은 최근 5거래일 내 반영할 수 있게 된 지분·지배권 공시가 있으면 신규 매수를 하루 미룬다. ③ 통합 조건은 같은 후보에서 원문 근거와 적격 지배권 사건을 확인했을 때 하루 미룬다. 다음 거래일의 시가에 기존 신호를 다시 평가한다. 같은 공시나 사건으로 반복해서 미루지 않는다. 접수일만 확인되는 공시는 다음 거래일부터 반영한다. 세 조건의 매도, 마지막 종가 청산, 편도 비용 10bp는 동일하다.</p>
+</section>
+<section aria-labelledby="results">
+<h2 id="results">4. 실험과 결과</h2>
+<h3 id="dataset">4.1 학습·검증·테스트 데이터셋</h3>
+<div class="table-scroll" role="region" aria-label="학습 검증 평가 데이터셋" tabindex="0"><table><thead><tr><th scope="col">구성</th><th scope="col">기간</th><th scope="col">관측 단위와 사용처</th></tr></thead><tbody>
+<tr><th scope="row">TRACE 학습</th><td>공시 2026-01-02~08-21 · 방향 라벨 01-05~08-24</td><td>기존 10종목의 197개 종목·거래일. 평가 전 확인된 다음 거래일 종가 방향으로 규칙을 채굴하였다. 학습 마감 기준은 09-30이다.</td></tr>
+<tr><th scope="row">별도 검증셋</th><td>없음</td><td>기존 지지도·신뢰도·빔 탐색 설정을 고정하였다. 신호와 체결은 이전 연구 원장과 대조하였다.</td></tr>
+<tr><th scope="row">주 비교 테스트</th><td>2026-10-01~11-26 · 39거래일</td><td>이전 연구와 같은 7종목, 273개 종목·거래일. 공급계약 LPG·일봉·지분·지배권 RDF를 기업 코드와 시점으로 연결하였다.</td></tr>
+<tr><th scope="row">확대 비교</th><td>동일한 39거래일</td><td>평가 전 공급계약 이력과 직전 21거래일 일봉, 평가 중 거래 가능한 일봉을 확보한 80종목. TRACE는 해당 종목의 평가 전 573개 관측으로 별도 학습하였다.</td></tr>
+</tbody></table></div>
+<p>7종목은 삼성전자, SK하이닉스, 삼성중공업, HD현대중공업, 현대건설, 삼성물산, 삼성전기이다. 지분·지배권 후보는 임원·주요주주 보고 52건, 대량보유 4건, 정기보고서 7건이다. 통합 주문 조건을 충족한 최대주주 변경·정정 근거는 관찰되지 않았다. 이 실험은 동일 표본 비교를 위해 이전 평가 구간을 재사용했다.</p>
+<h3>4.2 동일 7종목 성과</h3>
+<p>기존 결과의 매수 후 보유 −38.64%, CLEAR −4.12%, TRACE −1.92%를 재현하였다. 각 계정에 같은 초기 자본을 배정하였다. 최대낙폭과 샤프비율은 합산 자산에서 계산하였다. 보유 비중은 보유한 종목·거래일의 비율이다.</p>
+<div class="table-scroll" role="region" aria-label="조건별 전략 성과" tabindex="0"><table><thead><tr><th scope="col">전략</th><th scope="col">순수익률</th><th scope="col">보유 대비</th><th scope="col">최대낙폭</th><th scope="col">샤프</th><th scope="col">보유 비중</th><th scope="col">체결</th><th scope="col">매수 보류</th></tr></thead><tbody>
+<tr><th scope="row">매수 후 보유</th><td>-38.64%</td><td>+0.00%p</td><td>-40.96%</td><td>-4.24</td><td>100.00%</td><td>14</td><td>0</td></tr>
+<tr><th scope="row">CLEAR · 기존</th><td>-4.12%</td><td>+34.52%p</td><td>-6.60%</td><td>-2.45</td><td>12.09%</td><td>20</td><td>0</td></tr>
+<tr><th scope="row">CLEAR · 제목</th><td>-5.02%</td><td>+33.61%p</td><td>-7.17%</td><td>-3.68</td><td>10.99%</td><td>20</td><td>3</td></tr>
+<tr><th scope="row">CLEAR · 통합</th><td>-4.12%</td><td>+34.52%p</td><td>-6.60%</td><td>-2.45</td><td>12.09%</td><td>20</td><td>0</td></tr>
+<tr><th scope="row">TRACE · 기존</th><td>-1.92%</td><td>+36.71%p</td><td>-3.75%</td><td>-2.21</td><td>6.59%</td><td>14</td><td>0</td></tr>
+<tr><th scope="row">TRACE · 제목</th><td>-1.92%</td><td>+36.71%p</td><td>-3.75%</td><td>-2.21</td><td>6.59%</td><td>14</td><td>0</td></tr>
+<tr><th scope="row">TRACE · 통합</th><td>-1.92%</td><td>+36.71%p</td><td>-3.75%</td><td>-2.21</td><td>6.59%</td><td>14</td><td>0</td></tr>
+</tbody></table></div>
+<figure class="dataset-figure"><div class="table-scroll" role="region" aria-label="일곱 조건의 순수익률 도해" tabindex="0"><img src="returns.svg" width="900" height="360" alt="동일 7종목에서 매수 후 보유가 38.64% 하락하며 손실이 가장 컸다"></div><figcaption>그림 2. 동일 종목·기간의 비용 후 순수익률.</figcaption></figure>
+<p>통합 CLEAR는 제목 CLEAR보다 0.90%p 높았고 기존 CLEAR와 같았다. TRACE는 세 조건에서 체결과 손익이 모두 같았다. OWL의 상위 유형 조회를 명시 유형 조회로 바꾼 대조 결과에서도 체결은 같았다.</p>
+<h3>4.3 종목별 순수익률</h3>
+<div class="table-scroll" role="region" aria-label="일곱 종목 조건별 성과" tabindex="0"><table><thead><tr><th scope="col">종목</th><th scope="col">매수 후 보유</th><th scope="col">CLEAR · 기존</th><th scope="col">CLEAR · 제목</th><th scope="col">CLEAR · 통합</th><th scope="col">TRACE · 기존</th><th scope="col">TRACE · 제목</th><th scope="col">TRACE · 통합</th></tr></thead><tbody>
+<tr><th scope="row">삼성전자</th><td>-35.78%</td><td>-6.64%</td><td>-3.62%</td><td>-6.64%</td><td>-2.63%</td><td>-2.63%</td><td>-2.63%</td></tr>
+<tr><th scope="row">SK하이닉스</th><td>-40.24%</td><td>-3.88%</td><td>-8.55%</td><td>-3.88%</td><td>-12.75%</td><td>-12.75%</td><td>-12.75%</td></tr>
+<tr><th scope="row">삼성중공업</th><td>-29.25%</td><td>+0.00%</td><td>+0.00%</td><td>+0.00%</td><td>+0.00%</td><td>+0.00%</td><td>+0.00%</td></tr>
+<tr><th scope="row">HD현대중공업</th><td>-44.81%</td><td>-2.18%</td><td>-2.18%</td><td>-2.18%</td><td>-2.18%</td><td>-2.18%</td><td>-2.18%</td></tr>
+<tr><th scope="row">현대건설</th><td>-44.91%</td><td>-0.63%</td><td>-0.63%</td><td>-0.63%</td><td>-0.63%</td><td>-0.63%</td><td>-0.63%</td></tr>
+<tr><th scope="row">삼성물산</th><td>-27.87%</td><td>-7.08%</td><td>-11.77%</td><td>-7.08%</td><td>-7.08%</td><td>-7.08%</td><td>-7.08%</td></tr>
+<tr><th scope="row">삼성전기</th><td>-47.60%</td><td>-8.41%</td><td>-8.41%</td><td>-8.41%</td><td>+11.82%</td><td>+11.82%</td><td>+11.82%</td></tr>
+</tbody></table></div>
+<h3 id="orders">4.4 공시가 매수 날짜와 체결가를 바꾼 사례</h3>
+<p>제목 조건만 CLEAR의 세 매수를 다음 거래일로 미뤘다. 세 주문 모두 공급계약 신호가 +1이었다. 통합 조건은 해당 후보가 최대주주 변경을 입증하지 않아 기존 매수를 유지하였다. 매도는 각 비교 조건에서 같은 날짜·가격에 체결하였다.</p>
+<div class="table-scroll" role="region" aria-label="세 주문의 원문과 매매 체결" tabindex="0"><table><thead><tr><th scope="col">종목</th><th scope="col">제목 조건의 공시와 원문 근거</th><th scope="col">기존·통합 매수</th><th scope="col">제목 조건 매수</th><th scope="col">공통 매도</th><th scope="col">거래 손익 차이 · 제목−기존</th></tr></thead><tbody>
+<tr><th scope="row">삼성전자</th><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261118000151">20261118000151</a><br>임원·주요주주 보고 · 역할 189·191행</td><td>11월 25일 시가 178,500원</td><td>11월 26일 시가 172,900원</td><td>11월 26일 종가 171,500원</td><td>+3.11%p</td></tr>
+<tr><th scope="row">SK하이닉스</th><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715">20261116001715</a><br>분기보고서 보유현황 · 50100행</td><td>11월 17일 시가 1,098,000원</td><td>11월 18일 시가 1,154,000원</td><td>11월 24일 시가 1,212,000원</td><td>-5.35%p</td></tr>
+<tr><th scope="row">삼성물산</th><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001150">20261116001150</a> · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119000068">20261119000068</a><br>분기보고서 보유현황 77011행 · 임원 역할 183·185행</td><td>11월 23일 시가 244,500원</td><td>11월 24일 시가 257,500원</td><td>11월 26일 종가 245,000원</td><td>-5.05%p</td></tr>
+</tbody></table></div>
+<h3>4.5 동일 기간 80종목 확대 비교</h3>
+<p>종목 수만 넓힌 비교에서 매수 후 보유는 −24.71%였다. 제목 조건의 신규 매수 보류는 CLEAR 18건, TRACE 16건이었고 통합 조건은 두 전략 모두 0건이었다. 이 표본의 TRACE 규칙은 별도 학습했으므로, 7종목 결과와 합산하지 않는다.</p>
+<div class="table-scroll" role="region" aria-label="조건별 전략 성과" tabindex="0"><table><thead><tr><th scope="col">전략</th><th scope="col">순수익률</th><th scope="col">보유 대비</th><th scope="col">최대낙폭</th><th scope="col">샤프</th><th scope="col">보유 비중</th><th scope="col">체결</th><th scope="col">매수 보류</th></tr></thead><tbody>
+<tr><th scope="row">매수 후 보유</th><td>-24.71%</td><td>+0.00%p</td><td>-30.57%</td><td>-3.23</td><td>100.00%</td><td>160</td><td>0</td></tr>
+<tr><th scope="row">CLEAR · 기존</th><td>-8.41%</td><td>+16.30%p</td><td>-12.63%</td><td>-3.13</td><td>23.69%</td><td>244</td><td>0</td></tr>
+<tr><th scope="row">CLEAR · 제목</th><td>-8.89%</td><td>+15.82%p</td><td>-13.05%</td><td>-3.38</td><td>23.11%</td><td>234</td><td>18</td></tr>
+<tr><th scope="row">CLEAR · 통합</th><td>-8.41%</td><td>+16.30%p</td><td>-12.63%</td><td>-3.13</td><td>23.69%</td><td>244</td><td>0</td></tr>
+<tr><th scope="row">TRACE · 기존</th><td>-8.43%</td><td>+16.29%p</td><td>-12.52%</td><td>-3.40</td><td>21.54%</td><td>244</td><td>0</td></tr>
+<tr><th scope="row">TRACE · 제목</th><td>-8.72%</td><td>+15.99%p</td><td>-12.82%</td><td>-3.59</td><td>21.03%</td><td>234</td><td>16</td></tr>
+<tr><th scope="row">TRACE · 통합</th><td>-8.43%</td><td>+16.29%p</td><td>-12.52%</td><td>-3.40</td><td>21.54%</td><td>244</td><td>0</td></tr>
+</tbody></table></div>
+</section>
+<section aria-labelledby="limits">
+<h2 id="limits">5. 논의와 한계</h2>
+<p>통합 그래프는 이 기간에 지분 관련 제목만으로 매수를 미루는 경우를 걸러냈다. 다만 적격 지배권 변경·정정으로 주문이 바뀐 사례가 없으므로, 그 사건 정보가 매매 성과를 개선하는지는 비교할 수 없다. 이 결과는 이미 평가에 사용했던 하락장을 동일 조건으로 재실행한 결과이며 독립 테스트셋에 대한 성과로 해석하지 않는다. 확대 비교는 거래 가능한 가격 자료가 평가 기간 내내 확보된 종목에 조건부이다.</p>
+</section>
+<section aria-labelledby="reproduce">
+<h2 id="reproduce">부록 · EC2 재현과 원장</h2>
+<p>같은 계약 그래프와 아카이브·보강 일봉, RDF 적재본을 사용한다. 다음 명령에서 <code>--original-panel</code>을 빼면 같은 기간의 80종목 확대 비교를 재현한다. 체결 원장의 <code>panel</code>은 두 표본을 구분한다.</p>
+<pre><code>PYTHONPATH=src python3.11 scripts/backtest_governance_integration.py \
+  "$GRAPH" "$ARCHIVE" "$LATER" "$RDF" "$OUTPUT" \
+  --start 2026-10-01 --end 2026-11-26 --original-panel</code></pre>
+<p><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/scripts/backtest_governance_integration.py">재현 코드</a> · <a href="orders.csv" download>체결 원장</a> · <a href="delays.csv" download>보류 원장</a> · <a href="stock-results.csv" download>종목별 성과</a> · <a href="complete-results.json.gz" download>전체 결과와 원문 근거</a> · <a href="summary.json" download>학습 기간과 결과 요약</a></p>
+</section>
+<section aria-labelledby="references">
+<h2 id="references">참고문헌</h2>
+<ol>
+<li>FINTOS. (2026). CLEAR와 TRACE — OpenDART 공시를 활용한 매매 전략 비교. <a href="../2026-11-27-trace-backtest/">연구 글</a></li>
+<li>FINTOS. (2026). 공급계약과 지배권 공시의 시점별 겹침. <a href="../2026-11-28-governance-signal-overlap/">사전 분석</a></li>
+<li>우민철, 박수철. (2017). 중요 공시에 대한 시장반응－단일판매 공급계약 공시를 대상으로－. <cite>경영연구</cite>, 32(1), 205–229. <a href="https://doi.org/10.22903/jbr.2017.32.1.205">DOI</a></li>
+<li>Cohen, L., &amp; Frazzini, A. (2008). Economic links and predictable returns. <cite>The Journal of Finance</cite>, 63(4), 1977–2011. <a href="https://doi.org/10.1111/j.1540-6261.2008.01379.x">DOI</a></li>
+<li>Ding, Q., et al. (2026). TRACE: Temporal rule-anchored chain-of-evidence on knowledge graphs for interpretable stock movement prediction. <cite>arXiv:2603.12500v1</cite>. <a href="https://arxiv.org/abs/2603.12500v1">프리프린트</a></li>
+</ol>
+</section>
+</article></main>
+<footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
+</body>
+</html>

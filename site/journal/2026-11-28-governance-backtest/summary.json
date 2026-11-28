@@ -1,0 +1,1254 @@
+{
+  "matched": {
+    "period": [
+      "2026-10-01",
+      "2026-11-26"
+    ],
+    "sessions": 39,
+    "training": 197,
+    "training_cutoff": "2026-09-30",
+    "training_symbols": [
+      "000660",
+      "000720",
+      "005930",
+      "009150",
+      "010140",
+      "028260",
+      "042660",
+      "047040",
+      "329180",
+      "440110"
+    ],
+    "validation_split": null,
+    "rules": [
+      {
+        "body": [
+          "SUPPLIER_AMENDMENT",
+          "EXTRACTED_FROM"
+        ],
+        "label": "DOWN",
+        "support": 7,
+        "confidence": 0.7142857142857143
+      },
+      {
+        "body": [
+          "SUPPLIER_ORIGINAL",
+          "EXTRACTED_FROM"
+        ],
+        "label": "DOWN",
+        "support": 82,
+        "confidence": 0.6097560975609756
+      }
+    ],
+    "metrics": {
+      "BUY_HOLD_base": {
+        "total_return": -0.38637091626930975,
+        "sharpe": -4.237333187261848,
+        "annualized_volatility": 0.6851847089285678,
+        "max_drawdown": -0.40963167928145083,
+        "exposure": 1.0,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.0
+      },
+      "CLEAR_base": {
+        "total_return": -0.041176592284540625,
+        "sharpe": -2.4478868934841693,
+        "annualized_volatility": 0.10858189406407606,
+        "max_drawdown": -0.06600249781139267,
+        "exposure": 0.12087912087912088,
+        "orders": 20,
+        "delays": 0,
+        "vs_hold": 0.3451943239847691
+      },
+      "CLEAR_title": {
+        "total_return": -0.050221787400145046,
+        "sharpe": -3.6794036706017974,
+        "annualized_volatility": 0.08936945717006585,
+        "max_drawdown": -0.07168531097106856,
+        "exposure": 0.10989010989010989,
+        "orders": 20,
+        "delays": 3,
+        "vs_hold": 0.3361491288691647
+      },
+      "CLEAR_integrated": {
+        "total_return": -0.041176592284540625,
+        "sharpe": -2.4478868934841693,
+        "annualized_volatility": 0.10858189406407606,
+        "max_drawdown": -0.06600249781139267,
+        "exposure": 0.12087912087912088,
+        "orders": 20,
+        "delays": 0,
+        "vs_hold": 0.3451943239847691
+      },
+      "CLEAR_explicit": {
+        "total_return": -0.041176592284540625,
+        "sharpe": -2.4478868934841693,
+        "annualized_volatility": 0.10858189406407606,
+        "max_drawdown": -0.06600249781139267,
+        "exposure": 0.12087912087912088,
+        "orders": 20,
+        "delays": 0,
+        "vs_hold": 0.3451943239847691
+      },
+      "TRACE_base": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      },
+      "TRACE_title": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      },
+      "TRACE_integrated": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      },
+      "TRACE_explicit": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      }
+    },
+    "benchmark_index_return": -0.30864818937293914,
+    "stocks": 7,
+    "training_dates": {
+      "filing_start": "2026-01-02",
+      "filing_end": "2026-08-21",
+      "label_start": "2026-01-05",
+      "label_end": "2026-08-24"
+    },
+    "eligible": 0,
+    "families": {
+      "officer": 52,
+      "holding": 4,
+      "periodic": 7
+    },
+    "cases": [
+      {
+        "symbol": "005930",
+        "strategy": "CLEAR",
+        "condition": "title",
+        "date": "2026-11-25",
+        "open": 178500,
+        "supply_receipts": [
+          "20261124800494"
+        ],
+        "signal": 1,
+        "governance_receipts": [
+          "20261118000151"
+        ],
+        "events": [],
+        "next_session": "2026-11-26",
+        "outcome": "executed",
+        "next_open": 172900,
+        "orders": {
+          "base": [
+            {
+              "date": "2026-11-25",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 178500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261124800494"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "close",
+              "price": 171500,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "title": [
+            {
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 172900,
+              "signal": 1,
+              "supply_receipts": [
+                "20261124800494"
+              ],
+              "governance_receipts": [
+                "20261118000151"
+              ],
+              "reason": "reevaluated_after_delay"
+            },
+            {
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "close",
+              "price": 171500,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "integrated": [
+            {
+              "date": "2026-11-25",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "buy",
+              "session": "open",
+              "price": 178500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261124800494"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "sell",
+              "session": "close",
+              "price": 171500,
+              "reason": "terminal_liquidation"
+            }
+          ]
+        },
+        "documents": [
+          {
+            "symbol": "005930",
+            "receipt": "20261118000151",
+            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+            "family": "officer",
+            "filed": "2026-11-18",
+            "session": "2026-11-19",
+            "i": 215,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "IFR_NM",
+                "line": 168,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "STF_RYN",
+                "line": 189,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "STF_PSM",
+                "line": 191,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "BFR_UN_CNT",
+                "line": 280,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "BFR_PS_CPT_CNT",
+                "line": 282,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_RPT_DT",
+                "line": 288,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_UN_CNT",
+                "line": 289,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_UN_RT",
+                "line": 290,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_PS_CPT_CNT",
+                "line": 291,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_PS_CPT_RT",
+                "line": 292,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "MDF_UN_CNT",
+                "line": 297,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "MDF_PS_CPT_CNT",
+                "line": 299,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261118000151",
+            "verified_xml": {
+              "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe",
+              "fields": [
+                {
+                  "field": "IFR_NM",
+                  "line": 168
+                },
+                {
+                  "field": "STF_RYN",
+                  "line": 189
+                },
+                {
+                  "field": "STF_PSM",
+                  "line": 191
+                },
+                {
+                  "field": "BFR_UN_CNT",
+                  "line": 280
+                },
+                {
+                  "field": "BFR_PS_CPT_CNT",
+                  "line": 282
+                },
+                {
+                  "field": "AFR_RPT_DT",
+                  "line": 288
+                },
+                {
+                  "field": "AFR_UN_CNT",
+                  "line": 289
+                },
+                {
+                  "field": "AFR_UN_RT",
+                  "line": 290
+                },
+                {
+                  "field": "AFR_PS_CPT_CNT",
+                  "line": 291
+                },
+                {
+                  "field": "AFR_PS_CPT_RT",
+                  "line": 292
+                },
+                {
+                  "field": "MDF_UN_CNT",
+                  "line": 297
+                },
+                {
+                  "field": "MDF_PS_CPT_CNT",
+                  "line": 299
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "symbol": "000660",
+        "strategy": "CLEAR",
+        "condition": "title",
+        "date": "2026-11-17",
+        "open": 1098000,
+        "supply_receipts": [
+          "20261116801609"
+        ],
+        "signal": 1,
+        "governance_receipts": [
+          "20261116001715"
+        ],
+        "events": [],
+        "next_session": "2026-11-18",
+        "outcome": "executed",
+        "next_open": 1154000,
+        "orders": {
+          "base": [
+            {
+              "date": "2026-11-17",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1098000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "title": [
+            {
+              "date": "2026-11-18",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 1154000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [
+                "20261116001715"
+              ],
+              "reason": "reevaluated_after_delay"
+            },
+            {
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "integrated": [
+            {
+              "date": "2026-11-17",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "buy",
+              "session": "open",
+              "price": 1098000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ]
+        },
+        "documents": [
+          {
+            "symbol": "000660",
+            "receipt": "20261116001715",
+            "title": "분기보고서 (2026.09)",
+            "family": "periodic",
+            "filed": "2026-11-16",
+            "session": "2026-11-17",
+            "i": 213,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "reported_shareholder_position",
+                "line": 50100,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50111,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50122,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50133,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50144,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50155,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50166,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50177,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50188,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50199,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50210,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50221,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50232,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715",
+            "verified_xml": {
+              "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185",
+              "fields": [
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50100
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50111
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50122
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50133
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50144
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50155
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50166
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50177
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50188
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50199
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50210
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50221
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50232
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "symbol": "028260",
+        "strategy": "CLEAR",
+        "condition": "title",
+        "date": "2026-11-23",
+        "open": 244500,
+        "supply_receipts": [
+          "20261120900180"
+        ],
+        "signal": 1,
+        "governance_receipts": [
+          "20261116001150",
+          "20261119000068"
+        ],
+        "events": [],
+        "next_session": "2026-11-24",
+        "outcome": "executed",
+        "next_open": 257500,
+        "orders": {
+          "base": [
+            {
+              "date": "2026-11-23",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 244500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261120900180"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-26",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "close",
+              "price": 245000,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "title": [
+            {
+              "date": "2026-11-24",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 257500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261120900180"
+              ],
+              "governance_receipts": [
+                "20261116001150",
+                "20261119000068"
+              ],
+              "reason": "reevaluated_after_delay"
+            },
+            {
+              "date": "2026-11-26",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "close",
+              "price": 245000,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "integrated": [
+            {
+              "date": "2026-11-23",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "buy",
+              "session": "open",
+              "price": 244500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261120900180"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
+            },
+            {
+              "date": "2026-11-26",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "sell",
+              "session": "close",
+              "price": 245000,
+              "reason": "terminal_liquidation"
+            }
+          ]
+        },
+        "documents": [
+          {
+            "symbol": "028260",
+            "receipt": "20261116001150",
+            "title": "분기보고서 (2026.09)",
+            "family": "periodic",
+            "filed": "2026-11-16",
+            "session": "2026-11-17",
+            "i": 213,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "reported_shareholder_position",
+                "line": 77011,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77022,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77033,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77044,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77055,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77066,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77077,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77088,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77099,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77110,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77121,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77132,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77143,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77154,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77165,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77176,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001150",
+            "verified_xml": {
+              "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267",
+              "fields": [
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77011
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77022
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77033
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77044
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77055
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77066
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77077
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77088
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77099
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77110
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77121
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77132
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77143
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77154
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77165
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77176
+                }
+              ]
+            }
+          },
+          {
+            "symbol": "028260",
+            "receipt": "20261119000068",
+            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+            "family": "officer",
+            "filed": "2026-11-19",
+            "session": "2026-11-20",
+            "i": 216,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "IFR_NM",
+                "line": 165,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "STF_RYN",
+                "line": 183,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "STF_PSM",
+                "line": 185,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "BFR_UN_CNT",
+                "line": 274,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "BFR_PS_CPT_CNT",
+                "line": 276,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_RPT_DT",
+                "line": 282,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_UN_CNT",
+                "line": 283,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_UN_RT",
+                "line": 284,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_PS_CPT_CNT",
+                "line": 285,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_PS_CPT_RT",
+                "line": 286,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "MDF_UN_CNT",
+                "line": 291,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "MDF_PS_CPT_CNT",
+                "line": 293,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119000068",
+            "verified_xml": {
+              "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2",
+              "fields": [
+                {
+                  "field": "IFR_NM",
+                  "line": 165
+                },
+                {
+                  "field": "STF_RYN",
+                  "line": 183
+                },
+                {
+                  "field": "STF_PSM",
+                  "line": 185
+                },
+                {
+                  "field": "BFR_UN_CNT",
+                  "line": 274
+                },
+                {
+                  "field": "BFR_PS_CPT_CNT",
+                  "line": 276
+                },
+                {
+                  "field": "AFR_RPT_DT",
+                  "line": 282
+                },
+                {
+                  "field": "AFR_UN_CNT",
+                  "line": 283
+                },
+                {
+                  "field": "AFR_UN_RT",
+                  "line": 284
+                },
+                {
+                  "field": "AFR_PS_CPT_CNT",
+                  "line": 285
+                },
+                {
+                  "field": "AFR_PS_CPT_RT",
+                  "line": 286
+                },
+                {
+                  "field": "MDF_UN_CNT",
+                  "line": 291
+                },
+                {
+                  "field": "MDF_PS_CPT_CNT",
+                  "line": 293
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "expanded": {
+    "period": [
+      "2026-10-01",
+      "2026-11-26"
+    ],
+    "sessions": 39,
+    "training": 573,
+    "training_cutoff": "2026-09-30",
+    "training_symbols": [
+      "000150",
+      "000660",
+      "000720",
+      "001260",
+      "001440",
+      "0015G0",
+      "002460",
+      "002990",
+      "003070",
+      "005930",
+      "005960",
+      "006360",
+      "009150",
+      "010140",
+      "010960",
+      "012170",
+      "013360",
+      "013700",
+      "013870",
+      "023530",
+      "025560",
+      "025890",
+      "028260",
+      "032640",
+      "035510",
+      "042660",
+      "046940",
+      "047040",
+      "052460",
+      "052690",
+      "054930",
+      "058730",
+      "064290",
+      "071970",
+      "072020",
+      "077970",
+      "079550",
+      "082740",
+      "086390",
+      "090410",
+      "092870",
+      "095610",
+      "097230",
+      "100090",
+      "103590",
+      "105840",
+      "112610",
+      "115610",
+      "119850",
+      "127120",
+      "129920",
+      "136150",
+      "137080",
+      "178320",
+      "189330",
+      "196300",
+      "211270",
+      "253590",
+      "265560",
+      "267270",
+      "281820",
+      "282720",
+      "286750",
+      "294870",
+      "295310",
+      "329180",
+      "334970",
+      "347700",
+      "348080",
+      "375500",
+      "383310",
+      "417860",
+      "420770",
+      "439260",
+      "440110",
+      "445090",
+      "448280",
+      "464080",
+      "475040",
+      "478340"
+    ],
+    "validation_split": null,
+    "rules": [
+      {
+        "body": [
+          "SELLS_TO",
+          "SUPPLIER_AMENDMENT"
+        ],
+        "label": "DOWN",
+        "support": 9,
+        "confidence": 0.6666666666666666
+      },
+      {
+        "body": [
+          "SELLS_TO",
+          "SUPPLIER_ORIGINAL"
+        ],
+        "label": "DOWN",
+        "support": 68,
+        "confidence": 0.6617647058823529
+      },
+      {
+        "body": [
+          "SUPPLIER_AMENDMENT",
+          "EXTRACTED_FROM"
+        ],
+        "label": "DOWN",
+        "support": 23,
+        "confidence": 0.6086956521739131
+      }
+    ],
+    "metrics": {
+      "BUY_HOLD_base": {
+        "total_return": -0.24711458374556916,
+        "sharpe": -3.2323438773296616,
+        "annualized_volatility": 0.5235850134775207,
+        "max_drawdown": -0.3056539507202257,
+        "exposure": 1.0,
+        "orders": 160,
+        "delays": 0,
+        "vs_hold": 0.0
+      },
+      "CLEAR_base": {
+        "total_return": -0.08412079361762137,
+        "sharpe": -3.127129736211145,
+        "annualized_volatility": 0.17648027517437495,
+        "max_drawdown": -0.1262907994640854,
+        "exposure": 0.23685897435897435,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.1629937901279478
+      },
+      "CLEAR_title": {
+        "total_return": -0.08890987979238252,
+        "sharpe": -3.379773932298655,
+        "annualized_volatility": 0.17344106551834507,
+        "max_drawdown": -0.13050959561756303,
+        "exposure": 0.2310897435897436,
+        "orders": 234,
+        "delays": 18,
+        "vs_hold": 0.15820470395318664
+      },
+      "CLEAR_integrated": {
+        "total_return": -0.08412079361762137,
+        "sharpe": -3.127129736211145,
+        "annualized_volatility": 0.17648027517437495,
+        "max_drawdown": -0.1262907994640854,
+        "exposure": 0.23685897435897435,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.1629937901279478
+      },
+      "CLEAR_explicit": {
+        "total_return": -0.08412079361762137,
+        "sharpe": -3.127129736211145,
+        "annualized_volatility": 0.17648027517437495,
+        "max_drawdown": -0.1262907994640854,
+        "exposure": 0.23685897435897435,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.1629937901279478
+      },
+      "TRACE_base": {
+        "total_return": -0.08426406665573372,
+        "sharpe": -3.396443811437683,
+        "annualized_volatility": 0.1634240146000378,
+        "max_drawdown": -0.12523898552348345,
+        "exposure": 0.2153846153846154,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.16285051708983544
+      },
+      "TRACE_title": {
+        "total_return": -0.08722795344256307,
+        "sharpe": -3.5869765878728144,
+        "annualized_volatility": 0.16068996932566512,
+        "max_drawdown": -0.12815615838939654,
+        "exposure": 0.21025641025641026,
+        "orders": 234,
+        "delays": 16,
+        "vs_hold": 0.1598866303030061
+      },
+      "TRACE_integrated": {
+        "total_return": -0.08426406665573372,
+        "sharpe": -3.396443811437683,
+        "annualized_volatility": 0.1634240146000378,
+        "max_drawdown": -0.12523898552348345,
+        "exposure": 0.2153846153846154,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.16285051708983544
+      },
+      "TRACE_explicit": {
+        "total_return": -0.08426406665573372,
+        "sharpe": -3.396443811437683,
+        "annualized_volatility": 0.1634240146000378,
+        "max_drawdown": -0.12523898552348345,
+        "exposure": 0.2153846153846154,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.16285051708983544
+      }
+    },
+    "benchmark_index_return": -0.30864818937293914,
+    "stocks": 80,
+    "missing": 325,
+    "prior_ineligible": 27,
+    "eligible": 0
+  },
+  "reproduction_script_sha256": "2d47681a4211baaac2cb86ed77bcc5fbb0150eeb67525db1c744c17588aeaae6"
+}
