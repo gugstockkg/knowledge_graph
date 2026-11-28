@@ -1,1975 +1,1254 @@
 {
-  "period": [
-    "2026-07-01",
-    "2026-09-30"
-  ],
-  "sessions": 62,
-  "training": 931,
-  "training_cutoff": "2026-06-30",
-  "rules": [
-    {
-      "body": [
-        "SELLS_TO",
-        "SUPPLIER_AMENDMENT"
-      ],
-      "label": "DOWN",
-      "support": 12,
-      "confidence": 0.8333333333333334
-    },
-    {
-      "body": [
-        "SELLS_TO",
-        "SUPPLIER_ORIGINAL"
-      ],
-      "label": "DOWN",
-      "support": 108,
-      "confidence": 0.6388888888888888
-    }
-  ],
-  "metrics": {
-    "BUY_HOLD_base": {
-      "total_return": 0.02753888685808059,
-      "sharpe": 0.46971238177350105,
-      "annualized_volatility": 0.41758522901517675,
-      "max_drawdown": -0.2107829107234681,
-      "exposure": 1.0,
-      "orders": 678,
-      "delays": 0,
-      "vs_hold": 0.0
-    },
-    "CLEAR_base": {
-      "total_return": -0.03609069212045779,
-      "sharpe": -1.0538575760896398,
-      "annualized_volatility": 0.13338050123045292,
-      "max_drawdown": -0.06312221621466207,
-      "exposure": 0.4598915215529546,
-      "orders": 2644,
-      "delays": 0,
-      "vs_hold": -0.06362957897853838
-    },
-    "CLEAR_title": {
-      "total_return": -0.029417507792657283,
-      "sharpe": -0.8861206625116961,
-      "annualized_volatility": 0.12781455878578624,
-      "max_drawdown": -0.05851215831527656,
-      "exposure": 0.4498525073746313,
-      "orders": 2526,
-      "delays": 211,
-      "vs_hold": -0.056956394650737874
-    },
-    "CLEAR_integrated": {
-      "total_return": -0.0363039002171478,
-      "sharpe": -1.0614454850956694,
-      "annualized_volatility": 0.13328521371384514,
-      "max_drawdown": -0.06332892734627593,
-      "exposure": 0.45974878675421066,
-      "orders": 2644,
-      "delays": 3,
-      "vs_hold": -0.06384278707522839
-    },
-    "CLEAR_explicit": {
-      "total_return": -0.0363039002171478,
-      "sharpe": -1.0614454850956694,
-      "annualized_volatility": 0.13328521371384514,
-      "max_drawdown": -0.06332892734627593,
-      "exposure": 0.45974878675421066,
-      "orders": 2644,
-      "delays": 3,
-      "vs_hold": -0.06384278707522839
-    },
-    "TRACE_base": {
-      "total_return": -0.03620925586338364,
-      "sharpe": -1.0807505829320405,
-      "annualized_volatility": 0.1308308756568035,
-      "max_drawdown": -0.06323233244911808,
-      "exposure": 0.45579979065562853,
-      "orders": 2644,
-      "delays": 0,
-      "vs_hold": -0.06374814272146423
-    },
-    "TRACE_title": {
-      "total_return": -0.03014900790767905,
-      "sharpe": -0.9299858736160891,
-      "annualized_volatility": 0.12540234486908,
-      "max_drawdown": -0.05922699223011174,
-      "exposure": 0.4457131982110572,
-      "orders": 2524,
-      "delays": 212,
-      "vs_hold": -0.05768789476575964
-    },
-    "TRACE_integrated": {
-      "total_return": -0.03640506943161248,
-      "sharpe": -1.0879156853896936,
-      "annualized_volatility": 0.13073866414772412,
-      "max_drawdown": -0.06341780204322012,
-      "exposure": 0.4556570558568846,
-      "orders": 2644,
-      "delays": 3,
-      "vs_hold": -0.06394395628969307
-    },
-    "TRACE_explicit": {
-      "total_return": -0.03640506943161248,
-      "sharpe": -1.0879156853896936,
-      "annualized_volatility": 0.13073866414772412,
-      "max_drawdown": -0.06341780204322012,
-      "exposure": 0.4556570558568846,
-      "orders": 2644,
-      "delays": 3,
-      "vs_hold": -0.06394395628969307
-    }
-  },
-  "input_sha256": {
-    "graph.json": "55cfaf9ac0455bed513e3b5943ce0dcd841e9c12ca7092b22337ab379ab9ef63",
-    "opendart.nt.gz": "420c9357f45f478ad3fe3119a9b560f679c59204bda406f7e3baed4e468d3f2c",
-    "backtest_governance_integration.py": "21b83b14ec1a00650ca543d19b51b48faebfbd2d9e392422012d7f877df4c0be",
-    "used_price_files": "544607e668aae62fbcdac95d37f798eac18de32551f491af62b2efb3a2df6209"
-  },
-  "benchmark_index_return": -0.2040924169237036,
-  "stocks": 339,
-  "prior_ineligible": 20,
-  "missing": 18,
-  "candidate_families": {
-    "holding": 345,
-    "periodic": 389,
-    "officer": 1408,
-    "share_transfer": 4,
-    "controller": 4
-  },
-  "eligible": [
-    {
-      "symbol": "069920",
-      "receipt": "20260714900835",
-      "title": "최대주주변경              ",
-      "family": "controller",
-      "filed": "2026-07-14",
-      "session": "2026-07-15",
-      "i": 130,
-      "events": [
-        "urn:fintos:opendart:event:20260714900835"
-      ],
-      "explicit_events": [
-        "urn:fintos:opendart:event:20260714900835"
-      ],
-      "corrects": [],
-      "evidence": [
-        {
-          "field": "controller_name",
-          "line": 89,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "shares",
-          "line": 93,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "ratio",
-          "line": 97,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "controller_name",
-          "line": 102,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "shares",
-          "line": 106,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "ratio",
-          "line": 110,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "change_reason",
-          "line": 114,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "acquisition_purpose",
-          "line": 126,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "change_date",
-          "line": 157,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "confirmation_date",
-          "line": 161,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        },
-        {
-          "field": "related_filing",
-          "line": 171,
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-        }
-      ],
-      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260714900835",
-      "verified_xml": {
-        "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          },
-          {
-            "field": "related_filing",
-            "line": 171
-          }
-        ]
-      }
-    },
-    {
-      "symbol": "060900",
-      "receipt": "20260812901143",
-      "title": "최대주주변경              ",
-      "family": "controller",
-      "filed": "2026-08-12",
-      "session": "2026-08-13",
-      "i": 150,
-      "events": [
-        "urn:fintos:opendart:event:20260812901143"
-      ],
-      "explicit_events": [
-        "urn:fintos:opendart:event:20260812901143"
-      ],
-      "corrects": [],
-      "evidence": [
-        {
-          "field": "controller_name",
-          "line": 89,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "shares",
-          "line": 93,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "ratio",
-          "line": 97,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "controller_name",
-          "line": 102,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "shares",
-          "line": 106,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "ratio",
-          "line": 110,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "change_reason",
-          "line": 114,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "acquisition_purpose",
-          "line": 126,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "change_date",
-          "line": 157,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "confirmation_date",
-          "line": 161,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        },
-        {
-          "field": "related_filing",
-          "line": 171,
-          "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1"
-        }
-      ],
-      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260812901143",
-      "verified_xml": {
-        "sha256": "12cc5bb6b02dc946d3319bfb4b9c15c6788660f81a8fd8f14e071fbdfa8f77f1",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          },
-          {
-            "field": "related_filing",
-            "line": 171
-          }
-        ]
-      }
-    },
-    {
-      "symbol": "013810",
-      "receipt": "20260715900851",
-      "title": "최대주주변경              ",
-      "family": "controller",
-      "filed": "2026-07-15",
-      "session": "2026-07-16",
-      "i": 131,
-      "events": [
-        "urn:fintos:opendart:event:20260715900851"
-      ],
-      "explicit_events": [
-        "urn:fintos:opendart:event:20260715900851"
-      ],
-      "corrects": [],
-      "evidence": [
-        {
-          "field": "controller_name",
-          "line": 89,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "shares",
-          "line": 93,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "ratio",
-          "line": 97,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "controller_name",
-          "line": 102,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "shares",
-          "line": 106,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "ratio",
-          "line": 110,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "change_reason",
-          "line": 114,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "acquisition_purpose",
-          "line": 126,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "change_date",
-          "line": 157,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        },
-        {
-          "field": "confirmation_date",
-          "line": 161,
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-        }
-      ],
-      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260715900851",
-      "verified_xml": {
-        "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          }
-        ]
-      }
-    },
-    {
-      "symbol": "114450",
-      "receipt": "20260722900912",
-      "title": "최대주주변경              ",
-      "family": "controller",
-      "filed": "2026-07-22",
-      "session": "2026-07-23",
-      "i": 135,
-      "events": [
-        "urn:fintos:opendart:event:20260722900912"
-      ],
-      "explicit_events": [
-        "urn:fintos:opendart:event:20260722900912"
-      ],
-      "corrects": [],
-      "evidence": [
-        {
-          "field": "controller_name",
-          "line": 89,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "shares",
-          "line": 93,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "ratio",
-          "line": 97,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "controller_name",
-          "line": 102,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "shares",
-          "line": 106,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "ratio",
-          "line": 110,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "change_reason",
-          "line": 114,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "acquisition_purpose",
-          "line": 126,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "change_date",
-          "line": 157,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "confirmation_date",
-          "line": 161,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        },
-        {
-          "field": "related_filing",
-          "line": 171,
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-        }
-      ],
-      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260722900912",
-      "verified_xml": {
-        "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          },
-          {
-            "field": "related_filing",
-            "line": 171
-          }
-        ]
-      }
-    }
-  ],
-  "cases": [
-    {
-      "symbol": "013810",
-      "strategy": "CLEAR",
-      "condition": "integrated",
-      "date": "2026-07-23",
-      "open": 1664,
-      "supply_receipts": [],
-      "signal": 0,
-      "governance_receipts": [
-        "20260715900851"
-      ],
-      "events": [
-        "urn:fintos:opendart:event:20260715900851"
-      ],
-      "next_session": "2026-07-24",
-      "outcome": "executed",
-      "next_open": 1818,
-      "name": "스페코",
-      "source": {
-        "symbol": "013810",
-        "receipt": "20260715900851",
-        "title": "최대주주변경              ",
-        "family": "controller",
-        "filed": "2026-07-15",
-        "session": "2026-07-16",
-        "i": 131,
-        "events": [
-          "urn:fintos:opendart:event:20260715900851"
+  "matched": {
+    "period": [
+      "2026-10-01",
+      "2026-11-26"
+    ],
+    "sessions": 39,
+    "training": 197,
+    "training_cutoff": "2026-09-30",
+    "training_symbols": [
+      "000660",
+      "000720",
+      "005930",
+      "009150",
+      "010140",
+      "028260",
+      "042660",
+      "047040",
+      "329180",
+      "440110"
+    ],
+    "validation_split": null,
+    "rules": [
+      {
+        "body": [
+          "SUPPLIER_AMENDMENT",
+          "EXTRACTED_FROM"
         ],
-        "explicit_events": [
-          "urn:fintos:opendart:event:20260715900851"
+        "label": "DOWN",
+        "support": 7,
+        "confidence": 0.7142857142857143
+      },
+      {
+        "body": [
+          "SUPPLIER_ORIGINAL",
+          "EXTRACTED_FROM"
         ],
-        "corrects": [],
-        "evidence": [
-          {
-            "field": "controller_name",
-            "line": 89,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "shares",
-            "line": 93,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "ratio",
-            "line": 97,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "controller_name",
-            "line": 102,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "shares",
-            "line": 106,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "ratio",
-            "line": 110,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "change_reason",
-            "line": 114,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "change_date",
-            "line": 157,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161,
-            "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17"
-          }
+        "label": "DOWN",
+        "support": 82,
+        "confidence": 0.6097560975609756
+      }
+    ],
+    "metrics": {
+      "BUY_HOLD_base": {
+        "total_return": -0.38637091626930975,
+        "sharpe": -4.237333187261848,
+        "annualized_volatility": 0.6851847089285678,
+        "max_drawdown": -0.40963167928145083,
+        "exposure": 1.0,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.0
+      },
+      "CLEAR_base": {
+        "total_return": -0.041176592284540625,
+        "sharpe": -2.4478868934841693,
+        "annualized_volatility": 0.10858189406407606,
+        "max_drawdown": -0.06600249781139267,
+        "exposure": 0.12087912087912088,
+        "orders": 20,
+        "delays": 0,
+        "vs_hold": 0.3451943239847691
+      },
+      "CLEAR_title": {
+        "total_return": -0.050221787400145046,
+        "sharpe": -3.6794036706017974,
+        "annualized_volatility": 0.08936945717006585,
+        "max_drawdown": -0.07168531097106856,
+        "exposure": 0.10989010989010989,
+        "orders": 20,
+        "delays": 3,
+        "vs_hold": 0.3361491288691647
+      },
+      "CLEAR_integrated": {
+        "total_return": -0.041176592284540625,
+        "sharpe": -2.4478868934841693,
+        "annualized_volatility": 0.10858189406407606,
+        "max_drawdown": -0.06600249781139267,
+        "exposure": 0.12087912087912088,
+        "orders": 20,
+        "delays": 0,
+        "vs_hold": 0.3451943239847691
+      },
+      "CLEAR_explicit": {
+        "total_return": -0.041176592284540625,
+        "sharpe": -2.4478868934841693,
+        "annualized_volatility": 0.10858189406407606,
+        "max_drawdown": -0.06600249781139267,
+        "exposure": 0.12087912087912088,
+        "orders": 20,
+        "delays": 0,
+        "vs_hold": 0.3451943239847691
+      },
+      "TRACE_base": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      },
+      "TRACE_title": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      },
+      "TRACE_integrated": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      },
+      "TRACE_explicit": {
+        "total_return": -0.019231143659292238,
+        "sharpe": -2.2148741833210774,
+        "annualized_volatility": 0.05594950725057237,
+        "max_drawdown": -0.03748685035452948,
+        "exposure": 0.06593406593406594,
+        "orders": 14,
+        "delays": 0,
+        "vs_hold": 0.3671397726100175
+      }
+    },
+    "benchmark_index_return": -0.30864818937293914,
+    "stocks": 7,
+    "training_dates": {
+      "filing_start": "2026-01-02",
+      "filing_end": "2026-08-21",
+      "label_start": "2026-01-05",
+      "label_end": "2026-08-24"
+    },
+    "eligible": 0,
+    "families": {
+      "officer": 52,
+      "holding": 4,
+      "periodic": 7
+    },
+    "cases": [
+      {
+        "symbol": "005930",
+        "strategy": "CLEAR",
+        "condition": "title",
+        "date": "2026-11-25",
+        "open": 178500,
+        "supply_receipts": [
+          "20261124800494"
         ],
-        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260715900851",
-        "verified_xml": {
-          "sha256": "13c4815ee271e08a6644f7be1d0c585040c8737f30c405583501a136e7efed17",
-          "fields": [
+        "signal": 1,
+        "governance_receipts": [
+          "20261118000151"
+        ],
+        "events": [],
+        "next_session": "2026-11-26",
+        "outcome": "executed",
+        "next_open": 172900,
+        "orders": {
+          "base": [
             {
-              "field": "controller_name",
-              "line": 89
+              "date": "2026-11-25",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 178500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261124800494"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
             },
             {
-              "field": "shares",
-              "line": 93
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "close",
+              "price": 171500,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "title": [
+            {
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 172900,
+              "signal": 1,
+              "supply_receipts": [
+                "20261124800494"
+              ],
+              "governance_receipts": [
+                "20261118000151"
+              ],
+              "reason": "reevaluated_after_delay"
             },
             {
-              "field": "ratio",
-              "line": 97
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "close",
+              "price": 171500,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "integrated": [
+            {
+              "date": "2026-11-25",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "buy",
+              "session": "open",
+              "price": 178500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261124800494"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
             },
             {
-              "field": "controller_name",
-              "line": 102
-            },
-            {
-              "field": "shares",
-              "line": 106
-            },
-            {
-              "field": "ratio",
-              "line": 110
-            },
-            {
-              "field": "change_reason",
-              "line": 114
-            },
-            {
-              "field": "acquisition_purpose",
-              "line": 126
-            },
-            {
-              "field": "change_date",
-              "line": 157
-            },
-            {
-              "field": "confirmation_date",
-              "line": 161
+              "date": "2026-11-26",
+              "symbol": "005930",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "sell",
+              "session": "close",
+              "price": 171500,
+              "reason": "terminal_liquidation"
             }
           ]
-        }
-      },
-      "exits": {
-        "base": {
-          "date": "2026-07-29",
-          "symbol": "013810",
-          "strategy": "CLEAR",
-          "condition": "base",
-          "side": "sell",
-          "session": "open",
-          "price": 1566,
-          "signal": 0,
-          "supply_receipts": [],
-          "governance_receipts": [],
-          "reason": "price_trend"
         },
-        "integrated": {
-          "date": "2026-07-29",
-          "symbol": "013810",
-          "strategy": "CLEAR",
-          "condition": "integrated",
-          "side": "sell",
-          "session": "open",
-          "price": 1566,
-          "signal": 0,
-          "supply_receipts": [],
-          "governance_receipts": [],
-          "reason": "price_trend"
-        }
-      },
-      "trade_return_delta": -0.07956035063565534
-    },
-    {
-      "symbol": "069920",
-      "strategy": "CLEAR",
-      "condition": "integrated",
-      "date": "2026-07-21",
-      "open": 1602,
-      "supply_receipts": [],
-      "signal": 0,
-      "governance_receipts": [
-        "20260714900835"
-      ],
-      "events": [
-        "urn:fintos:opendart:event:20260714900835"
-      ],
-      "next_session": "2026-07-22",
-      "outcome": "executed",
-      "next_open": 1498,
-      "name": "엑시온그룹",
-      "source": {
-        "symbol": "069920",
-        "receipt": "20260714900835",
-        "title": "최대주주변경              ",
-        "family": "controller",
-        "filed": "2026-07-14",
-        "session": "2026-07-15",
-        "i": 130,
-        "events": [
-          "urn:fintos:opendart:event:20260714900835"
-        ],
-        "explicit_events": [
-          "urn:fintos:opendart:event:20260714900835"
-        ],
-        "corrects": [],
-        "evidence": [
+        "documents": [
           {
-            "field": "controller_name",
-            "line": 89,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "shares",
-            "line": 93,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "ratio",
-            "line": 97,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "controller_name",
-            "line": 102,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "shares",
-            "line": 106,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "ratio",
-            "line": 110,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "change_reason",
-            "line": 114,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "change_date",
-            "line": 157,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
-          },
-          {
-            "field": "related_filing",
-            "line": 171,
-            "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6"
+            "symbol": "005930",
+            "receipt": "20261118000151",
+            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+            "family": "officer",
+            "filed": "2026-11-18",
+            "session": "2026-11-19",
+            "i": 215,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "IFR_NM",
+                "line": 168,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "STF_RYN",
+                "line": 189,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "STF_PSM",
+                "line": 191,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "BFR_UN_CNT",
+                "line": 280,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "BFR_PS_CPT_CNT",
+                "line": 282,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_RPT_DT",
+                "line": 288,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_UN_CNT",
+                "line": 289,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_UN_RT",
+                "line": 290,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_PS_CPT_CNT",
+                "line": 291,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "AFR_PS_CPT_RT",
+                "line": 292,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "MDF_UN_CNT",
+                "line": 297,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              },
+              {
+                "field": "MDF_PS_CPT_CNT",
+                "line": 299,
+                "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261118000151",
+            "verified_xml": {
+              "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe",
+              "fields": [
+                {
+                  "field": "IFR_NM",
+                  "line": 168
+                },
+                {
+                  "field": "STF_RYN",
+                  "line": 189
+                },
+                {
+                  "field": "STF_PSM",
+                  "line": 191
+                },
+                {
+                  "field": "BFR_UN_CNT",
+                  "line": 280
+                },
+                {
+                  "field": "BFR_PS_CPT_CNT",
+                  "line": 282
+                },
+                {
+                  "field": "AFR_RPT_DT",
+                  "line": 288
+                },
+                {
+                  "field": "AFR_UN_CNT",
+                  "line": 289
+                },
+                {
+                  "field": "AFR_UN_RT",
+                  "line": 290
+                },
+                {
+                  "field": "AFR_PS_CPT_CNT",
+                  "line": 291
+                },
+                {
+                  "field": "AFR_PS_CPT_RT",
+                  "line": 292
+                },
+                {
+                  "field": "MDF_UN_CNT",
+                  "line": 297
+                },
+                {
+                  "field": "MDF_PS_CPT_CNT",
+                  "line": 299
+                }
+              ]
+            }
           }
+        ]
+      },
+      {
+        "symbol": "000660",
+        "strategy": "CLEAR",
+        "condition": "title",
+        "date": "2026-11-17",
+        "open": 1098000,
+        "supply_receipts": [
+          "20261116801609"
         ],
-        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260714900835",
-        "verified_xml": {
-          "sha256": "c08b2ebcb1796b7c042101b20550d762d5683b9241a33761bed8a522e4f1fbd6",
-          "fields": [
+        "signal": 1,
+        "governance_receipts": [
+          "20261116001715"
+        ],
+        "events": [],
+        "next_session": "2026-11-18",
+        "outcome": "executed",
+        "next_open": 1154000,
+        "orders": {
+          "base": [
             {
-              "field": "controller_name",
-              "line": 89
+              "date": "2026-11-17",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 1098000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
             },
             {
-              "field": "shares",
-              "line": 93
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "title": [
+            {
+              "date": "2026-11-18",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 1154000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [
+                "20261116001715"
+              ],
+              "reason": "reevaluated_after_delay"
             },
             {
-              "field": "ratio",
-              "line": 97
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
+            }
+          ],
+          "integrated": [
+            {
+              "date": "2026-11-17",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "buy",
+              "session": "open",
+              "price": 1098000,
+              "signal": 1,
+              "supply_receipts": [
+                "20261116801609"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
             },
             {
-              "field": "controller_name",
-              "line": 102
-            },
-            {
-              "field": "shares",
-              "line": 106
-            },
-            {
-              "field": "ratio",
-              "line": 110
-            },
-            {
-              "field": "change_reason",
-              "line": 114
-            },
-            {
-              "field": "acquisition_purpose",
-              "line": 126
-            },
-            {
-              "field": "change_date",
-              "line": 157
-            },
-            {
-              "field": "confirmation_date",
-              "line": 161
-            },
-            {
-              "field": "related_filing",
-              "line": 171
+              "date": "2026-11-24",
+              "symbol": "000660",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "sell",
+              "session": "open",
+              "price": 1212000,
+              "signal": 0,
+              "supply_receipts": [],
+              "governance_receipts": [],
+              "reason": "price_trend"
             }
           ]
-        }
-      },
-      "exits": {
-        "base": {
-          "date": "2026-07-23",
-          "symbol": "069920",
-          "strategy": "CLEAR",
-          "condition": "base",
-          "side": "sell",
-          "session": "open",
-          "price": 1088,
-          "signal": 0,
-          "supply_receipts": [],
-          "governance_receipts": [],
-          "reason": "price_trend"
         },
-        "integrated": {
-          "date": "2026-07-23",
-          "symbol": "069920",
-          "strategy": "CLEAR",
-          "condition": "integrated",
-          "side": "sell",
-          "session": "open",
-          "price": 1088,
-          "signal": 0,
-          "supply_receipts": [],
-          "governance_receipts": [],
-          "reason": "price_trend"
-        }
-      },
-      "trade_return_delta": 0.04705646733219083
-    },
-    {
-      "symbol": "114450",
-      "strategy": "CLEAR",
-      "condition": "integrated",
-      "date": "2026-07-23",
-      "open": 1980,
-      "supply_receipts": [],
-      "signal": 0,
-      "governance_receipts": [
-        "20260722900912"
-      ],
-      "events": [
-        "urn:fintos:opendart:event:20260722900912"
-      ],
-      "next_session": "2026-07-24",
-      "outcome": "executed",
-      "next_open": 2045,
-      "name": "그린생명과학",
-      "source": {
-        "symbol": "114450",
-        "receipt": "20260722900912",
-        "title": "최대주주변경              ",
-        "family": "controller",
-        "filed": "2026-07-22",
-        "session": "2026-07-23",
-        "i": 135,
-        "events": [
-          "urn:fintos:opendart:event:20260722900912"
-        ],
-        "explicit_events": [
-          "urn:fintos:opendart:event:20260722900912"
-        ],
-        "corrects": [],
-        "evidence": [
+        "documents": [
           {
-            "field": "controller_name",
-            "line": 89,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "shares",
-            "line": 93,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "ratio",
-            "line": 97,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "controller_name",
-            "line": 102,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "shares",
-            "line": 106,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "ratio",
-            "line": 110,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "change_reason",
-            "line": 114,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "change_date",
-            "line": 157,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
-          },
-          {
-            "field": "related_filing",
-            "line": 171,
-            "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb"
+            "symbol": "000660",
+            "receipt": "20261116001715",
+            "title": "분기보고서 (2026.09)",
+            "family": "periodic",
+            "filed": "2026-11-16",
+            "session": "2026-11-17",
+            "i": 213,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "reported_shareholder_position",
+                "line": 50100,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50111,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50122,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50133,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50144,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50155,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50166,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50177,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50188,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50199,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50210,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50221,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 50232,
+                "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715",
+            "verified_xml": {
+              "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185",
+              "fields": [
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50100
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50111
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50122
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50133
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50144
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50155
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50166
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50177
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50188
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50199
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50210
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50221
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 50232
+                }
+              ]
+            }
           }
+        ]
+      },
+      {
+        "symbol": "028260",
+        "strategy": "CLEAR",
+        "condition": "title",
+        "date": "2026-11-23",
+        "open": 244500,
+        "supply_receipts": [
+          "20261120900180"
         ],
-        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260722900912",
-        "verified_xml": {
-          "sha256": "171fbf47c8d586adc54bb546f34209183057e5c41116d746354ea0557fa057fb",
-          "fields": [
+        "signal": 1,
+        "governance_receipts": [
+          "20261116001150",
+          "20261119000068"
+        ],
+        "events": [],
+        "next_session": "2026-11-24",
+        "outcome": "executed",
+        "next_open": 257500,
+        "orders": {
+          "base": [
             {
-              "field": "controller_name",
-              "line": 89
+              "date": "2026-11-23",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "buy",
+              "session": "open",
+              "price": 244500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261120900180"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
             },
             {
-              "field": "shares",
-              "line": 93
+              "date": "2026-11-26",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "base",
+              "side": "sell",
+              "session": "close",
+              "price": 245000,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "title": [
+            {
+              "date": "2026-11-24",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "buy",
+              "session": "open",
+              "price": 257500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261120900180"
+              ],
+              "governance_receipts": [
+                "20261116001150",
+                "20261119000068"
+              ],
+              "reason": "reevaluated_after_delay"
             },
             {
-              "field": "ratio",
-              "line": 97
+              "date": "2026-11-26",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "title",
+              "side": "sell",
+              "session": "close",
+              "price": 245000,
+              "reason": "terminal_liquidation"
+            }
+          ],
+          "integrated": [
+            {
+              "date": "2026-11-23",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "buy",
+              "session": "open",
+              "price": 244500,
+              "signal": 1,
+              "supply_receipts": [
+                "20261120900180"
+              ],
+              "governance_receipts": [],
+              "reason": "base_signal"
             },
             {
-              "field": "controller_name",
-              "line": 102
-            },
-            {
-              "field": "shares",
-              "line": 106
-            },
-            {
-              "field": "ratio",
-              "line": 110
-            },
-            {
-              "field": "change_reason",
-              "line": 114
-            },
-            {
-              "field": "acquisition_purpose",
-              "line": 126
-            },
-            {
-              "field": "change_date",
-              "line": 157
-            },
-            {
-              "field": "confirmation_date",
-              "line": 161
-            },
-            {
-              "field": "related_filing",
-              "line": 171
+              "date": "2026-11-26",
+              "symbol": "028260",
+              "strategy": "CLEAR",
+              "condition": "integrated",
+              "side": "sell",
+              "session": "close",
+              "price": 245000,
+              "reason": "terminal_liquidation"
             }
           ]
-        }
-      },
-      "exits": {
-        "base": {
-          "date": "2026-08-27",
-          "symbol": "114450",
-          "strategy": "CLEAR",
-          "condition": "base",
-          "side": "sell",
-          "session": "open",
-          "price": 2215,
-          "signal": 0,
-          "supply_receipts": [],
-          "governance_receipts": [],
-          "reason": "price_trend"
         },
-        "integrated": {
-          "date": "2026-08-27",
-          "symbol": "114450",
-          "strategy": "CLEAR",
-          "condition": "integrated",
-          "side": "sell",
-          "session": "open",
-          "price": 2215,
-          "signal": 0,
-          "supply_receipts": [],
-          "governance_receipts": [],
-          "reason": "price_trend"
-        }
-      },
-      "trade_return_delta": -0.035486240809646005
-    }
-  ],
-  "correction_pairs": [
-    {
-      "company": "00263654",
-      "receipt": "20260723901022",
-      "target": "20260205901059",
-      "filed": "2026-07-23",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "779975c8bba9a1bc3339a83d29b35866ba27e42f0b814120be43d5662b347592",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "correction_item",
-            "line": 117
-          },
-          {
-            "field": "change_reason",
-            "line": 118
-          },
-          {
-            "field": "correction_item",
-            "line": 122
-          },
-          {
-            "field": "change_date",
-            "line": 123
-          },
-          {
-            "field": "correction_item",
-            "line": 127
-          },
-          {
-            "field": "confirmation_date",
-            "line": 128
-          },
-          {
-            "field": "correction_item",
-            "line": 132
-          },
-          {
-            "field": "controller_name",
-            "line": 159
-          },
-          {
-            "field": "shares",
-            "line": 163
-          },
-          {
-            "field": "ratio",
-            "line": 167
-          },
-          {
-            "field": "controller_name",
-            "line": 172
-          },
-          {
-            "field": "shares",
-            "line": 176
-          },
-          {
-            "field": "ratio",
-            "line": 180
-          },
-          {
-            "field": "change_reason",
-            "line": 184
-          },
-          {
-            "field": "change_date",
-            "line": 227
-          },
-          {
-            "field": "confirmation_date",
-            "line": 231
-          },
-          {
-            "field": "related_filing",
-            "line": 241
-          }
-        ]
-      },
-      "original_xml": {
-        "sha256": "3e3dd4f36655505d7e540e88cc649fc52483006641cb4bc00437bf579ed9130a",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          }
-        ]
-      }
-    },
-    {
-      "company": "00131896",
-      "receipt": "20260727900645",
-      "target": "20260710900671",
-      "filed": "2026-07-27",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "15bcd0033ccfba5d38c5db98a773a23ca0318660e642edf4a91b671e6e393ee4",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "correction_item",
-            "line": 117
-          },
-          {
-            "field": "correction_item",
-            "line": 122
-          },
-          {
-            "field": "correction_item",
-            "line": 127
-          },
-          {
-            "field": "transaction_note",
-            "line": 179
-          },
-          {
-            "field": "계약당사자",
-            "line": 153
-          },
-          {
-            "field": "양도인",
-            "line": 154
-          },
-          {
-            "field": "양수인",
-            "line": 160
-          },
-          {
-            "field": "변경예정최대주주",
-            "line": 215
-          },
-          {
-            "field": "변경예정일자",
-            "line": 219
-          }
-        ]
-      },
-      "original_xml": {
-        "sha256": "8cd2df77d9004d66f7b8637fbe80a15c8f9b2c99c914ffbeeac1a3b839d5b5f8",
-        "fields": [
-          {
-            "field": "transaction_note",
-            "line": 114
-          },
-          {
-            "field": "계약당사자",
-            "line": 88
-          },
-          {
-            "field": "양도인",
-            "line": 89
-          },
-          {
-            "field": "양수인",
-            "line": 95
-          },
-          {
-            "field": "변경예정최대주주",
-            "line": 150
-          },
-          {
-            "field": "변경예정일자",
-            "line": 154
-          }
-        ]
-      }
-    },
-    {
-      "company": "00131896",
-      "receipt": "20260727900810",
-      "target": "20260727900769",
-      "filed": "2026-07-27",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "f19c9bde7669fad60955de4061339a83359f34f0dbc55d668f5d889ac0ba763b",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "correction_item",
-            "line": 117
-          },
-          {
-            "field": "correction_item",
-            "line": 122
-          },
-          {
-            "field": "correction_item",
-            "line": 127
-          },
-          {
-            "field": "correction_item",
-            "line": 132
-          },
-          {
-            "field": "correction_item",
-            "line": 137
-          },
-          {
-            "field": "correction_item",
-            "line": 142
-          },
-          {
-            "field": "controller_name",
-            "line": 169
-          },
-          {
-            "field": "shares",
-            "line": 173
-          },
-          {
-            "field": "ratio",
-            "line": 177
-          },
-          {
-            "field": "controller_name",
-            "line": 182
-          },
-          {
-            "field": "shares",
-            "line": 186
-          },
-          {
-            "field": "ratio",
-            "line": 190
-          },
-          {
-            "field": "change_reason",
-            "line": 194
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 206
-          },
-          {
-            "field": "change_date",
-            "line": 237
-          },
-          {
-            "field": "confirmation_date",
-            "line": 241
-          },
-          {
-            "field": "related_filing",
-            "line": 253
-          }
-        ]
-      },
-      "original_xml": {
-        "sha256": "38702b2f9a2674d233682cee6ea4d16036f7036b82a8258e62f0abde419a90ea",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          },
-          {
-            "field": "related_filing",
-            "line": 173
+        "documents": [
+          {
+            "symbol": "028260",
+            "receipt": "20261116001150",
+            "title": "분기보고서 (2026.09)",
+            "family": "periodic",
+            "filed": "2026-11-16",
+            "session": "2026-11-17",
+            "i": 213,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "reported_shareholder_position",
+                "line": 77011,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77022,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77033,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77044,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77055,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77066,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77077,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77088,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77099,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77110,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77121,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77132,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77143,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77154,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77165,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              },
+              {
+                "field": "reported_shareholder_position",
+                "line": 77176,
+                "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001150",
+            "verified_xml": {
+              "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267",
+              "fields": [
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77011
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77022
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77033
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77044
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77055
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77066
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77077
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77088
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77099
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77110
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77121
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77132
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77143
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77154
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77165
+                },
+                {
+                  "field": "reported_shareholder_position",
+                  "line": 77176
+                }
+              ]
+            }
+          },
+          {
+            "symbol": "028260",
+            "receipt": "20261119000068",
+            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+            "family": "officer",
+            "filed": "2026-11-19",
+            "session": "2026-11-20",
+            "i": 216,
+            "events": [],
+            "explicit_events": [],
+            "corrects": [],
+            "evidence": [
+              {
+                "field": "IFR_NM",
+                "line": 165,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "STF_RYN",
+                "line": 183,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "STF_PSM",
+                "line": 185,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "BFR_UN_CNT",
+                "line": 274,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "BFR_PS_CPT_CNT",
+                "line": 276,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_RPT_DT",
+                "line": 282,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_UN_CNT",
+                "line": 283,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_UN_RT",
+                "line": 284,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_PS_CPT_CNT",
+                "line": 285,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "AFR_PS_CPT_RT",
+                "line": 286,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "MDF_UN_CNT",
+                "line": 291,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              },
+              {
+                "field": "MDF_PS_CPT_CNT",
+                "line": 293,
+                "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2"
+              }
+            ],
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119000068",
+            "verified_xml": {
+              "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2",
+              "fields": [
+                {
+                  "field": "IFR_NM",
+                  "line": 165
+                },
+                {
+                  "field": "STF_RYN",
+                  "line": 183
+                },
+                {
+                  "field": "STF_PSM",
+                  "line": 185
+                },
+                {
+                  "field": "BFR_UN_CNT",
+                  "line": 274
+                },
+                {
+                  "field": "BFR_PS_CPT_CNT",
+                  "line": 276
+                },
+                {
+                  "field": "AFR_RPT_DT",
+                  "line": 282
+                },
+                {
+                  "field": "AFR_UN_CNT",
+                  "line": 283
+                },
+                {
+                  "field": "AFR_UN_RT",
+                  "line": 284
+                },
+                {
+                  "field": "AFR_PS_CPT_CNT",
+                  "line": 285
+                },
+                {
+                  "field": "AFR_PS_CPT_RT",
+                  "line": 286
+                },
+                {
+                  "field": "MDF_UN_CNT",
+                  "line": 291
+                },
+                {
+                  "field": "MDF_PS_CPT_CNT",
+                  "line": 293
+                }
+              ]
+            }
           }
         ]
       }
-    },
-    {
-      "company": "00104120",
-      "receipt": "20260731900461",
-      "target": "20260702900916",
-      "filed": "2026-07-31",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "27c343863b26593629a819a3feb5ad78727fa5800661379b348ddd77065a8646",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "correction_item",
-            "line": 117
-          },
-          {
-            "field": "correction_item",
-            "line": 122
-          },
-          {
-            "field": "correction_item",
-            "line": 127
-          },
-          {
-            "field": "related_filing",
-            "line": 227
-          },
-          {
-            "field": "세부변경내역",
-            "line": 123
-          },
-          {
-            "field": "계약당사자",
-            "line": 153
-          },
-          {
-            "field": "양도인",
-            "line": 154
-          },
-          {
-            "field": "양수인",
-            "line": 160
-          },
-          {
-            "field": "변경예정최대주주",
-            "line": 203
-          },
-          {
-            "field": "변경예정일자",
-            "line": 207
-          }
-        ]
+    ]
+  },
+  "expanded": {
+    "period": [
+      "2026-10-01",
+      "2026-11-26"
+    ],
+    "sessions": 39,
+    "training": 573,
+    "training_cutoff": "2026-09-30",
+    "training_symbols": [
+      "000150",
+      "000660",
+      "000720",
+      "001260",
+      "001440",
+      "0015G0",
+      "002460",
+      "002990",
+      "003070",
+      "005930",
+      "005960",
+      "006360",
+      "009150",
+      "010140",
+      "010960",
+      "012170",
+      "013360",
+      "013700",
+      "013870",
+      "023530",
+      "025560",
+      "025890",
+      "028260",
+      "032640",
+      "035510",
+      "042660",
+      "046940",
+      "047040",
+      "052460",
+      "052690",
+      "054930",
+      "058730",
+      "064290",
+      "071970",
+      "072020",
+      "077970",
+      "079550",
+      "082740",
+      "086390",
+      "090410",
+      "092870",
+      "095610",
+      "097230",
+      "100090",
+      "103590",
+      "105840",
+      "112610",
+      "115610",
+      "119850",
+      "127120",
+      "129920",
+      "136150",
+      "137080",
+      "178320",
+      "189330",
+      "196300",
+      "211270",
+      "253590",
+      "265560",
+      "267270",
+      "281820",
+      "282720",
+      "286750",
+      "294870",
+      "295310",
+      "329180",
+      "334970",
+      "347700",
+      "348080",
+      "375500",
+      "383310",
+      "417860",
+      "420770",
+      "439260",
+      "440110",
+      "445090",
+      "448280",
+      "464080",
+      "475040",
+      "478340"
+    ],
+    "validation_split": null,
+    "rules": [
+      {
+        "body": [
+          "SELLS_TO",
+          "SUPPLIER_AMENDMENT"
+        ],
+        "label": "DOWN",
+        "support": 9,
+        "confidence": 0.6666666666666666
       },
-      "original_xml": {
-        "sha256": "9274d0dc5c26d10ebeb0e72d474a4cd20623e42ef5f2e51d22bd665e58c86d9a",
-        "fields": [
-          {
-            "field": "transaction_note",
-            "line": 114
-          },
-          {
-            "field": "계약당사자",
-            "line": 88
-          },
-          {
-            "field": "양도인",
-            "line": 89
-          },
-          {
-            "field": "양수인",
-            "line": 95
-          },
-          {
-            "field": "변경예정최대주주",
-            "line": 138
-          },
-          {
-            "field": "변경예정일자",
-            "line": 142
-          }
-        ]
+      {
+        "body": [
+          "SELLS_TO",
+          "SUPPLIER_ORIGINAL"
+        ],
+        "label": "DOWN",
+        "support": 68,
+        "confidence": 0.6617647058823529
+      },
+      {
+        "body": [
+          "SUPPLIER_AMENDMENT",
+          "EXTRACTED_FROM"
+        ],
+        "label": "DOWN",
+        "support": 23,
+        "confidence": 0.6086956521739131
+      }
+    ],
+    "metrics": {
+      "BUY_HOLD_base": {
+        "total_return": -0.24711458374556916,
+        "sharpe": -3.2323438773296616,
+        "annualized_volatility": 0.5235850134775207,
+        "max_drawdown": -0.3056539507202257,
+        "exposure": 1.0,
+        "orders": 160,
+        "delays": 0,
+        "vs_hold": 0.0
+      },
+      "CLEAR_base": {
+        "total_return": -0.08412079361762137,
+        "sharpe": -3.127129736211145,
+        "annualized_volatility": 0.17648027517437495,
+        "max_drawdown": -0.1262907994640854,
+        "exposure": 0.23685897435897435,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.1629937901279478
+      },
+      "CLEAR_title": {
+        "total_return": -0.08890987979238252,
+        "sharpe": -3.379773932298655,
+        "annualized_volatility": 0.17344106551834507,
+        "max_drawdown": -0.13050959561756303,
+        "exposure": 0.2310897435897436,
+        "orders": 234,
+        "delays": 18,
+        "vs_hold": 0.15820470395318664
+      },
+      "CLEAR_integrated": {
+        "total_return": -0.08412079361762137,
+        "sharpe": -3.127129736211145,
+        "annualized_volatility": 0.17648027517437495,
+        "max_drawdown": -0.1262907994640854,
+        "exposure": 0.23685897435897435,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.1629937901279478
+      },
+      "CLEAR_explicit": {
+        "total_return": -0.08412079361762137,
+        "sharpe": -3.127129736211145,
+        "annualized_volatility": 0.17648027517437495,
+        "max_drawdown": -0.1262907994640854,
+        "exposure": 0.23685897435897435,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.1629937901279478
+      },
+      "TRACE_base": {
+        "total_return": -0.08426406665573372,
+        "sharpe": -3.396443811437683,
+        "annualized_volatility": 0.1634240146000378,
+        "max_drawdown": -0.12523898552348345,
+        "exposure": 0.2153846153846154,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.16285051708983544
+      },
+      "TRACE_title": {
+        "total_return": -0.08722795344256307,
+        "sharpe": -3.5869765878728144,
+        "annualized_volatility": 0.16068996932566512,
+        "max_drawdown": -0.12815615838939654,
+        "exposure": 0.21025641025641026,
+        "orders": 234,
+        "delays": 16,
+        "vs_hold": 0.1598866303030061
+      },
+      "TRACE_integrated": {
+        "total_return": -0.08426406665573372,
+        "sharpe": -3.396443811437683,
+        "annualized_volatility": 0.1634240146000378,
+        "max_drawdown": -0.12523898552348345,
+        "exposure": 0.2153846153846154,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.16285051708983544
+      },
+      "TRACE_explicit": {
+        "total_return": -0.08426406665573372,
+        "sharpe": -3.396443811437683,
+        "annualized_volatility": 0.1634240146000378,
+        "max_drawdown": -0.12523898552348345,
+        "exposure": 0.2153846153846154,
+        "orders": 244,
+        "delays": 0,
+        "vs_hold": 0.16285051708983544
       }
     },
-    {
-      "company": "00104120",
-      "receipt": "20260814900008",
-      "target": "20260813901206",
-      "filed": "2026-08-14",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "8296669b538acf36481db5afc3c13de84c2ccefafe8d8c8a4e396db8a1cf2353",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "correction_item",
-            "line": 117
-          },
-          {
-            "field": "correction_item",
-            "line": 122
-          },
-          {
-            "field": "correction_item",
-            "line": 127
-          },
-          {
-            "field": "correction_item",
-            "line": 132
-          },
-          {
-            "field": "correction_item",
-            "line": 137
-          },
-          {
-            "field": "controller_name",
-            "line": 164
-          },
-          {
-            "field": "shares",
-            "line": 168
-          },
-          {
-            "field": "ratio",
-            "line": 172
-          },
-          {
-            "field": "controller_name",
-            "line": 177
-          },
-          {
-            "field": "shares",
-            "line": 181
-          },
-          {
-            "field": "ratio",
-            "line": 185
-          },
-          {
-            "field": "change_reason",
-            "line": 189
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 201
-          },
-          {
-            "field": "change_date",
-            "line": 232
-          },
-          {
-            "field": "confirmation_date",
-            "line": 236
-          },
-          {
-            "field": "related_filing",
-            "line": 246
-          }
-        ]
-      },
-      "original_xml": {
-        "sha256": "d7c2b83ee5447058462790cf2a33e450e4de24bafbfc6cb4059fb0e8a826c304",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          },
-          {
-            "field": "related_filing",
-            "line": 171
-          }
-        ]
-      }
-    },
-    {
-      "company": "01375822",
-      "receipt": "20260819900413",
-      "target": "20260724900005",
-      "filed": "2026-08-19",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "f6a399cfa99144fc4b861cbc182a0c8b26ec7f912c4d69e422f3a087f9a342e1",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "controller_name",
-            "line": 139
-          },
-          {
-            "field": "shares",
-            "line": 143
-          },
-          {
-            "field": "ratio",
-            "line": 147
-          },
-          {
-            "field": "controller_name",
-            "line": 152
-          },
-          {
-            "field": "shares",
-            "line": 156
-          },
-          {
-            "field": "ratio",
-            "line": 160
-          },
-          {
-            "field": "change_reason",
-            "line": 164
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 176
-          },
-          {
-            "field": "change_date",
-            "line": 207
-          },
-          {
-            "field": "confirmation_date",
-            "line": 211
-          },
-          {
-            "field": "related_filing",
-            "line": 223
-          }
-        ]
-      },
-      "original_xml": {
-        "sha256": "4a380f10070150dfc95f6fb4c42aad2e92e3e14733f67664086478cd0a133919",
-        "fields": [
-          {
-            "field": "controller_name",
-            "line": 89
-          },
-          {
-            "field": "shares",
-            "line": 93
-          },
-          {
-            "field": "ratio",
-            "line": 97
-          },
-          {
-            "field": "controller_name",
-            "line": 102
-          },
-          {
-            "field": "shares",
-            "line": 106
-          },
-          {
-            "field": "ratio",
-            "line": 110
-          },
-          {
-            "field": "change_reason",
-            "line": 114
-          },
-          {
-            "field": "acquisition_purpose",
-            "line": 126
-          },
-          {
-            "field": "change_date",
-            "line": 157
-          },
-          {
-            "field": "confirmation_date",
-            "line": 161
-          },
-          {
-            "field": "related_filing",
-            "line": 171
-          }
-        ]
-      }
-    },
-    {
-      "company": "01098792",
-      "receipt": "20260907900199",
-      "target": "20260731900983",
-      "filed": "2026-09-07",
-      "in_cohort": false,
-      "corrected_xml": {
-        "sha256": "9e46032cffe6b609d2da8979f3b8e6670635b546d6e28f0236650a76f793dc6f",
-        "fields": [
-          {
-            "field": "corrected_title",
-            "line": 93
-          },
-          {
-            "field": "corrected_date",
-            "line": 97
-          },
-          {
-            "field": "correction_reason",
-            "line": 101
-          },
-          {
-            "field": "correction_item",
-            "line": 112
-          },
-          {
-            "field": "correction_item",
-            "line": 117
-          },
-          {
-            "field": "correction_item",
-            "line": 122
-          },
-          {
-            "field": "correction_item",
-            "line": 127
-          },
-          {
-            "field": "transaction_note",
-            "line": 179
-          },
-          {
-            "field": "계약당사자",
-            "line": 153
-          },
-          {
-            "field": "양도인",
-            "line": 154
-          },
-          {
-            "field": "양수인",
-            "line": 160
-          },
-          {
-            "field": "변경예정최대주주",
-            "line": 213
-          },
-          {
-            "field": "변경예정일자",
-            "line": 217
-          }
-        ]
-      },
-      "original_xml": {
-        "sha256": "7a0121876cae89c7f3238263f1c62b4641cf5ae89d759b0f214154aa5b50a2a9",
-        "fields": [
-          {
-            "field": "transaction_note",
-            "line": 114
-          },
-          {
-            "field": "계약당사자",
-            "line": 88
-          },
-          {
-            "field": "양도인",
-            "line": 89
-          },
-          {
-            "field": "양수인",
-            "line": 95
-          },
-          {
-            "field": "변경예정최대주주",
-            "line": 144
-          },
-          {
-            "field": "변경예정일자",
-            "line": 148
-          }
-        ]
-      }
-    }
-  ],
-  "title_correction_receipts": 36,
-  "delay_outcomes": {
-    "CLEAR_title": {
-      "cancelled": 59,
-      "executed": 152
-    },
-    "CLEAR_integrated": {
-      "executed": 3
-    },
-    "TRACE_title": {
-      "cancelled": 60,
-      "executed": 152
-    },
-    "TRACE_integrated": {
-      "executed": 3
-    }
-  }
+    "benchmark_index_return": -0.30864818937293914,
+    "stocks": 80,
+    "missing": 325,
+    "prior_ineligible": 27,
+    "eligible": 0
+  },
+  "reproduction_script_sha256": "2d47681a4211baaac2cb86ed77bcc5fbb0150eeb67525db1c744c17588aeaae6"
 }

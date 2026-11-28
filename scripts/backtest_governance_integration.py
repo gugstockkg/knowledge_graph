@@ -16,6 +16,7 @@ from backtest_trace_positions import (
     load,
     portfolio_metrics,
     returns,
+    select_large_companies,
     signals,
 )
 from extract_ownership_inventory import family
@@ -23,7 +24,7 @@ from extract_ownership_inventory import family
 from knowledge_graph.market.economic_backtest import graph_events
 from knowledge_graph.market.trace_paper import mine_rules, predict
 
-START, END = "2026-07-01", "2026-09-30"
+DEFAULT_START, DEFAULT_END = "2026-07-01", "2026-09-30"
 NS = "urn:fintos:opendart:"
 TRIPLE = re.compile(r"^<([^>]+)> <([^>]+)> (.+) \.$")
 TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
@@ -65,7 +66,7 @@ def resource(token):
     return token.strip("<>")
 
 
-def controller_candidates(filings, rdf, market):
+def controller_candidates(filings, rdf, market, start, end):
     dates = {}
     candidates = defaultdict(list)
     for receipt, row in filings.items():
@@ -76,13 +77,13 @@ def controller_candidates(filings, rdf, market):
             continue
         title = literal(row["reportTitle"][0])
         category = family(title)
-        if not category or dates[receipt] >= END:
+        if not category or dates[receipt] >= end:
             continue
         idx = bisect_right(market, dates[receipt])
         if (
             idx >= len(market)
-            or market[idx] < START
-            and idx + 4 < bisect_right(market, START) - 1
+            or market[idx] < start
+            and idx + 4 < bisect_right(market, start) - 1
         ):
             continue
         proof = []
@@ -152,18 +153,18 @@ def controller_candidates(filings, rdf, market):
     return candidates
 
 
-def base_signals(graph, market, stocks, bars):
+def base_signals(graph, market, stocks, bars, start, end):
     clear = signals(graph, market)["explicit_buyer_path"]
     kg, touched = index_filings(graph)
     training, evaluation = {}, defaultdict(set)
-    cutoff = market[bisect_right(market, START) - 2]
+    cutoff = market[bisect_right(market, start) - 2]
     for day, codes in sorted(touched.items()):
         release = bisect_right(market, day)
         if not 0 < release < len(market):
             continue
         prev, nxt = market[release - 1], market[release]
         for code in codes & stocks.keys():
-            if nxt < START and all(
+            if nxt < start and all(
                 bars[code].get(d, {}).get("is_tradable") for d in (prev, nxt)
             ):
                 label = (
@@ -172,7 +173,7 @@ def base_signals(graph, market, stocks, bars):
                     else "DOWN"
                 )
                 training[code, prev] = (code, day, nxt, code, label)
-            if START <= nxt <= END:
+            if start <= nxt <= end:
                 evaluation[code, release].add(day)
     rules = mine_rules(kg, training.values(), cutoff, min_support=5)
     trace = defaultdict(dict)
@@ -306,20 +307,20 @@ def summary(curves, exposed, orders, interventions, dates):
     }
 
 
-def run(graph, archive, later, rdf_path):
+def run(graph, archive, later, rdf_path, start, end, original_panel=False):
     index = {
         bar["date"]: bar
         for root in (archive, later)
         for bar in load(root / "KOSPI.json")["bars"]
     }
     market = sorted(index)
-    dates = [d for d in market if START <= d <= END]
+    dates = [d for d in market if start <= d <= end]
     i = market.index(dates[0])
     _, notices, _, symbols = graph_events(graph)
     seen = {
         p["corp_code"]
         for day, rows in notices.items()
-        if day < START
+        if day < start
         for row in rows
         for p in (row["supplier"], row["buyer"])
         if p
@@ -342,9 +343,29 @@ def run(graph, archive, later, rdf_path):
         bars[code] = series
     if len(set(stocks.values())) != len(stocks):
         raise ValueError("Company identification is ambiguous")
+    if original_panel:
+        selected, _ = select_large_companies(graph, archive, later, market, dates)
+        bars = {
+            code: {
+                **(get_series(archive, symbol, code) or {}),
+                **(get_series(later, symbol, code) or {}),
+            }
+            for code, symbol in selected.items()
+        }
+        seven = {"005930", "000660", "010140", "329180", "000720", "028260", "009150"}
+        stocks = {code: symbol for code, symbol in selected.items() if symbol in seven}
+        if set(stocks.values()) != seven:
+            raise ValueError("The seven published symbols must be present")
+        missing, prior_ineligible = [], []
+    else:
+        selected = stocks
     filings = graph_filings(rdf_path, stocks)
-    governance = controller_candidates(filings, read_rdf(rdf_path, filings), market)
-    clear, trace, rules, training, cutoff = base_signals(graph, market, stocks, bars)
+    governance = controller_candidates(
+        filings, read_rdf(rdf_path, filings), market, start, end
+    )
+    clear, trace, rules, training, cutoff = base_signals(
+        graph, market, selected, bars, start, end
+    )
     report, stock_report, all_orders, all_delays = {}, [], [], []
     for strategy in ("BUY_HOLD", "CLEAR", "TRACE"):
         for condition in (
@@ -357,7 +378,7 @@ def run(graph, archive, later, rdf_path):
             for code, symbol in stocks.items():
                 positions = []
                 for j, day in enumerate(market):
-                    if not START <= day <= END:
+                    if not start <= day <= end:
                         continue
                     window = range(j - 4, j + 1)
                     if strategy == "CLEAR":
@@ -406,7 +427,7 @@ def run(graph, archive, later, rdf_path):
             all_delays.extend(delays)
     eligible = [r for rows in governance.values() for r in rows if r["events"]]
     return {
-        "period": [START, END],
+        "period": [start, end],
         "sessions": len(dates),
         "stocks": stocks,
         "missing": missing,
@@ -414,6 +435,8 @@ def run(graph, archive, later, rdf_path):
         "training": training,
         "training_cutoff": cutoff,
         "rules": [vars(r) for r in rules],
+        "training_symbols": sorted(selected.values()),
+        "validation_split": None,
         "metrics": report,
         "stocks_results": stock_report,
         "orders": all_orders,
@@ -431,8 +454,19 @@ def main():
         parser.add_argument(arg, type=Path)
     parser.add_argument("--ownership", type=Path)
     parser.add_argument("--bucket")
+    parser.add_argument("--start", default=DEFAULT_START)
+    parser.add_argument("--end", default=DEFAULT_END)
+    parser.add_argument("--original-panel", action="store_true")
     args = parser.parse_args()
-    result = run(load(args.graph), args.archive, args.later, args.rdf)
+    result = run(
+        load(args.graph),
+        args.archive,
+        args.later,
+        args.rdf,
+        args.start,
+        args.end,
+        args.original_panel,
+    )
     if args.ownership and args.bucket:
         verify = {r["receipt"]: r for r in result["eligible"]}
         with args.ownership.open() as handle:
