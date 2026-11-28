@@ -364,7 +364,7 @@ def database(container, port):
     return query
 
 
-def load_triples(query, triples, inferred, output):
+def load_triples(query, triples, inferred, output, predicates=None):
     query("""CREATE CONSTRAINT opendart_rdf_term IF NOT EXISTS
              FOR (n:OpenDartRdfTerm) REQUIRE (n.dataset, n.key) IS UNIQUE""")
     edges = []
@@ -417,9 +417,10 @@ def load_triples(query, triples, inferred, output):
     actual = query(
         """
     MATCH (:OpenDartRdfTerm {dataset:$dataset})-[r:OPENDART_RDF_TRIPLE]->()
+    WHERE $predicates IS NULL OR r.predicate IN $predicates
     RETURN r.inferred, count(*)
     """,
-        dataset=DATASET,
+        dataset=DATASET, predicates=predicates,
     )
     if dict(actual) != dict(counts):
         raise ValueError(
