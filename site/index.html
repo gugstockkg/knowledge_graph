@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FINTOS의 OpenDART 지식그래프 연구 기록. 산출물, 설계 결정, 검증 결과를 공개합니다.">
-  <title>FINTOS 공시 그래프 연구</title>
+  <meta name="description" content="FINTOS의 공시 지식그래프와 퀀트 백테스트 연구. 최신 연구 글, 재현 자료, 연구 문헌을 찾아보세요.">
+  <title>FINTOS 연구</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="research-home">
@@ -15,86 +15,69 @@
       <a href="dataset/">데이터 설명서</a>
       <a href="journal/">연구 보관함</a>
       <a href="library/">도서관</a>
-      <a href="#artifacts">산출물</a>
-      <a href="#design-validation">설계와 검증</a>
     </nav>
   </header>
   <main class="shell" id="content" tabindex="-1">
     <section class="featured" aria-labelledby="title">
-      <div class="featured-copy">
-        <!-- featured-post:start -->
-        <!-- featured-post:end -->
-        <a class="featured-guide" href="dataset/">데이터 설명서</a>
-      </div>
-      <figure class="featured-graph">
-        <figcaption>공시에서 확인한 공급 관계</figcaption>
-        <div class="contract-parties">
-          <div><span>공급자</span><strong>넥스틴</strong></div>
-          <span class="contract-edge" aria-hidden="true"></span>
-          <div><span>구매자</span><strong>SK하이닉스</strong></div>
-        </div>
-        <p>웨이퍼 검사장비 공급계약</p>
-        <a href="dataset/#economic-events">공시와 그래프 연결 사례 보기</a>
-      </figure>
+      <!-- featured-post:start -->
+      <!-- featured-post:end -->
     </section>
 
-    <section id="journal" class="chapter journal-home" aria-labelledby="journal-title">
-      <div>
-        <h2 id="journal-title">최신 연구 글</h2>
-        <a class="journal-all" href="journal/">연구 보관함에서 전체 보기</a>
-      </div>
+    <section id="journal" class="journal-home" aria-labelledby="journal-title">
+      <h2 id="journal-title">최근 연구 글</h2>
       <div class="journal-list">
         <!-- latest-posts:start -->
         <!-- latest-posts:end -->
       </div>
+      <a class="journal-all" href="journal/">연구 글 더보기 <span aria-hidden="true">→</span></a>
     </section>
 
-    <section class="chapter" aria-labelledby="library-title">
-      <h2 id="library-title">FINTOS 도서관</h2>
-      <div>
-        <p>자산배분, 팩터 투자, 모멘텀, 거래비용과 검증에 관한 문헌을 찾아보세요. 한 줄 요약과 재현 시 확인할 항목을 함께 정리했습니다.</p>
-        <a class="journal-all" href="library/">문헌 인덱스 열기</a>
-      </div>
-    </section>
+    <aside class="home-library" aria-labelledby="library-title">
+      <strong id="library-title">FINTOS 도서관</strong>
+      <p>퀀트 투자 논문과 연구 요약</p>
+      <a href="library/">문헌 목록 보기</a>
+    </aside>
 
-    <section id="artifacts" class="chapter" aria-labelledby="artifact-title">
-      <h2 id="artifact-title">공개 산출물</h2>
-      <ul class="index">
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/README.md"><span class="artifact-text"><strong>경제 사건 그래프 설계</strong><span>공급계약·시설투자·재무 관측 모델과 CLEAR·TRACE의 공급계약 그래프</span></span><span class="format">문서</span></a></li>
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/ontology.csv"><span class="artifact-text"><strong>경제 사건 그래프 스키마</strong><span>기업·공급계약·계약 조건 관측의 노드, 관계와 속성</span></span><span class="format">CSV</span></a></li>
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md"><span class="artifact-text"><strong>최대주주 변경 모델과 검증 사례</strong><span>그래프 도해, 금호에이치티 정정 사례, EC2 검증과 예제 질의</span></span><span class="format">문서</span></a></li>
-        <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv"><span class="artifact-text"><strong>최대주주 변경 스키마</strong><span>노드·관계·속성·검사 규칙의 항목별 명세</span></span><span class="format">CSV</span></a></li>
-      </ul>
-    </section>
+    <section class="home-resources" aria-label="연구 자료">
+      <section id="artifacts" aria-labelledby="artifact-title">
+        <h2 id="artifact-title">공개 산출물</h2>
+        <ul class="index">
+          <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/README.md"><span class="artifact-text"><strong>경제 사건 그래프 설계</strong><span>공급계약·시설투자·재무 관측 모델과 CLEAR·TRACE의 공급계약 그래프</span></span><span class="format">문서</span></a></li>
+          <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/ontology.csv"><span class="artifact-text"><strong>경제 사건 그래프 스키마</strong><span>기업·공급계약·계약 조건 관측의 노드, 관계와 속성</span></span><span class="format">CSV</span></a></li>
+          <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/README.md"><span class="artifact-text"><strong>최대주주 변경 모델과 검증 사례</strong><span>그래프 도해, 금호에이치티 정정 사례, EC2 검증과 예제 질의</span></span><span class="format">문서</span></a></li>
+          <li><a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/controller-change-v0.1/ontology.csv"><span class="artifact-text"><strong>최대주주 변경 스키마</strong><span>노드·관계·속성·검사 규칙의 항목별 명세</span></span><span class="format">CSV</span></a></li>
+        </ul>
+      </section>
 
-    <section id="design-validation" class="chapter" aria-labelledby="design-validation-title">
-      <h2 id="design-validation-title">설계와 검증</h2>
-      <ul class="design-records">
-        <li>
-          <div class="design-record-heading">
-            <h3>경제 사건 그래프</h3>
-            <time datetime="2026-11-27T20:24:40+09:00">11월 27일 20:24 KST</time>
-          </div>
-          <p>공급계약, 정정, 시설투자, 실적을 EC2 Neo4j에서 조회했습니다.</p>
-          <a href="dataset/#economic-events">경제 사건 조회 결과 보기</a>
-        </li>
-        <li id="notes">
-          <div class="design-record-heading">
-            <h3>온톨로지와 근거</h3>
-            <time datetime="2026-11-27T14:41:48+09:00">11월 27일 14:41 KST</time>
-          </div>
-          <p>부분 정정의 원문 근거를 추적하고, 30개사의 구조화 질의 151개에서 네 그래프 조건을 대조했습니다.</p>
-          <a href="journal/2026-11-27-ontology-and-shacl/">온톨로지 설계와 검증 결과 보기</a>
-        </li>
-        <li id="experiments">
-          <div class="design-record-heading">
-            <h3>GraphRAG 평가 계획</h3>
-            <time datetime="2026-11-27T14:41:48+09:00">11월 27일 14:41 KST</time>
-          </div>
-          <p>같은 기준일에서 문서 검색과 그래프 검색의 답과 근거를 비교하는 실험을 설계했습니다.</p>
-          <a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG 평가 계획 보기</a>
-        </li>
-      </ul>
+      <section id="design-validation" aria-labelledby="design-validation-title">
+        <h2 id="design-validation-title">설계와 검증</h2>
+        <ul class="design-records">
+          <li>
+            <div class="design-record-heading">
+              <h3>경제 사건 그래프</h3>
+              <time datetime="2026-11-27T20:24:40+09:00">11월 27일 20:24 KST</time>
+            </div>
+            <p>공급계약, 정정, 시설투자, 실적을 EC2 Neo4j에서 조회했습니다.</p>
+            <a href="dataset/#economic-events">경제 사건 조회 결과 보기</a>
+          </li>
+          <li id="notes">
+            <div class="design-record-heading">
+              <h3>온톨로지와 근거</h3>
+              <time datetime="2026-11-27T14:41:48+09:00">11월 27일 14:41 KST</time>
+            </div>
+            <p>부분 정정의 원문 근거를 추적하고, 30개사의 구조화 질의 151개에서 네 그래프 조건을 대조했습니다.</p>
+            <a href="journal/2026-11-27-ontology-and-shacl/">온톨로지 설계와 검증 결과 보기</a>
+          </li>
+          <li id="experiments">
+            <div class="design-record-heading">
+              <h3>GraphRAG 평가 계획</h3>
+              <time datetime="2026-11-27T14:41:48+09:00">11월 27일 14:41 KST</time>
+            </div>
+            <p>같은 기준일에서 문서 검색과 그래프 검색의 답과 근거를 비교하는 실험을 설계했습니다.</p>
+            <a href="journal/2026-11-27-graphrag-evaluation/">GraphRAG 평가 계획 보기</a>
+          </li>
+        </ul>
+      </section>
     </section>
   </main>
   <footer class="shell top footer"><span>FINTOS</span><a href="https://github.com/gugstockkg/knowledge_graph">GitHub 저장소</a></footer>
