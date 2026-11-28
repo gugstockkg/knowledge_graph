@@ -30,6 +30,14 @@ configs:
 
 ![최대주주 변경 RDF로 표현하는 사건·정정·근거의 논리 모델](controller-change-model.svg)
 
+공개 버전은 **2026년 11월 27일 v1**이다. 이후 EC2에 적재한 정기보고서 보유자명·역할·기초와 기말의 주식 수 및 지분율은 이 버전에 포함되지 않는다. [정기보고서 실험과 원문 근거](https://gugstockkg.github.io/knowledge_graph/journal/2026-11-28-governance-backtest/#periodic-ownership)
+
+## v1.1 정기보고서 RDF 보강
+
+정기보고서 12,828건의 보유 관측 83,706개에 공개용 트리플 364,537개를 추가한다. `rdf-periodic-ownership.nt.gz`를 v1의 `rdf-asserted.nt.gz`와 같은 RDF 그래프에 불러온다. 공개 범위는 기초·기말 주식 수와 지분율, 허용 목록의 역할 값, 검증 사례의 법인명 SK스퀘어다. 다른 보유자명은 배포하지 않는다. LPG와 OWL 추론 데이터는 v1을 사용한다.
+
+`periodic-ownership.rq`는 SK스퀘어의 최대주주 역할, 기초·기말 146,100,000주, 지분율 20.07%와 20.00%, XML 50100행을 반환한다. 배포본의 `manifest.json`은 보강 파일의 건수와 SHA-256을 기록한다.
+
 ## 파일 구성
 
 | 파일 | 내용 |
