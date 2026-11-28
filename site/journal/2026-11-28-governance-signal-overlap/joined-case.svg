@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 475" role="img" aria-labelledby="title desc">
+<title id="title">SK하이닉스 계약과 지분 관측의 연결</title><desc id="desc">공급계약 LPG와 지분 관측 RDF가 기업 코드로 연결된다. 분기보고서가 변경 사건임을 뜻하지 않는다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#315d72"/></marker></defs>
+<rect x="1" y="1" width="898" height="473" rx="16" fill="#f7fbfc" stroke="#bfced6"/>
+<g font-family="system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif" fill="#18394a">
+<text x="450" y="32" text-anchor="middle" font-size="25" font-weight="700">SK하이닉스 · 공급계약 LPG와 지분 관측 RDF</text>
+<text x="450" y="61" text-anchor="middle" font-size="16" font-weight="400">2026년 11월 16일 접수 · 11월 17일 시가부터 확인 가능</text>
+<text x="207" y="102" text-anchor="middle" font-size="19" font-weight="700">공급계약 LPG</text>
+<text x="693" y="102" text-anchor="middle" font-size="19" font-weight="700">지분·지배권 RDF</text>
+<rect x="45" y="122" width="325" height="64" rx="10" fill="#e9f4f8" stroke="#789cae"/>
+<text x="207.5" y="150" text-anchor="middle" font-size="20" font-weight="700">케이씨텍</text>
+<text x="207.5" y="172" text-anchor="middle" font-size="15" font-weight="400">공급자</text>
+<rect x="530" y="122" width="325" height="64" rx="10" fill="#e9f4ea" stroke="#789cae"/>
+<text x="692.5" y="150" text-anchor="middle" font-size="20" font-weight="700">SK하이닉스 분기보고서</text>
+<text x="692.5" y="172" text-anchor="middle" font-size="15" font-weight="400">접수번호 20261116001715</text>
+<rect x="45" y="236" width="325" height="64" rx="10" fill="#e9f4f8" stroke="#789cae"/>
+<text x="207.5" y="264" text-anchor="middle" font-size="20" font-weight="700">반도체 제조장비 공급계약</text>
+<text x="207.5" y="286" text-anchor="middle" font-size="15" font-weight="400">원공시 20261116801609</text>
+<rect x="530" y="236" width="325" height="64" rx="10" fill="#e9f4ea" stroke="#789cae"/>
+<text x="692.5" y="264" text-anchor="middle" font-size="20" font-weight="700">보유 관측 주장과 XML 근거</text>
+<text x="692.5" y="286" text-anchor="middle" font-size="15" font-weight="400">최대주주·특수관계인 보유현황 · 50100행</text>
+<path d="M207 186L207 236" fill="none" stroke="#315d72" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M692 186L692 236" fill="none" stroke="#315d72" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="260" y="215" text-anchor="middle" font-size="15" font-weight="400">공급 역할</text>
+<text x="750" y="215" text-anchor="middle" font-size="15" font-weight="400">보고 근거</text>
+<rect x="45" y="353" width="325" height="64" rx="10" fill="#e9f4f8" stroke="#789cae"/>
+<text x="207.5" y="381" text-anchor="middle" font-size="20" font-weight="700">SK하이닉스 기업 노드</text>
+<text x="207.5" y="403" text-anchor="middle" font-size="15" font-weight="400">구매자 · 종목 코드 000660</text>
+<rect x="530" y="353" width="325" height="64" rx="10" fill="#e9f4ea" stroke="#789cae"/>
+<text x="692.5" y="381" text-anchor="middle" font-size="20" font-weight="700">SK하이닉스 기업 식별자</text>
+<text x="692.5" y="403" text-anchor="middle" font-size="15" font-weight="400">보고 대상 · 같은 OpenDART 기업 코드</text>
+<path d="M207 353L207 300" fill="none" stroke="#315d72" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="271" y="332" text-anchor="middle" font-size="15" font-weight="400">구매 역할</text>
+<path d="M855 152L877 152" fill="none" stroke="#315d72" stroke-width="2" stroke-dasharray="5 4"/>
+<path d="M877 152L877 385" fill="none" stroke="#315d72" stroke-width="2" stroke-dasharray="5 4"/>
+<path d="M877 385L855 385" fill="none" stroke="#315d72" stroke-width="2" stroke-dasharray="5 4"/>
+<path d="M370 385L530 385" fill="none" stroke="#315d72" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="450" y="373" text-anchor="middle" font-size="15" font-weight="700">기업 코드 대조</text>
+<text x="450" y="451" text-anchor="middle" font-size="16" font-weight="400">두 공시는 같은 기업에서 만난다. 거래 관계나 최대주주 변경은 이 경로에서 확인되지 않았다.</text>
+</g></svg>

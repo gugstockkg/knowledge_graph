@@ -1,0 +1,1953 @@
+{
+  "sessions": 39,
+  "stock_days": 273,
+  "counts": [
+    {
+      "strategy": "CLEAR",
+      "symbol": "005930",
+      "name": "삼성전자",
+      "signal_days": 2,
+      "new_signal_days": 1,
+      "buy_orders": 2,
+      "buy_overlap": 1,
+      "buy_with_active_signal_overlap": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "000660",
+      "name": "SK하이닉스",
+      "signal_days": 5,
+      "new_signal_days": 1,
+      "buy_orders": 3,
+      "new_overlap": 1,
+      "active_overlap": 1,
+      "buy_overlap": 1,
+      "buy_with_active_signal_overlap": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "010140",
+      "name": "삼성중공업",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 0
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "329180",
+      "name": "HD현대중공업",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "000720",
+      "name": "현대건설",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "028260",
+      "name": "삼성물산",
+      "signal_days": 4,
+      "new_signal_days": 1,
+      "buy_orders": 2,
+      "buy_overlap": 1,
+      "buy_with_active_signal_overlap": 1
+    },
+    {
+      "strategy": "CLEAR",
+      "symbol": "009150",
+      "name": "삼성전기",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 1
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "005930",
+      "name": "삼성전자",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 1
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "000660",
+      "name": "SK하이닉스",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 2
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "010140",
+      "name": "삼성중공업",
+      "signal_days": 10,
+      "new_signal_days": 2,
+      "buy_orders": 0,
+      "new_overlap": 1,
+      "active_overlap": 1
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "329180",
+      "name": "HD현대중공업",
+      "signal_days": 14,
+      "new_signal_days": 4,
+      "buy_orders": 1,
+      "new_overlap": 1,
+      "active_overlap": 1
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "name": "현대건설",
+      "signal_days": 6,
+      "new_signal_days": 2,
+      "buy_orders": 1,
+      "active_overlap": 4,
+      "new_overlap": 1
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "028260",
+      "name": "삼성물산",
+      "signal_days": 0,
+      "new_signal_days": 0,
+      "buy_orders": 1
+    },
+    {
+      "strategy": "TRACE",
+      "symbol": "009150",
+      "name": "삼성전기",
+      "signal_days": 15,
+      "new_signal_days": 3,
+      "buy_orders": 1
+    }
+  ],
+  "documents": [
+    {
+      "receipt": "20261001000203",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-01",
+      "effective": "2026-10-02",
+      "links": {
+        "reportsEvent": [
+          "20261001000203"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261001000203"
+    },
+    {
+      "receipt": "20261001000251",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-01",
+      "effective": "2026-10-02",
+      "links": {
+        "reportsEvent": [
+          "20261001000251"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261001000251"
+    },
+    {
+      "receipt": "20261006000144",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-06",
+      "effective": "2026-10-07",
+      "links": {
+        "reportsEvent": [
+          "20261006000144"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006000144"
+    },
+    {
+      "receipt": "20261007000036",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-07",
+      "effective": "2026-10-08",
+      "links": {
+        "reportsEvent": [
+          "20261007000036"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261007000036"
+    },
+    {
+      "receipt": "20261007000053",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-07",
+      "effective": "2026-10-08",
+      "links": {
+        "reportsEvent": [
+          "20261007000053"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261007000053"
+    },
+    {
+      "receipt": "20261008000706",
+      "symbol": "005930",
+      "title": "주식등의대량보유상황보고서(일반)",
+      "family": "holding",
+      "filed": "2026-10-08",
+      "effective": "2026-10-12",
+      "links": {
+        "reportsEvent": [
+          "20261008000706"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261008000706"
+    },
+    {
+      "receipt": "20261012000021",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-12",
+      "effective": "2026-10-13",
+      "links": {
+        "reportsEvent": [
+          "20261012000021"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261012000021"
+    },
+    {
+      "receipt": "20261013000126",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-13",
+      "effective": "2026-10-14",
+      "links": {
+        "reportsEvent": [
+          "20261013000126"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261013000126"
+    },
+    {
+      "receipt": "20261015000005",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-15",
+      "effective": "2026-10-16",
+      "links": {
+        "reportsEvent": [
+          "20261015000005"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261015000005"
+    },
+    {
+      "receipt": "20261016000492",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-16",
+      "effective": "2026-10-19",
+      "links": {
+        "reportsEvent": [
+          "20261016000492"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261016000492"
+    },
+    {
+      "receipt": "20261016000505",
+      "symbol": "005930",
+      "title": "주식등의대량보유상황보고서(일반)",
+      "family": "holding",
+      "filed": "2026-10-16",
+      "effective": "2026-10-19",
+      "links": {
+        "reportsEvent": [
+          "20261016000505"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261016000505"
+    },
+    {
+      "receipt": "20261019000318",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-19",
+      "effective": "2026-10-20",
+      "links": {
+        "reportsEvent": [
+          "20261019000318"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261019000318"
+    },
+    {
+      "receipt": "20261023000478",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-23",
+      "effective": "2026-10-26",
+      "links": {
+        "reportsEvent": [
+          "20261023000478"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261023000478"
+    },
+    {
+      "receipt": "20261023000484",
+      "symbol": "005930",
+      "title": "주식등의대량보유상황보고서(일반)",
+      "family": "holding",
+      "filed": "2026-10-23",
+      "effective": "2026-10-26",
+      "links": {
+        "reportsEvent": [
+          "20261023000484"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261023000484"
+    },
+    {
+      "receipt": "20261026000017",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-26",
+      "effective": "2026-10-27",
+      "links": {
+        "reportsEvent": [
+          "20261026000017"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000017"
+    },
+    {
+      "receipt": "20261026000273",
+      "symbol": "000660",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-26",
+      "effective": "2026-10-27",
+      "links": {
+        "reportsEvent": [
+          "20261026000273"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000273"
+    },
+    {
+      "receipt": "20261027000008",
+      "symbol": "010140",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-27",
+      "effective": "2026-10-28",
+      "links": {
+        "reportsEvent": [
+          "20261027000008"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261027000008"
+    },
+    {
+      "receipt": "20261030000359",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-30",
+      "effective": "2026-11-02",
+      "links": {
+        "reportsEvent": [
+          "20261030000359"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261030000359",
+      "verified_xml": {
+        "sha256": "46f08d7bb5ea9cd20fa646d5a2bf5338d58dbcbb222f536a022ba51452a87ea0",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 165
+          },
+          {
+            "field": "STF_RYN",
+            "line": 183
+          },
+          {
+            "field": "STF_PSM",
+            "line": 185
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 274
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 276
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 283
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 285
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 286
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 291
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 293
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261030000716",
+      "symbol": "005930",
+      "title": "주식등의대량보유상황보고서(일반)",
+      "family": "holding",
+      "filed": "2026-10-30",
+      "effective": "2026-11-02",
+      "links": {
+        "reportsEvent": [
+          "20261030000716"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261030000716"
+    },
+    {
+      "receipt": "20261030000719",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-10-30",
+      "effective": "2026-11-02",
+      "links": {
+        "reportsEvent": [
+          "20261030000719"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261030000719"
+    },
+    {
+      "receipt": "20261102000100",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-02",
+      "effective": "2026-11-03",
+      "links": {
+        "reportsEvent": [
+          "20261102000100"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102000100",
+      "verified_xml": {
+        "sha256": "8594edeb891ea3fc51fbc3c84e0252d7ba42153187c164e3285955dc3c09acb0",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 164
+          },
+          {
+            "field": "STF_RYN",
+            "line": 182
+          },
+          {
+            "field": "STF_PSM",
+            "line": 184
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 273
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 275
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 281
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 283
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 285
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 290
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 292
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261103000077",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-03",
+      "effective": "2026-11-04",
+      "links": {
+        "reportsEvent": [
+          "20261103000077"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103000077",
+      "verified_xml": {
+        "sha256": "ca0d7cca7c0ec03c2c5f064c018f950e7dc93c734a9f98e9f582773243d5f74f",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 164
+          },
+          {
+            "field": "STF_RYN",
+            "line": 182
+          },
+          {
+            "field": "STF_PSM",
+            "line": 184
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 273
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 275
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 281
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 287
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 289
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 296
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 301
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261103000167",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-03",
+      "effective": "2026-11-04",
+      "links": {
+        "reportsEvent": [
+          "20261103000167"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103000167"
+    },
+    {
+      "receipt": "20261104000037",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-04",
+      "effective": "2026-11-05",
+      "links": {
+        "reportsEvent": [
+          "20261104000037"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261104000037"
+    },
+    {
+      "receipt": "20261105000566",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-05",
+      "effective": "2026-11-06",
+      "links": {
+        "reportsEvent": [
+          "20261105000566"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261105000566"
+    },
+    {
+      "receipt": "20261106000022",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000022"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000022"
+    },
+    {
+      "receipt": "20261106000055",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000055"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000055",
+      "verified_xml": {
+        "sha256": "68f66b6b8c8a860b45c685178f6811fb5f672ab9d266818258fa44b83009322d",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 165
+          },
+          {
+            "field": "STF_RYN",
+            "line": 183
+          },
+          {
+            "field": "STF_PSM",
+            "line": 185
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 274
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 276
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 283
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 285
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 286
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 291
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 293
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261106000075",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000075"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000075",
+      "verified_xml": {
+        "sha256": "c931f9c2c4336a6b8333567c67dc1e1c9123d0d99d500d7d221a384ed6d6fa37",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 165
+          },
+          {
+            "field": "STF_RYN",
+            "line": 183
+          },
+          {
+            "field": "STF_PSM",
+            "line": 185
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 274
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 276
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 283
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 285
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 286
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 291
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 293
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261106000093",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000093"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000093"
+    },
+    {
+      "receipt": "20261106000098",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000098"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000098"
+    },
+    {
+      "receipt": "20261106000100",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000100"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000100"
+    },
+    {
+      "receipt": "20261106000186",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000186"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000186",
+      "verified_xml": {
+        "sha256": "fdb7c99ea9953bfde72e67abc672f37066a4727c09bfadcaa388f496c1b446d3",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 165
+          },
+          {
+            "field": "STF_RYN",
+            "line": 183
+          },
+          {
+            "field": "STF_PSM",
+            "line": 185
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 274
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 276
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 283
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 285
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 286
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 291
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 293
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261106000193",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000193"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000193"
+    },
+    {
+      "receipt": "20261106000410",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000410"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000410"
+    },
+    {
+      "receipt": "20261106000440",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-06",
+      "effective": "2026-11-09",
+      "links": {
+        "reportsEvent": [
+          "20261106000440"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000440"
+    },
+    {
+      "receipt": "20261109000007",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-09",
+      "effective": "2026-11-10",
+      "links": {
+        "reportsEvent": [
+          "20261109000007"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109000007"
+    },
+    {
+      "receipt": "20261110000038",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-10",
+      "effective": "2026-11-11",
+      "links": {
+        "reportsEvent": [
+          "20261110000038"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110000038"
+    },
+    {
+      "receipt": "20261110000320",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-10",
+      "effective": "2026-11-11",
+      "links": {
+        "reportsEvent": [
+          "20261110000320"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110000320"
+    },
+    {
+      "receipt": "20261111000113",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-11",
+      "effective": "2026-11-12",
+      "links": {
+        "reportsEvent": [
+          "20261111000113"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261111000113"
+    },
+    {
+      "receipt": "20261112000017",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-12",
+      "effective": "2026-11-13",
+      "links": {
+        "reportsEvent": [
+          "20261112000017"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000017"
+    },
+    {
+      "receipt": "20261113000899",
+      "symbol": "010140",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-13",
+      "effective": "2026-11-16",
+      "links": {
+        "reportsEvent": [
+          "20261113000899"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113000899"
+    },
+    {
+      "receipt": "20261113001527",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-13",
+      "effective": "2026-11-16",
+      "links": {
+        "reportsEvent": [
+          "20261113001527"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001527"
+    },
+    {
+      "receipt": "20261116001025",
+      "symbol": "000720",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {
+        "reportsEvent": [
+          "20261116001025"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001025"
+    },
+    {
+      "receipt": "20261116001044",
+      "symbol": "329180",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {
+        "reportsEvent": [
+          "20261116001044"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001044"
+    },
+    {
+      "receipt": "20261116001150",
+      "symbol": "028260",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {
+        "reportsEvent": [
+          "20261116001150"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001150",
+      "verified_xml": {
+        "sha256": "1991a1c2accc39dac9a49dd5228fb808b827474937aca068649280a7e0dc6267",
+        "fields": [
+          {
+            "field": "reported_shareholder_position",
+            "line": 77011
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77022
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77033
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77044
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77055
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77066
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77077
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77088
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77099
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77110
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77121
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77132
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77143
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77154
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77165
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 77176
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261116001482",
+      "symbol": "005930",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {},
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001482"
+    },
+    {
+      "receipt": "20261116001715",
+      "symbol": "000660",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {
+        "reportsEvent": [
+          "20261116001715"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001715",
+      "verified_xml": {
+        "sha256": "c89e5010f480b1280f4ae1e0a7c67d4b2b812ac3f4ecf3e02d74e38014be6185",
+        "fields": [
+          {
+            "field": "reported_shareholder_position",
+            "line": 50100
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50111
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50122
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50133
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50144
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50155
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50166
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50177
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50188
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50199
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50210
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50221
+          },
+          {
+            "field": "reported_shareholder_position",
+            "line": 50232
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261116001822",
+      "symbol": "010140",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {},
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001822",
+      "verified_xml": {
+        "sha256": "c5f84edde8a9f95dce5c31e1c8e95f8405eee551f354d1bc7df32ac6a1580764",
+        "fields": []
+      }
+    },
+    {
+      "receipt": "20261116001915",
+      "symbol": "009150",
+      "title": "분기보고서 (2026.09)",
+      "family": "periodic",
+      "filed": "2026-11-16",
+      "effective": "2026-11-17",
+      "links": {
+        "reportsEvent": [
+          "20261116001915"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001915"
+    },
+    {
+      "receipt": "20261118000151",
+      "symbol": "005930",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-18",
+      "effective": "2026-11-19",
+      "links": {
+        "reportsEvent": [
+          "20261118000151"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261118000151",
+      "verified_xml": {
+        "sha256": "c807ae1b7acfc0c2bed4f2510abce9a89ca2d238d683957f4a28dbae8206eebe",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 168
+          },
+          {
+            "field": "STF_RYN",
+            "line": 189
+          },
+          {
+            "field": "STF_PSM",
+            "line": 191
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 280
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 282
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 288
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 289
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 290
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 291
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 292
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 297
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 299
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261118000214",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-18",
+      "effective": "2026-11-19",
+      "links": {
+        "reportsEvent": [
+          "20261118000214"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261118000214"
+    },
+    {
+      "receipt": "20261119000068",
+      "symbol": "028260",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-19",
+      "effective": "2026-11-20",
+      "links": {
+        "reportsEvent": [
+          "20261119000068"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261119000068",
+      "verified_xml": {
+        "sha256": "7fd70aee6a35a48407b80480422cd3ee381f27a95d3c34160fac2fc8444a89a2",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 165
+          },
+          {
+            "field": "STF_RYN",
+            "line": 183
+          },
+          {
+            "field": "STF_PSM",
+            "line": 185
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 274
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 276
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 283
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 285
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 286
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 291
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 293
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261120000500",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-20",
+      "effective": "2026-11-23",
+      "links": {
+        "reportsEvent": [
+          "20261120000500"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261120000500"
+    },
+    {
+      "receipt": "20261120000505",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-20",
+      "effective": "2026-11-23",
+      "links": {
+        "reportsEvent": [
+          "20261120000505"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261120000505"
+    },
+    {
+      "receipt": "20261123000132",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-23",
+      "effective": "2026-11-24",
+      "links": {
+        "reportsEvent": [
+          "20261123000132"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000132"
+    },
+    {
+      "receipt": "20261123000192",
+      "symbol": "000660",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-23",
+      "effective": "2026-11-24",
+      "links": {
+        "reportsEvent": [
+          "20261123000192"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000192"
+    },
+    {
+      "receipt": "20261124000003",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-24",
+      "effective": "2026-11-25",
+      "links": {
+        "reportsEvent": [
+          "20261124000003"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124000003"
+    },
+    {
+      "receipt": "20261124000160",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-24",
+      "effective": "2026-11-25",
+      "links": {
+        "reportsEvent": [
+          "20261124000160"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124000160"
+    },
+    {
+      "receipt": "20261124000188",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-24",
+      "effective": "2026-11-25",
+      "links": {
+        "reportsEvent": [
+          "20261124000188"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124000188"
+    },
+    {
+      "receipt": "20261125000007",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-25",
+      "effective": "2026-11-26",
+      "links": {
+        "reportsEvent": [
+          "20261125000007"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261125000007",
+      "verified_xml": {
+        "sha256": "06a6b2dbacf365bafed409d0940b85f6c1e87c388cc56068d9587035c10b08e0",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 164
+          },
+          {
+            "field": "STF_RYN",
+            "line": 182
+          },
+          {
+            "field": "STF_PSM",
+            "line": 184
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 276
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 278
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 284
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 285
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 286
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 287
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 288
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 293
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 295
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261125000190",
+      "symbol": "000720",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-25",
+      "effective": "2026-11-26",
+      "links": {
+        "reportsEvent": [
+          "20261125000190"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261125000190",
+      "verified_xml": {
+        "sha256": "f3604b1a6241504bc299e2fee6b903a006fded412ab264bd44ef803bacef8b02",
+        "fields": [
+          {
+            "field": "IFR_NM",
+            "line": 164
+          },
+          {
+            "field": "STF_RYN",
+            "line": 182
+          },
+          {
+            "field": "STF_PSM",
+            "line": 184
+          },
+          {
+            "field": "BFR_UN_CNT",
+            "line": 273
+          },
+          {
+            "field": "BFR_PS_CPT_CNT",
+            "line": 275
+          },
+          {
+            "field": "AFR_RPT_DT",
+            "line": 281
+          },
+          {
+            "field": "AFR_UN_CNT",
+            "line": 282
+          },
+          {
+            "field": "AFR_UN_RT",
+            "line": 283
+          },
+          {
+            "field": "AFR_PS_CPT_CNT",
+            "line": 284
+          },
+          {
+            "field": "AFR_PS_CPT_RT",
+            "line": 285
+          },
+          {
+            "field": "MDF_UN_CNT",
+            "line": 290
+          },
+          {
+            "field": "MDF_PS_CPT_CNT",
+            "line": 292
+          }
+        ]
+      }
+    },
+    {
+      "receipt": "20261125000231",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-25",
+      "effective": "2026-11-26",
+      "links": {
+        "reportsEvent": [
+          "20261125000231"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261125000231"
+    },
+    {
+      "receipt": "20261125000281",
+      "symbol": "329180",
+      "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "family": "officer",
+      "filed": "2026-11-25",
+      "effective": "2026-11-26",
+      "links": {
+        "reportsEvent": [
+          "20261125000281"
+        ]
+      },
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261125000281"
+    }
+  ],
+  "overlaps": [
+    {
+      "mode": "buy_overlap",
+      "strategy": "CLEAR",
+      "symbol": "005930",
+      "date": "2026-11-25",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-25",
+        "symbol": "005930",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "178500",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261124800494"
+      },
+      "receipts": [
+        "20261118000151"
+      ]
+    },
+    {
+      "mode": "buy_with_active_signal_overlap",
+      "strategy": "CLEAR",
+      "symbol": "005930",
+      "date": "2026-11-25",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-25",
+        "symbol": "005930",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "178500",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261124800494"
+      },
+      "receipts": [
+        "20261118000151"
+      ]
+    },
+    {
+      "mode": "new_overlap",
+      "strategy": "CLEAR",
+      "symbol": "000660",
+      "date": "2026-11-17",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-17",
+        "symbol": "000660",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "1098000",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261116801609"
+      },
+      "receipts": [
+        "20261116001715"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "CLEAR",
+      "symbol": "000660",
+      "date": "2026-11-17",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-17",
+        "symbol": "000660",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "1098000",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261116801609"
+      },
+      "receipts": [
+        "20261116001715"
+      ]
+    },
+    {
+      "mode": "buy_overlap",
+      "strategy": "CLEAR",
+      "symbol": "000660",
+      "date": "2026-11-17",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-17",
+        "symbol": "000660",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "1098000",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261116801609"
+      },
+      "receipts": [
+        "20261116001715"
+      ]
+    },
+    {
+      "mode": "buy_with_active_signal_overlap",
+      "strategy": "CLEAR",
+      "symbol": "000660",
+      "date": "2026-11-17",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-17",
+        "symbol": "000660",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "1098000",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261116801609"
+      },
+      "receipts": [
+        "20261116001715"
+      ]
+    },
+    {
+      "mode": "buy_overlap",
+      "strategy": "CLEAR",
+      "symbol": "028260",
+      "date": "2026-11-23",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-23",
+        "symbol": "028260",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "244500",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261120900180"
+      },
+      "receipts": [
+        "20261116001150",
+        "20261119000068"
+      ]
+    },
+    {
+      "mode": "buy_with_active_signal_overlap",
+      "strategy": "CLEAR",
+      "symbol": "028260",
+      "date": "2026-11-23",
+      "signal": 1,
+      "order": {
+        "date": "2026-11-23",
+        "symbol": "028260",
+        "strategy": "explicit_buyer_path",
+        "side": "buy",
+        "session": "open",
+        "price": "244500",
+        "reason": "net_contract_signal",
+        "trend_target": "0",
+        "net_signal": "1",
+        "signal_receipts": "20261120900180"
+      },
+      "receipts": [
+        "20261116001150",
+        "20261119000068"
+      ]
+    },
+    {
+      "mode": "new_overlap",
+      "strategy": "TRACE",
+      "symbol": "010140",
+      "date": "2026-11-17",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261116001822"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "TRACE",
+      "symbol": "010140",
+      "date": "2026-11-17",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261116001822"
+      ]
+    },
+    {
+      "mode": "new_overlap",
+      "strategy": "TRACE",
+      "symbol": "329180",
+      "date": "2026-11-09",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261106000055",
+        "20261106000075",
+        "20261106000186"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "TRACE",
+      "symbol": "329180",
+      "date": "2026-11-09",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261106000055",
+        "20261106000075",
+        "20261106000186"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "date": "2026-11-02",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261030000359"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "date": "2026-11-03",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261102000100"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "date": "2026-11-04",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261103000077"
+      ]
+    },
+    {
+      "mode": "new_overlap",
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "date": "2026-11-26",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261125000007",
+        "20261125000190"
+      ]
+    },
+    {
+      "mode": "active_overlap",
+      "strategy": "TRACE",
+      "symbol": "000720",
+      "date": "2026-11-26",
+      "signal": -1,
+      "order": null,
+      "receipts": [
+        "20261125000007",
+        "20261125000190"
+      ]
+    }
+  ]
+}
