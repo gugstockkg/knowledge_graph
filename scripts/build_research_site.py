@@ -25,6 +25,14 @@ READING_PRIORITIES = {
 }
 
 
+REVIEW_SECTIONS = {
+    "method": "데이터·방법론",
+    "contribution": "핵심 기여",
+    "result": "주요 결과",
+    "insight": "FINTOS 인사이트",
+}
+
+
 class ArticleMetadata(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -115,10 +123,10 @@ def render_library(source):
         if (paper_id in paper_ids or not paper_id.startswith("Q") or not paper_id[1:].isdigit()
                 or int(paper["rank"]) != rank or paper["priority"] not in groups
                 or not 1900 <= int(paper["year"]) <= 2100
-                or not all(paper[key].strip() for key in ("topic", "title", "summary", "analysis", "evidence"))):
+                or not all(paper[key].strip() for key in ("topic", "title", "summary", *REVIEW_SECTIONS, "basis"))):
             raise ValueError(f"Invalid library record {paper_id} at rank {rank}")
         paper_ids.add(paper_id)
-        for field in ("primary_source", "pdf_source"):
+        for field in ("primary_source", "pdf_source", "source"):
             if field == "pdf_source" and not paper[field]:
                 continue
             url = urlsplit(paper[field])
@@ -128,6 +136,10 @@ def render_library(source):
         fields = {key: escape(value) for key, value in paper.items()}
         bibliographic = " · ".join(fields[key] for key in ("authors", "venue") if fields[key])
         pdf_link = f' · <a href="{fields["pdf_source"]}">공개 PDF</a>' if fields["pdf_source"] else ""
+        review_sections = "".join(
+            f'              <dt>{label}</dt><dd>{fields[key]}</dd>\n'
+            for key, label in REVIEW_SECTIONS.items()
+        )
         groups[paper["priority"]].append(
             '        <article class="journal-entry" data-entry '
             f'data-category="{fields["topic"]}" data-year="{fields["year"]}">\n'
@@ -137,10 +149,13 @@ def render_library(source):
             f'          <h3><a href="{fields["primary_source"]}">{fields["title"]}</a></h3>\n'
             f'          <p class="journal-meta">{bibliographic}{pdf_link}</p>\n'
             f'          <p class="journal-summary">{fields["summary"]}</p>\n'
-            '          <details class="journal-summary">\n'
-            '            <summary>1차 검토와 재현 항목</summary>\n'
-            f'            <p>{fields["analysis"]}</p>\n'
-            f'            <p>검토 범위 · {fields["evidence"]}</p>\n'
+            '          <details class="paper-review">\n'
+            '            <summary>상세 요약</summary>\n'
+            '            <dl>\n'
+            f'{review_sections}'
+            '            </dl>\n'
+            f'            <p class="journal-meta">검토 근거 · {fields["basis"]} · '
+            f'<a href="{fields["source"]}">검토 자료</a></p>\n'
             '          </details>\n'
             '        </article>'
         )

@@ -237,3 +237,11 @@ h1 { font-weight: 700; }
   .site-header nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
   .site-header nav a { padding-inline: 0; }
 }
+
+
+.paper-review { margin-top: .65rem; max-width: 72ch; }
+.paper-review summary { width: fit-content; padding-block: .45rem; color: var(--accent-strong); cursor: pointer; font-weight: 650; }
+.paper-review summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.paper-review dl { margin: .45rem 0 .8rem; padding-inline-start: 1rem; border-inline-start: 2px solid var(--line); }
+.paper-review dt { font-weight: 700; }
+.paper-review dd { margin: .18rem 0 .75rem; }
