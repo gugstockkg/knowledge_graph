@@ -89,6 +89,18 @@
 <tr><th scope="row">TRACE · 제목</th><td>-8.72%</td><td>+15.99%p</td><td>-12.82%</td><td>-3.59</td><td>21.03%</td><td>234</td><td>16</td></tr>
 <tr><th scope="row">TRACE · 통합</th><td>-8.43%</td><td>+16.29%p</td><td>-12.52%</td><td>-3.40</td><td>21.54%</td><td>244</td><td>0</td></tr>
 </tbody></table></div>
+<h3 id="ablation">4.6 구성요소 제거 비교</h3>
+<p>각 전략의 공급계약 신호, 평가 종목·기간, 가격과 거래비용을 고정하였다. <strong>LPG 단독</strong>은 기존 전략으로 지배권 공시를 주문에 반영하지 않는다. <strong>LPG+RDF</strong>는 사건·정정·원문 근거를 확인하고 RDF에 명시된 <code>ControllerChange</code> 유형으로 적격 사건을 판정한다. <strong>LPG+RDF+OWL</strong>은 같은 절차에서 추론된 상위 유형 <code>OwnershipEvent</code>를 조회한다. 제목 조건은 별도의 비교 기준으로 앞선 성과표에 제시하였다.</p>
+<div class="table-scroll" role="region" aria-label="LPG와 RDF·OWL 구성요소 제거 비교" tabindex="0"><table>
+<caption>순수익률과 통합에 따른 체결 변화</caption>
+<thead><tr><th scope="col">표본과 전략</th><th scope="col">LPG 단독</th><th scope="col">LPG+RDF</th><th scope="col">LPG+RDF+OWL</th><th scope="col">통합−LPG</th><th scope="col">바뀐 체결 / 기존 체결</th></tr></thead>
+<tbody>
+<tr><th scope="row">동일 7종목 · CLEAR</th><td>-4.12%</td><td>-4.12%</td><td>-4.12%</td><td>0.00%p</td><td>0 / 20</td></tr>
+<tr><th scope="row">동일 7종목 · TRACE</th><td>-1.92%</td><td>-1.92%</td><td>-1.92%</td><td>0.00%p</td><td>0 / 14</td></tr>
+<tr><th scope="row">확대 80종목 · CLEAR</th><td>-8.41%</td><td>-8.41%</td><td>-8.41%</td><td>0.00%p</td><td>0 / 244</td></tr>
+<tr><th scope="row">확대 80종목 · TRACE</th><td>-8.43%</td><td>-8.43%</td><td>-8.43%</td><td>0.00%p</td><td>0 / 244</td></tr>
+</tbody></table></div>
+<p>두 표본 모두 통합 조건을 충족한 지배권 사건이 0건이었다. 그 결과 세 구성에서 체결 종목, 날짜, 매수·매도 방향, 시가·종가 구분과 가격이 모두 같았다. 통합이나 OWL 조회가 성과를 바꾸는지는 적격 사건이 실제 매수 후보와 겹치는 표본에서 추가로 검증해야 한다. <a href="complete-results.json.gz" download>구성별 실행 결과</a> · <a href="orders.csv" download>체결 원장</a></p>
 </section>
 <section aria-labelledby="limits">
 <h2 id="limits">5. 논의와 한계</h2>
