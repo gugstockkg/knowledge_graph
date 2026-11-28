@@ -1,0 +1,75 @@
+{
+  "symbol": "005380",
+  "period": [
+    "2026-10-01",
+    "2026-11-26"
+  ],
+  "sessions": 39,
+  "training": {
+    "0": 967,
+    "1": 15
+  },
+  "diagnostics": {
+    "hops": [
+      {
+        "candidates": 0,
+        "accepted": 0,
+        "new_signal_days": 0,
+        "active_signal_days": 0
+      },
+      {
+        "candidates": 0,
+        "accepted": 0,
+        "new_signal_days": 0,
+        "active_signal_days": 0
+      }
+    ],
+    "position_days_vs_trend": 0
+  },
+  "performance": {
+    "hold": {
+      "symbol": "005380",
+      "return": -0.25686795270726404,
+      "orders": 2
+    },
+    "trend": {
+      "symbol": "005380",
+      "return": 0.0,
+      "orders": 0
+    },
+    "CLEAR": {
+      "symbol": "005380",
+      "return": 0.0,
+      "orders": 0
+    }
+  },
+  "orders": {
+    "hold": [
+      {
+        "date": "2026-10-01",
+        "symbol": "005380",
+        "strategy": "hold",
+        "condition": "base",
+        "side": "buy",
+        "session": "open",
+        "price": 348500,
+        "signal": 0,
+        "supply_receipts": [],
+        "governance_receipts": [],
+        "reason": "price_trend"
+      },
+      {
+        "date": "2026-11-26",
+        "symbol": "005380",
+        "strategy": "hold",
+        "condition": "base",
+        "side": "sell",
+        "session": "close",
+        "price": 259500,
+        "reason": "terminal_liquidation"
+      }
+    ],
+    "trend": [],
+    "CLEAR": []
+  }
+}
