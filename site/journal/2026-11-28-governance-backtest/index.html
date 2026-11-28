@@ -26,7 +26,16 @@
 </section>
 <section aria-labelledby="related">
 <h2 id="related">2. 관련 연구</h2>
-<p>공급계약 공시 전후의 시장 반응은 국내 공시 연구에서 다뤄졌으며 [3], 공급사와 고객의 경제적 관계를 따라 정보가 전달될 가능성도 연구되었다 [4]. TRACE는 금융 그래프에서 학습한 관계 규칙으로 탐색 경로를 좁힌다 [5]. CLEAR에서는 공급계약으로 0홉과 1홉 후보를 정한 뒤, 후보의 과거 순수익률로 매매 점수를 학습한다.</p>
+<h3>2.1 공급계약 공시와 주가 반응</h3>
+<p>우민철과 박수철 [3]은 국내 단일판매·공급계약 공시 6,072건을 분석하였다. 공시 당일에는 유의한 주가 상승이 나타났지만, 공시 다음 날에는 초과수익률의 반전이 관찰되었다. 공시 직후의 반응과 투자자가 그 정보를 확인한 뒤 얻을 수 있는 수익을 따로 살펴야 하는 이유다. CLEAR는 최초 계약과 정정 공시를 유형별로 나누고 공급사 매출 대비 계약 규모를 함께 사용한다. 신규 계약이라는 사실만으로 신호의 방향을 정하지 않고, 유사한 공시가 있었을 때의 수익률로 방향과 크기를 추정한다.</p>
+<p>사건연구는 특정 사건 전후의 실제 수익률에서 정상 수익률을 뺀 값을 이용해 시장 반응을 측정한다 [6]. 본 연구의 성과 지표는 공시를 사용할 수 있는 거래일의 시가부터 비용을 반영해 계산한 전략 수익률이다. 학습에는 5거래일 수익률을 쓰고, 백테스트에서는 날마다 보유 상태를 다시 결정한다. 이 설계로 확인할 수 있는 것은 동일한 시세와 비용에서 공시 신호가 주문과 손익을 얼마나 바꾸었는지다.</p>
+<h3>2.2 공급사와 고객 사이의 정보 전달</h3>
+<p>Cohen과 Frazzini [4]는 주요 고객 공시로 기업 간 연결을 식별하고, 고객사의 주가 움직임이 연결된 공급사의 후속 수익률을 예측하는 데 도움이 되는지 살폈다. 이 연구는 경제적 관계가 정보의 전달 경로가 될 수 있다는 근거를 제공한다. CLEAR가 살피는 방향은 공급사의 계약 공시에서 직접 구매자로 이어진다. 따라서 선행 연구의 결과를 그대로 적용할 수 없으며, 구매자 후보를 추가했을 때 실제 주문이 바뀌는지 이번 표본에서 별도로 확인한다. 새 공시에 구매자가 명시되고 같은 제품군의 기존 계약이 당시 유효할 때만 1홉 후보로 인정하는 것도 이 때문이다.</p>
+<h3>2.3 시점별 지식그래프와 공시 근거</h3>
+<p>Ding 등 [5]의 TRACE는 과거 금융 그래프에서 관계 경로를 채굴하고, 예측 시점에 접근할 수 있는 관계와 문서로 탐색을 제한한다. 채굴한 경로는 다음 거래일의 상승·하락을 예측하는 데 쓰인다. CLEAR는 공급계약으로 0홉과 1홉 후보를 정한 뒤, 공시 유형과 계약 규모에 따른 비용 후 수익률을 학습한다. 두 방법 모두 당시 이용 가능한 근거를 중시하며, 그래프에서 탐색하는 범위와 학습 목표가 다르다.</p>
+<p>공시 근거의 보존은 지배권 실험에서도 중요하다. W3C PROV-O는 자료의 출처와 개정 관계를 표현하는 공통 어휘를 제공한다 [7]. 본 연구의 지배권 그래프도 정정본과 원공시, 관측값과 원문 위치의 관계를 기록한다. 같은 기업의 공시라는 이유만으로 변경 사건이 확인되었다고 판단하지 않고, 보고된 사건 유형과 근거를 대조할 수 있게 설계하였다.</p>
+<h3>2.4 가격 추세를 기준으로 삼는 이유</h3>
+<p>Moskowitz, Ooi와 Pedersen [8]은 여러 자산군의 선물에서 과거 자체 수익률과 이후 수익률 사이에 추세가 나타남을 보고하였다. 이번 비교에 쓰는 20거래일 가격 추세는 공시 정보 없이 작동하는 기준 전략이다. CLEAR와 가격 추세를 같은 종목·기간·비용에서 비교하면, 공시 점수가 기존 추세 판단에 더해 어떤 주문을 바꾸는지 확인할 수 있다. 매수 후 보유는 같은 종목에 계속 투자했을 때의 손익을 보여준다.</p>
 </section>
 <section aria-labelledby="method">
 <h2 id="method">3. 방법론</h2>
@@ -273,6 +282,9 @@ PYTHONPATH=src python3.11 scripts/backtest_periodic_ownership.py \
 <li>우민철, 박수철. (2017). 중요 공시에 대한 시장반응－단일판매 공급계약 공시를 대상으로－. <cite>경영연구</cite>, 32(1), 205–229. <a href="https://doi.org/10.22903/jbr.2017.32.1.205">DOI</a></li>
 <li>Cohen, L., &amp; Frazzini, A. (2008). Economic links and predictable returns. <cite>The Journal of Finance</cite>, 63(4), 1977–2011. <a href="https://doi.org/10.1111/j.1540-6261.2008.01379.x">DOI</a></li>
 <li>Ding, Q., et al. (2026). TRACE: Temporal rule-anchored chain-of-evidence on knowledge graphs for interpretable stock movement prediction. <cite>arXiv:2603.12500v1</cite>. <a href="https://arxiv.org/abs/2603.12500v1">프리프린트</a></li>
+<li>MacKinlay, A. C. (1997). Event studies in economics and finance. <cite>Journal of Economic Literature</cite>, 35(1), 13–39. <a href="https://www.bu.edu/econ/files/2011/01/MacKinlay-1996-Event-Studies-in-Economics-and-Finance.pdf">원문</a></li>
+<li>Lebo, T., Sahoo, S., &amp; McGuinness, D. (Eds.). (2013). <cite>PROV-O: The PROV Ontology</cite>. W3C Recommendation. <a href="https://www.w3.org/TR/prov-o/">표준 원문</a></li>
+<li>Moskowitz, T. J., Ooi, Y. H., &amp; Pedersen, L. H. (2012). Time series momentum. <cite>Journal of Financial Economics</cite>, 104(2), 228–250. <a href="https://doi.org/10.1016/j.jfineco.2011.11.003">DOI</a> · <a href="https://fairmodel.econ.yale.edu/ec439/mosk.pdf">원문</a></li>
 </ol>
 </section>
 </article></main>
