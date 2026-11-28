@@ -28,6 +28,9 @@ TARGET = .15
 CUSIP = {'AAPL': '037833100', 'MSFT': '594918104', 'NVDA': '67066G104'}
 CAP = .06
 GRAPH_STRATEGIES = ('g1_direct', 'g1_lookthrough', 'g1_matched_cash')
+RELATIVE_GRAPH = ('sp_breadth', 'sp_weight', 'sp_gap', 'sp_reversal', 'sp_leader')
+RELATIVE_CONTROL = 'sp_fixed_half'
+
 
 
 def spy_holdings(root):
@@ -198,6 +201,7 @@ class Study:
         self.trend = {}
         self.ranks = {}
         self.market_leader = {}
+        self.spy_signals = {}
         adjusted = {symbol: series(data[symbol][0]) for symbol in ASSETS}
         for day in self.months.values():
             state = {}
@@ -220,6 +224,27 @@ class Study:
             self.market_leader[day] = 'US' if us_krw >= momentum[KR[0]] else 'KR'
             self.ranks[day] = {'US': tuple(sorted(US[1:], key=momentum.__getitem__, reverse=True)[:2]),
                                'KR': tuple(sorted(KR[1:], key=momentum.__getitem__, reverse=True)[:2])}
+            if not self.holdings or not self.holdings[0] or day <= self.holdings[0][0]:
+                continue
+            report, accession, exposure = prior(self.holdings, day, strict=True)
+            if (day - iso(report)).days > 185 or self.market_leader[day] != 'US':
+                continue
+            group = tuple(exposure)
+            losing = [symbol for symbol in group if momentum[symbol] <= 1]
+            laggards = [symbol for symbol in group if momentum[symbol] < momentum[US[0]]]
+            leader = max(group, key=exposure.__getitem__)
+            short_anchor = month_end(month_shift(day, -3))
+            reversals = sum(prior(adjusted[symbol], day)[2] < prior(adjusted[symbol], short_anchor)[2]
+                            for symbol in group)
+            votes = (
+                len(losing) >= 2,
+                sum(exposure[symbol] for symbol in losing) > sum(exposure.values()) / 2,
+                len(laggards) >= 2,
+                reversals >= 2,
+                momentum[leader] <= 1,
+            )
+            self.spy_signals[day] = (report, accession, dict(zip(RELATIVE_GRAPH, votes)))
+
 
     def run(self, start, deadline, portfolio, strategy, ledger):
         weights = dict(zip(ASSETS, (.5, 0, 0, 0, .3, 0, 0, 0) if portfolio == 'etf'
@@ -235,13 +260,16 @@ class Study:
         exit_signal = 'none'
         pending = {}
         def allocation(day):
-            if strategy in ('relative', 'relative_half_trend'):
+            if strategy in ('relative', 'relative_half_trend', RELATIVE_CONTROL, *RELATIVE_GRAPH):
                 leader = self.market_leader[day]
                 target = {'US': .5, 'KR': .3}
                 if leader is not None:
                     follower = 'KR' if leader == 'US' else 'US'
-                    target[leader] += .15
-                    target[follower] -= .15
+                    signal = self.spy_signals.get(day)
+                    half = signal and (strategy == RELATIVE_CONTROL or signal[2].get(strategy, False))
+                    tilt = .075 if half else .15
+                    target[leader] += tilt
+                    target[follower] -= tilt
                 state = {'US': target['US'] / .5, 'KR': target['KR'] / .3}
             else:
                 state = {'US': 1., 'KR': 1.}
@@ -272,6 +300,11 @@ class Study:
 
         def queue_weights(day, state, rule):
             nonlocal graph_report, graph_filing, graph_changes
+            if strategy in (*RELATIVE_GRAPH, RELATIVE_CONTROL):
+                signal = self.spy_signals.get(day)
+                graph_report, graph_filing = signal[:2] if signal else ('', '')
+                if signal and (strategy == RELATIVE_CONTROL or signal[2].get(strategy, False)):
+                    graph_changes += 1
             amount = value(day)
             desired = {s: weights[s] * amount * state['US' if s in US else 'KR'] for s in ASSETS}
             if strategy == 'stock_rank':
@@ -378,7 +411,7 @@ class Study:
                     queue_weights(day, state, 'monthly_stock_rank')
                 elif state != previous_state or day.month % 3 == 0:
                     reason = 'signal_weight_change' if state != previous_state and strategy in (
-                        'half_trend', 'relative', 'relative_half_trend') else (
+                        'half_trend', 'relative', 'relative_half_trend', RELATIVE_CONTROL, *RELATIVE_GRAPH) else (
                         'trend_change' if state != previous_state else 'quarterly')
                     queue_weights(day, state, reason)
                     previous_state = state
@@ -454,6 +487,7 @@ def main():
     parser.add_argument('--start', type=iso, default=iso('2021-11-26'))
     parser.add_argument('--end', type=iso, default=iso('2026-11-26'))
     parser.add_argument('--spy-graph', action='store_true')
+    parser.add_argument('--relative-graph', action='store_true')
     args = parser.parse_args()
     raw = args.out / 'raw'
     raw.mkdir(exist_ok=True, parents=True)
@@ -462,8 +496,13 @@ def main():
         data[s] = fetch(s, raw, month_shift(args.start, -11), args.end)
         print(data[s][3], flush=True)
     dump_csv(args.out / 'coverage.csv', [v[3] for v in data.values()])
-    holdings = spy_holdings(args.out / 'nport') if args.spy_graph else None
+    holdings = spy_holdings(args.out / 'nport') if args.spy_graph or args.relative_graph else None
     study = Study(data, holdings)
+    if args.relative_graph:
+        dump_csv(args.out / 'relative_graph_signals.csv', [
+            dict(day=day, report=report, accession=accession, **votes)
+            for day, (report, accession, votes) in study.spy_signals.items()
+        ])
     end = min(max(value[0]) for value in data.values())
     cohorts = []
     with (args.out / 'orders.csv').open('w', newline='', encoding='utf-8') as stream:
@@ -480,13 +519,15 @@ def main():
                 if deadline is None or (end_month.year, end_month.month) >= (end.year, end.month):
                     continue
                 for portfolio in ('etf', 'mixed'):
-                    for strategy in STRATEGIES:
+                    strategies = (('hold', 'relative', *RELATIVE_GRAPH, RELATIVE_CONTROL)
+                                  if args.relative_graph else STRATEGIES)
+                    for strategy in strategies:
                         if strategy == 'stock_rank' and portfolio == 'etf':
                             continue
                         row = study.run(start, deadline, portfolio, strategy, ledger)
                         row['months'] = months
                         cohorts.append(row)
-                if holdings and holdings[0] and start >= iso('2021-11-26') and start > holdings[0][0]:
+                if args.spy_graph and holdings and holdings[0] and start >= iso('2021-11-26') and start > holdings[0][0]:
                     for strategy in GRAPH_STRATEGIES:
                         row = study.run(start, deadline, 'mixed', strategy, ledger)
                         row['months'] = months
