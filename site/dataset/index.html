@@ -21,7 +21,7 @@
   <main class="post dataset" id="content" tabindex="-1">
     <a class="back" href="../">연구 홈</a>
     <h1>FINTOS OpenDART Knowledge Graph</h1>
-    <p class="post-meta">2026년 11월 27일에 검증한 스냅샷 · 접수일 2026년 1월 2일~11월 26일</p>
+    <p class="post-meta">공개 v1 · 2026년 11월 27일 스냅샷</p>
     <p class="lead">기업별 공시를 접수일 순으로 따라가고, 각 공시의 원문을 찾아갈 수 있는 그래프입니다. 공시 목록과 S3에 확보한 ZIP·XML을 접수번호로 연결했습니다.</p>
     <dl class="dataset-stats">
       <div><dt>공시</dt><dd>253,432건</dd></div>
@@ -37,11 +37,13 @@
         <table>
           <thead><tr><th scope="col">배포본</th><th scope="col">수록 범위</th><th scope="col">파일</th></tr></thead>
           <tbody>
-            <tr><th scope="row">LPG</th><td>Neo4j 공시 본체의 2026년 11월 27일 스냅샷. 공시 목록 253,432건과 기업·공급계약·재무 관측 등을 포함합니다. 노드 721,797개, 관계 681,886개입니다.</td><td><a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/lpg-nodes.csv.gz">노드 CSV</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/lpg-relationships.csv.gz">관계 CSV</a></td></tr>
-            <tr><th scope="row">RDF·OWL</th><td>2026년 1월 1일~11월 27일 접수분 중 원문을 확보한 공시 211,458건의 메타데이터를 담았습니다. 지분·지배권 5개 공시군에는 사건·정정·원문 근거를 추가했습니다. 명시 트리플 7,783,531개, 상위 유형 추론 트리플 41,661개입니다.</td><td><a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-asserted.nt.gz">명시 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-inferred.nt.gz">추론 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/ontology.ttl">OWL 정의</a></td></tr>
+            <tr><th scope="row">LPG</th><td>Neo4j 공시 본체의 2026년 11월 27일 스냅샷(공시 목록의 접수일 1월 2일~11월 26일). 공시 목록 253,432건과 기업·공급계약·재무 관측 등을 포함합니다. 노드 721,797개, 관계 681,886개입니다.</td><td><a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/lpg-nodes.csv.gz">노드 CSV</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/lpg-relationships.csv.gz">관계 CSV</a></td></tr>
+            <tr><th scope="row">RDF·OWL</th><td>2026년 1월 1일~11월 27일 접수분 중 원문을 확보한 공시 211,458건의 메타데이터를 담았습니다. 지분·지배권 5개 공시군에서 추출한 사건·정정·원문 근거도 포함합니다. 명시 트리플 7,783,531개, 상위 유형 추론 트리플 41,661개입니다.</td><td><a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-asserted.nt.gz">명시 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/rdf-inferred.nt.gz">추론 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/3a91f1b15e438eab120b7261bcbab5fdf30fb355/ontology.ttl">OWL 정의</a></td></tr>
           </tbody>
         </table>
       </div>
+      <p>2026년 11월 27일 공개 v1에는 이후 EC2 연구에서 추가한 정기보고서의 보유자명·역할·기초와 기말의 주식 수 및 지분율이 포함되지 않습니다. <a href="https://gugstockkg.github.io/knowledge_graph/journal/2026-11-28-governance-backtest/#periodic-ownership">정기보고서 연구와 원문 근거</a></p>
+      <p><strong>v1.1 정기보고서 RDF 보강</strong>은 공시 12,828건의 보유 관측 83,706개에 공개 트리플 364,537개를 추가합니다. 기초·기말 주식 수와 지분율, 허용한 역할 값과 SK스퀘어 예제명을 담았습니다. v1 명시 RDF와 같은 그래프에 불러오면 됩니다. <a href="https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261128-v1.1">GitHub ZIP과 릴리스</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/ada92b01e62bfa781da85c6bfcee261c6220bb2e/rdf-periodic-ownership.nt.gz">Hugging Face 보강 RDF</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/ada92b01e62bfa781da85c6bfcee261c6220bb2e/periodic-ownership-manifest.json">체크섬</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph/resolve/ada92b01e62bfa781da85c6bfcee261c6220bb2e/periodic-ownership.rq">SPARQL 예제</a></p>
       <p>두 배포본과 Cypher·SPARQL 예제, 적재 방법, SHA-256 체크섬을 한 번에 받을 수 있습니다. 공개본은 DART 링크와 근거 위치를 제공합니다. <a href="https://github.com/gugstockkg/knowledge_graph/releases/download/fintos-opendart-20261127-v1/fintos-opendart-20261127-v1.zip">전체 ZIP 다운로드</a> · <a href="https://huggingface.co/datasets/davidjycheong/fintos-opendart-knowledge-graph">Hugging Face 데이터 카드</a> · <a href="https://github.com/gugstockkg/knowledge_graph/releases/tag/fintos-opendart-20261127-v1">GitHub 릴리스</a></p>
     </section>
 
@@ -99,7 +101,7 @@ RETURN supplier.name AS supplier, buyer.name AS buyer,
       </div>
       <h3 id="economic-consistency">정합성을 지키는 기준</h3>
       <p><strong>당사자</strong>는 공시 제출인과 계약 참여자를 구분합니다. <strong>시점</strong>은 접수일과 계약 기간, 재무 회계기간을 따로 둡니다. <strong>수치</strong>는 통화·단위·비율의 분모를 보존합니다. <strong>관계</strong>는 원문 근거가 있을 때만 만듭니다. 예를 들어 같은 구매자가 시설투자를 발표했더라도, 해당 공급계약을 그 시설과 연결할 때는 공시에 명시된 근거를 확인합니다.</p>
-      <p>개념과 규칙은 CSV로 명세하고, 계약과 역할은 Neo4j 레이블 속성 그래프(LPG)로 구현합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/ontology.csv">온톨로지 CSV</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/README.md">온톨로지 설명서</a> · <a href="https://github.com/gugstockkg/knowledge_graph/raw/refs/heads/main/ontology/economic-events-v0.1/economic-events.pdf">발표자료 PDF</a> · <a href="https://github.com/gugstockkg/knowledge_graph/raw/refs/heads/main/ontology/economic-events-v0.1/economic-events.pptx">편집용 PowerPoint</a></p>
+      <p>개념과 규칙은 CSV로 명세하고, 계약과 역할은 Neo4j 레이블 속성 그래프(LPG)로 구현합니다. <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/ontology.csv">온톨로지 CSV</a> · <a href="https://github.com/gugstockkg/knowledge_graph/blob/main/ontology/economic-events-v0.1/README.md">온톨로지 설명서</a></p>
     </section>
 
     <section aria-labelledby="schema">
@@ -305,7 +307,7 @@ ORDER BY month;</code></pre></details>
         <li><strong>원문 추출 실험 준비</strong> · 제목으로 정정·계약·지분 공시 후보를 고르고, 원문 연결 상태를 기준으로 검수 표본을 만들 수 있습니다.</li>
         <li><strong>수집 품질 확인</strong> · 원문을 찾지 못한 월과 공시를 골라 로컬·S3·API 상태를 대조할 수 있습니다.</li>
       </ul>
-      <p>현재 그래프에서 확인할 수 있는 것은 기업·공시·원문 사이의 연결입니다. 지분율, 계약 당사자, 정정 전후 값은 원문을 파싱하고 검수한 뒤 별도 관계로 적재해야 합니다. 접수일은 사건이 실제 일어난 날짜와 구분해야 하며, 일중 공개 순서는 이 스냅샷에서 확인할 수 없습니다.</p>
+      <p>이 절의 공시 카탈로그는 기업·공시·원문 위치의 연결을 다룹니다. 검수한 계약 당사자와 지분·정정 근거는 각 공개 그래프의 추출 범위에 따라 조회할 수 있습니다. 접수일은 사건이 실제 일어난 날짜와 구분해야 하며, 일중 공개 순서는 이 스냅샷에서 확인할 수 없습니다.</p>
       <p>공개 페이지에서는 스키마, 질의문, 일부 공개 접수번호와 집계값을 제공합니다. 전체 원문, S3 접근 경로, 내부 Neo4j 접속 정보는 EC2 운영 환경에서 관리합니다.</p>
     </section>
 
