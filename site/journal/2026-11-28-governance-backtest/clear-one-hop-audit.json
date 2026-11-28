@@ -1,0 +1,362 @@
+{
+  "paths": {
+    "20261124800494": {
+      "disclosure": {
+        "contract": "20261124800494",
+        "product": "온양 복지동 신축공사",
+        "category": "facility_construction",
+        "receipt": "20261124800494",
+        "day": "2026-11-24",
+        "kind": "original",
+        "start": "2026-11-24",
+        "end": "2028-04-30",
+        "changed": null,
+        "amount": 84120000000,
+        "ratio": 18.58,
+        "supplier": {
+          "name": "일성건설",
+          "corp_code": "00146232",
+          "stock_code": "013360"
+        },
+        "buyer": {
+          "name": "삼성전자",
+          "corp_code": "00126380",
+          "stock_code": "005930"
+        }
+      },
+      "supporting_contracts": [
+        {
+          "contract": "20260706800182",
+          "product": "평택2단지 부대동 그룹2 건축 및 통신공사",
+          "category": "facility_construction",
+          "receipt": "20260706800182",
+          "day": "2026-07-06",
+          "kind": "original",
+          "start": "2026-07-03",
+          "end": "2027-10-31",
+          "changed": null,
+          "amount": 45118000000,
+          "ratio": 9.96,
+          "supplier": {
+            "name": "일성건설",
+            "corp_code": "00146232",
+            "stock_code": "013360"
+          },
+          "buyer": {
+            "name": "삼성전자",
+            "corp_code": "00126380",
+            "stock_code": "005930"
+          }
+        }
+      ]
+    },
+    "20261116801609": {
+      "disclosure": {
+        "contract": "20261116801609",
+        "product": "반도체 제조 장비",
+        "category": "semiconductor_equipment",
+        "receipt": "20261116801609",
+        "day": "2026-11-16",
+        "kind": "original",
+        "start": "2026-11-16",
+        "end": "2027-06-25",
+        "changed": null,
+        "amount": 69895510000,
+        "ratio": 18.26,
+        "supplier": {
+          "name": "케이씨텍",
+          "corp_code": "01261893",
+          "stock_code": "281820"
+        },
+        "buyer": {
+          "name": "SK하이닉스",
+          "corp_code": "00164779",
+          "stock_code": "000660"
+        }
+      },
+      "supporting_contracts": [
+        {
+          "contract": "20261110800268",
+          "product": "반도체 제조 장비",
+          "category": "semiconductor_equipment",
+          "receipt": "20261110800268",
+          "day": "2026-11-10",
+          "kind": "original",
+          "start": "2026-11-09",
+          "end": "2027-04-01",
+          "changed": null,
+          "amount": 21122750000,
+          "ratio": 5.52,
+          "supplier": {
+            "name": "케이씨텍",
+            "corp_code": "01261893",
+            "stock_code": "281820"
+          },
+          "buyer": {
+            "name": "SK하이닉스",
+            "corp_code": "00164779",
+            "stock_code": "000660"
+          }
+        }
+      ]
+    },
+    "20261120900180": {
+      "disclosure": {
+        "contract": "20261120900180",
+        "product": "평택캠퍼스 P5 FAB2 건축공사",
+        "category": "facility_construction",
+        "receipt": "20261120900180",
+        "day": "2026-11-20",
+        "kind": "original",
+        "start": "2026-11-23",
+        "end": "2028-05-31",
+        "changed": null,
+        "amount": 11419000000,
+        "ratio": 10.7,
+        "supplier": {
+          "name": "덕신이피씨",
+          "corp_code": "00454937",
+          "stock_code": "090410"
+        },
+        "buyer": {
+          "name": "삼성물산",
+          "corp_code": "00149655",
+          "stock_code": "028260"
+        }
+      },
+      "supporting_contracts": [
+        {
+          "contract": "20260312901296",
+          "product": "평택캠퍼스 2단지 조성공사 및 P5 FAB 건축 데크플레이트",
+          "category": "facility_construction",
+          "receipt": "20260312901296",
+          "day": "2026-03-12",
+          "kind": "original",
+          "start": "2026-03-13",
+          "end": "2028-12-31",
+          "changed": null,
+          "amount": 15593000000,
+          "ratio": 10.6,
+          "supplier": {
+            "name": "덕신이피씨",
+            "corp_code": "00454937",
+            "stock_code": "090410"
+          },
+          "buyer": {
+            "name": "삼성물산",
+            "corp_code": "00149655",
+            "stock_code": "028260"
+          }
+        }
+      ]
+    }
+  },
+  "decisions": [
+    {
+      "symbol": "005930",
+      "date": "2026-11-25",
+      "one_hop_receipts": [
+        "20261124800494"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 182900,
+      "trend_reference_close": 225000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "005930",
+      "date": "2026-11-26",
+      "one_hop_receipts": [
+        "20261124800494"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 166900,
+      "trend_reference_close": 245000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "000660",
+      "date": "2026-11-17",
+      "one_hop_receipts": [
+        "20261116801609"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 1118000,
+      "trend_reference_close": 1304000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "000660",
+      "date": "2026-11-18",
+      "one_hop_receipts": [
+        "20261116801609"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 1100000,
+      "trend_reference_close": 1190000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "000660",
+      "date": "2026-11-19",
+      "one_hop_receipts": [
+        "20261116801609"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 1164000,
+      "trend_reference_close": 1288000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "000660",
+      "date": "2026-11-20",
+      "one_hop_receipts": [
+        "20261116801609"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 1190000,
+      "trend_reference_close": 1234000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "000660",
+      "date": "2026-11-23",
+      "one_hop_receipts": [
+        "20261116801609"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 1100000,
+      "trend_reference_close": 1263000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "028260",
+      "date": "2026-11-23",
+      "one_hop_receipts": [
+        "20261120900180"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 255500,
+      "trend_reference_close": 286000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "028260",
+      "date": "2026-11-24",
+      "one_hop_receipts": [
+        "20261120900180"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 250000,
+      "trend_reference_close": 294000,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "028260",
+      "date": "2026-11-25",
+      "one_hop_receipts": [
+        "20261120900180"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 256000,
+      "trend_reference_close": 305500,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    },
+    {
+      "symbol": "028260",
+      "date": "2026-11-26",
+      "one_hop_receipts": [
+        "20261120900180"
+      ],
+      "zero_hop_receipts": [],
+      "score_0": 0,
+      "score_1": -0.05677294336306872,
+      "score": -0.05677294336306872,
+      "trend": false,
+      "previous_close": 238000,
+      "trend_reference_close": 324500,
+      "prior_position": false,
+      "prior_without_1hop": false,
+      "target": false,
+      "target_without_1hop": false
+    }
+  ],
+  "source_sha256": {
+    "20261110800268": "f7d8a5364c6beaf6eeaeb104f248beda89a5c22790871d0a3a04c638c3ba0017",
+    "20261116801609": "557e1076bfcc8ba2c40b712e307fe711d69286b4bdf1018c577e4c9b00980415",
+    "20260706800182": "27478d2011353c272ff7c0375cc8fd1227a69e7940716bc904282e93f7a4dcd6",
+    "20261124800494": "271e6626f0505fb6dd6fab7aab12590a02830e614cdbfa4114f1a6c88b86c879",
+    "20260312901296": "ec9dc71ff585adec870e2380e9fbaa4f60aa04b1f5cfe84a62f38674d4d0914c",
+    "20261120900180": "ecaceb2bf6c107ce9290c7d1ce883af3984cd03b6261fe390e46d4124ebbb10c"
+  }
+}
