@@ -20,7 +20,8 @@ US = ('SPY', 'AAPL', 'MSFT', 'NVDA')
 KR = ('069500.KS', '005930.KS', '000660.KS', '005380.KS')
 FX = 'KRW=X'
 ASSETS = US + KR
-STRATEGIES = ('hold', 'rebalance', 'trend', 'exit', 'partial')
+STRATEGIES = ('hold', 'rebalance', 'trend', 'exit', 'partial', 'half_trend',
+              'relative', 'relative_half_trend', 'stock_rank')
 COST = 0.001
 FX_COST = 0.001
 TARGET = .15
@@ -195,6 +196,9 @@ class Study:
         for day in self.days:
             self.months[day.year, day.month] = day
         self.trend = {}
+        self.ranks = {}
+        self.market_leader = {}
+        adjusted = {symbol: series(data[symbol][0]) for symbol in ASSETS}
         for day in self.months.values():
             state = {}
             for market, s in [('US', US[0]), ('KR', KR[0])]:
@@ -203,6 +207,19 @@ class Study:
                            for i in range(10) if month_shift(day.replace(day=1), -i) >= prices[0][0]]
                 state[market] = len(history) == 10 and history[0] > statistics.mean(history)
             self.trend[day] = state
+            recent = month_end(month_shift(day, -1))
+            anchor = month_end(month_shift(day, -12))
+            if anchor < max(values[0][0] for values in adjusted.values()):
+                self.ranks[day] = {market: stocks[:2] for market, stocks in
+                                   [('US', US[1:]), ('KR', KR[1:])]}
+                self.market_leader[day] = None
+                continue
+            momentum = {symbol: prior(values, recent)[2] / prior(values, anchor)[2]
+                        for symbol, values in adjusted.items()}
+            us_krw = momentum[US[0]] * prior(self.fx, recent, strict=True) / prior(self.fx, anchor, strict=True)
+            self.market_leader[day] = 'US' if us_krw >= momentum[KR[0]] else 'KR'
+            self.ranks[day] = {'US': tuple(sorted(US[1:], key=momentum.__getitem__, reverse=True)[:2]),
+                               'KR': tuple(sorted(KR[1:], key=momentum.__getitem__, reverse=True)[:2])}
 
     def run(self, start, deadline, portfolio, strategy, ledger):
         weights = dict(zip(ASSETS, (.5, 0, 0, 0, .3, 0, 0, 0) if portfolio == 'etf'
@@ -217,8 +234,24 @@ class Study:
         exit_started = False
         exit_signal = 'none'
         pending = {}
-        previous_state = self.trend[start]
-        signals = strategy in ('trend', 'exit', 'partial')
+        def allocation(day):
+            if strategy in ('relative', 'relative_half_trend'):
+                leader = self.market_leader[day]
+                target = {'US': .5, 'KR': .3}
+                if leader is not None:
+                    follower = 'KR' if leader == 'US' else 'US'
+                    target[leader] += .15
+                    target[follower] -= .15
+                state = {'US': target['US'] / .5, 'KR': target['KR'] / .3}
+            else:
+                state = {'US': 1., 'KR': 1.}
+            if strategy in ('trend', 'exit', 'partial', 'half_trend', 'relative_half_trend'):
+                floor = .5 if strategy in ('half_trend', 'relative_half_trend') else 0.
+                state = {market: multiplier * (1. if self.trend[day][market] else floor)
+                         for market, multiplier in state.items()}
+            return state
+
+        previous_state = allocation(start)
         start_value = balance
 
         def schedule(day, assets, rule, fractions):
@@ -241,6 +274,11 @@ class Study:
             nonlocal graph_report, graph_filing, graph_changes
             amount = value(day)
             desired = {s: weights[s] * amount * state['US' if s in US else 'KR'] for s in ASSETS}
+            if strategy == 'stock_rank':
+                for market, stocks in [('US', US[1:]), ('KR', KR[1:])]:
+                    budget = sum(desired[s] for s in stocks)
+                    selected = self.ranks[day][market]
+                    desired.update({s: budget / len(selected) if s in selected else 0. for s in stocks})
             if graph_active:
                 report, accession, overlap = prior(self.holdings, day, strict=True)
                 if (day - iso(report)).days <= 185:
@@ -259,7 +297,7 @@ class Study:
                         desired.update({s: min(desired[s], CAP * amount) for s in CUSIP})
             schedule(day, ASSETS, rule, desired)
 
-        queue_weights(start, previous_state if signals else {'US': True, 'KR': True}, 'initial')
+        queue_weights(start, previous_state, 'initial')
         final_dates = {s: self.closes[s][0][bisect.bisect_right(self.closes[s][0], deadline) - 1]
                        for s in ASSETS}
         for day in self.days[bisect.bisect_right(self.days, start):bisect.bisect_right(self.days, deadline)]:
@@ -335,9 +373,14 @@ class Study:
                 fractions = dict.fromkeys(ASSETS, 1. if strategy == 'exit' else .5)
                 schedule(day, [s for s in ASSETS if held[s]], exit_signal, fractions)
             elif not exit_started and day in self.trend and strategy != 'hold':
-                state = self.trend[day] if signals else {'US': True, 'KR': True}
-                if state != previous_state or day.month % 3 == 0:
-                    queue_weights(day, state, 'trend_change' if state != previous_state else 'quarterly')
+                state = allocation(day)
+                if strategy == 'stock_rank':
+                    queue_weights(day, state, 'monthly_stock_rank')
+                elif state != previous_state or day.month % 3 == 0:
+                    reason = 'signal_weight_change' if state != previous_state and strategy in (
+                        'half_trend', 'relative', 'relative_half_trend') else (
+                        'trend_change' if state != previous_state else 'quarterly')
+                    queue_weights(day, state, reason)
                     previous_state = state
 
         assert not any(quantity > 1e-8 for quantity in held.values())
@@ -438,6 +481,8 @@ def main():
                     continue
                 for portfolio in ('etf', 'mixed'):
                     for strategy in STRATEGIES:
+                        if strategy == 'stock_rank' and portfolio == 'etf':
+                            continue
                         row = study.run(start, deadline, portfolio, strategy, ledger)
                         row['months'] = months
                         cohorts.append(row)
