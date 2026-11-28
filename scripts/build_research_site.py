@@ -13,6 +13,7 @@ HOME_POST_LIMIT = 6
 
 CATEGORIES = {
     "backtest": "백테스트",
+    "knowledge-graph": "지식그래프",
     "research": "연구 기록",
     "validation": "설계와 검증",
     "evaluation": "실험 설계",
@@ -75,6 +76,9 @@ def read_posts(source):
             summary, category, stamp = (
                 fields[f"fintos:{key}"] for key in ("summary", "category", "published")
             )
+            label = fields.get("fintos:topic", category)
+            if label not in CATEGORIES:
+                raise ValueError(f"unsupported article topic {label!r}")
             published = datetime.fromisoformat(stamp)
             if not (title and summary and category in CATEGORIES and published.tzinfo and
                     date.fromisoformat(path.parent.name[:10]) == published.date()):
@@ -82,7 +86,7 @@ def read_posts(source):
         except (KeyError, ValueError) as error:
             raise ValueError(f"{path}: {error}") from error
         posts.append(dict(path=path.parent.name, title=title, summary=summary,
-                          category=category, published=published, stamp=stamp))
+                          category=category, label=label, published=published, stamp=stamp))
     # Stable folder order also applies when several articles share a publication time.
     return sorted(posts, key=lambda post: post["published"], reverse=True)
 
@@ -90,7 +94,7 @@ def read_posts(source):
 def article(post, prefix, heading):
     published = post["published"]
     when = f"{published.year}년 {published.month}월 {published.day}일"
-    category = post["category"]
+    category = post["label"]
     href = escape(prefix + post["path"] + "/", quote=True)
     return (
         f'          <article class="journal-entry" data-entry data-category="{category}" data-year="{published.year}">\n'
@@ -206,7 +210,7 @@ def build(source, destination):
                         + "\n".join(article(post, "", "h3") for post in entries)
                         + "\n      </section>")
     archive = replace(archive, "archive-posts", "\n".join(editions))
-    categories = {post["category"] for post in posts}
+    categories = {post["label"] for post in posts}
     archive = replace(archive, "category-options", "\n".join(
         f'          <option value="{key}">{label}</option>' for key, label in CATEGORIES.items() if key in categories))
     archive = replace(archive, "year-options", "\n".join(
